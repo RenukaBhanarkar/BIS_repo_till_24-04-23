@@ -26,8 +26,14 @@
                 <div class="row">
                 <div class="mb-2 col-md-4">
                         <label class="d-block text-font">Name of Competition<sup class="text-danger">*</sup></label>
-                        <input type="text" class="form-control input-font" name="competition" id="competition" placeholder="Enter Name of Competition" required>
-                        <span class="error_text"><?php echo form_error('title');?></span>
+                        <!-- <input type="text" class="form-control input-font" name="competition" id="competition" placeholder="Enter Name of Competition" required>
+                        <span class="error_text"><?php echo form_error('title');?></span> -->
+                        <select class="form-control input-font" name="competition" aria-label="Default select example" required>
+                        <option selected>--select--</option> 
+                        <?php foreach($competation as $list){ ?>
+                            <option value="<?php echo $list['id']; ?>"><?php echo $list['title']; ?></option>
+                            <?php } ?>
+                        </select>
                         
                   </div>
                 <div class="mb-2 col-md-4">
@@ -110,6 +116,8 @@
                 </div>
               </div> 
     <!-- /.container-fluid -->
-
+    <div class="col-md-12 submit_btn p-3">
+                               <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>subadmin/winner_wall'">Back</a>
+                          </div> 
 </div>
 <!-- End of Main Content -->

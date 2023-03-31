@@ -368,7 +368,7 @@ class Admin extends CI_Controller
     public function questionBankList()
     {
         $data = array();
-        $data['allRecords'] = $this->Que_bank_model->getAllQueBankForSubadmin();
+        $data['allRecords'] = $this->Que_bank_model->getAllQueBankForApproval();
         $this->load->view('admin/headers/admin_header');
         $this->load->view('quebank/question_bank_list',$data);
         $this->load->view('admin/footers/admin_footer');

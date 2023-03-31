@@ -313,62 +313,29 @@ class Subadmin extends CI_Controller
         $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         $que_bank_id = clearText($this->input->post('que_bank_id'));
         $que_type = clearText($this->input->post('que_type'));
-        $que = "";
-        $que_h = "";
-        if($que_type == 1){
+        if($que_type = 1){
             $que = clearText($this->input->post('que'));
         }
-        if($que_type == 2){
-            $que_h = clearText($this->input->post('que_h'));
-        }
-        if($que_type == 3){
-            $que = clearText($this->input->post('que'));
-            $que_h = clearText($this->input->post('que_h'));
-        }
-
         $no_of_options = clearText($this->input->post('no_of_options'));
         $option1 = "";
         $option2 = "";
         $option3 = "";
         $option4 = "";
         $option5 = "";
-        $option1_h = "";
-        $option2_h = "";
-        $option3_h= "";
-        $option4_h= "";
-        $option5_h = "";
-
-        if($que_type == 1){
-            if($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-                $option1 = clearText($this->input->post('option1'));
-                $option2 = clearText($this->input->post('option2'));
-            }
-            if($no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-                $option3 = clearText($this->input->post('option3'));           
-            }
-            if($no_of_options == 4 ||$no_of_options == 5){
-                $option4 = clearText($this->input->post('option4'));           
-            }
-            if($no_of_options == 5){
-                $option5 = clearText($this->input->post('option5'));           
-            }
+        if($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
+            $option1 = clearText($this->input->post('option1'));
+            $option2 = clearText($this->input->post('option2'));
         }
-        if($que_type == 2){
-            if($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-                $option1_h = clearText($this->input->post('option1_h'));
-                $option2_h = clearText($this->input->post('option2_h'));
-            }
-            if($no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-                $option3_h = clearText($this->input->post('option3'));           
-            }
-            if($no_of_options == 4 ||$no_of_options == 5){
-                $option4_h = clearText($this->input->post('option4'));           
-            }
-            if($no_of_options == 5){
-                $option5_h = clearText($this->input->post('option5'));           
-            }
+        if($no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
+            $option3 = clearText($this->input->post('option3'));           
         }
-        $corr_opt_e = clearText($this->input->post('correct_answer')); 
+        if($no_of_options == 4 ||$no_of_options == 5){
+            $option4 = clearText($this->input->post('option4'));           
+        }
+        if($no_of_options == 5){
+            $option5 = clearText($this->input->post('option5'));           
+        }
+        $corr_opt_e = clearText($this->input->post('corr_opt_e')); 
        // $language = clearText($this->input->post('language')); 
         // if (!$title && !$no_of_ques && !$language && !$total_marks) {
         //     $data['status'] = 0;
@@ -380,18 +347,12 @@ class Subadmin extends CI_Controller
                     'que_bank_id' =>  $que_bank_id,
                     'que_type' => $que_type,
                     'que' => $que,
-                    'que_h' => $que_h,
                     'no_of_options' => $no_of_options,
                     'opt1_e'=>$option1,
                     'opt2_e'=>$option2,
                     'opt3_e'=>$option3,
                     'opt4_e'=>$option4,
                     'opt5_e'=>$option5,
-                    'opt1_h'=>$option1_h,
-                    'opt2_h'=>$option2_h,
-                    'opt3_h'=>$option3_h,
-                    'opt4_h'=>$option4_h,
-                    'opt5_h'=>$option5_h,
                     'created_by' => $admin_id,
                     'corr_opt_e'=>$corr_opt_e,
                     //'language' =>$language
@@ -516,27 +477,7 @@ class Subadmin extends CI_Controller
             return true;
         }
     }
-    public function toCheckNoOfQueInBank()
-    {
-        $que_bank_id = $this->input->get("id");
-        $no_of_que = $this->input->get("no");
-        $data = array();
 
-        if ($que_bank_id == '' &&  $no_of_que == '') {
-            $data['status'] = 0;
-            $data['message'] = 'Please enter all details';
-           
-        } else if ($this->Admin_model->toCheckNoOfQueInBank($que_bank_id,$no_of_que)) {
-            $data['status'] = 1;
-            $data['message'] = 'Correct';
-           
-        } else {
-            $data['status'] = 0;
-            $data['message'] = 'Please add questions equal to total no of questions in bank';
-           
-        }
-        echo  json_encode($data);
-    }
     public function viewQuestionBank(){    
         $data = array();  
         $qui_bank_id =   encryptids("D",$this->input->get('id'));     
@@ -640,6 +581,8 @@ class Subadmin extends CI_Controller
     public function winner_wall_form(){
         //$data['prises']=$this->Admin_model->prises();
         //$data['winner_wall_list']=$this->Admin_model->winner_wall_list();
+        $this->load->model('Quiz/Quiz_model');
+        $data['competation']=$this->Quiz_model->published_quiz();
         $data['prises']=$this->Admin_model->prises();
         //print_r($data); die;
         $this->load->view('admin/headers/admin_header');

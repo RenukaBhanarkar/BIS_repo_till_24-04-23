@@ -9,6 +9,7 @@ class Users extends CI_Controller {
         parent::__construct();
         $this->load->model('Quiz/quiz_model');
         $this->load->model('Users/users_model');
+        $this->load->model('Admin/Wall_of_wisdom_model', 'wow');
     }
 	// public function index()
 	// {
@@ -171,8 +172,10 @@ class Users extends CI_Controller {
         
     }
     public function byTheMentor(){
+        $this->load->model('Admin/by_the_mentor_model');
+        $data['by_the_mentor']=$this->by_the_mentor_model->getThreeBTM();
         $this->load->view('users/headers/header');
-        $this->load->view('users/users_by_the_mentor');
+        $this->load->view('users/users_by_the_mentor',$data);
         $this->load->view('users/footers/footer'); 
     }
 
@@ -316,6 +319,21 @@ class Users extends CI_Controller {
         $this->load->view('users/headers/header');
         $this->load->view('users/quiz_submission');
         $this->load->view('users/footers/footer');  
+    }
+
+    public function wall_of_wisdom_view($id){
+       // $this->load->model('Admin/Wall_of_wisdom_model wow');
+        $data['wow']=$this->wow->get_wow($id);
+       // print_r($data['wow']); die;
+        $this->load->view('users/headers/header');
+        $this->load->view('wall_of_wisdom/wall_of_wisdom_description',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    public function all_wall_of_wisdom(){
+        $data['wow']=$this->wow->get_allwow();
+        $this->load->view('users/headers/header');
+        $this->load->view('wall_of_wisdom/wall_of_wisdom_view_1',$data);
+        $this->load->view('users/footers/footer'); 
     }
 
 

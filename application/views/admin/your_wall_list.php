@@ -58,10 +58,18 @@
                                         <td class="d-flex border-bottom-0">
                                             <!-- <button onClick="" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal"
                                         data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button> -->
-                                            <?php if (!($list_yw['status_name'] == "Published")) { ?>
+                                            <?php if(encryptids("D", $_SESSION['admin_type']) == 2){
+
+                                            }else if(encryptids("D", $_SESSION['admin_type']) == 3){                                              
+                                            
+                                            
+                                            if (!($list_yw['status'] == "5")) { ?>
                                                 <button onclick="deleteYourwall(' <?php echo $list_yw['id']; ?> ');" data-id='<?php echo $list_yw['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                            <?php } ?>
-                                            <a href="<?php echo base_url(); ?>admin/your_wall_view/<?php echo encryptids("E", $list_yw['id'] )?>"><button class="btn btn-info btn-sm mr-2">view</button></a>
+                                                <button class="btn btn-primary btn-sm mr-2" onclick="sendPublish('<?php echo $list_yw['id']; ?>')" data-id ='<?php echo $list_yw['id']; ?>'>Publish</button>
+                                            <?php }else if($list_yw['status'] == "5"){ ?>
+                                                <button class="btn btn-primary btn-sm mr-2" onclick="sendUnPublish('<?php echo $list_yw['id']; ?>')" data-id ='<?php echo $list_yw['id']; ?>'>UnPublish</button>
+                                          <?php  } } ?>
+                                            <a href="<?php echo base_url(); ?>admin/your_wall_view/<?php echo encryptids("E", $list_yw['id'] )?>"><button class="btn btn-info btn-sm mr-2">View</button></a>
                                             <!-- Modal -->
                                             <div class="modal fade" id="viewImage" tabindex="-1" role="dialog" aria-labelledby="viewImageLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -82,7 +90,7 @@
 
                                         </td>
                                     </tr>
-                            <?php }
+                            <?php } 
                             } ?>
 
                         </tbody>
@@ -91,6 +99,9 @@
             </div>
         </div>
     </div>
+    <div class="col-md-12 submit_btn p-3">
+                               <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>admin/exchange_forum'">Back</a>
+                          </div> 
     <!-- /.container-fluid -->
 
 </div>
@@ -99,7 +110,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to delete?</p>
@@ -111,6 +124,44 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="publish" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Publish Activity</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Publish activity?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary publish" data-bs-dismiss="modal">Publish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="unpublish" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Unpublish Activity</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Unpublish activity?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary unpublish" data-bs-dismiss="modal">Unpublish</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- End of Main Content -->
 <script>
     // $(document).ready(function(){
@@ -138,4 +189,54 @@
             });
         });
     }
+
+    function sendPublish(que_id) {
+            $('#publish').modal('show');
+            $('.publish').on('click', function() {
+            // var c = confirm("Are you sure to Publish this survey details? ");
+            // if (c == true) {
+                // const $loader = $('.igr-ajax-loader');
+                //$loader.show();
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo base_url(); ?>admin/yourwallPublish',
+                    data: {
+                        que_id: que_id,
+                    },
+                    success: function(result) {
+                        // $('#row' + que_id).css({
+                        //     'display': 'none'
+                        // });
+                        // alert('success' 'refresh');
+                        location.reload();
+                    },
+                    error: function(result) {
+                        alert("Error,Please try again.");
+                    }
+                });
+
+            });
+        }
+
+        function sendUnPublish(que_id) {
+            // var c = confirm("Are you sure to Unpublish this survey details? ");
+            // if (c == true) {            
+                $('#unpublish').modal('show');
+                $('.unpublish').on('click', function() {   
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo base_url(); ?>admin/yourwallUnpublish',
+                    data: {
+                        que_id: que_id,
+                    },
+                    success: function(result) {                       
+                        location.reload();
+                    },
+                    error: function(result) {
+                        alert("Error,Please try again.");
+                    }
+                });
+
+            })
+        }
 </script>

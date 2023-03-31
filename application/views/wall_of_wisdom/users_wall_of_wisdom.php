@@ -126,6 +126,7 @@
         <div class="row">
            <?php foreach($wow as $list){ ?>
             <div class="col-md-4">
+                <a href="<?php echo base_url().'users/wall_of_wisdom_view/'.$list['id']; ?>" >
                 <div class="card-winners">
                     <img src="<?php echo base_url().'uploads/admin/wall_of_wisdom/'.$list['image']; ?>" class="card-img-top" alt="Discussion Forum">
                     <div class="winner-body p-2" >
@@ -145,6 +146,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
             <?php } ?>
             

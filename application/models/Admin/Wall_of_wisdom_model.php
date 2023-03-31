@@ -60,4 +60,69 @@ class Wall_of_wisdom_model extends CI_Model {
         $res=$query->result_array();
         return $res;
     }
+    public function send_for_approval($id){
+        $this->db->where('id', $id);
+        if ($this->db->update('tbl_wall_of_wisdom', ['status'=>'2'])) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+    public function approve_activity($id){
+        $this->db->where('id', $id);
+        if ($this->db->update('tbl_wall_of_wisdom', ['status'=>'3'])) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+    public function get_wow($id){
+        $this->db->select('*');
+        $this->db->from('tbl_wall_of_wisdom');        
+        $this->db->where('id',$id);
+        //$this->db->order_by('');
+        //$this->db->limit(6);
+        $query=$this->db->get();
+        $res=$query->result_array();
+        return $res[0];
+    }
+    public function get_allwow(){
+        $this->db->select('*');
+        $this->db->from('tbl_wall_of_wisdom');        
+        $this->db->where('status','5');
+        //$this->db->order_by('');
+        $this->db->limit(6);
+        $query=$this->db->get();
+        $res=$query->result_array();
+        return $res;
+    }
+    // public function get_wow($id){
+    //     $this->db->select('*');
+    //     $this->db->from('tbl_wall_of_wisdom'); 
+    //     $this->db->where('id',$id);
+    //     $query=$this->db->get();
+    //     $res=$query->result_array();
+    //     return $res[0];
+    // }
+    public function updateWOW($data){
+        //print_r($data); die;
+        $this->db->where('id', $data['id']);
+         if ($this->db->update('tbl_wall_of_wisdom', $data)) {
+             return true;
+           //  die;
+         } else {
+             return false;
+         }
+    }
+    public function detail($id){
+        $this->db->select('wow.*,tms.status_name');
+        $this->db->from('tbl_wall_of_wisdom wow');
+        $this->db->join('tbl_mst_status tms','tms.id=wow.status');
+        $this->db->where('wow.id',$id); 
+       // $this->db->where('admin_type',2); 
+       $this->db->order_by('created_on', 'ASC');
+         $query = $this->db->get();
+         $result=$query->result_array();
+         return $result[0];
+    }
 }

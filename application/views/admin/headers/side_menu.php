@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon">
             <img src="<?php echo base_url(); ?>assets/admin/img/bis_logo.png" width="80%">
         </div>
-        <div class="sidebar-brand-text mx-3">Welcom To BIS</div>
+        <div class="sidebar-brand-text mx-3">Exchange Forum</div>
     </a>
 
     <!-- Divider -->
