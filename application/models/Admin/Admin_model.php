@@ -399,4 +399,20 @@ class Admin_model extends CI_Model {
             return false;
         }
     }
+    public function toCheckNoOfQueInBank($que_bank_id,$no_of_que)
+    {
+        $arr = array();
+        $myQuery = "SELECT COUNT(que_id) AS cnt FROM  tbl_que_details  WHERE que_bank_id = '{$que_bank_id}' ";
+        $query = $this->db->query($myQuery);
+        if ($query->num_rows() > 0) {
+            $arr = $query->row_array();
+            $cnt =  $arr['cnt'];
+        
+        if ($cnt == $no_of_que) {
+            return true;
+        } else {
+            return false;
+        }
+        }
+    }
 }

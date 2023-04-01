@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Subadmin extends CI_Controller
 {
-
+ 
     public function __construct()
     {
         parent::__construct();
@@ -312,17 +312,17 @@ class Subadmin extends CI_Controller
           $data = array();
           $admin_id = encryptids("D", $this->session->userdata('admin_id'));
           $que_bank_id = clearText($this->input->post('que_bank_id'));
-          $language = clearText($this->input->post('language'));
+          $que_language = clearText($this->input->post('que_language'));
           $que_type = clearText($this->input->post('que_type'));
           $que = "";
           $que_h = "";
-          if($language == 1){
+          if($que_language == 1){
               $que = clearText($this->input->post('que'));
           }
-          if($language == 2){
+          if($que_language == 2){
               $que_h = clearText($this->input->post('que_h'));
           }
-          if($language == 3){
+          if($que_language == 3){
               $que = clearText($this->input->post('que'));
               $que_h = clearText($this->input->post('que_h'));
           }
@@ -412,7 +412,6 @@ class Subadmin extends CI_Controller
           echo  json_encode($data);
           exit();
       }
-      
     
     //ajax call
     public function getQuestionListByQueBankId()
@@ -434,6 +433,29 @@ class Subadmin extends CI_Controller
         echo  json_encode($data);
         exit();
     }
+
+public function toCheckNoOfQueInBank()
+    {
+        $que_bank_id = $this->input->get("id");
+        $no_of_que = $this->input->get("no");
+        $data = array();
+
+        if ($que_bank_id == '' &&  $no_of_que == '') {
+            $data['status'] = 0;
+            $data['message'] = 'Please enter all details';
+           
+        } else if ($this->Admin_model->toCheckNoOfQueInBank($que_bank_id,$no_of_que)) {
+            $data['status'] = 1;
+            $data['message'] = 'Correct';
+           
+        } else {
+            $data['status'] = 0;
+            $data['message'] = 'Please add questions equal to total no of questions in bank';
+           
+        }
+        echo  json_encode($data);
+    }
+
     
     //ajax call
     

@@ -26,6 +26,14 @@ class Quiz_model extends CI_Model {
         $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_quiz_details.status'); 
         return $this->db->get('tbl_quiz_details')->result_array();  
     }
+     public function getAllQuizeCreated()
+    {   
+        $this->db->select('tbl_quiz_details.*,tbl_mst_status.status_name'); 
+        $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_quiz_details.status');
+        $this->db->where('tbl_quiz_details.status',1);
+        return $this->db->get('tbl_quiz_details')->result_array();  
+    }
+    
     public function getAvailability()
     { 
          return $this->db->get("tbl_mst_quiz_availability")->result_array();
@@ -124,6 +132,11 @@ public function updatePrize($prize_id,$quiz_id,$formdata)
         $query=$this->db->get();
         $result=$query->result_array();
         return $result;
+    }
+    public function getAllClosedQuize($id)
+    {
+        $this->db->where('status',7); 
+        return $quiz = $this->db->get('tbl_quiz_details')->row_array();
     }
 
 

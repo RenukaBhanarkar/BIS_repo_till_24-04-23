@@ -100,6 +100,10 @@ if(! function_exists('xss_clean'))
 if ( ! function_exists('clearText')){
 	function clearText($str)
 	{
+		if($str==null)
+		{
+			$str=0;
+		}
 		$input_text = preg_replace("/[^a-zA-Z0-9@]+-_/", "", $str);
 		$input_text = xss_clean($input_text);
 		return trim(strip_tags($input_text));

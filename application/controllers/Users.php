@@ -10,6 +10,8 @@ class Users extends CI_Controller {
         $this->load->model('Quiz/quiz_model');
         $this->load->model('Users/users_model');
         $this->load->model('Admin/Wall_of_wisdom_model', 'wow');
+        
+        date_default_timezone_set("Asia/Calcutta");
     }
 	// public function index()
 	// {
@@ -49,8 +51,8 @@ class Users extends CI_Controller {
         $data['images']=$this->admin_model->images();
         $allquize = $this->users_model->getAllQuize();
         $data['allquize'] = $allquize; 
-        $this->load->view('users/headers/header');
-        $this->load->view('users/standard_club',$data);
+        // $this->load->view('users/headers/header');
+        // $this->load->view('users/standard_club',$data);
 
 
         $this->load->view('users/headers/header');

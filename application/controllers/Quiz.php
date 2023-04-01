@@ -51,8 +51,12 @@ class Quiz extends CI_Controller
     public function closed_quiz_list()
     {
 
+        $ClosedQuiz = $this->quiz_model->getAllClosedQuize();
+        $data = array();
+        $data['ClosedQuiz'] = $ClosedQuiz; 
+
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('Quiz/closed_quiz_list');
+        $this->load->view('Quiz/closed_quiz_list',$data);
         $this->load->view('admin/footers/admin_footer');
     }
     public function closed_quiz_view()
@@ -342,7 +346,7 @@ class Quiz extends CI_Controller
     {
         
       
-        $allquize = $this->quiz_model->getAllQuize();
+        $allquize = $this->quiz_model->getAllQuizeCreated();
         $data = array();
         $data['allquize'] = $allquize;
 

@@ -67,8 +67,6 @@
                                 </div>
                             </div>
                             <input type="hidden" id="que_bank_id" name="que_bank_id">
-                            <input type="hidden" id="que_language" name="que_language">
-
                             <div class="row mt-3">
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Question Type<sup class="text-danger">*</sup></label>
@@ -468,8 +466,7 @@
                     var allfields = true;
                     var title = $("#title").val();
                     var no_of_ques = $("#no_of_ques").val();
-                    var total_marks = $("#total_marks").val();
-                 
+
                     if (title == "") {
                         if ($("#title").next(".validation").length == 0) // only add if not added
                         {
@@ -529,8 +526,6 @@
                                     for (var i = 0, len = elements.length; i < len; ++i) {
                                         elements[i].readOnly = true;
                                     }
-                                    var language= $('input[name="language"]:checked').val();
-                                     $("#que_language").val(language);
                                     $('input[name="language"]').attr('disabled', 'disabled');
                                     $('#que_bank_id').val(res.id);
                                     $('#questions_form').show();
@@ -690,8 +685,7 @@
                     e.preventDefault();
                     var focusSet = false;
                     var allfields = true;
-                    var language = $("#que_language").val();
-                 //  $("#que_language").val(language);
+                    var language = $("#language").val();
                    // alert(que_type);
                     var no_of_options = $("#no_of_options").val();
                     if (language == 1 || language == 3) {

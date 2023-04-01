@@ -1,4 +1,8 @@
 <!doctype html>
+    <?php  
+    date_default_timezone_set("Asia/Calcutta");
+      $quiz_start_time=$_SESSION['quiz_start_time']=date('h:i:s'); 
+    ?>
 <html lang="en">
 
 <head>
@@ -11,59 +15,71 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
     <!-- Bootstrap CSS -->
     <title>Bureau of Indian standard | Quiz Start</title>
-    <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="<?php echo base_url();?>" rel="stylesheet">
+    <link href="<?= base_url();?>" rel="stylesheet">
     <!-- CSS File -->
-    <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
-    <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/bis_logo.png" type="image/x-icon">
-    <link href="<?php echo base_url();?>assets/css/quiz_start.css" rel="stylesheet" />
+    <link href="<?= base_url();?>assets/css/style.css" rel="stylesheet" />
+    <link href="<?= base_url();?>assets/css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="<?= base_url();?>assets/images/bis_logo.png" type="image/x-icon">
+    <link href="<?= base_url();?>assets/css/quiz_start.css" rel="stylesheet" />
     
 </head>
-
+<style>
+    h3.quiz_title_heading {
+    margin-left: 12px;
+    padding: 14px 0px 0px 0px;
+    font-weight: 600;
+    color: crimson;
+}
+</style>
 <body>
     <section>
         <div class="">
             <div class="Quiz_section ">
                 <div class="quiz-left-side-main shadow">
-                    <form id="regForm" action="<?php echo base_url().'Users/quiz_submit'?>" method="post"enctype="multipart/form-data">
+                    <h3 class="quiz_title_heading"><?= $quizdata['title']?></h3>
+                    <form id="regForm" action="<?= base_url().'Users/quiz_submit'?>" method="post"enctype="multipart/form-data">
                         <div class="inner-section " id="qustions-tab">
+                            <input type="hidden"value="<?= $quiz_start_time; ?>" name="start_time"> 
+                            <input type="hidden"value="1" name="user_id"> 
+                            <input type="hidden"value="<?= $quizdata['id']?>" name="quiz_id"> 
 
                             
                             <?php  $i=1;?> 
-                            <h3>Question <?php echo $i;?> to <?=count($que_details);?></h3>
-                            <?php 
+                            <h3>Question <?= $i;?> to <?=count($que_details);?></h3>
+                            <?php  
                             $k = 1;
                             foreach ($que_details as $key => $details) {?>
 
 
                                 <div class="tab">
                                 <div class="quiz-ans-section">
-                                    <p class="qustion-ans"> <?php echo $i++ ." . ".  $details['que']?> </p>
+                                    <p class="qustion-ans"> <?= $i++ ." . ".  $details['que']?> </p>
                                     <div class="quiz-option">
-                                        <input type="hidden"value="<?php echo $details['que_id']?>" name="que_id[]">
+                                        <input type="hidden"value="<?= $details['que_id']?>" name="que_id[]">
+                                        <input type="hidden"value="<?= $details['corr_opt_e']?>" name="corr_opt[]">
                                         <ul>
-                                            <li> <input type="radio" class="quiz-radio-btn" name="option<?php echo $details['que_id']?><?php echo $k ;?>" value="1"> <?php  echo$details['opt1_e']?>
+                                            <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?= $k ;?>" value="1" > <?= $details['opt1_e']?>
                                             </li>
-                                            <li> <input type="radio" class="quiz-radio-btn" name="option<?php echo $details['que_id']?><?php echo  $k ;?>"value="2">  <?php  echo$details['opt2_e']?>
+                                            <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?=  $k ;?>"value="2">  <?= $details['opt2_e']?>
                                             </li>
 
                                             <?php if(!empty($details['opt3_e']))
                                             {?>
-                                                <li> <input type="radio" class="quiz-radio-btn" name="option<?php echo $details['que_id']?><?php echo  $k ;?>"value="3"><?php  echo$details['opt3_e']?></li>
+                                                <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?=  $k ;?>"value="3"><?= $details['opt3_e']?></li>
                                             <?php } ?>
 
                                             <?php if(!empty($details['opt4_e']))
                                             {?>
-                                                <li> <input type="radio" class="quiz-radio-btn" name="option<?php echo $details['que_id']?><?php echo  $k ;?>"value="4"><?php  echo$details['opt4_e']?></li>
+                                                <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?=  $k ;?>"value="4"><?= $details['opt4_e']?></li>
                                             <?php } ?>
 
                                             <?php if(!empty($details['opt5_e']))
                                             {?>
-                                                <li> <input type="radio" class="quiz-radio-btn" name="option<?php echo $details['que_id']?><?php echo  $k ;?>"value="5"><?php  echo$details['opt5_e']?></li>
+                                                <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?=  $k ;?>"value="5" onclick="data();"><?= $details['opt5_e']?></li>
                                             <?php } ?>
 
 
@@ -73,11 +89,13 @@
                                 </div>
                             </div>
                             <?php $k++; } ?>
+
+
                          
                              
                             <div class="d-flex float-end my-4">
-                                <button type="button" id="prevBtn" class="btn startQuiz me-2" onclick="nextPrev(-1)"><span>Previous</span></button>
-                                <button type="button" id="nextBtn" class="btn startQuiz me-2" onclick="nextPrev(1)"><span>Next</span></button>
+                                <button type="button" id="prevBtn" class="btn btn-primary startQuiz me-2" onclick="nextPrev(-1)">Previous</button>
+                                <button type="button" id="nextBtn" class="btn btn-success startQuiz me-2" onclick="nextPrev(1)"><span>Next</span></button>
                             </div>
 
                         </div>
@@ -99,24 +117,24 @@
                         </div>
                         <div Id="right-bar-ans-none">
 
-                            <h6 class="quiz-title mb-4"><?php echo $quizdata['title']?></h2>
+                            <h6 class="quiz-title mb-4"><?= $quizdata['title']?></h2>
                                 <ul id="afterSubmitHide">
-                                    <li class="ans-green">1</li>
+                                    <!-- <li class="ans-green">1</li>
                                     <li class="ans-red">2</li>
                                     <li class="ans-blue">3</li>
-                                    <li class="ans-blue">4</li>
-                                    <!-- <?php  
+                                    <li class="ans-blue">4</li> -->
+                                    <?php  
                                     foreach ($que_details as $key => $details) {$key++;?>
-                                        <li><?php echo $key;?></li>
-                                        <?php } ?> -->
+                                        <li id="counter<?= $details['que_id']?>" class="ans-red"><?= $key;?></li>
+                                        <?php } ?>
                                     </ul>
 
                         </div>
                         <div class="as-color">
                             <ol>
                                 <li><span class="Quiz-circle green"></span>Answered </li>
-                                <li><span class="Quiz-circle red"></span>Not Answered </li> 
-                                <li><span class="Quiz-circle gray"></span>Not Visited</li> 
+                                <li><span class="Quiz-circle red"></span>Not Answered / Not Visited / Skiped</li> 
+                                <!-- <li><span class="Quiz-circle gray"></span>Not Visited</li>  -->
                             </ol>
                         </div>
                         <!-- <input type="" name="Submit" class="btn btn-info btn-sm"> -->
@@ -128,12 +146,12 @@
         </div>
         </form>
     </section> 
-    <script src="assets/js/bootstrap.bundle.js"></script>
+    <script src="<?= base_url();?>assets/js/bootstrap.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/font_resize.js"></script>
-    <script src="assets/js/tab.js"></script>
-    <script src="assets/js/dark_mode.js"></script> 
+    <script src="<?= base_url();?>assets/js/owl.carousel.min.js"></script>
+    <script src="<?= base_url();?>assets/js/font_resize.js"></script>
+    <script src="<?= base_url();?>assets/js/tab.js"></script>
+    <script src="<?= base_url();?>assets/js/dark_mode.js"></script> 
     <script>
     </script>
     <script>
@@ -228,10 +246,12 @@
 jQuery('.show').on('click',function(){
   jQuery('.login_details').toggle();
 });
-</script>
+</script> 
+
+
 
 <script>
-    var timer2 = "<?php echo $quizdata['duration']?>:01";
+    var timer2 = "<?= $quizdata['duration']?>:01";
 var interval = setInterval(function() {
 
 
@@ -246,14 +266,30 @@ var interval = setInterval(function() {
   seconds = (seconds < 10) ? '0' + seconds : seconds;
   //minutes = (minutes < 10) ?  minutes : minutes;
   $('.countdown').html(minutes + ':' + seconds);
-  timer2 = minutes + ':' + seconds;
-  console.log(timer2);
+  timer2 = minutes + ':' + seconds; 
   if (timer2=='0:00') 
   {
     $('#regForm').submit();
   }
 }, 1000);
+
+   
+
+
+$(function() {
+    <?php 
+    foreach ($que_details as $key => $details) {?>
+    $("input[class$='op<?= $details['que_id']?>']").change(function() {
+       $("#counter<?= $details['que_id']?>").removeClass('ans-red').addClass('ans-green'); 
+    });
+<?php } ?>
+
+});
+
+
+
     </script>
+ 
 
 </body>
 

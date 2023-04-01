@@ -23,9 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8080/BIS/BIS_Repo_New/';
+//$config['base_url'] = 'http://localhost:8080/BIS/BIS_Repo_New/';
 
 //$config['base_url'] = 'http://localhost/BIS/BIS_repo/';
+$config['base_url'] = 'http://43.231.124.177/BIS/BIS_repo/';
+
 
 /*
 |--------------------------------------------------------------------------
