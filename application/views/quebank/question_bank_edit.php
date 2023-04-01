@@ -47,15 +47,15 @@
                                     <label class="d-block text-font">Language of Question<sup class="text-danger">*</sup></label>
                                     <div class="d-flex">
                                         <div class="form-check mr-2">
-                                            <input class="form-check-input" type="radio" name="language" id="english_div" value="1"  <?php if($row['language'] == "English")echo "checked"?>>
+                                            <input class="form-check-input" type="radio" name="language" id="flexRadioDefault1" value="1"  <?php if($row['language'] == "English")echo "checked"?>>
                                             <label class="form-check-label" for="flexRadioDefault1">English</label>
                                         </div>
                                         <div class="form-check mr-2">
-                                            <input class="form-check-input" type="radio" name="language" id="hindi_div">
+                                            <input class="form-check-input" type="radio" name="language" id="flexRadioDefault2">
                                             <label class="form-check-label" value="2" for="flexRadioDefault2"  <?php if($row['language']== "Hindi")echo "checked"?> >Hindi</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="language" id="both_div">
+                                            <input class="form-check-input" type="radio" name="language" id="flexRadioDefault3">
                                             <label class="form-check-label" value="3" for="flexRadioDefault3"  <?php if($row['language']== "Both")echo "checked"?> >Both</label>
                                         </div>
                                     </div>
@@ -103,12 +103,6 @@
                                     <input type="text" class="form-control input-font" name="hindi" id="hindi" placeholder="Enter Marks">
                                 </div> -->
                         </div>
-                        <div class="row" id="question-hindi">   
-                               <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font">Question in Hindi<sup class="text-danger">*</sup></label>
-                                    <input type="text" class="form-control input-font" name="hindi" id="hindi" placeholder="Question in Hindi">
-                                </div>
-                                </div>
                         <div class="row" id="image-text" style="display:none;">
                             <div class="mb-2 col-md-4">
                                 <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
@@ -144,118 +138,64 @@
                                 <!-- Modal -->
                             </div>
                         </div>
-                        <div class="row" id="number_option_english">
-                                <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font">Number of Answers/Option<sup class="text-danger">*</sup></label>
-                                    <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example">
-                                        <option selected>--select--</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
+                        <div class="row">
+                            <div class="mb-2 col-md-4">
+                                <label class="d-block text-font">Number of Answers/Option<sup class="text-danger">*</sup></label>
+                                <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example">
+                                    <option selected>--select--</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
                             </div>
-                            <div class="row" id="number_option_hindi">
-                                <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font">Number of Answers/Option in Hindi<sup class="text-danger">*</sup></label>
-                                    <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example">
-                                        <option selected>--select--</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                            </div>
+                        </div>
                         <div class="row mt-3" id="opt1_blk">
-                                <div class="mb-2 col-md-4 d-flex" id="option_english_1">
-                                    <label class="d-block text-font mr-3">Option 1</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                        <input class="form-control input-font ml-3" type="text" name="option1" id="option1">
-                                    </div>
+                            <div class="mb-2 col-md-4 d-flex">
+                                <label class="d-block text-font mr-3">Option 1</label>
+                                <div class="form-check">
+                                    <input class="form-control input-font ml-3" type="text" name="option1" id="option1">
                                 </div>
-                                <div class="mb-2 col-md-4 d-flex" id="option_hindi_1">
-                                    <label class="d-block text-font mr-3">Option 1 in Hindi</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                        <input class="form-control input-font ml-3" type="text" name="option1" id="option1">
-                                    </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="row" id="opt2_blk">
-                               <div class="mb-2 col-md-4 d-flex" id="option_english_2">
-                                    <label class="d-block text-font mr-3">Option 2</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                    
-                                        <input class="form-control input-font ml-3" type="text" name="option2" id="option2">
-                                    </div>
+                            <div class="mb-2 col-md-4 d-flex">
+                                <label class="d-block text-font mr-3">Option 2</label>
+                                <div class="form-check">
+                                    <input class="form-control input-font ml-3" type="text" name="option2" id="option2">
                                 </div>
-                                <div class="mb-2 col-md-4 d-flex" id="option_hindi_2">
-                                    <label class="d-block text-font mr-3">Option 2 in hindi</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                    
-                                        <input class="form-control input-font ml-3" type="text" name="option2" id="option2">
-                                    </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="row" id="opt3_blk">
-                                <div class="mb-2 col-md-4 d-flex" id="option_english_3">
-                                    <label class="d-block text-font mr-3">Option 3</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                        <input class="form-control input-font ml-3" type="text" name="option3" id="option3">
-                                    </div>
+                            <div class="mb-2 col-md-4 d-flex">
+                                <label class="d-block text-font mr-3">Option 3</label>
+                                <div class="form-check">
+                                    <input class="form-control input-font ml-3" type="text" name="option3" id="option3">
                                 </div>
-                                <div class="mb-2 col-md-4 d-flex" id="option_hindi_3">
-                                    <label class="d-block text-font mr-3">Option 3</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                        <input class="form-control input-font ml-3" type="text" name="option3" id="option3">
-                                    </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="row" id="opt4_blk">
-                                <div class="mb-2 col-md-4 d-flex" id="option_english_4">
-                                    <label class="d-block text-font mr-3">Option 4</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                        <input class="form-control input-font ml-3" type="text" name="option4" id="option4">
-                                    </div>
+                            <div class="mb-2 col-md-4 d-flex">
+                                <label class="d-block text-font mr-3">Option 4</label>
+                                <div class="form-check">
+                                    <input class="form-control input-font ml-3" type="text" name="option4" id="option4">
                                 </div>
-                                <div class="mb-2 col-md-4 d-flex" id="option_hindi_4">
-                                    <label class="d-block text-font mr-3">Option 4 in Hindi</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                        <input class="form-control input-font ml-3" type="text" name="option4" id="option4">
-                                    </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="row" id="opt5_blk">
-                                <div class="mb-2 col-md-4 d-flex" id="option_english_5">
-                                    <label class="d-block text-font mr-3">Option 5</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                        <input class="form-control input-font ml-3" type="text" name="option5" id="option5">
-                                    </div>  
+                            <div class="mb-2 col-md-4 d-flex">
+                                <label class="d-block text-font mr-3">Option 5</label>
+                                <div class="form-check">
+                                    <input class="form-control input-font ml-3" type="text" name="option5" id="option5">
                                 </div>
-                                <div class="mb-2 col-md-4 d-flex" id="option_hindi_5">
-                                    <label class="d-block text-font mr-3">Option 5 in Hindi</label>
-                                    <input class="form-control-radio input-font ml-3" type="radio" name="option2" id="option2">
-                                    <div class="form-check">
-                                        <input class="form-control input-font ml-3" type="text" name="option5" id="option5">
-                                    </div>  
-                                </div>
+                            </div>
                         </div>
-                        <!-- <div class="row">
+                        <div class="row">
                             <div class="mb-2 col-md-4 d-flex">
                                 <label class="d-block text-font mr-3" style="width:154px;">Correct Answer option No</label>
                                 <input class="form-control input-font" type="text" name="corr_opt_e" id="corr_opt_e">
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-md-12 submit_btn p-3">
                                <a class="btn btn-success btn-sm text-white" id="createQuestion">Add New Question</a>
 <!-- 
@@ -273,7 +213,6 @@
                                                 <th>Question Title</th>
                                                 <!-- <th>Image</th> -->
                                                 <th>Number of Options</th>
-                                                <th>Option Details</th>
                                                 <th>Correct Option No</th>
                                                 <th>Action</th>
                                             </tr>
@@ -294,21 +233,6 @@
                                                         } ?></td>
                                                     <td><?php echo $r['que']; ?></td>
                                                     <td><?php echo $r['no_of_options']; ?></td>
-                                                    <td>
-                                                    <?php if ($r['opt1_e'] != "") { 
-                                                        echo "1. ".$r['opt1_e'] . " ";
-                                                       }   if ($r['opt2_e'] != "") { 
-                                                        echo "<br>2. ".$r['opt2_e'] . " ";
-                                                       } if ($r['opt3_e'] != "") { 
-                                                        echo "<br>3. ".$r['opt3_e'] . " ";
-                                                       }  if ($r['opt4_e'] != "") { 
-                                                        echo "<br>4. ".$r['opt4_e'] . " ";
-                                                       }  if ($r['opt5_e'] != "") { 
-                                                        echo "<br>5. ".$r['opt5_e'] . " ";
-                                                       }
-                                                        ?>
-                                                       
-                                                    </td>
                                                     <td><?php echo $r['corr_opt_e']; ?></td>
                                                     <!-- td><img src="/BIS_repo/assets/admin/img/bis_logo.png" width="36"></td> -->
                                                     <td><span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(<?php echo $r['que_id']; ?>);"
@@ -392,54 +316,6 @@
                     $("#type3").click(function() {
                         $("#question-text").show();
                         $("#image-text").show();
-                    });
-                    $("#hindi_div").click(function() {
-                        $("#question-hindi").show();
-                        $("#number_option_hindi").show();
-                        $("#option_hindi_1").show();
-                        $("#option_hindi_2").show();
-                        $("#option_hindi_3").show();
-                        $("#option_hindi_4").show();
-                        $("#option_hindi_5").show();
-                        $("#option_english_1").hide();
-                        $("#option_english_2").hide();
-                        $("#option_english_3").hide();
-                        $("#option_english_4").hide();
-                        $("#option_english_5").hide();
-                        $("#number_option_english").hide();
-                        $("#question-text").hide();
-                    });
-                    $("#english_div").click(function() {
-                        $("#question-hindi").hide();
-                        $("#number_option_hindi").hide();
-                        $("#option_hindi_1").hide();
-                        $("#option_hindi_2").hide();
-                        $("#option_hindi_3").hide();
-                        $("#option_hindi_4").hide();
-                        $("#option_hindi_5").hide();
-                        $("#option_english_1").hide();
-                        $("#option_english_2").hide();
-                        $("#option_english_3").hide();
-                        $("#option_english_4").hide();
-                        $("#option_english_5").hide();
-                        $("#number_option_english").show();
-                        $("#question-text").show();
-                    });
-                    $("#both_div").click(function() {
-                        $("#question-hindi").show();
-                        $("#number_option_hindi").show();
-                        $("#option_hindi_1").show();
-                        $("#option_hindi_2").show();
-                        $("#option_hindi_3").show();
-                        $("#option_hindi_4").show();
-                        $("#option_hindi_5").show();
-                        $("#option_english_1").show();
-                        $("#option_english_2").show();
-                        $("#option_english_3").show();
-                        $("#option_english_4").show();
-                        $("#option_english_5").show();
-                        $("#number_option_english").show();
-                        $("#question-text").show();
                     });
 
                     $('#que_bank_form').on('click', '#editQueBank', function(e) {
@@ -722,20 +598,12 @@
                                 } else {
                                     var type = "Both";
                                 }
-                                  ///////////////////////////////////////////////                               
-                                if(data[i].opt1_e==''){ var op1='NA'; } else{ var op1=data[i].opt1_e;}
-                                if(data[i].opt2_e==''){ var op2='NA'; } else{ var op2=data[i].opt2_e;}
-                                if(data[i].opt3_e==''){ var op3='NA'; } else{ var op3=data[i].opt3_e;}
-                                if(data[i].opt4_e==''){ var op4='NA'; } else{ var op4=data[i].opt4_e;}
-                                if(data[i].opt5_e==''){ var op5='NA'; } else{ var op5=data[i].opt5_e;} 
-                                ////////////////////////////////////////////////
                                 row += '<tr id="row' + data[i].que_id + '">' +
                                     '<td>' + j + '</td>' +
                                     '<td>' + data[i].que_id + '</td>' +
                                     '<td>' + type + '</td>' +
                                     '<td>' + data[i].que + '</td>' +
                                     '<td>' + data[i].no_of_options + '</td>' +
-                                    '<td>'+ '1. ' + op1 + '<br>2. '+ op2 + '<br>3. '+ op3 +   '<br>4. '+ op4 + '<br>5. '+ op5   +'</td>'+
                                     '<td>' + data[i].corr_opt_e + '</td>' +
                                     '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
                                     '</tr>';
@@ -748,7 +616,7 @@
                 }
 
                 function deleteQuestion(que_id) {
-                    var c = confirm("Are you sure to delete these details? ");
+                    var c = confirm("Are you sure to delete this survey details? ");
                     if (c == true) {
                         // const $loader = $('.igr-ajax-loader');
                         //$loader.show();

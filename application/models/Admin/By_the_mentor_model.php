@@ -60,5 +60,14 @@ class By_the_mentor_model extends CI_Model {
     public function btm_Unpublish($id){
         $this->db->update('tbl_by_the_mentors',['status'=>'6'],['id'=>$id]);
     }
+    public function getThreeBTM(){
+        $this->db->select('*');
+        $this->db->from('tbl_by_the_mentors');        
+        $this->db->where('status','5');
+        $this->db->order_by('created_on','ASC');
+        $query=$this->db->get();
+        $res=$query->result_array();
+        return $res;
+    }
 
 }

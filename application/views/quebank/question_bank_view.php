@@ -47,8 +47,8 @@
                                                 <th>Question Title</th>
                                                 <!-- <th>Image</th> -->
                                                 <th>Number of Options</th>
-                                                <th>Options</th>
                                                 <th>Correct Option No</th>
+                                                <th>Action</th>
 
                                             </tr>
                                         </thead>
@@ -67,24 +67,9 @@
                                                             echo "Text and Image";
                                                         } ?></td>
                                                     <td><?php echo $r['que']; ?></td>
-
                                                     <td><?php echo $r['no_of_options']; ?></td>
-                                                    <td>
-                                                    <?php if ($r['opt1_e'] != "") { 
-                                                        echo "1. ".$r['opt1_e'] . " ";
-                                                       }   if ($r['opt2_e'] != "") { 
-                                                        echo "2. ".$r['opt2_e'] . " ";
-                                                       } if ($r['opt3_e'] != "") { 
-                                                        echo "3. ".$r['opt3_e'] . " ";
-                                                       }  if ($r['opt4_e'] != "") { 
-                                                        echo "4. ".$r['opt4_e'] . " ";
-                                                       }  if ($r['opt5_e'] != "") { 
-                                                        echo "5. ".$r['opt5_e'] . " ";
-                                                       }
-                                                        ?>
-                                                       
-                                                    </td>
                                                     <td><?php echo $r['corr_opt_e']; ?></td>
+                                                    <td class="d-flex border-bottom-0"><a class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true" data-toggle="modal" data-target="#view_data"></i></a></td>
                                                     <!-- td><img src="/BIS_repo/assets/admin/img/bis_logo.png" width="36"></td> -->
 
                                                 </tr>
@@ -107,8 +92,7 @@
                                     </div>
                                
                             <?php  } ?>
-                            <!-- <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
-                            <?php if ($row['status'] == 3) { ?>
+                           <!-- <?php if ($row['status'] == 3) { ?>
                                 <div class="col-md-12 submit_btn p-3">
                                 <button type="button" class="btn btn-primary btn-sm mr-2 changeStatus" data-id="<?php echo $row['que_bank_id']; ?>"  data-status="5">Publish</button>
                                 </div>
@@ -116,7 +100,7 @@
                                 <div class="col-md-12 submit_btn p-3">
                                 <button type="button" class="btn btn-primary btn-sm mr-2 changeStatus" data-id="<?php echo $row['que_bank_id']; ?>" data-status="6">Unpublish</button>
                                 </div>
-                            <?php  } } ?>  -->
+                            <?php  } ?> -->
                        <?php  } ?>
                     <?php }
                 } else { ?>
@@ -129,6 +113,92 @@
         </div>
     </div>
 </div>
+  <!-- Modal -->
+  <div class="modal fade" id="view_data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">View Question</h5>
+
+                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                            <div class="row">
+                                               <div class="mb-2 col-md-4">
+                                                           <label class="d-block text-font">Question ID</label>
+                                                         <div>
+                                                              <p>1234</p>
+                                                          </div>
+                                                  </div>
+                                                <div class="mb-2 col-md-4">
+                                                          <label class="d-block text-font">Question Type</label>
+                                                         <div>
+                                                              <p>Text</p>
+                                                          </div>
+                                                 </div>
+                                                 
+                                                </div>
+                                                 <div class="row">
+                                                 <div class="mb-2 col-md-12">
+                                                          <label class="d-block text-font">Question Title</label>
+                                                         <div>
+                                                              <p>Text</p>
+                                                          </div>
+                                                 </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="mb-2 col-md-4">
+                                                          <label class="d-block text-font">Options 1</label>
+                                                         <div>
+                                                              <p>5</p>
+                                                          </div>
+                                                    </div>
+                                                    <div class="mb-2 col-md-4">
+                                                          <label class="d-block text-font">Options 2</label>
+                                                         <div>
+                                                              <p>5</p>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-2 col-md-4">
+                                                          <label class="d-block text-font">Options 3</label>
+                                                         <div>
+                                                              <p>5</p>
+                                                          </div>
+                                                    </div>
+                                                    <div class="mb-2 col-md-4">
+                                                          <label class="d-block text-font">Options 4</label>
+                                                         <div>
+                                                              <p>5</p>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                               <div class="row">
+                                                    <div class="mb-2 col-md-4">
+                                                          <label class="d-block text-font">Options 5</label>
+                                                         <div>
+                                                              <p>5</p>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                <div class="mb-2 col-md-4">
+                                                          <label class="d-block text-font">Correct Option No.</label>
+                                                         <div>
+                                                              <p>Text</p>
+                                                          </div>
+                                                 </div>
+                                                 </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" onclick="resetbanner()" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
 <script>
     $(document).ready(function() {
        

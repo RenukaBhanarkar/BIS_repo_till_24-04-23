@@ -6,8 +6,9 @@
         <h1 class="h3 mb-0 text-gray-800">By The Mentors</h1>
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <!-- <li class="breadcrumb-item active" aria-current="page">About Exchange forum</li> -->
+                <li class="breadcrumb-item"><a href="<?php ?>">Home</a></li>
+                <li class="breadcrumb-item " aria-current="page">Exchange forum</li>
+                <li class="breadcrumb-item " aria-current="page">By The Mentors</li>
             </ol>
         </nav>
     </div>
@@ -43,14 +44,14 @@
                                     <tr>
                                         <td><?php echo $i++ ?></td>
                                         <td><?php echo $list_btm['title']; ?></td>                                        
-                                        <td><?php echo $list_btm['created_on']; ?></td>
-                                        <td><?php echo $list_btm['document']; ?></td>
+                                        <td><?php echo $list_btm['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm['image']) { ?>
                                                 <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
                                         </td>
+                                        <td><a href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$list_btm['document']; ?>" target="_blank">View</a></td>
                                         <td><?php echo $list_btm['status_name']; ?> </td>
 
                                         <td class="d-flex border-bottom-0">
@@ -84,7 +85,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to delete?</p>
@@ -96,6 +99,45 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="publish" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Publish Activity</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Publish activity?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary publish" data-bs-dismiss="modal">Publish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="unpublish" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Unpublish Activity</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Unpublish activity?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary unpublish" data-bs-dismiss="modal">Unpublish</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- End of Main Content -->
 <script>
     // $(document).ready(function(){
@@ -125,10 +167,12 @@
     }
 
     function sendPublish(que_id) {
-            var c = confirm("Are you sure to Publish By The Mentor details? ");
-            if (c == true) {
+            // var c = confirm("Are you sure to Publish By The Mentor details? ");
+            // if (c == true) {
                 // const $loader = $('.igr-ajax-loader');
                 //$loader.show();
+                $('#publish').modal('show');
+                $('.publish').on('click', function() {
                 $.ajax({
                     type: 'POST',
                     url: '<?php echo base_url(); ?>admin/btm_publish',
@@ -147,11 +191,13 @@
                     }
                 });
 
-            }
+            });
         }
         function sendUnPublish(que_id) {
-            var c = confirm("Are you sure to Unpublish By The Mentor details? ");
-            if (c == true) {               
+            // var c = confirm("Are you sure to Unpublish By The Mentor details? ");
+            // if (c == true) {     
+                $('#unpublish').modal('show');
+                $('.unpublish').on('click', function() {          
                 $.ajax({
                     type: 'POST',
                     url: '<?php echo base_url(); ?>admin/btm_unpublish',
@@ -166,6 +212,6 @@
                     }
                 });
 
-            }
+            });
         }
 </script>

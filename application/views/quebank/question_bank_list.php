@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example" class="hover table-bordered" style="width:100%">
+                    <table id="listView" class="hover table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -47,7 +47,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="que_bank_view">
+                        <tbody>
                             <?php if (!empty($allRecords)) {
                                 $i = 1;
                                 foreach ($allRecords as $row) { ?>
@@ -69,7 +69,7 @@
                                             <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/viewQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="View">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </a>
-
+                                            <a class="btn btn-primary btn-sm mr-2">Replicate</a>
                                             <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
                                                 <?php if (($row['status'] == 1) || ($row['status'] == 4 )) { ?>
                                                     <a class="btn btn-info btn-sm mr-2 text-white" href="<?php echo base_url(); ?>subadmin/editQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="Edit">
@@ -89,17 +89,6 @@
                                                     <button type="button" class="btn btn-primary btn-sm mr-2" data-id="<?php echo $row['que_bank_id']; ?>" id="sendForApproval">Send For Approval</button>
                                             <?php  } } ?>
 
-                                            <!-- <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
-                                            <?php if ($row['status'] == 3) { ?>
-                                                
-                                                <button type="button" class="btn btn-primary btn-sm mr-2 changeStatus" data-id="<?php echo $row['que_bank_id']; ?>"  data-status="5">Publish</button>
-                                                
-                                            <?php } else if ($row['status'] == 5) { ?>
-                                            
-                                                <button type="button" class="btn btn-primary btn-sm mr-2 changeStatus" data-id="<?php echo $row['que_bank_id']; ?>" data-status="6">Unpublish</button>
-                                            
-                                            <?php  } } ?>  -->
-
                                         </td>
                                 <?php $i++;
                                 }
@@ -115,62 +104,10 @@
 
     </div>
     <!-- End of Main Content -->
-    <!-- <script>
-    $(document).ready(function() {
-       
-        $('#que_bank_view').on('click','.changeStatus', function(e) {
-            e.preventDefault();
-            const $root = $(this);
-            var id = $root.data('id');
-            var status = $root.data('status');
-            var allfields = true;
-            var reason ="";
-            if (status == 4){
-                var reason = $("#reason").val();                       
-                  
-                    if (reason == "") {
-                        if ($("#reason").next(".validation").length == 0) // only add if not added
-                        {
-                            $("#reason").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter rejection reason</div>");
-                        }
-                        if (!focusSet) {
-                            $("#reason").focus();
-                        }
-                        allfields = false;
-                    } else {
-                        $("#reason").next(".validation").remove(); // remove it
-                    }                        
-            }
-            if(allfields){
-                jQuery.ajax({
-                type: "POST",
-                url: '<?php echo base_url(); ?>subadmin/changeStatus',
-                dataType: 'json',
-                data: {
-                    "id": id,
-                    "status": status,
-                    "reason":reason
-                },
-                success: function(res) {
-                    if (res.status == 0) {
-                        alert(res.message);
-                    } else {
-                        alert(res.message);
-                        window.location.replace("<?php echo base_url(); ?>subadmin/questionBankList");
-                    }
-                },
-                error: function(xhr, status, error) {
-                    //toastr.error('Failed to add '+xData.name+' in wishlist.');
-                    console.log(error);
-                }
-            });
-
-            }  
-        });
-    });
-</script> -->
-
     <script>
+         $(document).ready(function () {
+    $('#listView').DataTable();
+    });
         function deleteRecord(que_bank_id) {
             var c = confirm("Are you sure to delete this record ?");
             if (c == true) {
@@ -195,7 +132,7 @@
             }
         }
         $(document).ready(function() {
-            $('#example').on('click', '#sendForApproval', function(e) {
+            $('#listView').on('click', '#sendForApproval', function(e) {
                 e.preventDefault();
                 const $root = $(this);
                 var id = $root.data('id');

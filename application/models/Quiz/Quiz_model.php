@@ -117,6 +117,14 @@ public function updatePrize($prize_id,$quiz_id,$formdata)
             return 2;
         } 
     }
+    public function published_quiz(){
+        $this->db->select('title,id');
+        $this->db->from('tbl_quiz_details');
+        $this->db->where('status','5');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
 
 
      
