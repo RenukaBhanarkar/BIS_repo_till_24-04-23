@@ -685,9 +685,10 @@
                     e.preventDefault();
                     var focusSet = false;
                     var allfields = true;
-                    var que_type = $("#que_type").val();
+                    var language = $("#language").val();
+                   // alert(que_type);
                     var no_of_options = $("#no_of_options").val();
-                    if (que_type == 1 || que_type == 3) {
+                    if (language == 1 || language == 3) {
                         var que = $("#que").val();
                         if (que == "") {
                             if ($("#que").next(".validation").length == 0) // only add if not added
@@ -778,7 +779,7 @@
                             }
                         }
                     }
-                    if (que_type == 2  || que_type == 3) {
+                    if (language == 2  || language == 3) {
                         var que_h = $("#que_h").val();
                         if (que_h == "") {
                             if ($("#que_h").next(".validation").length == 0) // only add if not added
@@ -870,9 +871,6 @@
                         }
 
                     }
-
-
-
 
                     var correct_answer = $("#correct_answer").val();
                     if (correct_answer == "") {

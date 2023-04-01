@@ -312,16 +312,17 @@ class Subadmin extends CI_Controller
         $data = array();
         $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         $que_bank_id = clearText($this->input->post('que_bank_id'));
+        $language = clearText($this->input->post('language'));
         $que_type = clearText($this->input->post('que_type'));
         $que = "";
         $que_h = "";
-        if($que_type == 1){
+        if($language == 1){
             $que = clearText($this->input->post('que'));
         }
-        if($que_type == 2){
+        if($language == 2){
             $que_h = clearText($this->input->post('que_h'));
         }
-        if($que_type == 3){
+        if($language == 3){
             $que = clearText($this->input->post('que'));
             $que_h = clearText($this->input->post('que_h'));
         }
@@ -396,7 +397,7 @@ class Subadmin extends CI_Controller
                     'corr_opt_e'=>$corr_opt_e,
                     //'language' =>$language
                     //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
-                );
+                );              
                 $id = $this->Questions_model->insertData($dbObj);
             }                
             if ($id) {
