@@ -306,84 +306,113 @@ class Subadmin extends CI_Controller
         exit();
     }
    
-    //ajax call 
-    public function createQuestions()
-    {
-        $data = array();
-        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
-        $que_bank_id = clearText($this->input->post('que_bank_id'));
-        $language = clearText($this->input->post('language'));
-        $que_type = clearText($this->input->post('que_type'));
-        $que = "";
-        $que_h = "";
-        if($language == 1){
-            $que = clearText($this->input->post('que'));
-        }
-        if($language == 2){
-            $que_h = clearText($this->input->post('que_h'));
-        }
-        if($language == 3){
-            $que = clearText($this->input->post('que'));
-            $que_h = clearText($this->input->post('que_h'));
-        }
-
-        $no_of_options = clearText($this->input->post('no_of_options'));
-        $option1 = "";
-        $option2 = "";
-        $option3 = "";
-        $option4 = "";
-        $option5 = "";
-        if($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-            $option1 = clearText($this->input->post('option1'));
-            $option2 = clearText($this->input->post('option2'));
-        }
-        if($no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-            $option3 = clearText($this->input->post('option3'));           
-        }
-        if($no_of_options == 4 ||$no_of_options == 5){
-            $option4 = clearText($this->input->post('option4'));           
-        }
-        if($no_of_options == 5){
-            $option5 = clearText($this->input->post('option5'));           
-        }
-        $corr_opt_e = clearText($this->input->post('corr_opt_e')); 
-       // $language = clearText($this->input->post('language')); 
-        // if (!$title && !$no_of_ques && !$language && !$total_marks) {
-        //     $data['status'] = 0;
-        //     $data['message'] = 'Please enter all details';
-        // }
-        if (empty($data)) {           
-                $dbObj = array(  
-                    'is_active'  =>1,                
-                    'que_bank_id' =>  $que_bank_id,
-                    'que_type' => $que_type,
-                    'que' => $que,
-                    'no_of_options' => $no_of_options,
-                    'opt1_e'=>$option1,
-                    'opt2_e'=>$option2,
-                    'opt3_e'=>$option3,
-                    'opt4_e'=>$option4,
-                    'opt5_e'=>$option5,
-                    'created_by' => $admin_id,
-                    'corr_opt_e'=>$corr_opt_e,
-                    //'language' =>$language
-                    //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
-                );              
-                $id = $this->Questions_model->insertData($dbObj);
-            }                
-            if ($id) {
-                $data['status'] = 1;
-                $data['message'] = 'Question  created Successfully';
-
-            } else {
-                $data['status'] = 0;
-                $data['message'] = 'Error, Please try again';
-                
-            }
-        echo  json_encode($data);
-        exit();
-    }
-    
+      //ajax call 
+      public function createQuestions()
+      {
+          $data = array();
+          $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+          $que_bank_id = clearText($this->input->post('que_bank_id'));
+          $language = clearText($this->input->post('language'));
+          $que_type = clearText($this->input->post('que_type'));
+          $que = "";
+          $que_h = "";
+          if($language == 1){
+              $que = clearText($this->input->post('que'));
+          }
+          if($language == 2){
+              $que_h = clearText($this->input->post('que_h'));
+          }
+          if($language == 3){
+              $que = clearText($this->input->post('que'));
+              $que_h = clearText($this->input->post('que_h'));
+          }
+  
+          $no_of_options = clearText($this->input->post('no_of_options'));
+          $option1 = "";
+          $option2 = "";
+          $option3 = "";
+          $option4 = "";
+          $option5 = "";
+          $option1_h = "";
+          $option2_h = "";
+          $option3_h= "";
+          $option4_h= "";
+          $option5_h = "";
+  
+          if($que_type == 1){
+              if($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
+                  $option1 = clearText($this->input->post('option1'));
+                  $option2 = clearText($this->input->post('option2'));
+              }
+              if($no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
+                  $option3 = clearText($this->input->post('option3'));           
+              }
+              if($no_of_options == 4 ||$no_of_options == 5){
+                  $option4 = clearText($this->input->post('option4'));           
+              }
+              if($no_of_options == 5){
+                  $option5 = clearText($this->input->post('option5'));           
+              }
+          }
+          if($que_type == 2){
+              if($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
+                  $option1_h = clearText($this->input->post('option1_h'));
+                  $option2_h = clearText($this->input->post('option2_h'));
+              }
+              if($no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
+                  $option3_h = clearText($this->input->post('option3'));           
+              }
+              if($no_of_options == 4 ||$no_of_options == 5){
+                  $option4_h = clearText($this->input->post('option4'));           
+              }
+              if($no_of_options == 5){
+                  $option5_h = clearText($this->input->post('option5'));           
+              }
+          }
+          $corr_opt_e = clearText($this->input->post('correct_answer')); 
+         // $language = clearText($this->input->post('language')); 
+          // if (!$title && !$no_of_ques && !$language && !$total_marks) {
+          //     $data['status'] = 0;
+          //     $data['message'] = 'Please enter all details';
+          // }
+          if (empty($data)) {           
+                  $dbObj = array(  
+                      'is_active'  =>1,                
+                      'que_bank_id' =>  $que_bank_id,
+                      'que_type' => $que_type,
+                      'que' => $que,
+                      'que_h' => $que_h,
+                      'no_of_options' => $no_of_options,
+                      'opt1_e'=>$option1,
+                      'opt2_e'=>$option2,
+                      'opt3_e'=>$option3,
+                      'opt4_e'=>$option4,
+                      'opt5_e'=>$option5,
+                      'opt1_h'=>$option1_h,
+                      'opt2_h'=>$option2_h,
+                      'opt3_h'=>$option3_h,
+                      'opt4_h'=>$option4_h,
+                      'opt5_h'=>$option5_h,
+                      'created_by' => $admin_id,
+                      'corr_opt_e'=>$corr_opt_e,
+                      //'language' =>$language
+                      //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
+                  );              
+                  $id = $this->Questions_model->insertData($dbObj);
+              }                
+              if ($id) {
+                  $data['status'] = 1;
+                  $data['message'] = 'Question  created Successfully';
+  
+              } else {
+                  $data['status'] = 0;
+                  $data['message'] = 'Error, Please try again';
+                  
+              }
+          echo  json_encode($data);
+          exit();
+      }
+      
     
     //ajax call
     public function getQuestionListByQueBankId()
