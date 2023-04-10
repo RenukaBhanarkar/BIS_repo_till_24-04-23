@@ -3,14 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Subadmin extends CI_Controller
 {
- 
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Admin/Admin_model');
         $this->load->model('Subadmin/Que_bank_model');
         $this->load->model('Subadmin/Questions_model');
-        
     }
     public function index()
     {
@@ -20,7 +19,7 @@ class Subadmin extends CI_Controller
             redirect(base_url() . "Admin/login", 'refresh');
         }
         return true;
-    }  
+    }
     public function admin_creation_list()
     {
         $pageData = array();
@@ -31,8 +30,8 @@ class Subadmin extends CI_Controller
         $admintype = encryptids("D", $this->session->userdata('admin_type'));
         $allRecords = $this->Admin_model->getAllSubAdmin();
         $pageData['allRecords'] = $allRecords;
-       // echo  $admintype;
-       // exit();
+        // echo  $admintype;
+        // exit();
         if ($admintype == 2) {
             if (!$this->Admin_model->checkAdminLogin()) {
                 redirect(base_url() . "Admin", 'refresh');
@@ -42,10 +41,10 @@ class Subadmin extends CI_Controller
             $this->load->view('admin/headers/admin_header');
             $this->load->view('subadmin/admin_creation_list', $pageData);
             $this->load->view('admin/footers/admin_footer');
-        }else{
-           // echo "You are not allowed";
+        } else {
+            // echo "You are not allowed";
             $this->session->set_flashdata('MSG', ShowAlert("Sorry! You are Not eligible to perform this action", "DD"));
-                redirect(base_url() . "Admin/dashboard", 'refresh');
+            redirect(base_url() . "Admin/dashboard", 'refresh');
         }
     }
     public function admin_creation_view()
@@ -60,14 +59,14 @@ class Subadmin extends CI_Controller
         $this->load->view('subadmin/admin_creation_form');
         $this->load->view('admin/footers/admin_footer');
     }
-      //ajax call 
+    //ajax call 
     public function getDetailsByuserId()
     {
         $response = array();
         $user_id = 'EXF090323';
         $password = '7696a05fbec5e54051b2e617a9';
         $curl_req = curl_init();
-        $parameters = json_encode(array("user_id"=>$user_id,"password"=>$password));
+        $parameters = json_encode(array("user_id" => $user_id, "password" => $password));
         curl_setopt_array($curl_req, array(
             CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/sso_api/Sso_exchange_api/Authenticate',
             CURLOPT_RETURNTRANSFER => true,
@@ -85,7 +84,7 @@ class Subadmin extends CI_Controller
             ),
         ));
         $response = curl_exec($curl_req);
-       // echo json_encode($response);exit();
+        // echo json_encode($response);exit();
         // if (curl_errno($curl_req)) {
         //     $error_msg = curl_error($curl_req);
         // }
@@ -96,20 +95,22 @@ class Subadmin extends CI_Controller
         // }else{
         //     echo "Success";
         // }
-       // curl_close($curl_req);
-       // exit();
-       // var_dump(json_decode($response, true));
-         $output = json_decode($response, true);
-        
-         $token = $output['data']['auth_token'];
-         //echo $token;
+        // curl_close($curl_req);
+        // exit();
+        // var_dump(json_decode($response, true));
+        $output = json_decode($response, true);
+
+        $token = $output['data']['auth_token'];
+        //echo $token;
         // echo json_encode($output);
         $input = $this->input->post('uid');
         $curl_req1 = curl_init();
-        $parametersNew = json_encode(array("token"=>$token ,
-        "input"=>$input,
-         "search_by"=>2,   
-           "user_id"=>"EXF090323"));
+        $parametersNew = json_encode(array(
+            "token" => $token,
+            "input" => $input,
+            "search_by" => 2,
+            "user_id" => "EXF090323"
+        ));
         curl_setopt_array($curl_req1, array(
             CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/sso_api/Sso_exchange_api/GetData',
             CURLOPT_RETURNTRANSFER => true,
@@ -192,7 +193,7 @@ class Subadmin extends CI_Controller
                 // 'department' => $department,
                 'is_active' => 1,
                 'username' => $email_id,
-                'password' => $random_pass,              
+                'password' => $random_pass,
                 'admin_type' => $admin_type
                 //'created_on' => GetCurrentDateTime('Y-m-d h:i:s'),
             );
@@ -216,7 +217,6 @@ class Subadmin extends CI_Controller
         if ($email == '') {
             $data['status'] = 0;
             $data['message'] = 'Please enter email';
-           
         } else if ($this->Admin_model->checkUniqueEmail($email)) {
             $data['status'] = 0;
             $data['message'] = 'This email already Exist.Please enter new Email address';
@@ -238,34 +238,34 @@ class Subadmin extends CI_Controller
             $pass[] = $alphabet[$n];
         }
         return implode($pass); //turn the array into a string
-    }       
-    public function question_bank_list()
-    {
-        $data = array();
-        $data['allRecords'] = $this->Que_bank_model->getListOfAllQueBank();
-       // echo json_encode( $data['allRecords']);exit();
-        $this->load->view('admin/headers/admin_header');
-        $this->load->view('quebank/question_bank_list',$data);
-        $this->load->view('admin/footers/admin_footer');
     }
+    // public function question_bank_list()
+    // {
+    //     $data = array();
+    //     $data['allRecords'] = $this->Que_bank_model->getListOfAllQueBank();
+    //     // echo json_encode( $data['allRecords']);exit();
+    //     $this->load->view('admin/headers/admin_header');
+    //     $this->load->view('quebank/question_bank_list', $data);
+    //     $this->load->view('admin/footers/admin_footer');
+    // }
     public function question_bank_form()
     {
         $this->load->view('admin/headers/admin_header');
         $this->load->view('quebank/question_bank_form');
         $this->load->view('admin/footers/admin_footer');
     }
-    public function question_bank_edit()
-    {
-        $this->load->view('admin/headers/admin_header');
-        $this->load->view('quebank/question_bank_edit');
-        $this->load->view('admin/footers/admin_footer');
-    }
-    public function question_bank_view()
-    {
-        $this->load->view('admin/headers/admin_header');
-        $this->load->view('quebank/question_bank_view');
-        $this->load->view('admin/footers/admin_footer');
-    }
+    // public function question_bank_edit()
+    // {
+    //     $this->load->view('admin/headers/admin_header');
+    //     $this->load->view('quebank/question_bank_edit');
+    //     $this->load->view('admin/footers/admin_footer');
+    // }
+    // public function question_bank_view()
+    // {
+    //     $this->load->view('admin/headers/admin_header');
+    //     $this->load->view('quebank/question_bank_view');
+    //     $this->load->view('admin/footers/admin_footer');
+    // }
     //ajax call
     public function createQueBank()
     {
@@ -273,146 +273,177 @@ class Subadmin extends CI_Controller
         $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         $title = clearText($this->input->post('title'));
         $no_of_ques = clearText($this->input->post('no_of_ques'));
-        $language = clearText($this->input->post('language')); 
-        $total_marks = clearText($this->input->post('total_marks'));      
-      
-        if (!$title && !$no_of_ques && !$language && !$total_marks) {
+        $language = clearText($this->input->post('language'));
+       // $total_marks = clearText($this->input->post('total_marks'));
+
+        if (!$title && !$no_of_ques && !$language ) {
             $data['status'] = 0;
             $data['message'] = 'Please enter all details';
         }
-        if (empty($data)) {           
-                $dbObj = array(                    
-                    'title' =>  $title,
-                    'no_of_ques' => $no_of_ques,
-                    'language' => $language,
-                    'total_marks'=>$total_marks,
-                    'created_by' => $admin_id,
-                    'is_active'=>1,
-                    'status' => 1
-                    //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
-                );
-                $id = $this->Que_bank_model->insertData($dbObj);
-            }                
-            if ($id) {
-                $data['status'] = 1;
-                $data['message'] = 'Question Bank created Successfully';
-                $data['id'] = $id;
-            } else {
-                $data['status'] = 0;
-                $data['message'] = 'Error, Please try again';
-                
-            }
+        if (empty($data)) {
+            $dbObj = array(
+                'title' =>  $title,
+                'no_of_ques' => $no_of_ques,
+                'language' => $language,
+                //'total_marks' => $total_marks,
+                'created_by' => $admin_id,
+                'is_active' => 1,
+                'status' => 0
+                //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
+            );
+            $id = $this->Que_bank_model->insertData($dbObj);
+        }
+        if ($id) {
+            $data['status'] = 1;
+            $data['message'] = 'Question Bank created Successfully';
+            $data['id'] = $id;
+        } else {
+            $data['status'] = 0;
+            $data['message'] = 'Error, Please try again';
+        }
         echo  json_encode($data);
         exit();
     }
-   
-      //ajax call 
-      public function createQuestions()
-      {
-          $data = array();
-          $admin_id = encryptids("D", $this->session->userdata('admin_id'));
-          $que_bank_id = clearText($this->input->post('que_bank_id'));
-          $que_language = clearText($this->input->post('que_language'));
-          $que_type = clearText($this->input->post('que_type'));
-          $que = "";
-          $que_h = "";
-          if($que_language == 1){
-              $que = clearText($this->input->post('que'));
-          }
-          if($que_language == 2){
-              $que_h = clearText($this->input->post('que_h'));
-          }
-          if($que_language == 3){
-              $que = clearText($this->input->post('que'));
-              $que_h = clearText($this->input->post('que_h'));
-          }
-  
-          $no_of_options = clearText($this->input->post('no_of_options'));
-          $option1 = "";
-          $option2 = "";
-          $option3 = "";
-          $option4 = "";
-          $option5 = "";
-          $option1_h = "";
-          $option2_h = "";
-          $option3_h= "";
-          $option4_h= "";
-          $option5_h = "";
-  
-          if($que_type == 1){
-              if($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-                  $option1 = clearText($this->input->post('option1'));
-                  $option2 = clearText($this->input->post('option2'));
-              }
-              if($no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-                  $option3 = clearText($this->input->post('option3'));           
-              }
-              if($no_of_options == 4 ||$no_of_options == 5){
-                  $option4 = clearText($this->input->post('option4'));           
-              }
-              if($no_of_options == 5){
-                  $option5 = clearText($this->input->post('option5'));           
-              }
-          }
-          if($que_type == 2){
-              if($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-                  $option1_h = clearText($this->input->post('option1_h'));
-                  $option2_h = clearText($this->input->post('option2_h'));
-              }
-              if($no_of_options == 3 || $no_of_options == 4 ||$no_of_options == 5){
-                  $option3_h = clearText($this->input->post('option3'));           
-              }
-              if($no_of_options == 4 ||$no_of_options == 5){
-                  $option4_h = clearText($this->input->post('option4'));           
-              }
-              if($no_of_options == 5){
-                  $option5_h = clearText($this->input->post('option5'));           
-              }
-          }
-          $corr_opt_e = clearText($this->input->post('correct_answer')); 
-         // $language = clearText($this->input->post('language')); 
-          // if (!$title && !$no_of_ques && !$language && !$total_marks) {
-          //     $data['status'] = 0;
-          //     $data['message'] = 'Please enter all details';
-          // }
-          if (empty($data)) {           
-                  $dbObj = array(  
-                      'is_active'  =>1,                
-                      'que_bank_id' =>  $que_bank_id,
-                      'que_type' => $que_type,
-                      'que' => $que,
-                      'que_h' => $que_h,
-                      'no_of_options' => $no_of_options,
-                      'opt1_e'=>$option1,
-                      'opt2_e'=>$option2,
-                      'opt3_e'=>$option3,
-                      'opt4_e'=>$option4,
-                      'opt5_e'=>$option5,
-                      'opt1_h'=>$option1_h,
-                      'opt2_h'=>$option2_h,
-                      'opt3_h'=>$option3_h,
-                      'opt4_h'=>$option4_h,
-                      'opt5_h'=>$option5_h,
-                      'created_by' => $admin_id,
-                      'corr_opt_e'=>$corr_opt_e,
-                      //'language' =>$language
-                      //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
-                  );              
-                  $id = $this->Questions_model->insertData($dbObj);
-              }                
-              if ($id) {
-                  $data['status'] = 1;
-                  $data['message'] = 'Question  created Successfully';
-  
-              } else {
-                  $data['status'] = 0;
-                  $data['message'] = 'Error, Please try again';
-                  
-              }
-          echo  json_encode($data);
-          exit();
-      }
-    
+
+    //ajax call 
+    public function createQuestions()
+    {
+        $data = array();
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        $que_bank_id = $this->input->post('que_bank_id');
+        $que_language = $this->input->post('que_language');
+        $que_type = $this->input->post('que_type');
+        $que = "";
+        $que_h = "";
+        if ($que_language == 1) {
+            if ($que_type == 1 || $que_type == 3) {
+                $que = clearText($this->input->post('que'));
+            }
+        }
+        if ($que_language == 2) {
+            if ($que_type == 1 || $que_type == 3) {
+                $que_h = clearText($this->input->post('que_h'));
+            }
+        }
+        if ($que_language == 3) {
+            if ($que_type == 1 || $que_type == 3) {
+                $que = $this->input->post('que');
+                $que_h = $this->input->post('que_h');
+            }
+        }
+        //   echo "la".$que_language;
+        //  echo "<br>fvbjfevbkjfenvfkjev".$que_h;exit();
+        $no_of_options = clearText($this->input->post('no_of_options'));
+        $option1 = "";
+        $option2 = "";
+        $option3 = "";
+        $option4 = "";
+        $option5 = "";
+        $option1_h = "";
+        $option2_h = "";
+        $option3_h = "";
+        $option4_h = "";
+        $option5_h = "";
+
+        if ($que_language == 1 || $que_language == 3) {
+            if ($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 || $no_of_options == 5) {
+                $option1 = clearText($this->input->post('option1'));
+                $option2 = clearText($this->input->post('option2'));
+            }
+            if ($no_of_options == 3 || $no_of_options == 4 || $no_of_options == 5) {
+                $option3 = clearText($this->input->post('option3'));
+            }
+            if ($no_of_options == 4 || $no_of_options == 5) {
+                $option4 = clearText($this->input->post('option4'));
+            }
+            if ($no_of_options == 5) {
+                $option5 = clearText($this->input->post('option5'));
+            }
+        }
+        if ($que_language == 2 || $que_language == 3) {
+            if ($no_of_options == 2 || $no_of_options == 3 || $no_of_options == 4 || $no_of_options == 5) {
+                $option1_h = clearText($this->input->post('option1_h'));
+                $option2_h = clearText($this->input->post('option2_h'));
+            }
+            if ($no_of_options == 3 || $no_of_options == 4 || $no_of_options == 5) {
+                $option3_h = clearText($this->input->post('option3_h'));
+            }
+            if ($no_of_options == 4 || $no_of_options == 5) {
+                $option4_h = clearText($this->input->post('option4_h'));
+            }
+            if ($no_of_options == 5) {
+                $option5_h = clearText($this->input->post('option5_h'));
+            }
+        }
+        $que_image = "";
+        //   if($this->input->post("que_image")){
+        //     echo "sdcdvdf";exit();
+
+        $foldername = "bankid" . $que_bank_id;
+        if (!file_exists('./uploads/que_img/' . $foldername)) {
+            mkdir('./uploads/que_img/' . $foldername);
+        }
+
+        if (!empty($_FILES['que_image']['tmp_name'])) {
+            // echo $_FILES['que_image']['tmp_name'];exit();
+            $que_image = $que_bank_id . '_' . time() . '.jpg';
+            $config['upload_path'] = './uploads/que_img/' . $foldername;
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size']    = '10000';
+            $config['max_width']  = '3024';
+            $config['max_height']  = '2024';
+            $config['file_name'] = $que_image;
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('que_image')) {
+                // $data['status'] = 0;
+                $data['msg'] = $this->upload->display_errors();
+            }
+        }
+        //}
+
+        $corr_opt_e = clearText($this->input->post('correct_answer'));
+        // $language = clearText($this->input->post('language')); 
+        // if (!$title && !$no_of_ques && !$language && !$total_marks) {
+        //     $data['status'] = 0;
+        //     $data['message'] = 'Please enter all details';
+        // }
+        if (empty($data)) {
+            $dbObj = array(
+                'is_active'  => 1,
+                'que_bank_id' =>  $que_bank_id,
+                'que_type' => $que_type,
+                'que' => $que,
+                'que_h' => $que_h,
+                'image' => $que_image,
+                'no_of_options' => $no_of_options,
+                'opt1_e' => $option1,
+                'opt2_e' => $option2,
+                'opt3_e' => $option3,
+                'opt4_e' => $option4,
+                'opt5_e' => $option5,
+                'opt1_h' => $option1_h,
+                'opt2_h' => $option2_h,
+                'opt3_h' => $option3_h,
+                'opt4_h' => $option4_h,
+                'opt5_h' => $option5_h,
+                'created_by' => $admin_id,
+                'corr_opt_e' => $corr_opt_e,
+                //'language' =>$language
+                //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
+            );
+            $id = $this->Questions_model->insertData($dbObj);
+        }
+        if ($id) {
+            $data['status'] = 1;
+            $data['message'] = 'Question  created Successfully';
+        } else {
+            $data['status'] = 0;
+            $data['message'] = 'Error, Please try again';
+        }
+        echo  json_encode($data);
+        exit();
+    }
+
     //ajax call
     public function getQuestionListByQueBankId()
     {
@@ -434,7 +465,7 @@ class Subadmin extends CI_Controller
         exit();
     }
 
-public function toCheckNoOfQueInBank()
+    public function toCheckNoOfQueInBank()
     {
         $que_bank_id = $this->input->get("id");
         $no_of_que = $this->input->get("no");
@@ -443,22 +474,23 @@ public function toCheckNoOfQueInBank()
         if ($que_bank_id == '' &&  $no_of_que == '') {
             $data['status'] = 0;
             $data['message'] = 'Please enter all details';
-           
-        } else if ($this->Admin_model->toCheckNoOfQueInBank($que_bank_id,$no_of_que)) {
+        } else if ($this->Admin_model->toCheckNoOfQueInBank($que_bank_id, $no_of_que)) {
             $data['status'] = 1;
             $data['message'] = 'Correct';
-           
+            $dbObj = array(
+                'status' => 1
+            );
+            $id = $this->Que_bank_model->updateData($que_bank_id, $dbObj);
         } else {
             $data['status'] = 0;
             $data['message'] = 'Please add questions equal to total no of questions in bank';
-           
         }
         echo  json_encode($data);
     }
 
-    
+
     //ajax call
-    
+
     public function deleteQuestion()
     {
         try {
@@ -468,13 +500,13 @@ public function toCheckNoOfQueInBank()
             $id = $this->Questions_model->deleteData($que_id);
             if ($id) {
                 $data['status'] = 1;
-                $data['message'] = 'Deleted successfully.';                
+                $data['message'] = 'Deleted successfully.';
             } else {
                 $data['status'] = 0;
-                $data['message'] = 'Failed to delete, Please try again.';               
+                $data['message'] = 'Failed to delete, Please try again.';
             }
             echo  json_encode($data);
-            return true;            
+            return true;
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',
@@ -484,19 +516,22 @@ public function toCheckNoOfQueInBank()
         }
     }
 
-    public function deleteQueBank(){
+    public function deleteQueBank()
+    {
         try {
-            $qui_bank_id = $this->input->post('qui_bank_id');
-            $id = $this->Que_bank_model->deleteData($qui_bank_id);
+            $que_bank_id = $this->input->post('que_bank_id');
+            $id = $this->Que_bank_model->deleteData($que_bank_id);
+            // delete all questions records 
+            $quedelete = $this->Questions_model->deleteQueByQueBankID($que_bank_id);
             if ($id) {
                 $data['status'] = 1;
-                $data['message'] = 'Deleted successfully.';                
+                $data['message'] = 'Deleted successfully.';
             } else {
                 $data['status'] = 0;
-                $data['message'] = 'Failed to delete, Please try again.';               
+                $data['message'] = 'Failed to delete, Please try again.';
             }
             echo  json_encode($data);
-            return true;            
+            return true;
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',
@@ -505,32 +540,33 @@ public function toCheckNoOfQueInBank()
             return true;
         }
     }
-    public function changeStatus(){
+    public function changeStatus()
+    {
         try {
             $qui_bank_id = $this->input->post('id');
             $status = $this->input->post('status');
             $reason = "";
-            if($status == 4){
-                $reason = $this->input->post('reason');  
+            if ($status == 4) {
+                $reason = $this->input->post('reason');
             }
-         
+
             $data = array(
-                'status'=>$status,
-                'rejection_reason'=>$reason,
-                'modified_on'=> GetCurrentDateTime('Y-m-d h:i:s'),         
-                'modified_by'=>encryptids("D", $_SESSION['admin_type']),
-           );
-              
-            $id = $this->Que_bank_model->updateData($qui_bank_id,$data);
+                'status' => $status,
+                'rejection_reason' => $reason,
+                'modified_on' => GetCurrentDateTime('Y-m-d h:i:s'),
+                'modified_by' => encryptids("D", $_SESSION['admin_type']),
+            );
+
+            $id = $this->Que_bank_model->updateData($qui_bank_id, $data);
             if ($id) {
                 $data['status'] = 1;
-                $data['message'] = 'Status updated successfully.';                
+                $data['message'] = 'Status updated successfully.';
             } else {
                 $data['status'] = 0;
-                $data['message'] = 'Failed to delete, Please try again.';               
+                $data['message'] = 'Failed to delete, Please try again.';
             }
             echo  json_encode($data);
-            return true;            
+            return true;
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',
@@ -540,79 +576,178 @@ public function toCheckNoOfQueInBank()
         }
     }
 
-    public function viewQuestionBank(){    
-        $data = array();  
-        $qui_bank_id =   encryptids("D",$this->input->get('id'));     
-        $data['allRecords']= $this->Que_bank_model->getDetailsByQueBankId($qui_bank_id);
-       // echo json_encode( $data['record']);exit();
+    public function viewQuestionBank()
+    {
+        $data = array();
+        $qui_bank_id =   encryptids("D", $this->input->get('id'));
+        $data['allRecords'] = $this->Que_bank_model->getDetailsByQueBankId($qui_bank_id);
+        // echo json_encode( $data['record']);exit();
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('quebank/question_bank_view',$data);
+        $this->load->view('quebank/question_bank_view', $data);
         $this->load->view('admin/footers/admin_footer');
+    }
+
+
+    public function replicateQuestionBank(){
+
+        $data = array();
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        $qui_bank_id =   encryptids("D", $this->input->get('id'));
+        $queBank= $this->Que_bank_model->replicateByQueBankId($qui_bank_id);
+      //  echo json_encode($queBank).'<br>';
+        if (!empty($queBank)) {
+            $dbObj = array(
+                'title' =>  $queBank['title'],
+                'no_of_ques' =>  $queBank['no_of_ques'],
+                'language' =>  $queBank['language'],
+                //'total_marks' =>  $queBank['total_marks'],
+                'created_by' => $admin_id,
+                'is_active' => 1,
+                'status' => 0
+                //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
+            );
+           // echo json_encode($dbObj).'<br>';
+            $newid = $this->Que_bank_model->insertData($dbObj);
+            //echo $newid ;exit();
+        }
+        $questions= $this->Questions_model->replicateQueByQueBankId($qui_bank_id);
+        foreach ( $questions as $row){
+            if (!empty($row)) {
+                $dbObj = array(
+                    'is_active'  => 1,
+                    'que_bank_id' =>  $newid,
+                    'que_type' => $row['que_type'],
+                    'que' => $row['que'],
+                    'que_h' =>$row['que_h'],
+                    'image' =>$row['image'],
+                    'no_of_options' => $row['no_of_options'],
+                    'opt1_e' =>$row['opt1_e'],
+                    'opt2_e' =>$row['opt2_e'],
+                    'opt3_e' => $row['opt3_e'],
+                    'opt4_e' => $row['opt4_e'],
+                    'opt5_e' => $row['opt5_e'],
+                    'opt1_h' => $row['opt1_h'],
+                    'opt2_h' => $row['opt2_h'],
+                    'opt3_h' => $row['opt3_h'],
+                    'opt4_h' => $row['opt4_h'],
+                    'opt5_h' => $row['opt5_h'],
+                    'created_by' => $admin_id,
+                    'corr_opt_e' => $row['corr_opt_e'],
+                    //'language' =>$language
+                    //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
+                );
+                $id = $this->Questions_model->insertData($dbObj);
+
+                
+            }
+        }
+        ///////////////////
+        $srcfolder = "bankid".$qui_bank_id;
+        $foldername = "bankid".$newid;
+        if (!file_exists('./uploads/que_img/' . $foldername)) {
+            mkdir('./uploads/que_img/' . $foldername);
+        }
+       // $sourcePath = $_SERVER['DOCUMENT_ROOT'].
+        $sourcePath = $_SERVER['DOCUMENT_ROOT']."/BIS/BIS_repo/uploads/que_img/" . $srcfolder;
+        $targetPath = $_SERVER['DOCUMENT_ROOT']."/BIS/BIS_repo/uploads/que_img/" . $foldername;
+        $dir = opendir($sourcePath);
+        //@mkdir($dst);
+            while(false !== ( $file = readdir($dir)) ) {
+                if (( $file != '.' ) && ( $file != '..' )) {
+                    if ( is_dir($sourcePath . '/' . $file) ) {
+                       // recurse_copy($sourcePath . '/' . $file,$targetPath . '/' . $file);
+                    }
+                    else {
+                        copy($sourcePath . '/' . $file,$targetPath . '/' . $file);
+                    }
+                }
+            }
+            closedir($dir);
+
+
+        //$copied = copy($sourcePath , $targetPath);
+
+
+        /////////////////////
+        $qui_bank_id = $newid;
+        $data['allRecords'] = $this->Que_bank_model->getDetailsByQueBankId($qui_bank_id);
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('quebank/question_bank_edit', $data);
+        $this->load->view('admin/footers/admin_footer');
+
     }
     public function questionBankList()
     {
         $data = array();
         $data['allRecords'] = $this->Que_bank_model->getAllQueBankForSubadmin();
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('quebank/question_bank_list',$data);
+        $this->load->view('quebank/question_bank_list', $data);
         $this->load->view('admin/footers/admin_footer');
     }
-    public function editQuestionBank(){    
-        $data = array();  
-        $qui_bank_id =   encryptids("D",$this->input->get('id'));     
-        $data['allRecords']= $this->Que_bank_model->getDetailsByQueBankId($qui_bank_id);
-         // echo json_encode( $data['allRecords']);exit();
+    public function editQuestionBank()
+    {
+        $data = array();
+        $qui_bank_id =   encryptids("D", $this->input->get('id'));
+        $data['allRecords'] = $this->Que_bank_model->getDetailsByQueBankId($qui_bank_id);
+       // echo json_encode( $data['allRecords']);exit();
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('quebank/question_bank_edit',$data);
+        $this->load->view('quebank/question_bank_edit', $data);
         $this->load->view('admin/footers/admin_footer');
     }
+
+    //ajax call
     public function editQueBank()
     {
         $data = array();
         $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         $title = clearText($this->input->post('title'));
         $no_of_ques = clearText($this->input->post('no_of_ques'));
-        $language = clearText($this->input->post('language')); 
-        $total_marks = clearText($this->input->post('total_marks')); 
-        $que_bank_id = clearText($this->input->post('que_bank_id_edit'));      
-      
-        if (!$title && !$no_of_ques && !$language && !$total_marks) {
+        $language = clearText($this->input->post('language_edit'));
+       // echo   $language ; exit();
+       // $total_marks = clearText($this->input->post('total_marks'));
+        $que_bank_id = clearText($this->input->post('que_bank_id_edit'));
+
+        if (!$title && !$no_of_ques && !$language ) {
             $data['status'] = 0;
             $data['message'] = 'Please enter all details';
         }
-        if (empty($data)) {           
-                $dbObj = array(                    
-                    'title' =>  $title,
-                    'no_of_ques' => $no_of_ques,
-                    'language' => $language,
-                    'total_marks'=>$total_marks,                    
-                    'is_active'=>1,
-                    'status' => 1,
-                    'modified_on' => GetCurrentDateTime('Y-m-d h:i:s'),
-                    'modified_by' => $admin_id,
-                );
-                $id = $this->Que_bank_model->updateData($que_bank_id,$dbObj);
-            }                
-            if ($id) {
-                $data['status'] = 1;
-                $data['message'] = 'Question Bank details updated successfully';
-                $data['id'] = $id;
-            } else {
-                $data['status'] = 0;
-                $data['message'] = 'Error, Please try again';
-                
-            }
+        if (empty($data)) {
+            $dbObj = array(
+                'title' =>  $title,
+                'no_of_ques' => $no_of_ques,
+                'language' => $language,
+               // 'total_marks' => $total_marks,
+                'is_active' => 1,
+                'status' => 1,
+                'modified_on' => GetCurrentDateTime('Y-m-d h:i:s'),
+                'modified_by' => $admin_id,
+            );
+            $id = $this->Que_bank_model->updateData($que_bank_id, $dbObj);
+        }
+        if ($id) {
+            $data['status'] = 1;
+            $data['message'] = 'Question Bank details updated successfully';
+            $data['id'] = $id;
+        } else {
+            $data['status'] = 0;
+            $data['message'] = 'Error, Please try again';
+        }
         echo  json_encode($data);
         exit();
-    } 
-    
+    }
+
     public function legal()
     {
         $this->load->model('admin_model');
-        $data['legal']=$this->admin_model->legal();
+        $data['legal'] = $this->admin_model->legal();
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('admin/legal',$data);
+        $this->load->view('admin/legal', $data);
         $this->load->view('admin/footers/admin_footer');
+    }
+    public function get_legal_data(){
+        $this->load->model('admin_model');
+        $data['legal']=$this->admin_model->get_legal_data('');
+        print_r($data['legal']); die;
     }
    
     
@@ -622,44 +757,45 @@ public function toCheckNoOfQueInBank()
         $formdata['hlp'] = $this->input->post('hyper_linking_policy');
         $formdata['disclamer'] = $this->input->post('disclamer');
 
-        $formdata['copyright_policy'] = $this->input->post('copyright_policy'); 
-        $formdata['cmap'] = $this->input->post('cmap'); 
-        $formdata['cap'] = $this->input->post('cap'); 
+        $formdata['copyright_policy'] = $this->input->post('copyright_policy');
+        $formdata['cmap'] = $this->input->post('cmap');
+        $formdata['cap'] = $this->input->post('cap');
         $formdata['crp'] = $this->input->post('crp');
 
         $this->Admin_model->update_legal($formdata);
         $this->session->set_flashdata('MSG', ShowAlert("Record updated Successfully", "SS"));
         redirect(base_url() . "admin/legal", 'refresh');
-       // print_r($formdata); die; 
+        // print_r($formdata); die; 
     }
     public function winner_wall(){
         
         $data['winner_wall_list']=$this->Admin_model->winner_wall_list();
         //print_r($data); die;
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('quiz/winner_wall_list',$data);
+        $this->load->view('quiz/winner_wall_list', $data);
         $this->load->view('admin/footers/admin_footer');
     }
     public function winner_wall_form(){
         //$data['prises']=$this->Admin_model->prises();
         //$data['winner_wall_list']=$this->Admin_model->winner_wall_list();
         $this->load->model('Quiz/Quiz_model');
+        $data['prises']=$this->Admin_model->prises();
         $data['competation']=$this->Quiz_model->published_quiz();
         $data['prises']=$this->Admin_model->prises();
         //print_r($data); die;
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('quiz/winner_wall_form',$data);
+        $this->load->view('quiz/winner_wall_form', $data);
         $this->load->view('admin/footers/admin_footer');
     }
     public function insertWinner(){
        // print_r($_POST);
         $formdata['competiton_name'] = clearText($this->input->post('competition'));
         $formdata['date'] = clearText($this->input->post('date'));
-        $formdata['prise'] = clearText($this->input->post('prize')); 
-        $formdata['name'] = clearText($this->input->post('name')); 
-        $formdata['email'] = clearText($this->input->post('email')); 
+        $formdata['prise'] = clearText($this->input->post('prize'));
+        $formdata['name'] = clearText($this->input->post('name'));
+        $formdata['email'] = clearText($this->input->post('email'));
         $formdata['contact_no'] = clearText($this->input->post('contact_no'));
-        
+
         $formdata['location'] = clearText($this->input->post('location'));
 
             $winner_photo = "winner_photo" . time() . '.jpg';
@@ -689,21 +825,17 @@ public function toCheckNoOfQueInBank()
     }
     public function deleteWinner(){
         try {
-            
+
             $que_id = $this->input->post('que_id');
             $id = $this->Admin_model->deleteWinner($que_id);
             if ($id) {
                 $data['status'] = 1;
                 $data['message'] = 'Deleted successfully.';
-
             } else {
                 $data['status'] = 0;
                 $data['message'] = 'Failed to delete, Please try again.';
-
-            }           
+            }
             $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));
-
-
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',
@@ -713,6 +845,4 @@ public function toCheckNoOfQueInBank()
         }
         redirect(base_url() . "subadmin/winner_wall", 'refresh');
     }
-
-}?>
- 
+}

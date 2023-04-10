@@ -87,7 +87,7 @@ class Que_bank_model extends CI_Model {
         return $rs;
     }    
     public function getDetailsByQueBankId($id){          
-        $query = $this->db->select('qb.*,l.title AS language')
+        $query = $this->db->select('qb.*,l.title as type')
         ->from('tbl_que_bank qb')
         ->join('tbl_mst_language l', 'qb.language = l.id', 'left')
         ->where('is_active', 1)
@@ -100,6 +100,17 @@ class Que_bank_model extends CI_Model {
                 $row['queList'] = $CI->Questions_model->getQuestionListByQueBankId($row['que_bank_id']);
                 array_push($rs,$row);
             }
+        }
+        return $rs;
+    }
+    public function replicateByQueBankId($id){          
+        $query = $this->db->select('*')
+        ->from('tbl_que_bank')
+        ->where('que_bank_id', $id)
+        ->get();
+        $rs = array();
+        if ($query->num_rows() > 0) {
+           $rs = $query->row_array();
         }
         return $rs;
     }

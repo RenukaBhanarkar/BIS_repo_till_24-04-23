@@ -29,20 +29,59 @@ class Questions_model extends CI_Model {
             return false;
         }
     }
+    public function deleteQueByQueBankID($que_bank_id)
+    {
+        $this->db->where('que_bank_id', $que_bank_id);
+        if ($this->db->delete('tbl_que_details')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+  
+    // public function getQuestionListByQueBankId($que_bank_id){
+    //     $query = $this->db->select('*')
+    //     ->from('tbl_que_details')
+    //     ->where('que_bank_id', $que_bank_id)
+    //     ->get();
+    //     $rs = array();
+    //     if ($query->num_rows() > 0) {
+    //         foreach ($query->result_array() as $row) {
+    //             array_push($rs, $row);
+    //         }          
+    //     }
+    //     return $rs;
+    // }
+
     public function getQuestionListByQueBankId($que_bank_id){
-        $query = $this->db->select('*')
-        ->from('tbl_que_details')
-        ->where('que_bank_id', $que_bank_id)
-        ->get();
+    $query = $this->db->select('que.*,bank.language')
+    ->from('tbl_que_details que')
+    ->join('tbl_que_bank bank', 'que.que_bank_id = bank.que_bank_id', 'inner')  
+    ->where('bank.que_bank_id', $que_bank_id)         
+    ->get();
+
         $rs = array();
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $row) {
-                array_push($rs, $row);
-            }          
+                array_push($rs,$row);
+            }
         }
         return $rs;
+    } 
+
+    public function replicateQueByQueBankId($que_bank_id){
+        $query = $this->db->select('*')
+        ->from('tbl_que_details')
+        ->where('que_bank_id', $que_bank_id)         
+        ->get();
+
+            $rs = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    array_push($rs,$row);
+                }
+            }
+            return $rs;
     }
-  
-    
    
 }?>

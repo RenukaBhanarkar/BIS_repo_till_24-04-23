@@ -60,6 +60,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="col-lg-7">
                         <div class="accessibility">
                             <ul>
+                                <li> <span class="mr-2 d-none d-lg-inline text-gray-600 small">BIS -
+                                        <?php if (isset($_SESSION['admin_name'])) {
+                                            echo encryptids("D", $_SESSION['admin_name']);
+                                        } ?>
+                                    </span>
+                                </li>
                                 <li><a href="#" class="show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li>
                             </ul>
                         </div>
@@ -70,7 +76,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="login_details">
             <span>Welcome To Bureau of Indian Standards</span>
             <div class="login-link-wrapper">
-                <a href="<?php echo base_url(); ?>admin/login" class="ac-login jquery-once-2-processed" title="Login">Login</a>
+                <a href="<?php echo base_url(); ?>users/login" class="ac-login jquery-once-2-processed" title="Login">Login</a>
                 <a href="https://www.services.bis.gov.in/php/BIS_2.0/outsider-registration" class="ac-register jquery-once-2-processed" title="Register">Register</a>
             </div>
         </div>

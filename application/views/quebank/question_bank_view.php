@@ -23,16 +23,16 @@
                                         <p><?php echo $row['no_of_ques']; ?></p>
                                     </div>
                                 </div>
-                                <div class="mb-2 col-md-4">
+                                <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Total Marks</label>
                                     <div>
-                                        <p><?php echo $row['total_marks']; ?></p>
+                                        <p><?php //echo $row['total_marks']; ?></p>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Language of Question</label>
                                     <div>
-                                        <p><?php echo $row['language']; ?></p>
+                                        <p><?php echo $row['type']; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -41,15 +41,14 @@
                                     <table id="example" class="hover table-bordered" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Sr. No.</th>
+                                                <th>Sr.No.</th>
                                                 <th>Question Id</th>
                                                 <th>Question Type</th>
-                                                <th>Question Title</th>
-                                                <!-- <th>Image</th> -->
+                                                <th>Question Title</th>                                              
                                                 <th>Number of Options</th>
+                                                <th>Options</th>
                                                 <th>Correct Option No</th>
-                                                <th>Action</th>
-
+                                                <!-- <th>Action</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -66,10 +65,51 @@
                                                         } else {
                                                             echo "Text and Image";
                                                         } ?></td>
-                                                    <td><?php echo $r['que']; ?></td>
+                                                    <td>
+                                                    <?php if($r['language'] == 1) {     
+                                                            echo $r['que'];} 
+                                                          else if($r['language'] == 2){
+                                                            echo $r['que_h'];}
+                                                          else{
+                                                                echo $r['que'].'<br>';
+                                                                echo $r['que_h'];
+                                                            }
+                                                    ?> 
+                                                     <?php if($r['que_type'] == 2 || $r['que_type'] == 3 ) { ?>
+                                                        <br>
+                                                        <img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid<?php echo $r['que_bank_id'];?>/<?php echo $r['image'];?>">                                   
+                                                      <?php } ?>                                               
+                                                    </td>
                                                     <td><?php echo $r['no_of_options']; ?></td>
+                                                    <td>
+                                                        <?php
+                                                         $opt1_e = $opt2_e = $opt3_e= $opt4_e= $opt5_e ="NA";
+                                                         $opt1_h = $opt2_h = $opt3_h= $opt4_h= $opt5_h ="NA";
+                                                            if ($r['opt1_e'] != "" ){$opt1_e = $r['opt1_e'];}
+                                                            if ($r['opt2_e'] != "" ){$opt2_e = $r['opt2_e'];}
+                                                            if ($r['opt3_e'] != "" ){$opt3_e = $r['opt3_e'];}
+                                                            if ($r['opt4_e'] != "" ){$opt4_e = $r['opt4_e'];}
+                                                            if ($r['opt5_e'] != "" ){$opt5_e = $r['opt5_e'];}
+                                                            if ($r['opt1_h'] != "" ){$opt1_h = $r['opt1_h'];}
+                                                            if ($r['opt2_h'] != "" ){$opt2_h = $r['opt2_h'];}
+                                                            if ($r['opt3_h'] != "" ){$opt3_h = $r['opt3_h'];}
+                                                            if ($r['opt4_h'] != "" ){$opt4_h = $r['opt4_h'];}
+                                                            if ($r['opt5_h'] != "" ){$opt5_h = $r['opt5_h'];}
+                                                            if($r['language'] == 1) {  
+                                                                echo "1. ".$opt1_e.'<br>2. '. $opt2_e.'<br>3. '. $opt3_e. '<br>4. ' .$opt4_e. '<br>5. ' .$opt5_e ;
+                                                            }else if($r['language'] == 2) { 
+                                                                echo "1. ".$opt1_h.'<br>2. '. $opt2_h.'<br>3. '. $opt3_h. '<br>4. ' .$opt4_h. '<br>5. ' .$opt5_h ; ?>
+                                                        <?php }else{
+                                                               echo '1. '.$opt1_e.' 1. '.$opt1_h.
+                                                                    '<br>2. '. $opt2_e.' 2. '. $opt2_h.
+                                                                    '<br>3. '. $opt3_e.' 3. '. $opt3_h.
+                                                                    '<br>4. ' .$opt4_e.' 4. ' .$opt4_h .
+                                                                    '<br>5. ' .$opt5_e .' 5. ' .$opt5_h ;
+                                                        } ?>
+                                                    </td>
                                                     <td><?php echo $r['corr_opt_e']; ?></td>
-                                                    <td class="d-flex border-bottom-0"><a class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true" data-toggle="modal" data-target="#view_data"></i></a></td>
+                                                   
+                                                    <!-- <td class="d-flex border-bottom-0"><a class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true" data-toggle="modal" data-target="#view_data"></i></a></td> -->
                                                     <!-- td><img src="/BIS_repo/assets/admin/img/bis_logo.png" width="36"></td> -->
 
                                                 </tr>

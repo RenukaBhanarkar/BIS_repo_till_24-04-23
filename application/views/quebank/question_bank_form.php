@@ -20,7 +20,7 @@
                                 <h4 class="m-2">Question Bank Details</h4>
                             </div>
                         </div>
-                        <form id="que_bank_form" action="<?php echo base_url(); ?>subadmin/createQueBank">
+                        <form id="que_bank_form" method="POST" action="<?php echo base_url(); ?>subadmin/createQueBank">
                             <div class="row">
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Question Bank Title<sup class="text-danger">*</sup></label>
@@ -30,10 +30,10 @@
                                     <label class="d-block text-font">Total Number of Question<sup class="text-danger">*</sup></label>
                                     <input type="text" class="form-control input-font" name="no_of_ques" id="no_of_ques" placeholder="Enter Total Number of Question">
                                 </div>
-                                <div class="mb-2 col-md-4">
+                                <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Total Marks<sup class="text-danger">*</sup></label>
                                     <input type="text" class="form-control input-font" name="total_marks" id="total_marks" placeholder="Enter Total Marks">
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="mb-2 col-md-4">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 submit_btn p-3">
-                                
+
                                 <input type="submit" name="Submit" id="createQueBank" class="btn btn-info btn-sm">
                             </div>
                         </form>
@@ -88,7 +88,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row" id="question-eng">
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Question<sup class="text-danger">*</sup></label>
@@ -99,24 +98,25 @@
                                     <input type="text" class="form-control input-font" name="hindi" id="hindi" placeholder="Enter Marks">
                                 </div> -->
                             </div>
-                            <div class="row" id="question-hindi">
+                            <div class="row" id="question-hindi" style="display:none;">
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Question in Hindi<sup class="text-danger">*</sup></label>
                                     <input type="text" class="form-control input-font" name="que_h" id="que_h" placeholder="Question in Hindi">
                                 </div>
                             </div>
-                            <div class="row" id="image-text" style="display:none;">
+                            <div class="row" id="image-block" style="display:none;">
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
                                     <div class="d-flex">
                                         <div>
-                                            <input type="file" id="banner_img" accept="image/jpeg,image/png" name="banner_img" class="form-control-file" onchange="loadFileBanner(event)" required>
-                                            <span class="error_text"><?php echo form_error('banner_img'); ?></span>
+                                            <input type="file" id="que_image" accept="image/jpeg,image/png" name="que_image" class="form-control-file" onchange="loadFileBanner(event)" required>
+                                            <span class="error_text"><?php echo form_error('que_image'); ?></span>
                                         </div>
                                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Preview
                                         </button>
                                     </div>
+                                    <div id="imgError"></div>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -144,7 +144,7 @@
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Number of Options<sup class="text-danger">*</sup></label>
                                     <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example">
-                                        <option selected>--select--</option>
+                                        <option value="0" selected>--select--</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -152,7 +152,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row" id="options_blk">
+                            <div class="row" id="options_blk" style="display:none;">
                                 <div class="col-md-4" id="opt_blk_eng">
 
                                     <div class="row mt-3" id="opt1_blk">
@@ -379,6 +379,21 @@
         </div>
         <!-- End of Content Wrapper -->
         <script>
+            //Banner Image Preview
+            var loadFileBanner = function(event) {
+                $("#outputbanner").show();
+                var outputbanner = document.getElementById('outputbanner');
+                outputbanner.src = URL.createObjectURL(event.target.files[0]);
+                outputbanner.onload = function() {
+                    URL.revokeObjectURL(outputbanner.src);
+                }
+            };
+
+            function resetbanner() {
+                $("#banner_img").val('');
+                $("#outputbanner").hide();
+            }
+            //end
             $('#questions_form').hide();
             $('#question-hindi').hide();
             $('#opt_blk_hin').hide();
@@ -410,57 +425,89 @@
                     }
                 });
 
-               // $("#saveQueBank").click(function() {
-
-                   // window.location.replace("<?php echo base_url(); ?>subadmin/question_bank_list");
-               // });
-               $('#queBankCreation').on('click', '#saveQueBank', function(e) {
+                // $("#saveQueBank").click(function() {
+                // window.location.replace("<?php echo base_url(); ?>subadmin/question_bank_list");
+                // });
+                $('#queBankCreation').on('click', '#saveQueBank', function(e) {
                     e.preventDefault();
                     var focusSet = false;
                     var allfields = true;
-                    var que_bank_id= $('#que_bank_id').val();
+                    var que_bank_id = $('#que_bank_id').val();
                     var no_of_ques = $("#no_of_ques").val();
 
                     jQuery.ajax({
-                            type: "GET",
-                            url: '<?php echo base_url();?>subadmin/toCheckNoOfQueInBank/?id=' + que_bank_id+'&no='+no_of_ques,
-                            dataType: 'json',
-                            success: function(res) {
-                               // console.log(res);
-                                if (res.status == 0) {
-                                    if ($("#err_que_bank").next(".validation").length == 0) // only add if not added
-                                    {
-                                        $("#err_que_bank").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please add questions equal to total no of questions in bank</div>");
-                                    }
-                                    if (!focusSet) {
-                                        $("#err_que_bank").focus();
-                                    }
-                                } else {
-                                        $("#err_que_bank").next(".validation").remove(); // remove it
-                                       
-                                        window.location.replace("<?php echo base_url(); ?>subadmin/question_bank_list");
+                        type: "GET",
+                        url: '<?php echo base_url(); ?>subadmin/toCheckNoOfQueInBank/?id=' + que_bank_id + '&no=' + no_of_ques,
+                        dataType: 'json',
+                        success: function(res) {
+                            // console.log(res);
+                            if (res.status == 0) {
+                                if ($("#err_que_bank").next(".validation").length == 0) {
+                                    $("#err_que_bank").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please add questions equal to total no of questions in bank</div>");
                                 }
+                                if (!focusSet) {
+                                    $("#err_que_bank").focus();
+                                }
+                            } else {
+                                $("#err_que_bank").next(".validation").remove();
 
-                            },
-                            error: function(xhr, status, error) {
-                                //toastr.signuperr('Failed to add '+xData.name+' in wishlist.');
-                                console.log(error);
+                                window.location.replace("<?php echo base_url(); ?>subadmin/questionBankList");
                             }
-                        });
-               });
-                $("#type1").click(function() {
-                    $("#question-text").show();
-                    $("#image-text").hide();
-                });
-                $("#type2").click(function() {
-                    $("#question-text").hide();
-                    $("#image-text").show();
-                });
-                $("#type3").click(function() {
-                    $("#question-text").show();
-                    $("#image-text").show();
-                });
 
+                        },
+                        error: function(xhr, status, error) {
+                            //toastr.signuperr('Failed to add '+xData.name+' in wishlist.');
+                            console.log(error);
+                        }
+                    });
+                });
+                $('input[type=radio][name=que_type]').change(function() {
+                    var lan = $('input[name="language"]:checked').val();
+                    var que_type = $('input[name="que_type"]:checked').val();
+                    if (lan == 1) {
+                        if (que_type == 1) {
+                            $("#question-eng").show();
+                            $("#question-hindi").hide();
+                            $("#image-block").hide();
+                        } else if (que_type == 2) {
+                            $("#question-eng").hide();
+                            $("#question-hindi").hide();
+                            $("#image-block").show();
+                        } else {
+                            $("#question-eng").show();
+                            $("#image-block").show();
+                            $("#question-hindi").hide();
+                        }
+                    } else if (lan == 2) {
+                        if (que_type == 1) {
+                            $("#question-eng").hide();
+                            $("#question-hindi").show();
+                            $("#image-block").hide();
+                        } else if (que_type == 2) {
+                            $("#question-eng").hide();
+                            $("#question-hindi").hide();
+                            $("#image-block").show();
+                        } else {
+                            $("#question-eng").hide();
+                            $("#image-block").show();
+                            $("#question-hindi").show();
+                        }
+                    } else {
+                        if (que_type == 1) {
+                            $("#question-eng").show();
+                            $("#question-hindi").show();
+                            $("#image-block").hide();
+                        } else if (que_type == 2) {
+                            $("#question-eng").hide();
+                            $("#question-hindi").hide();
+                            $("#image-block").show();
+                        } else {
+                            $("#question-eng").show();
+                            $("#image-block").show();
+                            $("#question-hindi").show();
+                        }
+                    }
+                });
 
                 $('#que_bank_form').on('click', '#createQueBank', function(e) {
                     e.preventDefault();
@@ -468,11 +515,10 @@
                     var allfields = true;
                     var title = $("#title").val();
                     var no_of_ques = $("#no_of_ques").val();
-                    var total_marks = $("#total_marks").val();
-                 
+                   // var total_marks = $("#total_marks").val();
+
                     if (title == "") {
-                        if ($("#title").next(".validation").length == 0) // only add if not added
-                        {
+                        if ($("#title").next(".validation").length == 0) {
                             $("#title").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter title</div>");
                         }
                         if (!focusSet) {
@@ -480,11 +526,10 @@
                         }
                         allfields = false;
                     } else {
-                        $("#title").next(".validation").remove(); // remove it
+                        $("#title").next(".validation").remove();
                     }
                     if (no_of_ques == "") {
-                        if ($("#no_of_ques").next(".validation").length == 0) // only add if not added
-                        {
+                        if ($("#no_of_ques").next(".validation").length == 0) {
                             $("#no_of_ques").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter no of ques</div>");
                         }
                         if (!focusSet) {
@@ -492,20 +537,19 @@
                         }
                         allfields = false;
                     } else {
-                        $("#no_of_ques").next(".validation").remove(); // remove it
+                        $("#no_of_ques").next(".validation").remove();
                     }
-                    if (total_marks == "") {
-                        if ($("#total_marks").next(".validation").length == 0) // only add if not added
-                        {
-                            $("#total_marks").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter total marks</div>");
-                        }
-                        if (!focusSet) {
-                            $("#total_marks").focus();
-                        }
-                        allfields = false;
-                    } else {
-                        $("#total_marks").next(".validation").remove(); // remove it
-                    }
+                    // if (total_marks == "") {
+                    //     if ($("#total_marks").next(".validation").length == 0) {
+                    //         $("#total_marks").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter total marks</div>");
+                    //     }
+                    //     if (!focusSet) {
+                    //         $("#total_marks").focus();
+                    //     }
+                    //     allfields = false;
+                    // } else {
+                    //     $("#total_marks").next(".validation").remove();
+                    // }
                     if (allfields) {
                         var url = $('#que_bank_form').attr('action');
                         var userForm = document.getElementById("que_bank_form");
@@ -529,8 +573,9 @@
                                     for (var i = 0, len = elements.length; i < len; ++i) {
                                         elements[i].readOnly = true;
                                     }
-                                    var language= $('input[name="language"]:checked').val();
-                                     $("#que_language").val(language);
+                                    var language = $('input[name="language"]:checked').val();
+
+                                    $("#que_language").val(language);
                                     $('input[name="language"]').attr('disabled', 'disabled');
                                     $('#que_bank_id').val(res.id);
                                     $('#questions_form').show();
@@ -547,6 +592,7 @@
                 });
                 //ajax request to fetch districts 
                 $(document).on("change", "#no_of_options", function() {
+                    $('#options_blk').show();
                     var lang = $('input[name="language"]:checked').val();
 
                     $('#opt1_blk').hide();
@@ -589,6 +635,7 @@
 
                     if (lang == 1) {
                         if (no_of_options == 2) {
+
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
 
@@ -596,49 +643,38 @@
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
                             $('#opt3_blk').show();
-
-
                         } else if (no_of_options == 4) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
                             $('#opt3_blk').show();
                             $('#opt4_blk').show();
-
                         } else if (no_of_options == 5) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
                             $('#opt3_blk').show();
                             $('#opt4_blk').show();
                             $('#opt5_blk').show();
-
                         }
 
                     } else if (lang == 2) {
                         if (no_of_options == 2) {
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
-
-
                         } else if (no_of_options == 3) {
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
                             $('#opt3_blk_h').show();
-
-
                         } else if (no_of_options == 4) {
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
                             $('#opt3_blk_h').show();
                             $('#opt4_blk_h').show();
-
-
                         } else if (no_of_options == 5) {
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
                             $('#opt3_blk_h').show();
                             $('#opt4_blk_h').show();
                             $('#opt5_blk_h').show();
-
                         }
 
                     } else {
@@ -647,9 +683,6 @@
                             $('#opt2_blk').show();
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
-
-
-
                         } else if (no_of_options == 3) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
@@ -678,43 +711,99 @@
                             $('#opt4_blk_h').show();
                             $('#opt5_blk_h').show();
                         }
-
-
                     }
-
-
-
                 });
-
                 $('#questions_form').on('click', '#createQuestion', function(e) {
                     e.preventDefault();
+
                     var focusSet = false;
                     var allfields = true;
                     var language = $("#que_language").val();
-                 //  $("#que_language").val(language);
-                   // alert(que_type);
-                    var no_of_options = $("#no_of_options").val();
-                    if (language == 1 || language == 3) {
-                        var que = $("#que").val();
-                        if (que == "") {
-                            if ($("#que").next(".validation").length == 0) // only add if not added
-                            {
-                                $("#que").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter question</div>");
+                    //  $("#que_language").val(language);
+                    //alert(language);
+                    //////////////////////
+                    var que_type = $('input[name="que_type"]:checked').val();
+                    if (que_type == 2 || que_type == 3) {
+                        if ($("#que_image").val() == '') {
+                            if ($("#imgError").next(".validation").length == 0) {
+                                $("#imgError").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select image</div>");
                             }
                             if (!focusSet) {
-                                $("#que").focus();
+                                $("#imgError").focus();
                             }
                             allfields = false;
                         } else {
-                            $("#que").next(".validation").remove(); // remove it
+                            $("#imgError").next(".validation").remove();
                         }
 
+                        //check size of doc and type  if newly uploaded
+                        if ($("#que_image").val() != '') {
+                            var fileSize = $('#que_image')[0].files[0].size;
+
+                            if (fileSize > 102400) {
+                                if ($("#imgError").next(".validation").length == 0) {
+                                    $("#imgError").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 100 KB </div>");
+                                }
+                                allFields = false;
+                                if (!focusSet) {
+                                    $("#que_image").focus();
+                                }
+                            } else {
+                                $("#imgError").next(".validation").remove();
+                            }
+                            // check type  start 
+                            var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+                            var fileName = $("#que_image").val();;
+                            var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                            if ($.inArray(fileNameExt, validExtensions) == -1) {
+                                //alert("Invalid file type");
+                                if ($("#imgError").next(".validation").length == 0) {
+                                    $("#imgError").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                                }
+                                allFields = false;
+                                if (!focusSet) {
+                                    $("#que_image").focus();
+                                }
+                            } else {
+                                $("#imgError").next(".validation").remove();
+                            }
+                        }
+                    }
+                    ///////////////////////////
+                    var no_of_options = $("#no_of_options").val();
+                    if (no_of_options == 0) {
+                        if ($("#no_of_options").next(".validation").length == 0) {
+                            $("#no_of_options").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter no of options</div>");
+                        }
+                        if (!focusSet) {
+                            $("#no_of_options").focus();
+                        }
+                        allfields = false;
+                    } else {
+                        $("#no_of_options").next(".validation").remove();
+                    }
+
+
+                    if (language == 1 || language == 3) {
+                        if (que_type == 1 || que_type == 3) {
+                            var que = $("#que").val();
+                            if (que == "") {
+                                if ($("#que").next(".validation").length == 0) {
+                                    $("#que").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter question</div>");
+                                }
+                                if (!focusSet) {
+                                    $("#que").focus();
+                                }
+                                allfields = false;
+                            } else {
+                                $("#que").next(".validation").remove();
+                            }
+                        }
                         if (no_of_options == 2 || no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
                             var option1 = $("#option1").val();
                             var option2 = $("#option2").val();
                             if (option1 == "") {
-                                if ($("#option1").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option1").next(".validation").length == 0) {
                                     $("#option1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 1</div>");
                                 }
                                 if (!focusSet) {
@@ -722,11 +811,10 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option1").next(".validation").remove(); // remove it
+                                $("#option1").next(".validation").remove();
                             }
                             if (option2 == "") {
-                                if ($("#option2").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option2").next(".validation").length == 0) {
                                     $("#option2").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 2</div>");
                                 }
                                 if (!focusSet) {
@@ -734,15 +822,14 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option2").next(".validation").remove(); // remove it
+                                $("#option2").next(".validation").remove();
                             }
                         }
                         if (no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
                             var option3 = $("#option3").val();
 
                             if (option3 == "") {
-                                if ($("#option3").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option3").next(".validation").length == 0) {
                                     $("#option3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 3</div>");
                                 }
                                 if (!focusSet) {
@@ -750,15 +837,14 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option3").next(".validation").remove(); // remove it
+                                $("#option3").next(".validation").remove();
                             }
                         }
                         if (no_of_options == 4 || no_of_options == 5) {
                             var option4 = $("#option4").val();
 
                             if (option4 == "") {
-                                if ($("#option4").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option4").next(".validation").length == 0) {
                                     $("#option4").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 4</div>");
                                 }
                                 if (!focusSet) {
@@ -766,14 +852,13 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option4").next(".validation").remove(); // remove it
+                                $("#option4").next(".validation").remove();
                             }
                         }
                         if (no_of_options == 5) {
                             var option5 = $("#option5").val();
                             if (option5 == "") {
-                                if ($("#option5").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option5").next(".validation").length == 0) {
                                     $("#option5").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 5</div>");
                                 }
                                 if (!focusSet) {
@@ -781,31 +866,30 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option5").next(".validation").remove(); // remove it
+                                $("#option5").next(".validation").remove();
                             }
                         }
                     }
-                    if (language == 2  || language == 3) {
-                        var que_h = $("#que_h").val();
-                        if (que_h == "") {
-                            if ($("#que_h").next(".validation").length == 0) // only add if not added
-                            {
-                                $("#que_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter que_hstion</div>");
+                    if (language == 2 || language == 3) {
+                        if (que_type == 1 || que_type == 3) {
+                            var que_h = $("#que_h").val();
+                            if (que_h == "") {
+                                if ($("#que_h").next(".validation").length == 0) {
+                                    $("#que_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter question in hindi</div>");
+                                }
+                                if (!focusSet) {
+                                    $("#que_h").focus();
+                                }
+                                allfields = false;
+                            } else {
+                                $("#que_h").next(".validation").remove();
                             }
-                            if (!focusSet) {
-                                $("#que_h").focus();
-                            }
-                            allfields = false;
-                        } else {
-                            $("#que_h").next(".validation").remove(); // remove it
                         }
-
                         if (no_of_options == 2 || no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
                             var option1_h = $("#option1_h").val();
                             var option2_h = $("#option2_h").val();
                             if (option1_h == "") {
-                                if ($("#option1_h").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option1_h").next(".validation").length == 0) {
                                     $("#option1_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 1</div>");
                                 }
                                 if (!focusSet) {
@@ -813,11 +897,10 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option1_h").next(".validation").remove(); // remove it
+                                $("#option1_h").next(".validation").remove();
                             }
                             if (option2_h == "") {
-                                if ($("#option2_h").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option2_h").next(".validation").length == 0) {
                                     $("#option2_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 2</div>");
                                 }
                                 if (!focusSet) {
@@ -825,15 +908,14 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option2_h").next(".validation").remove(); // remove it
+                                $("#option2_h").next(".validation").remove();
                             }
                         }
                         if (no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
                             var option3_h = $("#option3_h").val();
 
                             if (option3_h == "") {
-                                if ($("#option3_h").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option3_h").next(".validation").length == 0) {
                                     $("#option3_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 3</div>");
                                 }
                                 if (!focusSet) {
@@ -841,15 +923,14 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option3_h").next(".validation").remove(); // remove it
+                                $("#option3_h").next(".validation").remove();
                             }
                         }
                         if (no_of_options == 4 || no_of_options == 5) {
                             var option4_h = $("#option4_h").val();
 
                             if (option4_h == "") {
-                                if ($("#option4_h").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option4_h").next(".validation").length == 0) {
                                     $("#option4_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 4</div>");
                                 }
                                 if (!focusSet) {
@@ -857,14 +938,13 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option4_h").next(".validation").remove(); // remove it
+                                $("#option4_h").next(".validation").remove();
                             }
                         }
                         if (no_of_options == 5) {
                             var option5_h = $("#option5_h").val();
                             if (option5_h == "") {
-                                if ($("#option5_h").next(".validation").length == 0) // only add if not added
-                                {
+                                if ($("#option5_h").next(".validation").length == 0) {
                                     $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 5</div>");
                                 }
                                 if (!focusSet) {
@@ -872,26 +952,28 @@
                                 }
                                 allfields = false;
                             } else {
-                                $("#option5_h").next(".validation").remove(); // remove it
+                                $("#option5_h").next(".validation").remove();
                             }
                         }
 
                     }
+                    //var correct_answer =  $('input[name="correct_answer"]:checked').val();
+                    // alert($('input[name="correct_answer"]:checked').length);
 
-                    var correct_answer = $("#correct_answer").val();
-                    if (correct_answer == "") {
-                        if ($("#correct_answer").next(".validation").length == 0) // only add if not added
-                        {
-                            $("#correct_answer").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select correct option </div>");
+                    if ($('input[name="correct_answer"]:checked').length == 0) {
+                        if ($("#cor_opt").next(".validation").length == 0) {
+                            $("#cor_opt").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select correct option </div>");
                         }
                         if (!focusSet) {
-                            $("#correct_answer").focus();
+                            $("#cor_opt").focus();
                         }
                         allfields = false;
                     } else {
-                        $("#correct_answer").next(".validation").remove(); // remove it
+                        $("#cor_opt").next(".validation").remove();
                     }
                     if (allfields) {
+                        /*********************************************/
+
                         var url = $('#questions_form').attr('action');
                         var userForm = document.getElementById("questions_form");
                         var fd = new FormData(userForm);
@@ -903,12 +985,15 @@
                             cache: false,
                             processData: false,
                             contentType: false,
+                            // enctype :'multipart/form-data',
                             success: function(res) {
                                 if (res.status == 0) {
                                     alert(res.message);
                                 } else {
                                     alert(res.message);
                                     $('#que').val('');
+                                    $('#que_h').val('');
+                                    $('#que_image').val('');
                                     $('#option1').val('');
                                     $('#option2').val('');
                                     $('#option3').val('');
@@ -919,10 +1004,9 @@
                                     $('#option3_h').val('');
                                     $('#option4_h').val('');
                                     $('#option5_h').val('');
-                                    $('#correct_answer').val('');
+
 
                                     displayQuestions();
-
                                 }
                             },
                             error: function(xhr, status, error) {
@@ -934,11 +1018,9 @@
                         return false;
                     }
                 });
-
             });
 
             function displayQuestions() {
-
                 var que_bank_id = $("#que_bank_id").val();
                 $.post("<?php echo base_url(); ?>subadmin/getQuestionListByQueBankId/", {
                     que_bank_id: que_bank_id
@@ -946,11 +1028,9 @@
                     if (result.status == 0) {
                         $('.errorbox').show().text("Error,Please try again.");
                     } else {
-
                         res = JSON.parse(result);
                         //console.log(res.data)
                         data = res.data;
-
                         var row = '';
                         j = 0
                         for (i in data) {
@@ -962,56 +1042,109 @@
                             } else {
                                 var type = "Both";
                             }
-                            ///////////////////////////////////////////////                               
-                            if (data[i].opt1_e == '') {
-                                var op1 = 'NA';
+                            if (data[i].que == 0 || data[i].que == '') {
+                                var engQue = "";
                             } else {
-                                var op1 = data[i].opt1_e;
+                                var engQue = data[i].que;
                             }
-                            if (data[i].opt2_e == '') {
-                                var op2 = 'NA';
+                            if (data[i].que_h == 0 || data[i].que_h == '') {
+                                var hindiQue = "";
                             } else {
-                                var op2 = data[i].opt2_e;
+                                var hindiQue = data[i].que_h;
                             }
-                            if (data[i].opt3_e == '') {
-                                var op3 = 'NA';
+                            if (data[i].image != '') {
+                                var img = data[i].image;
+                                var dynamicImg = '<td>' + engQue + '<br>' + hindiQue + '<br>' +
+                                    '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
+                                    '/' + img + '"></td>';
                             } else {
-                                var op3 = data[i].opt3_e;
+                                var dynamicImg = '<td>' + engQue + '<br>' + hindiQue + '</td>';
                             }
-                            if (data[i].opt4_e == '') {
-                                var op4 = 'NA';
-                            } else {
-                                var op4 = data[i].opt4_e;
-                            }
-                            if (data[i].opt5_e == '') {
-                                var op5 = 'NA';
-                            } else {
-                                var op5 = data[i].opt5_e;
-                            }
-                            ////////////////////////////////////////////////
-                            row += '<tr id="row' + data[i].que_id + '">' +
-                                '<td>' + j + '</td>' +
-                                '<td>' + data[i].que_id + '</td>' +
-                                '<td>' + type + '</td>' +
-                                '<td>' + data[i].que + '</td>' +
-                                '<td>' + data[i].no_of_options + '</td>' +
-                                // '<td>'+ '1. ' + data[i].opt1_e + '<br>2. '+ data[i].opt2_e + '<br>3. '+ data[i].opt3_e +   '<br>4. '+ data[i].opt4_e + '<br>5. '+ data[i].opt5_e   +'</td>'+
+                            /////////////////////////////////////////////// 
+                            if (data[i].language == 1) {
+                                if (data[i].opt1_e == '') {
+                                    var op1 = 'NA'; } else {  var op1 = data[i].opt1_e;  }
+                                if (data[i].opt2_e == '') {
+                                    var op2 = 'NA';  } else { var op2 = data[i].opt2_e;  }
+                                if (data[i].opt3_e == '') {
+                                    var op3 = 'NA';  } else {  var op3 = data[i].opt3_e; }
+                                if (data[i].opt4_e == '') {
+                                    var op4 = 'NA';  } else {  var op4 = data[i].opt4_e; }
+                                if (data[i].opt5_e == '') {
+                                    var op5 = 'NA';  } else {  var op5 = data[i].opt5_e; }
+                                row += '<tr id="row' + data[i].que_id + '">' +
+                                    '<td>' + j + '</td>' +
+                                    '<td>' + data[i].que_id + '</td>' +
+                                    '<td>' + type + '</td>' + dynamicImg +
+                                    // '<td>' + data[i].que +
+                                    // '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
+                                    // '/' + img + '"></td>' +
+                                    '<td>' + data[i].no_of_options + '</td>' +
+                                    // '<td>'+ '1. ' + data[i].opt1_e + '<br>2. '+ data[i].opt2_e + '<br>3. '+ data[i].opt3_e +   '<br>4. '+ data[i].opt4_e + '<br>5. '+ data[i].opt5_e   +'</td>'+
 
-                                '<td>' + '1. ' + op1 + '<br>2. ' + op2 + '<br>3. ' + op3 + '<br>4. ' + op4 + '<br>5. ' + op5 + '</td>' +
+                                    '<td>' + '1. ' + op1 + '<br>2. ' + op2 + '<br>3. ' + op3 + '<br>4. ' + op4 + '<br>5. ' + op5 + '</td>' +
 
-                                '<td>' + data[i].corr_opt_e + '</td>' +
-                                '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
-                                '</tr>';
+                                    '<td>' + data[i].corr_opt_e + '</td>' +
+                                    '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
+                                    '</tr>';
+                            } else if (data[i].language == 2) {
+                                if (data[i].opt1_h == '') {
+                                    var op1 = 'NA';  } else {    var op1 = data[i].opt1_h;   }
+                                if (data[i].opt2_h == '') {
+                                    var op2 = 'NA'; } else {   var op2 = data[i].opt2_h;  }
+                                if (data[i].opt3_h == '') {
+                                    var op3 = 'NA';  } else {  var op3 = data[i].opt3_h;  }
+                                if (data[i].opt4_h == '') {
+                                    var op4 = 'NA'; } else {  var op4 = data[i].opt4_h;  }
+                                if (data[i].opt5_h == '') {
+                                    var op5 = 'NA';   } else { var op5 = data[i].opt5_h;  }
+                                row += '<tr id="row' + data[i].que_id + '">' +
+                                    '<td>' + j + '</td>' +
+                                    '<td>' + data[i].que_id + '</td>' +
+                                    '<td>' + type + '</td>' + dynamicImg +
+                                    '<td>' + data[i].no_of_options + '</td>' +
+                                    '<td>' + '1. ' + op1 + '<br>2. ' + op2 + '<br>3. ' + op3 + '<br>4. ' + op4 + '<br>5. ' + op5 + '</td>' +
+                                    '<td>' + data[i].corr_opt_e + '</td>' +
+                                    '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
+                                    '</tr>';
+                            } else {
+                                if (data[i].opt1_e == '') {
+                                    var op1 = 'NA';   } else { var op1 = data[i].opt1_e; }
+                                if (data[i].opt2_e == '') {
+                                    var op2 = 'NA';  } else {   var op2 = data[i].opt2_e; }
+                                if (data[i].opt3_e == '') {
+                                    var op3 = 'NA';  } else { var op3 = data[i].opt3_e;  }
+                                if (data[i].opt4_e == '') {
+                                    var op4 = 'NA';  } else { var op4 = data[i].opt4_e;   }
+                                if (data[i].opt5_e == '') {
+                                    var op5 = 'NA';  } else {  var op5 = data[i].opt5_e; }
+                                if (data[i].opt1_h == '') {
+                                    var op1_h = 'NA';  } else { var op1_h = data[i].opt1_h;  }
+                                if (data[i].opt2_h == '') { 
+                                    var op2_h = 'NA'; } else { var op2_h = data[i].opt2_h;  }
+                                if (data[i].opt3_h == '') {
+                                    var op3_h = 'NA';  } else { var op3_h = data[i].opt3_h;   }
+                                if (data[i].opt4_h == '') {
+                                    var op4_h = 'NA'; } else { var op4_h = data[i].opt4_h;  }
+                                if (data[i].opt5_h == '') {
+                                    var op5_h = 'NA'; } else { var op5_h = data[i].opt5_h;    }
+                                row += '<tr id="row' + data[i].que_id + '">' +
+                                    '<td>' + j + '</td>' +
+                                    '<td>' + data[i].que_id + '</td>' +
+                                    '<td>' + type + '</td>' + dynamicImg +
+                                    '<td>' + data[i].no_of_options + '</td>' +
+                                    '<td>' + '1. ' + op1 + '1. ' + op1_h + '<br>2. ' + op2 + '   2. ' + op2_h + '<br>3. ' + op3 + '   3. ' + op3_h + '<br>4. ' + op4 + '   4. ' + op4_h + '<br>5. ' + op5 + '   5. ' + op5_h + '</td>' +
+                                    '<td>' + data[i].corr_opt_e + '</td>' +
+                                    '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
+                                    '</tr>';
+                            }
                         }
-
                         $("#que_body").html(row);
                     }
                 });
-
             }
-
             function deleteQuestion(que_id) {
-                var c = confirm("Are you sure to delete this survey details? ");
+                var c = confirm("Are you sure to delete these details? ");
                 if (c == true) {
                     // const $loader = $('.igr-ajax-loader');
                     //$loader.show();
@@ -1030,7 +1163,6 @@
                             alert("Error,Please try again.");
                         }
                     });
-
                 }
             }
             $("#no_of_ques").keydown(function(e) {
@@ -1044,18 +1176,17 @@
                     e.preventDefault();
                 }
             });
+            // $("#total_marks").keydown(function(e) {
 
-            $("#total_marks").keydown(function(e) {
-
-                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
-                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-                    (e.keyCode >= 35 && e.keyCode <= 40)) {
-                    return;
-                }
-                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                    e.preventDefault();
-                }
-            });
+            //     if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+            //         (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            //         (e.keyCode >= 35 && e.keyCode <= 40)) {
+            //         return;
+            //     }
+            //     if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            //         e.preventDefault();
+            //     }
+            // });
         </script>
         <!-- Footer -->
 

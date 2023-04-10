@@ -1,4 +1,15 @@
- 
+<style>
+    i.fa.password.fa-eye {
+    float: right;
+    margin-top: -25px;
+    margin-right: 16px;
+}
+i.fa.password.fa-eye-slash {
+    float: right;
+    margin-top: -25px;
+    margin-right: 16px;
+}
+</style>
      <div id="login_main_section">
          <div class="container-fluid">
              <div class="row">
@@ -24,13 +35,14 @@
                                         echo $this->session->flashdata('MSG');
                                     }
                                     ?>
-                             <form action="<?php echo base_url(); ?>admin/authUser" method="post">
+                             <form action="<?php echo base_url(); ?>users/authUser" method="post">
                                  <div class="from-group mb-4">
                                      <input type="text" class="form-control form-control-md" name="username" id="username" placeholder="Email / Mobile Number">
                                      <span id="err_username" class="text-danger"></span>
                                  </div>
                                  <div class="from-group mb-2">
-                                     <input type="password" class="form-control form-control-md" name="password" id="password" placeholder="Password">
+                                     <input type="password" class="form-control form-control-md show-hide-password" name="password" id="password" placeholder="Password">
+                                     <i class="fa fa-eye-slash password"></i>
                                      <span id="err_password" class="text-danger"></span>
                                  </div>
                               
@@ -141,5 +153,23 @@
                  return false;
              }
          };
+         const inputs = document.querySelectorAll('.show-hide-password');
+const icon = document.querySelectorAll('i.password');
+
+// Experiment 1
+icon.forEach(function (ele) {
+   ele.addEventListener('click', function (e) {
+      const targetInput = e.target.previousElementSibling.getAttribute('type');
+      if (targetInput == 'password') {
+          e.target.previousElementSibling.setAttribute('type', 'text');
+          ele.classList.remove('fa-eye-slash');
+          ele.classList.add('fa-eye');
+      } else if (targetInput == 'text') {
+          e.target.previousElementSibling.setAttribute('type', 'password');
+          ele.classList.add('fa-eye-slash');
+          ele.classList.remove('fa-eye');
+      }
+   });
+});
      </script>
 

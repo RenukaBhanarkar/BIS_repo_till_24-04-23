@@ -84,7 +84,7 @@ class Admin extends CI_Controller
         $this->Admin_model->adminLogout();
         //$this->session->session_unset();
         $this->session->sess_destroy();
-        redirect(base_url() . 'Admin/login');
+        redirect(base_url() . 'Users/login');
         exit();
     }
     public function users()
@@ -129,7 +129,7 @@ class Admin extends CI_Controller
         // }else{
         //     echo "Success";
         // }
-       // curl_close($curl_req);
+       curl_close($curl_req);
        // exit();
        // var_dump(json_decode($response, true));
          $output = json_decode($response, true);
@@ -334,8 +334,7 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
         redirect(base_url() . "admin/banner_image_list", 'refresh');
     }
-
-    
+   
     public function dashboard()
     {
         $this->load->view('admin/headers/admin_header');
@@ -401,6 +400,57 @@ class Admin extends CI_Controller
         $this->load->view('admin/banner_image_list',$data);
         $this->load->view('admin/footers/admin_footer');
     }
+    public function edit_bannerimage($id){
+        $data=$this->Admin_model->edit_bannerimage($id);
+        //print_r($data); die;
+        echo $data;
+    }
+    public function update_bannnerimage(){
+       // print_r($_POST); die;
+        $formdata['id'] = $this->input->post('id');
+        //$formdata['title'] = $this->input->post('title');
+        $formdata['caption'] = $this->input->post('banner_caption');  
+      //  $formdata['image'] = $this->input->post('old_doc');   
+
+       $oldDocument = "";
+       $oldDocument = $this->input->post('old_img');
+       $document = "";
+
+            if (!empty($_FILES['bannerimg']['tmp_name'])) {
+                $document = "banner_image" . time() . '.jpg';
+                $config['upload_path'] = './uploads';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']    = '100000';
+                $config['max_width']  = '3024';
+                $config['max_height']  = '2024';
+                $config['file_name'] = $document;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('bannerimg')) {
+                    //$err[]=$this->upload->display_errors();
+                    $data['status'] = 0;
+                    $data['message'] = $this->upload->display_errors();
+                }
+                } else {
+                    if (!empty($oldDocument)) {
+                        $document =  $oldDocument;
+                    }
+                }   
+
+        if($document){          
+            $formdata['banner_images']=$document;
+        }
+        // $formdata['status']="1";
+        $id = $this->Admin_model->updateBannerImage($formdata);
+        if($id){
+            $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
+            redirect(base_url() . "admin/banner_image_list", 'refresh');
+        } else {
+            $this->session->set_flashdata('MSG', ShowAlert("Failed to update record,Please try again", "DD"));
+            redirect(base_url() . "admin/banner_image_list", 'refresh');
+        }
+    }
     public function deleteBanner(){
         try {            
             $que_id = $this->input->post('que_id');
@@ -457,6 +507,52 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
         redirect(base_url() . "admin/about_exchange_forum", 'refresh'); 
     }
+    public function update_about_exchange_forum(){
+        //print_r([$_POST['old_image']]); die;
+        $formdata['id'] = $this->input->post('id');
+        //$formdata['title'] = $this->input->post('title');
+        $formdata['description'] = $this->input->post('description');  
+      //  $formdata['image'] = $this->input->post('old_doc');   
+
+       $oldDocument = "";
+       $oldDocument = $this->input->post('old_image');
+       $document = "";
+
+            if (!empty($_FILES['image']['tmp_name'])) {
+                $document = "banner_image" . time() . '.jpg';
+                $config['upload_path'] = './uploads';
+                $config['allowed_types'] = 'jpg|png|jpeg';
+                $config['max_size']    = '250';
+                $config['max_width']  = '3024';
+                $config['max_height']  = '2024';
+                $config['file_name'] = $document;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('image')) {
+                    //$err[]=$this->upload->display_errors();
+                    $data['status'] = 0;
+                    $data['message'] = $this->upload->display_errors();
+                }
+                } else {
+                    if (!empty($oldDocument)) {
+                        $document =  $oldDocument;
+                    }
+                }   
+
+        if($document){          
+            $formdata['image']=$document;
+        }
+        // $formdata['status']="1";
+        $id = $this->Admin_model->aboutExchangeForumupdateData($formdata);
+        if($id){
+            $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
+            redirect(base_url() . "admin/about_exchange_forum", 'refresh');
+        } else {
+            $this->session->set_flashdata('MSG', ShowAlert("Failed to update record,Please try again", "DD"));
+            redirect(base_url() . "admin/about_exchange_forum", 'refresh');
+        }
+    }
     public function deletExngForum(){
         try {            
             $que_id = $this->input->post('que_id');
@@ -502,6 +598,50 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
         redirect(base_url() . "admin/contact_us", 'refresh');
     }
+    public function edit_contactus($id){
+        //echo "hello"; die;
+        $this->load->model('admin_model');     
+        $data=$this->admin_model->edit_contactus($id);
+        //print_r($data); die;
+        echo $data;
+    }
+    public function update_contactus(){
+        $formdata['contact_no'] = $this->input->post('contact_no');
+        $formdata['address'] = $this->input->post('address');
+        $formdata['email'] = $this->input->post('email');
+        $formdata['tele_fax'] = $this->input->post('tele_tax');
+        $formdata['location'] = $this->input->post('location_url');
+        $formdata['id'] = $this->input->post('id');
+
+        $this->Admin_model->updateContactUsData($formdata);
+        $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
+        //die;
+        redirect(base_url() . "admin/contact_us", 'refresh');
+    }
+
+    public function deletContactus(){
+        try {            
+            $que_id = $this->input->post('que_id');
+            $id = $this->Admin_model->deletContactus($que_id);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Deleted successfully.';
+
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }
+            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));            
+
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "admin/contact_us", 'refresh');
+    }
 
 
     public function footer_links()
@@ -542,6 +682,11 @@ class Admin extends CI_Controller
         $this->load->view('admin/useful_links',$data);
         $this->load->view('admin/footers/admin_footer');
     }
+    public function useful_links_web(){        
+         $this->load->model('admin_model');
+         $data=$this->admin_model->useful_links_web();
+          echo $data;   
+     }
     public function add_useful_links(){
         $banner_img = "useful_links" . time() . '.jpg';
         $config['upload_path'] = './uploads';
@@ -565,6 +710,58 @@ class Admin extends CI_Controller
         $this->Admin_model->add_useful_links($formdata);
         $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
         redirect(base_url() . "admin/useful_links", 'refresh');
+    }
+
+    public function edit_useful_links($id){
+       // $this->load->model('admin_model');     
+        $data=$this->Admin_model->edit_useful_links($id);
+        //print_r($data); die;
+        echo $data;
+    }
+    public function update_useful_links(){
+        $formdata['id'] = $this->input->post('id');
+        $formdata['title'] = $this->input->post('title');
+       // $formdata['caption'] = $this->input->post('banner_caption');  
+       $formdata['link'] = $this->input->post('link');   
+
+       $oldDocument = "";
+       $oldDocument = $this->input->post('old_img');
+       $document = "";
+
+            if (!empty($_FILES['image']['tmp_name'])) {
+                $document = "banner_image" . time() . '.jpg';
+                $config['upload_path'] = './uploads';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']    = '100000';
+                $config['max_width']  = '3024';
+                $config['max_height']  = '2024';
+                $config['file_name'] = $document;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('image')) {
+                    //$err[]=$this->upload->display_errors();
+                    $data['status'] = 0;
+                    $data['message'] = $this->upload->display_errors();
+                }
+                } else {
+                    if (!empty($oldDocument)) {
+                        $document =  $oldDocument;
+                    }
+                }   
+
+        if($document){          
+            $formdata['image']=$document;
+        }
+        // $formdata['status']="1";
+        $id = $this->Admin_model->updateUsefulLinks($formdata);
+        if($id){
+            $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
+            redirect(base_url() . "admin/useful_links", 'refresh');
+        } else {
+            $this->session->set_flashdata('MSG', ShowAlert("Failed to update record,Please try again", "DD"));
+            redirect(base_url() . "admin/useful_links", 'refresh');
+        } 
     }
     public function deleteUsefulLinks(){
         try{
@@ -602,6 +799,12 @@ class Admin extends CI_Controller
         $this->load->view('admin/follow_us',$data);
         $this->load->view('admin/footers/admin_footer');
     }
+    public function followus_links_web(){
+        $this->load->model('admin_model');
+        $data=$this->admin_model->followus_links_web();
+        // print_r($data); 
+         echo $data;
+    }
     public function add_follow_us(){
         $banner_img = "follow_us" . time() . '.jpg';
         $config['upload_path'] = './uploads';
@@ -626,6 +829,57 @@ class Admin extends CI_Controller
         $this->Admin_model->add_follow_us($formdata);
         $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
         redirect(base_url() . "admin/follow_us", 'refresh');
+    }
+
+    public function edit_followus($id){
+        $data=$this->Admin_model->edit_followus($id);
+        //print_r($data); die;
+        echo $data;
+    }
+    public function update_followus(){
+        $formdata['id'] = $this->input->post('id');
+        $formdata['title'] = $this->input->post('title');
+       // $formdata['caption'] = $this->input->post('banner_caption');  
+       $formdata['link'] = $this->input->post('link');   
+
+       $oldDocument = "";
+       $oldDocument = $this->input->post('old_img');
+       $document = "";
+
+            if (!empty($_FILES['follow_us']['tmp_name'])) {
+                $document = "banner_image" . time() . '.jpg';
+                $config['upload_path'] = './uploads';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']    = '100000';
+                $config['max_width']  = '3024';
+                $config['max_height']  = '2024';
+                $config['file_name'] = $document;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('follow_us')) {
+                    //$err[]=$this->upload->display_errors();
+                    $data['status'] = 0;
+                    $data['message'] = $this->upload->display_errors();
+                }
+                } else {
+                    if (!empty($oldDocument)) {
+                        $document =  $oldDocument;
+                    }
+                }   
+
+        if($document){          
+            $formdata['icon']=$document;
+        }
+        // $formdata['status']="1";
+        $id = $this->Admin_model->updateFollowUs($formdata);
+        if($id){
+            $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
+            redirect(base_url() . "admin/follow_us", 'refresh');
+        } else {
+            $this->session->set_flashdata('MSG', ShowAlert("Failed to update record,Please try again", "DD"));
+            redirect(base_url() . "admin/follow_us", 'refresh');
+        } 
     }
     public function deleteFollowUs(){
         try {
@@ -698,14 +952,13 @@ class Admin extends CI_Controller
             $this->load->model('admin_model');
             $this->Admin_model->addPhotos($formdata);
             $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
-            redirect(base_url() . "admin/add_photos", 'refresh');
+            redirect(base_url() . "admin/photos", 'refresh');
         }
     
-        public function deletePhotos(){
+        public function deletePhotos($que_id){
+            // echo $que_id; die;
             try {
-                //$encUserId = $this->session->userdata('user_id');
-                //$user = encryptids("D", $encUserId);
-                $que_id = $this->input->post('que_id');
+                
                 $id = $this->Admin_model->deletePhotos($que_id);
                 if ($id) {
                     $data['status'] = 1;
@@ -715,9 +968,7 @@ class Admin extends CI_Controller
                     $data['status'] = 0;
                     $data['message'] = 'Failed to delete, Please try again.';
     
-                }
-                // echo  json_encode($data);
-                // return true;
+                }              
                 $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));
     
     
@@ -763,7 +1014,7 @@ class Admin extends CI_Controller
                 $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
                 redirect(base_url() . "admin/videos", 'refresh');
         }
-        public function delete_video(){
+        public function delete_video($que_id){
             try {
                 //$encUserId = $this->session->userdata('user_id');
                 //$user = encryptids("D", $encUserId);
@@ -1178,4 +1429,26 @@ class Admin extends CI_Controller
         }
         redirect(base_url() . "admin/view_btm", 'refresh');
     }
+    // public function join_the_classroom(){
+    //     $this->load->view('admin/headers/admin_header');
+    //     $this->load->view('users/join_the_classroom',$data);
+    //     $this->load->view('admin/footers/admin_footer');
+    // }
+
+    public function join_the_classroom_dashboard(){
+        $this->load->view('admin/headers/admin_header');
+         $this->load->view('admin/join_the_classroom_dashboard');
+         $this->load->view('admin/footers/admin_footer');
+    }
+    public function live_session_list(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/live_session_list');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function live_session_form(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/live_session_form');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    
 }

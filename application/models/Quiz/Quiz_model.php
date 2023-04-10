@@ -26,13 +26,13 @@ class Quiz_model extends CI_Model {
         $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_quiz_details.status'); 
         return $this->db->get('tbl_quiz_details')->result_array();  
     }
-     public function getAllQuizeCreated()
+   /*  public function getAllQuizeCreated()
     {   
         $this->db->select('tbl_quiz_details.*,tbl_mst_status.status_name'); 
         $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_quiz_details.status');
         $this->db->where('tbl_quiz_details.status',1);
         return $this->db->get('tbl_quiz_details')->result_array();  
-    }
+    }*/
     
     public function getAvailability()
     { 
@@ -125,6 +125,31 @@ public function updatePrize($prize_id,$quiz_id,$formdata)
             return 2;
         } 
     }
+
+
+// SELECT `tbl_quiz_details`.*, `tbl_mst_status`.`status_name` FROM `tbl_quiz_details` JOIN `tbl_mst_status` ON `tbl_mst_status`.`id` = `tbl_quiz_details`.`status` WHERE `end_date` <= now() AND `end_time` >= TIME(now());
+
+    public function getAllClosedQuize()
+    { 
+        $this->db->select('tbl_quiz_details.*,tbl_mst_status.status_name');
+        $this->db->where('end_date <= now()'); 
+        $this->db->where('end_time <= TIME(now())'); 
+        $this->db->where('tbl_quiz_details.status',5); 
+        $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_quiz_details.status');  
+        return $this->db->get('tbl_quiz_details')->result_array(); 
+    }
+
+    public function getQuizSubmissionUsers($id)
+    { 
+       $this->db->select('tbl_mst_quzi_submission_details.*,
+            tbl_users.user_name,
+            tbl_users.email,
+            tbl_users.user_mobile'); 
+        $this->db->where('tbl_mst_quzi_submission_details.quiz_id',$id); 
+        $this->db->join('tbl_users','tbl_users.user_id = tbl_mst_quzi_submission_details.user_id');
+        $this->db->order_by('score', 'desc');    
+        return $this->db->get('tbl_mst_quzi_submission_details')->result_array(); 
+    }
     public function published_quiz(){
         $this->db->select('title,id');
         $this->db->from('tbl_quiz_details');
@@ -133,11 +158,11 @@ public function updatePrize($prize_id,$quiz_id,$formdata)
         $result=$query->result_array();
         return $result;
     }
-    public function getAllClosedQuize($id)
+   /* public function getAllClosedQuize($id)
     {
         $this->db->where('status',7); 
         return $quiz = $this->db->get('tbl_quiz_details')->row_array();
-    }
+    }*/
 
 
      
