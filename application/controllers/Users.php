@@ -215,7 +215,7 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer'); 
 	}
     public function about_exchange_forum(){
-        $data['about_exchange_forum']=$this->users_model->about_exchange_forum();
+        $data['about_exchange_forum']=$this->Users_model->about_exchange_forum();
         $this->load->view('users/headers/header');
         $this->load->view('users/about_exchange_forum',$data);       
         $this->load->view('users/footers/footer');       
@@ -231,7 +231,7 @@ class Users extends CI_Controller {
         $this->load->model('admin/admin_model');
         $data['banner_data']=$this->admin_model->bannerAllData();
         $data['images']=$this->admin_model->images();
-        $allquize = $this->users_model->getUserAllQuize();
+        $allquize = $this->Users_model->getUserAllQuize();
         $data['allquize'] = $allquize;  
         // $this->load->view('users/standard_club',$data);
 
@@ -278,7 +278,7 @@ class Users extends CI_Controller {
     }
     public function conversation_with_experts(){
 
-        $Conversation = $this->users_model->getPublishedConversation();
+        $Conversation = $this->Users_model->getPublishedConversation();
         $data = array();
         $data['Conversation'] = $Conversation;
 

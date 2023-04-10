@@ -30,6 +30,10 @@
     object-fit: cover;
     width: 100%;
 }
+.World_of_standers_inner_Box:hover {
+    transition: all 1s;
+    box-shadow: 0 0 10px 10px #e62b03;
+}
 </style>
 <section id="quality-outer my-5">
     <div class="quality_section">

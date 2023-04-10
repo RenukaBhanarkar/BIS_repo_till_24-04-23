@@ -60,11 +60,11 @@
                                  <?php if (encryptids("D", $_SESSION['admin_type']) == 2){ 
                                       if($quiz['status'] == 3 || $quiz['status'] == 4 || $quiz['status'] == 5 || $quiz['status'] == 6 ) {
                                   ?>
-                                 <a href="quiz_view/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+                                 <a href="quiz_view/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">View</a> 
                                  <?php }  }?>
 
                                  <?php if (encryptids("D", $_SESSION['admin_type']) == 3){ ?>
-                                 <a href="quiz_view/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+                                 <a href="quiz_view/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">View</a> 
                                  <?php } ?>
                                      <?php if (encryptids("D", $_SESSION['admin_type']) == 3){ ?>
                                       <?php if($quiz['status']==3 || $quiz['status']==6 ){?>

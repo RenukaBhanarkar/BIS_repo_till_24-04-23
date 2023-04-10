@@ -193,7 +193,7 @@
             </div>
         </div>
         <script>
-            $("#text_div").click(function() {
+                $("#text_div").click(function() {
                     $("#text_title").show();
                     $("#text_description").show();
                     $("#text_image").show();
@@ -201,12 +201,21 @@
                     $("#video_thumbnail").hide();
                     $("#video_show").hide();
                 });
-                $("#type2").click(function() {
-                    $("#question-text").hide();
-                    $("#image-text").show();
+                $("#video_div").click(function() {
+                    $("#text_title").show();
+                    $("#text_description").show();
+                    $("#text_image").show();
+                    $("#link_session").hide();
+                    $("#video_thumbnail").show();
+                    $("#video_show").show();
                 });
-                $("#type3").click(function() {
-                    $("#question-text").show();
-                    $("#image-text").show();
+                $("#link_div").click(function() {
+                    $("#text_title").show();
+                    $("#text_description").show();
+                    $("#text_image").show();
+                    $("#link_session").hide();
+                    $("#video_thumbnail").hide();
+                    $("#video_show").hide();
                 });
+                
         </script>

@@ -65,10 +65,8 @@
                                         <?php } ?>
                                         <td>--</td>
                                         <td><?php echo $row['status_name']; ?></td>
-                                        <td class="d-flex border-bottom-0">
-                                            <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/viewQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="View">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                            </a>
+                                        <td class="d-flex border-bottom-0" style="width: 403px;">
+                                            <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/viewQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="View">View</a>
                                            
                                             <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
 
@@ -76,14 +74,14 @@
 
                                                 <?php if (($row['status'] == 1) || ($row['status'] == 4 )) { ?>
                                                     <a class="btn btn-info btn-sm mr-2 text-white" href="<?php echo base_url(); ?>subadmin/editQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="Edit">
-                                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                                        Edit
                                                     </a>
 
                                             <?php  } } ?>
                                             
                                             <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
                                                 <?php if (($row['status'] == 1) || ($row['status'] == 4 )) { ?>
-                                            <button class="btn btn-danger btn-sm mr-2" onclick="deleteRecord(<?php echo $row['que_bank_id']; ?>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            <button class="btn btn-danger btn-sm mr-2" onclick="deleteRecord(<?php echo $row['que_bank_id']; ?>)">Delete</button>
 
                                             <?php  } } ?>
 

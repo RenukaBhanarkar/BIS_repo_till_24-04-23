@@ -42,8 +42,7 @@
         overflow: hidden;
         height: 80px;
     }
-    
-    
+   
   </style>
 
    <section>
@@ -71,7 +70,7 @@
              </div>    
            </div>
 <div class="winner-content">
-    <div class="owl-carousel owl-theme winner-content" id="carouselExampleControls">
+    <div class="owl-carousel owl-theme" id="carouselExampleControls">
         <?php foreach($published_wall as $list){ ?>
 
                 <div class="item">

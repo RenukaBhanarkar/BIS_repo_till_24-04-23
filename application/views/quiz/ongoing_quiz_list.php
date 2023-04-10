@@ -48,7 +48,7 @@
                                  <td><?= $quiz['qbquestion']?></td>
                                  <td><?= $quiz['total_mark']?></td>  
                                     <td class="d-flex border-bottom-0">
-                                    <button onClick="location.href='ongoing_quiz_view'" class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                    <button onClick="location.href='ongoing_quiz_view'" class="btn btn-primary btn-sm mr-2">View</button>
                                  </td>
                                   
                              

@@ -22,7 +22,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center d-flex">
                                     <h5 class="font-weight-bold text-success mb-1">User Management</h5>
-                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center d-flex">
                                     <h5 class="font-weight-bold text-primary mb-1">Exchange forum</h5>
-                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    
                                 </div>
                             </div>
                         </div>
