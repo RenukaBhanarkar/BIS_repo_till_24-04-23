@@ -14,10 +14,19 @@
     transition: transform 250ms;
 }
 .last-date{
-    display: block;
-    overflow: hidden;
-    height: 80px;
+    /* display: block;
+    overflow: hidden; */
+    /* height: 80px; */
+    /* width: 400px;
     text-overflow: ellipsis;
+    white-space: nowrap; */
+
+    display: block;
+    height: 93px;
+  width: 330px;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
 }
 h5{
     height:20px;
@@ -44,13 +53,14 @@ h5{
                               <div class="status-open">Open</div>
                           </div> -->
                           <div class="title">
-                              <p><?php echo $list['title'];?></p>
+                              <p style="font-weight:600;"><?php echo $list['title'];?></p>
                           </div>
-                          <div class="field-item even">
-                              <span class="time_left">
-                                  <span class="last-date"><?php echo $list['description'];?></span>
-                              </span>
+                          <div class="card-body">
+                              <!-- <span class="time_left"> -->
+                                  <p class="last-date"><?php echo $list['description'];?></p>
+                              <!-- </span> -->
                           </div>
+                          
                       </div>
                   </div>
                   </a>
@@ -75,34 +85,35 @@ h5{
            <?php if($this->session->flashdata()){
                 echo $this->session->flashdata('MSG');
             } ?>
-            <form action="<?php echo base_url().'users/add_btm'?>" method="post" enctype="multipart/form-data">
+            <form action="javascript:;" class="was-validated" method="post" id="updateform" enctype="multipart/form-data">
             <div class="row">
                   <div class="mb-3 col-md-4">
                           <label class="d-block text-font">Title<sup class="text-danger">*</sup></label>
                               <div class="d-flex">
-                                    <input type="text" class="form-control input-font" name="title" id="" placeholder="Enter Title">
+                                    <input type="text" class="form-control input-font" name="title" id="title" placeholder="Enter Title" placeholder="Enter Title" required minlength="5" maxlength="200">
                               </div>
+                              <span style="color:red;" id="err_title"></span>
                   </div>
                   <div class="mb-3 col-md-4">
                           <label class="d-block text-font">Upload Image<sup class="text-danger">*</sup></label>
                               <div class="d-flex">
-                                    <input type="file" class="form-control input-font" name="image" id="Image" >
+                                    <input type="file" class="form-control input-font" name="image" id="Image" required accept="image/*">
                               </div>
                   </div>
                   <div class="mb-3 col-md-4">
                           <label class="d-block text-font">Upload Document</label>
                               <div class="d-flex">
-                                    <input type="file" class="form-control input-font" name="document" id="">
+                                    <input type="file" class="form-control input-font" name="document" id="" accept="pdf/*">
                               </div>
                   </div>
                   <div class="mb-3 col-md-12">
                           <label class="d-block text-font">Description<sup class="text-danger">*</sup></label>
-                          <textarea class="form-control input-font" name="description" id="#"></textarea>
-                              
+                          <textarea class="form-control input-font" name="description" id="description" required minlength="5" maxlength="1000"></textarea>
+                              <span style="color:red;"  id="err_description"></span>
                   </div>
                   <div class="mb-3 col-md-12">
                        <div class="mentor_submit">
-                          <button type="submit" class="btn btn-primary btn-sm mr-2">Submit</button>
+                          <button onclick="submitButton()" type="submit" class="btn btn-primary btn-sm mr-2">Submit</button>
                        </div> 
                   </div> 
              </div> 
@@ -110,3 +121,51 @@ h5{
          </div>
     </div>
   </div>
+  
+  <script> 
+  function submitButton() {
+             var title = $("#title").val();
+            //  var description= $("#description").val();
+             var description = CKEDITOR.instances['description'].getData(); 
+             var is_valid = true;
+                        console.log(description.length)
+             if (title == "") {
+                 $("#err_title").text("This value is required");
+                 $("#title").focus();
+                 is_valid = false;
+             
+             } else if (!(title.length > 4)) {
+                 $("#err_title").text("Please Enter minimum 5 Characters");
+                 $("#title").focus();
+                 is_valid = false;
+             } else {
+                 $("#err_title").text("");
+             }
+             if (description== "") {
+                 $("#err_description").text("This value is required");
+                 $("#link1").focus();
+                 is_valid = false;
+             } else if (description.length < 10 ) {
+                 $("#err_description").text("Description suould be 5 to 1000 characters");
+                 $("#description").focus();
+                 is_valid = false;
+             } else if(description.length > 1500 ){
+                $("#err_description").text("Description suould be 5 to 1000 characters");
+                 $("#description").focus();
+                 is_valid = false;
+             }else {
+                 $("#err_description").text("");
+             }            
+
+             if (is_valid) { 
+                $('#updateform').attr('action','<?php echo base_url().'users/add_btm'?>');                
+                 return true;
+             } else {
+                 return false;
+             }
+         };
+</script>
+<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<script>
+         CKEDITOR.replace( 'description' );
+            </script>

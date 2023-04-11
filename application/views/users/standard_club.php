@@ -180,21 +180,41 @@
             </div>
             <div class="portfolio-menu mt-2 mb-4">
                <ul>
-                  <li class="btn btn-outline-dark active" data-filter="*">Images</li>
+                  <!-- <li class="btn btn-outline-dark active" data-filter="*" id="img">Images</li> -->
+                  <li style="padding: 0px;"><button onclick="gal_images()" class="btn btn-outline-dark active img" id="img">Images</button></li>
                   <!-- <li class="btn btn-outline-dark" data-filter=".gts">Girls T-shirt</li>
                   <li class="btn btn-outline-dark" data-filter=".lap">Laptops</li> -->
-                  <li class="btn btn-outline-dark text" data-filter=".selfie">Video</li>
+                  <li style="padding: 0px;"><button onclick="abcd()" class="btn btn-outline-dark vdo" id="vdo">Video</button></li>
                </ul>
             </div>
-            <div class="portfolio-item row">
-              <?php foreach($images as $list){ ?>
-               <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
-                  <a href="<?php echo base_url().'uploads/'.$list['image'];?>" class="fancylight popup-btn" data-fancybox-group="light"> 
-                  <img class="img-fluid" src="<?php echo base_url().'uploads/'.$list['image'];?>" style="height:180px; width:280px;"; alt="">
-                  </a>
-               </div>
-               <?php } ?>
-               
+            <div class="portfolio-item row" id="photo_gallary">
+                  <?php if(!empty($images)){ foreach($images as $list){ ?>
+                      <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
+                          <a href="<?php echo base_url().'uploads/'.$list['image'];?>" class="fancylight popup-btn" data-fancybox-group="light"> 
+                          <img class="img-fluid" src="<?php echo base_url().'uploads/'.$list['image'];?>" style="height:180px; width:280px; padding:20px;"; alt="">
+                          </a>
+                      </div>
+                  <?php } ?>
+                  <?php if(count($images) > 7){ ?>
+                  <div class="view-button">
+                    <a href="<?php echo base_url().'users/photo_gallary' ?>">View All</a>
+                  </div>
+                  <?php } } ?>
+               <!-- <a class="content-right" href="">view More...</a> -->
+             </div>
+             <div class="portfolio-item row" id="video_gallary" style="display:none;">
+             <?php if(!empty($videos)){ foreach($videos as $list){ ?>
+                      <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
+                          <a href="<?php echo base_url().'uploads/'.$list['video'];?>" class="fancylight popup-btn" data-fancybox-group="light"> 
+                          <video class="img-fluid" src="<?php echo base_url().'uploads/'.$list['video'];?>" style="height:180px; width:280px; padding:20px;"; alt="">
+                          </a>
+                      </div>
+                      <?php if(count($videos) > 7){ ?>
+                      <div class="view-button">
+                      <a href="<?php echo base_url().'users/video_gallary' ?>">View All</a>
+                    </div>
+                    <?php } ?>
+                  <?php } }?>
              </div>
          </div>
     </section>    
@@ -207,6 +227,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
     <script>
+       $('#photo_gallary').show();
+      function abcd(){         
+              $('.vdo').addClass('active');
+              $('.img').removeClass('active');
+              $('#photo_gallary').hide();
+              $('#video_gallary').show();                                
+        }
+     
+      function gal_images(){        
+              $('.img').addClass('active');
+              $('.vdo').removeClass('active');
+              $('#photo_gallary').show();
+              $('#video_gallary').hide();                                
+      }
         $('.owl-carousel').owlCarousel({
         loop:true,
         margin:10,

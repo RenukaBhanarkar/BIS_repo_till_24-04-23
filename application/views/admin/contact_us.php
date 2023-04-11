@@ -140,9 +140,9 @@
                                         <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {   ?>
                                         <td class="d-flex border-bottom-0">
                                         
-                                            <button onclick="edit('<?php echo $list_contact['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                                            <button onclick="edit('<?php echo $list_contact['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform">Edit</button>
                                             <!-- <button onClick="" class="btn btn-danger btn-sm mr-2"><i class="fa fa-trash" aria-hidden="true"></i></button> -->
-                                            <button onclick="deleteContactus(' <?php echo $list_contact['id']; ?> ');" data-id='<?php echo $list_contact['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            <button onclick="deleteContactus(' <?php echo $list_contact['id']; ?> ');" data-id='<?php echo $list_contact['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
 
                                             <div class="modal fade " id="editform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-xl" role="document">

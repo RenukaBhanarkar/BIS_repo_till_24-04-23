@@ -169,9 +169,9 @@
                             </p>
 
                         </div>
-                        <div class="">
-                            <a href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank">
-                                <button class="btn btn-primary" style="margin-left:80%; margin-bottom: 10px;">Document</button>
+                        <div class="" style="text-align: end; margin-right: 23px;">
+                            <a class="btn btn-primary mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank">
+                                Document
                             </a>
                         </div>
                         

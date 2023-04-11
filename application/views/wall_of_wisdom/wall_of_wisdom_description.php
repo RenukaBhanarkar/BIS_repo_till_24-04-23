@@ -153,7 +153,8 @@
         <div class="inner_wall">
             <div class="row mt-5">
                 <div class="col-sm-9">
-                    
+                    <h5>
+                <?php echo $wow['title']; ?></h5>
                     <div class="your_wall_main_card_view">
                         <div class="yourWall_image">
                             <img src="<?php echo base_url().'uploads/admin/wall_of_wisdom/'.$wow['image']; ?>" alt="not found" class="w-100 h-100">
@@ -161,7 +162,7 @@
                         </div>
                         <div class="Text-container_view ">
                             <h6 class="yourWall_title_view ">
-                            <?php echo $wow['title']; ?>
+                            <!-- <?php echo $wow['title']; ?> -->
                                 <!-- Lorem ipsum dolor sit amet, consectetur -->
                             </h6>
                             <p class="Your_Wall_Description_view">

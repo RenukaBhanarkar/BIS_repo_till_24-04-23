@@ -47,7 +47,7 @@
                             <tr>
                                 <td>
                                     <label for="validationTextarea" class="d-block text-font" >Terms & Condition</label><br>
-                                    <textarea class="form-control" id="terms_condition" rows="3" name="terms_condition" required=""><?php echo $legal['tc']; ?></textarea>
+                                    <textarea class="form-control" id="terms_condition" rows="3" name="terms_condition" required="" minlength="5" maxlength="10"><?php echo $legal['tc']; ?></textarea>
                                     <!-- <span class="error" id="err_terms_condition"></span> -->
                                     <span class="error_text" id="err_terms_condition" style="color:red;"></span>
                                 </td>                                
@@ -152,7 +152,18 @@
                         CKEDITOR.replace( 'cmap' );
                         CKEDITOR.replace( 'cap' );
                         CKEDITOR.replace( 'crp' );
-
+// $(document).ready(function(){
+//     console.log("jj");
+//     $('#terms_condition').on('change',function(){
+//         console.log("jj");
+//         var terms_condition = $('#terms_condition').val();
+//         if (terms_condition == "") {
+//                  $("#err_terms_condition").text("This value is required");
+//                  $("#terms_condition").focus();
+//                  is_valid = false;             
+//              }
+//     });
+// });
 
 function submitButton() {
     
@@ -221,23 +232,6 @@ function submitButton() {
              }
          };
                 
-         (() => {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()     
+           
 </script>
 <!-- End of Main Content -->

@@ -209,13 +209,13 @@ class Users extends CI_Controller {
 	// }
     public function contact_us()
 	{
-        $data['contact']=$this->users_model->contact_us();
+        $data['contact']=$this->Users_model->contact_us();
         $this->load->view('users/headers/header');
 		$this->load->view('users/contact_us',$data);
         $this->load->view('users/footers/footer'); 
 	}
     public function about_exchange_forum(){
-        $data['about_exchange_forum']=$this->users_model->about_exchange_forum();
+        $data['about_exchange_forum']=$this->Users_model->about_exchange_forum();
         $this->load->view('users/headers/header');
         $this->load->view('users/about_exchange_forum',$data);       
         $this->load->view('users/footers/footer');       
@@ -231,10 +231,11 @@ class Users extends CI_Controller {
         $this->load->model('admin/admin_model');
         $data['banner_data']=$this->admin_model->bannerAllData();
         $data['images']=$this->admin_model->images();
-        $allquize = $this->users_model->getUserAllQuize();
+        $data['videos']=$this->admin_model->videos();
+        $allquize = $this->Users_model->getUserAllQuize();
         $data['allquize'] = $allquize;  
         // $this->load->view('users/standard_club',$data);
-
+        // print_r($data); die;
 
         $this->load->view('users/headers/header');
         $this->load->view('users/standard_club',$data);
@@ -278,7 +279,7 @@ class Users extends CI_Controller {
     }
     public function conversation_with_experts(){
 
-        $Conversation = $this->users_model->getPublishedConversation();
+        $Conversation = $this->Users_model->getPublishedConversation();
         $data = array();
         $data['Conversation'] = $Conversation;
 
@@ -376,7 +377,7 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer');  
     }
     public function terms_condition(){
-        $data=$this->users_model->get_legal_data('tc');
+        $data=$this->Users_model->get_legal_data('tc');
         $this->load->view('users/headers/header');
         $this->load->view('users/terms_condition',$data);
         $this->load->view('users/footers/footer');  
@@ -452,6 +453,16 @@ class Users extends CI_Controller {
     }
 
     public function add_btm(){
+        // print_r($_SESSION); 
+        // die;
+        if(isset($_SESSION['admin_id'])){
+            // $formdata['user_id']=$_SESSION['admin_id'];
+            $formdata['user_id']= encryptids("D", $_SESSION['admin_id']);
+        }else{
+            // die;
+            $this->session->set_flashdata('MSG', ShowAlert("RPlease Login", "SS"));
+            redirect(base_url() . "users/byTheMentor", 'refresh');
+        }
         $title = $this->input->post('title');
         $description = $this->input->post('description');
 

@@ -64,7 +64,7 @@
                                             
                                             
                                             if (!($list_yw['status'] == "5")) { ?>
-                                                <button onclick="deleteYourwall(' <?php echo $list_yw['id']; ?> ');" data-id='<?php echo $list_yw['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                <button onclick="deleteYourwall(' <?php echo $list_yw['id']; ?> ');" data-id='<?php echo $list_yw['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
                                                 <button class="btn btn-primary btn-sm mr-2" onclick="sendPublish('<?php echo $list_yw['id']; ?>')" data-id ='<?php echo $list_yw['id']; ?>'>Publish</button>
                                             <?php }else if($list_yw['status'] == "5"){ ?>
                                                 <button class="btn btn-primary btn-sm mr-2" onclick="sendUnPublish('<?php echo $list_yw['id']; ?>')" data-id ='<?php echo $list_yw['id']; ?>'>UnPublish</button>

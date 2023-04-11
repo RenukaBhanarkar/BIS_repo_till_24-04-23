@@ -49,9 +49,9 @@
                                 <td><?php echo $list['email']; ?></td>
                                 <td><?php echo $list['title']; ?></td>
                                  <td class="d-flex border-bottom-0">
-                                    <button onclick="submit()" class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                                    <button onClick="location.href='#'" class="btn btn-info btn-sm mr-2"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                                    <button onclick="deleterecord('<?php echo $list['id']; ?>')" class="btn btn-danger btn-sm mr-2"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    <button onclick="submit()" class="btn btn-primary btn-sm mr-2">View</button>
+                                    <button onClick="location.href='#'" class="btn btn-info btn-sm mr-2">Edit</button>
+                                    <button onclick="deleterecord('<?php echo $list['id']; ?>')" class="btn btn-danger btn-sm mr-2">Delete</button>
                                  </td>
                                   
                             

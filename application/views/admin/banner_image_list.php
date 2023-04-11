@@ -101,8 +101,8 @@
                                         <td><?php echo $list_banner['caption']; ?></td>
                                         <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {   ?>
                                         <td class="d-flex border-bottom-0">
-                                            <button onclick="edit('<?php echo $list_banner['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                                            <button onclick="deleteBanner(' <?php echo $list_banner['id']; ?> ');" data-id='<?php echo $list_banner['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            <button onclick="edit('<?php echo $list_banner['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform">Edit</button>
+                                            <button onclick="deleteBanner(' <?php echo $list_banner['id']; ?> ');" data-id='<?php echo $list_banner['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
                                             <!-- Modal -->
 
                                         </td>
@@ -188,7 +188,7 @@
                                                                                 </div>       
                                                                                             <!-- Modal -->
                                                             </div>
-                                                            <div class="" id="add_file">
+                                                            <div class="row" id="add_file">
                                                             
 
 
@@ -200,8 +200,8 @@
                                                                 <?php //echo form_error('title'); ?>
                                                             </span> -->
 
-
-                                                            <input type="file" class="form-control input-font" accept="image/jpeg,image/png,image/jpg" name="bannerimg" id="icon_file">
+                                                            <div class="col-9">
+                                                            <input type="file" class="form-control input-font" accept="image/jpeg,image/png,image/jpg" name="bannerimg" id="icon_file" onchange="loadFileThumbnail(event)">
                                                             <span class="error_text">      
                                                                 accept only jpg,jpeg,png                      
                                                             </span>
@@ -216,8 +216,9 @@
                                                             
                                                             </div>
 
-
-
+                                                            <button type="button" class="btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#Previewimg"> Preview 
+                                                                </button>
+                                                            </div>
 
 
                         
@@ -260,6 +261,43 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="Previewimg" tabindex="-1" aria-labelledby="PreviewimgLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="max-width:700px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="PreviewimgLabel">Image Preview of new uploaded</h5>
+
+                                        <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <img id="outputThumbnail" width="100%"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
+                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div> 
+                                    <script type="text/javascript">
+var loadFileThumbnail = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail = document.getElementById('outputThumbnail');
+        
+        outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail.src);
+        }
+    };
+    function resetimg()
+    {
+         
+        $("#outputThumbnail").hide(); 
+    }
+    </script>
 <script>
     function deleteBanner(que_id) {
         // var c = confirm("Are you sure to delete this survey details? ");

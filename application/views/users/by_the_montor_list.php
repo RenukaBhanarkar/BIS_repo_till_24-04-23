@@ -59,7 +59,7 @@
                                         data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button> -->
                                         <a href="<?php echo base_url(); ?>admin/view_btm/<?php echo $list_btm['id'] ?>"><button class="btn btn-info btn-sm mr-2">view</button></a>
                                             <?php if(!($list_btm['status_name'] == 'Published')){ ?>
-                                                <button onclick="deleteByTheMentor(' <?php echo $list_btm['id']; ?> ');" data-id='<?php echo $list_btm['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                <button onclick="deleteByTheMentor(' <?php echo $list_btm['id']; ?> ');" data-id='<?php echo $list_btm['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
                                                 <button class="btn btn-primary" onclick="sendPublish('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Publish</button>
                                             <?php }else if($list_btm['status_name'] == 'Published'){ ?>
                                                 <button class="btn btn-primary" onclick="sendUnPublish('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>UnPublish</button>
@@ -78,7 +78,9 @@
         </div>
     </div>
     <!-- /.container-fluid -->
-
+    <div class="col-md-12 submit_btn p-3">
+                               <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url().'admin/exchange_forum' ?>'">Back</a>
+                          </div>
 </div>
 <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
