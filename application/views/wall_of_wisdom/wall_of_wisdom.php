@@ -65,7 +65,7 @@
                                         <td><?php echo $list_wow['reject_reason']; ?></td>
                                         <td class="d-flex border-bottom-0">
                                             <a href="<?php echo base_url().'wall_of_wisdom/detail/'.$list_wow['id']; ?>" >
-                                                <button class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                                <button class="btn btn-primary btn-sm mr-2">View</button>
                                             </a>
                                             <?php 
                                             if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
@@ -74,8 +74,8 @@
                                            <?php } ?>
                                            
                                             <?php if (!($list_wow['status'] == 5 || $list_wow['status'] == 2)) { ?>
-                                                <button onclick="edit('<?php echo $list_wow['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                                                <button onclick="deleteWOW('<?php echo $list_wow['id']; ?>')" class="btn btn-danger btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                <button onclick="edit('<?php echo $list_wow['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white">Edit</button>
+                                                <button onclick="deleteWOW('<?php echo $list_wow['id']; ?>')" class="btn btn-danger btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#delete">Delete</button>
                                             <?php } } ?>
 
 
@@ -108,9 +108,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    
     <!-- /.container-fluid -->
-
+    <div class="col-md-12 submit_btn p-3">
+                               <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url().'admin/exchange_forum' ?>'">Back</a>
+                          </div>
+    </div>
     </div>
     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -126,12 +129,12 @@
                     <form action="<?php echo base_url(); ?>wall_of_wisdom/insertWallOfWisdom" class="was-validated" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Title<sup class="text-danger">*</sup></label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" minlength="5" maxlength="250" placeholder="Enter Title" required>
                             <span id="err_title" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Description<sup class="text-danger">*</sup></label>
-                            <textarea class="form-control" id="description" name="description" placeholder="Enter Description" required></textarea>
+                            <textarea class="form-control" id="description" name="description" placeholder="Enter Description"  minlength="5" maxlength="1000" placeholder="Enter Description" required></textarea>
                             <span id="err_description" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
@@ -166,12 +169,12 @@
                     <form action="<?php echo base_url(); ?>wall_of_wisdom/editWallOfWisdom"  class="was-validated" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Title<sup class="text-danger">*</sup></label>
-                            <input type="text" class="form-control" id="title1" name="title" required>
+                            <input type="text" class="form-control" id="title1" name="title" minlength="5" maxlength="250" placeholder="Enter Title" required>
                             <span id="err_title" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Description<sup class="text-danger">*</sup></label>
-                            <textarea class="form-control" id="description1" name="description" required></textarea>
+                            <textarea class="form-control" id="description1" name="description" minlength="5" maxlength="1000" placeholder="Enter Description" required></textarea>
                             <span id="err_description" class="text-danger"></span>
                         </div>
                         <div class="row">
@@ -261,6 +264,8 @@
             </div>
         </div>
     </div>
+
+   
     <!-- ----------- end of reject modal------- -->
 
     <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -323,6 +328,45 @@
         </div>
     </div>
 
+    <div class="modal fade" id="sendforapproval" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Send For Approval Activity</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Send For Approval activity?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary sendforapproval" data-bs-dismiss="modal">Send For Approval</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="approve" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Approve Activity</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Approve activity?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary approve" data-bs-dismiss="modal">Approve</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Page level plugins -->
@@ -459,8 +503,10 @@
 
 
         function sendapproval(que_id) {
-            var c = confirm("Are you sure to Approve this survey details? ");
-            if (c == true) {
+            // var c = confirm("Are you sure to Approve this survey details? ");
+            // if (c == true) {
+                $('#sendforapproval').modal('show');
+                $('.sendforapproval').on('click', function() {
                 // const $loader = $('.igr-ajax-loader');
                 //$loader.show();
                 $.ajax({
@@ -478,12 +524,14 @@
                     }
                 });
 
-            }
+            })
         }
 
         function approve(que_id){
-            var c = confirm("Are you sure to Approve activity? ");
-            if (c == true) {
+            // var c = confirm("Are you sure to Approve activity? ");
+            // if (c == true) {
+                $('#approve').modal('show');
+                $('.approve').on('click', function() {
                 // const $loader = $('.igr-ajax-loader');
                 //$loader.show();
                 $.ajax({
@@ -501,7 +549,7 @@
                     }
                 });
 
-            }
+            })
         }
 
         function sendPublish(que_id) {           

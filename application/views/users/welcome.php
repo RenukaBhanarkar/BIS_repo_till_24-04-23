@@ -4,7 +4,7 @@
             <div class="exchange_section d-flex">
                 <div class="col-md-2">
                     <div class="bis_logo">
-                       <img src="assets/images/bis_logo.png" class="opacity_img"> 
+                       <img src="<?php echo base_url(); ?>assets/images/bis_logo.png" class="opacity_img"> 
                     </div>
                     
                  </div>
@@ -20,7 +20,7 @@
              </div>
         <div class="col-md-2">
                  <div class="bis_logo">
-                       <img src="assets/images/bis_logo.png" class="opacity_img"> 
+                       <img src="<?php echo base_url(); ?>assets/images/bis_logo.png" class="opacity_img"> 
                   </div>
                  </div>
               </div>

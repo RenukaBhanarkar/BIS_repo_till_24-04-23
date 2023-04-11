@@ -114,10 +114,9 @@
                                 <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {   ?>
                                 <td class="d-flex border-bottom-0">
                                     <button onclick="edit('<?php echo $list_follow['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal"
-                                        data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                                        data-target="#editform">Edit</button>
                                     <button onclick="deleteFollowUs(' <?php echo $list_follow['id']; ?> ');" data-id ='<?php echo $list_follow['id']; ?>'
-                                    class="btn btn-danger btn-sm mr-2"><i class="fa fa-trash"
-                                            aria-hidden="true"></i></button>
+                                    class="btn btn-danger btn-sm mr-2">Delete</button>
                                     <!-- Modal -->
             
                                     <div class="modal fade " id="editform" tabindex="-1" role="dialog"
@@ -214,7 +213,9 @@
         </div>
     </div>
     <!-- /.container-fluid -->
-
+    <div class="col-md-12 submit_btn p-3">
+    <a  href="<?php echo base_url().'admin/footer_links' ?>" class="btn btn-primary btn-sm text-white" >Back</a>
+</div>
 </div>
 <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

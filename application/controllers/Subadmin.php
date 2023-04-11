@@ -764,7 +764,7 @@ class Subadmin extends CI_Controller
 
         $this->Admin_model->update_legal($formdata);
         $this->session->set_flashdata('MSG', ShowAlert("Record updated Successfully", "SS"));
-        redirect(base_url() . "admin/legal", 'refresh');
+        redirect(base_url() . "subadmin/legal", 'refresh');
         // print_r($formdata); die; 
     }
     public function winner_wall(){

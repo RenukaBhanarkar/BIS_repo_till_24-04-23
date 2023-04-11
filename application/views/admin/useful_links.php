@@ -113,9 +113,8 @@
                                 <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {   ?>
                                 <td class="d-flex border-bottom-0">
                                     <button onclick="edit('<?php echo $list_ul['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal"
-                                        data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                                    <button onclick="deleteUsefulLinks(' <?php echo $list_ul['id']; ?> ');" data-id ='<?php echo $list_ul['id']; ?>' class="btn btn-danger btn-sm mr-2"><i class="fa fa-trash"
-                                            aria-hidden="true"></i></button>
+                                        data-target="#editform">Edit</button>
+                                    <button onclick="deleteUsefulLinks(' <?php echo $list_ul['id']; ?> ');" data-id ='<?php echo $list_ul['id']; ?>' class="btn btn-danger btn-sm mr-2">Delete</button>
                                     <!-- Modal -->
                                     <div class="modal fade" id="viewImage" tabindex="-1" role="dialog"
                                         aria-labelledby="viewImageLabel" aria-hidden="true">

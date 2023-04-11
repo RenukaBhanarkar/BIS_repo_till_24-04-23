@@ -67,6 +67,7 @@ class By_the_mentor_model extends CI_Model {
         $this->db->from('tbl_by_the_mentors');        
         $this->db->where('status','5');
         $this->db->order_by('created_on','desc');
+        $this->db->limit(6);
         $query=$this->db->get();
         $res=$query->result_array();
         return $res;

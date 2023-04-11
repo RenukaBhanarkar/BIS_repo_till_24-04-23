@@ -690,8 +690,8 @@ class Admin extends CI_Controller
     public function add_useful_links(){
         $banner_img = "useful_links" . time() . '.jpg';
         $config['upload_path'] = './uploads';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size']    = '10000';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size']    = '500';
         $config['max_width']  = '3024';
         $config['max_height']  = '2024';
 
@@ -702,13 +702,18 @@ class Admin extends CI_Controller
         {
             $data['status'] = 0;
             $data['message'] = $this->upload->display_errors();
+            $this->session->set_flashdata('MSG', ShowAlert($data['message'], "SS"));
+            // print_r( $data['message']);
+            // die;
+        }else{
+            $formdata['title'] = $this->input->post('title');
+            $formdata['image'] = $banner_img;
+            $formdata['link']=$this->input->post('link');
+            $this->load->model('admin_model');
+            $this->Admin_model->add_useful_links($formdata);
+            $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
         }
-        $formdata['title'] = $this->input->post('title');
-        $formdata['image'] = $banner_img;
-        $formdata['link']=$this->input->post('link');
-        $this->load->model('admin_model');
-        $this->Admin_model->add_useful_links($formdata);
-        $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
+       
         redirect(base_url() . "admin/useful_links", 'refresh');
     }
 
@@ -732,7 +737,7 @@ class Admin extends CI_Controller
                 $document = "banner_image" . time() . '.jpg';
                 $config['upload_path'] = './uploads';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                $config['max_size']    = '100000';
+                $config['max_size']    = '500';
                 $config['max_width']  = '3024';
                 $config['max_height']  = '2024';
                 $config['file_name'] = $document;
@@ -933,7 +938,7 @@ class Admin extends CI_Controller
             $banner_img = "photos" . time() . '.jpg';
             $config['upload_path'] = './uploads';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
-            $config['max_size']    = '10000';
+            $config['max_size']    = '500';
             $config['max_width']  = '3024';
             $config['max_height']  = '2024';
     
@@ -1366,14 +1371,14 @@ class Admin extends CI_Controller
             if ($id) {
                 $data['status'] = 1;
                 $data['message'] = 'Publish successfully.';
-                $this->session->set_flashdata('MSG', ShowAlert("Record Published Successfully", "SS"));
+                
                 
             } else {
                 $data['status'] = 0;
                 $data['message'] = 'Failed to publish, Please try again.';
-                $this->session->set_flashdata('MSG', ShowAlert("Failed!", "SS"));
+                // $this->session->set_flashdata('MSG', ShowAlert("Failed!", "SS"));
             }   
-            
+            $this->session->set_flashdata('MSG', ShowAlert("Record Published Successfully", "SS"));
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',
@@ -1389,13 +1394,15 @@ class Admin extends CI_Controller
             $que_id = $this->input->post('que_id');
             $id = $this->By_the_mentor_model->btm_Unpublish($que_id);
             if ($id) {
-                $this->session->set_flashdata('MSG', ShowAlert("Record UnPublished Successfully", "SS"));
                 
+                $data['status'] = 1;
+                $data['message'] = 'Record Unpublished.';
             } else {
-                $this->session->set_flashdata('MSG', ShowAlert("Failed!", "SS"));               
+                $data['status'] = 0;
+                $data['message'] = 'Failed to unpublish.';           
             }
             
-            
+            $this->session->set_flashdata('MSG', ShowAlert("Record UnPublished Successfully", "SS"));
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',

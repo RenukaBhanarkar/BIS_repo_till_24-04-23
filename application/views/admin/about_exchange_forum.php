@@ -36,12 +36,20 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="mb-2 col-md-4">
+                                            <div class="row">
+                                                <div class="col-9">
                                             <label class="d-block text-font">Upload Image<sup class="text-danger">*</sup></label>
-                                            <input type="file" class="form-control input-font" name="image" id="image"  accept="image/*" required="required">
+                                            <input type="file" class="form-control input-font" name="image" id="image"  accept="image/*" required="required" onchange="loadFileThumbnail1(event)">
                                             <span class="error_text">
                                                 <?php //echo form_error('title'); 
                                                 ?>
                                             </span>
+                                            </div>
+                                            <button type="button" class="btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#Previewimg"> Preview 
+                                                            </button>
+
+                                            </div>
+
                                         </div>
                                         <div class="mb-2 col-md-8">
                                             <label class="d-block text-font">Description</label>
@@ -103,8 +111,8 @@
                                         <td><?php echo $list_aef['description']; ?></td>
                                         <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {   ?>
                                         <td class="d-flex border-bottom-0">
-                                            <button onclick="abcd()" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                                            <button onclick="deleteExngForum(' <?php echo $list_aef['id']; ?> ');" data-id='<?php echo $list_aef['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            <button onclick="abcd()" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform">Edit</button>
+                                            <button onclick="deleteExngForum(' <?php echo $list_aef['id']; ?> ');" data-id='<?php echo $list_aef['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
                                             <!-- Modal -->
                                             <div class="modal fade" id="viewImage" tabindex="-1" role="dialog" aria-labelledby="viewImageLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -166,26 +174,22 @@
                                                                                     </div>
                                                                                 </div>  
                                                              </div>
-                                                                                <div class="" id="add_file">
-                                                            
+                                                                                <div class="row" id="add_file">
+                                                                                <div class="col-9">
 
 
-                                                            <!-- <input type="file" class="form-control input-font" name="image"
-                                                                id="icon_file" value=""  accept="image/*">
-                                                            <input type="hidden" name="old_img" id="image" value="">
-                                                            <input type="hidden" name="id" id="id" value="">
-                                                            <span class="error_text">
-                                                                <?php //echo form_error('title'); ?>
-                                                            </span> -->
+                                                           
 
-
-                                                            <input type="file" class="form-control input-font" name="image" id="icon_file" value=""  accept="image/*">
+                                                            <input type="file" class="form-control input-font" name="image" id="icon_file" value=""  accept="image/*" onchange="loadFileThumbnail(event)">
                                                                     <input type="hidden" class="form-control input-font" name="old_image" id="image" value="<?php echo $about_exchange_forum[0]['image']; ?>">
                                                                     <input type="hidden" id="id" name="id" value="<?php echo $about_exchange_forum[0]['id']; ?>" >
                                                                     <span class="error_text">
                                                                         <?php //echo form_error('title'); 
                                                                         ?>
                                                                     </span>
+                                                                                </div>
+                                                                                <button type="button" class="btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#Previewimg"> Preview 
+                                                            </button>
 
 
 
@@ -207,7 +211,7 @@
                                                                 <img src="<?php echo base_url(); ?>uploads/<?php echo $about_exchange_forum[0]['image'] ?>" data-toggle="modal" data-target="#viewImage" width="334px">
                                                                 </div> -->
                                                                 <!-- </div> -->
-                                                                <div class="mb-2 col-md-8">
+                                                                <div class="mb-2 col-md-12">
                                                                     <label class="d-block text-font">Description</label>
                                                                     <textarea name="description" class="form-control" id="description1" rows="8" maxlength="1000" minlength="6" required=""><?php echo $about_exchange_forum[0]['description']; ?></textarea>
                                                                     <span class="error_text" id="err_description">
@@ -253,7 +257,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
             </div>
@@ -267,16 +271,44 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="Previewimg" tabindex="-1" aria-labelledby="PreviewimgLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:700px;">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="PreviewimgLabel">Image Preview</h5>
+
+        <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+        <img id="outputThumbnail" width="100%"/>
+        </div>
+        <div class="modal-footer">
+        <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
+        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save</button>
+        </div>
+    </div>
+    </div>
+</div> 
+<script type="text/javascript">
+var loadFileThumbnail = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail = document.getElementById('outputThumbnail');
+        
+        outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail.src);
+        }
+    };
+    function resetimg()
+    {    
+        $("#outputThumbnail").hide(); 
+    }
+    </script>
 <!-- End of Main Content -->
 <script>
-    // $(document).ready(function(){
-    //     $('.delete_img').on('click',function(){
-    //         $('#delete').modal('show');
-    //     })
-    // })
-    
-
-
     function deleteExngForum(que_id) {
         // var c = confirm("Are you sure to delete this survey details? ");
         $('#delete').modal('show');
