@@ -216,6 +216,7 @@ class Users extends CI_Controller {
 	}
     public function about_exchange_forum(){
         $data['about_exchange_forum']=$this->Users_model->about_exchange_forum();
+        $data['about_exchange_forum']=$this->Users_model->about_exchange_forum();
         $this->load->view('users/headers/header');
         $this->load->view('users/about_exchange_forum',$data);       
         $this->load->view('users/footers/footer');       
@@ -279,6 +280,7 @@ class Users extends CI_Controller {
     }
     public function conversation_with_experts(){
 
+        $Conversation = $this->Users_model->getPublishedConversation();
         $Conversation = $this->Users_model->getPublishedConversation();
         $data = array();
         $data['Conversation'] = $Conversation;

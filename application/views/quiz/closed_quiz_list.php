@@ -51,7 +51,7 @@
                                  <td><?= $quiz['total_mark']?></td>
                                  <td>Closed</td>
                                  <td class="d-flex border-bottom-0" style="width: 315px; word-break: normal;">
-                                    <button onClick="location.href='closed_quiz_view'" class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                    <button onClick="location.href='closed_quiz_view'" class="btn btn-primary btn-sm mr-2">View</button>
                                     <button onClick="location.href='closed_quiz_submission'" class="btn btn-warning btn-sm mr-2">View submission</i></button>
                                      
                                     <a href="closed_quiz_submission/<?= $quiz['id']?>" class="btn btn-success btn-sm mr-2">Result Declaration</a>
