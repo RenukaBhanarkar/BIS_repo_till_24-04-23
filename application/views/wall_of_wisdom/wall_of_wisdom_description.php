@@ -153,8 +153,8 @@
         <div class="inner_wall">
             <div class="row mt-5">
                 <div class="col-sm-9">
-                    <h5>
-                <?php echo $wow['title']; ?></h5>
+                    <h4>
+                <?php echo $wow['title']; ?></h4>
                     <div class="your_wall_main_card_view">
                         <div class="yourWall_image">
                             <img src="<?php echo base_url().'uploads/admin/wall_of_wisdom/'.$wow['image']; ?>" alt="not found" class="w-100 h-100">

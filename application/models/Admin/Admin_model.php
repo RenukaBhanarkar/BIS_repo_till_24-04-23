@@ -437,6 +437,7 @@ class Admin_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('tbl_photos');
         $this->db->order_by('created_on','desc');
+        $this->db->limit('8');
         $query=$this->db->get();
         if($query->num_rows() > 0){
             return $query->result_array();
