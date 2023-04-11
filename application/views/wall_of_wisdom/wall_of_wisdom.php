@@ -126,7 +126,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo base_url(); ?>wall_of_wisdom/insertWallOfWisdom" class="was-validated" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url(); ?>wall_of_wisdom/insertWallOfWisdom" name="addpost" id="addpostform" class="was-validated" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Title<sup class="text-danger">*</sup></label>
                             <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" minlength="5" maxlength="250" placeholder="Enter Title" required>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Description<sup class="text-danger">*</sup></label>
-                            <textarea class="form-control" id="description" name="description" placeholder="Enter Description"  minlength="5" maxlength="1000" placeholder="Enter Description" required></textarea>
+                            <textarea class="form-control" id="description" name="description" placeholder="Enter Description" ></textarea>
                             <span id="err_description" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
@@ -177,7 +177,7 @@
                             <textarea class="form-control" id="description1" name="description" minlength="5" maxlength="1000" placeholder="Enter Description" required></textarea>
                             <span id="err_description" class="text-danger"></span>
                         </div>
-                        <div class="row">
+                        
                             <!-- <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Upload Image:</label>
                                 <input type="file" class="form-control" id="document1" name="document">
@@ -185,22 +185,21 @@
                                 <input type="hidden" id="id1" name="id">
                                 <span id="imgError1" class="text-danger"></span>
                             </div> -->
-                            <div class="mb-3">
+                            
                                 <label class="d-block">Upload Image<sup class="text-danger">*</sup></label>
+                                <div class=""  id="add_file">
                                 <div class="d-flex">
                                         <div>
-                                            <input type="file" id="document2" name="document" class="form-control-file" >
+                                            <input type="file" id="document2" name="document" class="form-control-file" required onchange="loadFileThumbnail(event)">
                                             <input type="hidden" id="image1" name="old_doc">
                                             <input type="hidden" id="id1" name="id">
                                             <span class="error_text"><?php echo form_error('banner_img');?></span>
                                         </div>
-                                        <button type="button" id="preview" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" id="preview123456" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#Previewimg">
                                             Preview
                                         </button>
-                                </div>
-                                
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                        <div class="modal fade" id="Previewimg" tabindex="-1" aria-labelledby="PreviewimgLabel" aria-hidden="true">
                                     <div class="modal-dialog" style="max-width:700px;">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -211,18 +210,50 @@
                                         </button>
                                         </div>
                                         <div class="modal-body">
-                                        <img src="" id="outputbanner" width="100%"/>
+                                        <img src="" id="outputThumbnail" width="100%"/>
                                         </div>
                                         <div class="modal-footer">
-                                        <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
-                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button>
+                                        <!-- <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
+                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button> -->
                                         </div> 
                                     </div>
                                     </div>
-                                </div>       
+                                </div>
+                                </div>
+                                
+                                <!-- Modal -->
+                                      
                                             <!-- Modal -->
                             </div>
-                        </div>
+                        
+                        <div class="active" id="delete_preview">
+                                                                <button class="btn btn-danger btn-sm del_icon">Delete</button>
+                                                                <button type="button" id="preview1" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                    Preview
+                                                                </button>
+                                                                                                                <!-- Modal -->
+                                                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog" style="max-width:700px;">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Image Preview</h5>
+
+                                                                                        <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">×</span>
+                                                                                        </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                        <img src="" id="outputbanner" width="100%"/>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                        <!-- <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
+                                                                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button> -->
+                                                                                        </div> 
+                                                                                    </div>
+                                                                                    </div>
+                                                                                </div>       
+                                                                                            <!-- Modal -->
+                                                            </div>
 
                 </div>
                 <div class="modal-footer">
@@ -246,10 +277,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo base_url(); ?>wall_of_wisdom/rejectWallOfWisdom" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url(); ?>wall_of_wisdom/rejectWallOfWisdom" class="was-validated" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Reason of Rejection<sup class="text-danger">*</sup></label>
-                            <input type="text" class="form-control" id="reseon" name="reason" required>
+                            <!-- <input type="text" class="form-control" id="reseon" name="reason" required> -->
+                            <textarea class="form-control" id="reseon" name="reason" required></textarea>
                             <input type="hidden" id="id2" name="id">
                             <span id="err_title" class="text-danger"></span>
                         </div>
@@ -258,14 +290,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" >Reject</button>
+                    <button type="submit" class="btn btn-danger" >Reject</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-   
+                            
     <!-- ----------- end of reject modal------- -->
 
     <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -369,13 +401,33 @@
     </div>
 
 
+    <script type="text/javascript">
+var loadFileThumbnail = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail = document.getElementById('outputThumbnail');
+        
+        outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail.src);
+        }
+    };
+    function resetimg()
+    {
+         
+        $("#outputThumbnail").hide(); 
+    }
+    </script> 
     <!-- Page level plugins -->
     <script>
         //check size of doc and type  if newly uploaded
         function submitButton() {
-
+           
             var title = $("#title").val();
-            var description = $("#description").val();
+            // var description = $("#description").val();
+            var description= CKEDITOR.instances['description'].getData(); 
             var is_valid = true;
             //var numbers = /[0-9]/g;
             //var upperCaseLetters = /[A-Z]/g;
@@ -384,30 +436,30 @@
             if (title == "") {
                 $("#err_title").text("This value is required");
                 $("#u_email").focus();
-                is_valid = false;
+                var  is_valid = false;
             } else if (!(title.length > 4)) {
                 $("#err_title").text("Please Enter minimum 5 Characters");
                 $("#u_title").focus();
-                is_valid = false;
+                var is_valid = false;
             }else if (title.length > 250) {
                 $("#err_title").text("Maximum 250 characters allowed");
                 $("#u_title").focus();
-                is_valid = false;
+                var is_valid = false;
             } else {
                 $("#err_title").text("");
             }
             if (description == "") {
                 $("#err_description").text("This value is required");
                 $("#description").focus();
-                is_valid = false;
+                var is_valid = false;
             } else if ((description.length < 6)) {
                 $("#err_description").text("Please Enter minimum 5 Characters");
                 $("#description").focus();
-                is_valid = false;
+                var is_valid = false;
             } else if ((description.length > 1000)) {
                 $("#err_description").text("Maximum 1000 characters allowed");
                 $("#description").focus();
-                is_valid = false;
+                var is_valid = false;
             } else {
                 $("#err_description").text("");
             }
@@ -417,18 +469,32 @@
         if ($("#document1").val() != '') {
                     var fileSize = $('#document1')[0].files[0].size;
 
-                    if (fileSize > 102400) {
+                    if (fileSize > 509600) {
+                        var is_valid = false;
                         if ($("#imgError1").next(".validation").length == 0) // only add if not added
                         {
-                            is_valid = false;
-                           
-                            $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 100 KB </div>");
+                            var is_valid = false;
+                            alert("Please select file size greater than 500 KB");
+                            $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                        }
+                        var is_valid = false;
+                        if (!focusSet) {
+                            $("#document1").focus();
+                        }
+                    } else if(fileSize < 20480){
+                        is_valid = false;
+                        if ($("#imgError1").next(".validation").length == 0) 
+                        {
+                        is_valid = false;
+                           alert("Please select file size greater than 20 KB");
+                           $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20 KB </div>");
+                        return false;
                         }
                         is_valid = false;
                         if (!focusSet) {
                             $("#document1").focus();
                         }
-                    } else {
+                    }else{
                         $("#imgError1").next(".validation").remove(); // remove it
                     }
                     // check type  start 
@@ -437,7 +503,7 @@
                     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
                     if ($.inArray(fileNameExt, validExtensions) == -1) {
                         //alert("Invalid file type");
-                        is_valid = false;
+                        var  is_valid = false;
                         if ($("#imgError1").next(".validation").length == 0) // only add if not added
                         {
                             $("#imgError1").text('Please upload .jpg / .jpeg/.png image ');
@@ -456,6 +522,9 @@
                     $("#document1").focus();
                 }
 
+
+
+
                 if (is_valid) {
                 return true;
             } else {
@@ -469,6 +538,16 @@
         // }
         function edit(que_id){
             $('#editModal1').modal('show');
+            $('#delete_preview').show();
+                    $('#add_file').hide();
+                    $('#icon_file').attr('required',false);
+                    // $('#outputicon').attr('src',)
+            $('.del_icon').on('click',function(){
+                                $('#delete_preview').hide();
+                                $('#add_file').show();
+                                // $('#icon_file').add('attr','required');
+                                $('#document2').attr('required',true);
+            });
             $.ajax({
                             url: '<?php echo base_url(); ?>Wall_of_wisdom/get_wow/'+que_id,
                             type:"JSON",
@@ -489,7 +568,7 @@
                             }
                         });          
         }
-        $('#preview').on('click',function(){
+        $('#preview1').on('click',function(){
            var link = $('#image1').val();
            var img='<?php echo base_url().'uploads/admin/wall_of_wisdom/';?>'+link;
             $('#outputbanner').attr('src',img);
@@ -620,6 +699,10 @@
             $('#example').DataTable();            
         });
     </script>
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<script>
+                        CKEDITOR.replace( 'description' );
+                        </script>
 
 
     </body>

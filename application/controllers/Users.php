@@ -517,8 +517,8 @@ class Users extends CI_Controller {
             $formdata['user_id']= encryptids("D", $_SESSION['admin_id']);
         }else{
             // die;
-            $this->session->set_flashdata('MSG', ShowAlert("RPlease Login", "SS"));
-            redirect(base_url() . "users/byTheMentor", 'refresh');
+            $this->session->set_flashdata('MSG', ShowAlert("Please Login", "SS"));
+            redirect(base_url() . "users/login", 'refresh');
         }
         $title = $this->input->post('title');
         $description = $this->input->post('description');

@@ -8,41 +8,41 @@
 <div class="row">
                     <div class="col-12 mt-3">
                         <div class="card border-top">
-                           <div class="card-body"> 
+                           <!-- <div class="card-body"> 
                                 <div class="row">
-                               <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font"> ID</label>
-                                    <div>
-                                        <p><?php  echo $wall_of_wisdom['id']; ?></p>
-                                    </div>    
-                                </div>
-                                <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font"> Name</label>
-                                    <div>
-                                        <p><?php // echo $data['name']; ?></p>dummy_name
-                                    </div>    
-                                </div>
-                                <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font">Email Id</label>
-                                    <div>
-                                        <p><?php // echo $data['email_id']; ?></p>dummy_email
-                                    </div>    
-                                </div>
-                                <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font">Contact</label>
-                                    <div>
-                                        <p>Not Available</p>
-                                    </div>    
-                                </div>
-                                <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font">Date and Time</label>
-                                    <div>
-                                        <p><?php echo $wall_of_wisdom['created_on']; ?></p>
-                                    </div>    
-                                </div>
+                                    <div class="mb-2 col-md-4">
+                                            <label class="d-block text-font"> ID</label>
+                                            <div>
+                                                <p><?php  echo $wall_of_wisdom['id']; ?></p>
+                                            </div>    
+                                        </div>
+                                        <div class="mb-2 col-md-4">
+                                            <label class="d-block text-font"> Name</label>
+                                            <div>
+                                                <p><?php // echo $data['name']; ?></p>dummy_name
+                                            </div>    
+                                        </div>
+                                        <div class="mb-2 col-md-4">
+                                            <label class="d-block text-font">Email Id</label>
+                                            <div>
+                                                <p><?php // echo $data['email_id']; ?></p>dummy_email
+                                            </div>    
+                                        </div>
+                                        <div class="mb-2 col-md-4">
+                                            <label class="d-block text-font">Contact</label>
+                                            <div>
+                                                <p>Not Available</p>
+                                            </div>    
+                                        </div>
+                                        <div class="mb-2 col-md-4">
+                                            <label class="d-block text-font">Date and Time</label>
+                                            <div>
+                                                <p><?php echo $wall_of_wisdom['created_on']; ?></p>
+                                            </div>    
+                                        </div>
                                
-                              </div>
-                          </div>
+                              </div> -->
+                          <!-- </div> -->
                           <div class="col-12 mt-3">
                             <div >
                                     <label class="d-block text-font">Title<sup class="text-danger">*</sup></label>
