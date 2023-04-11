@@ -158,7 +158,13 @@
                                     <div class="row mt-3" id="opt1_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 1</label>
-
+                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example">
+                                        <option value="0" selected>--select--</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
                                             <div class="form-check">
                                                 <input class="form-control input-font ml-3" type="text" name="option1" id="option1">
                                             </div>
