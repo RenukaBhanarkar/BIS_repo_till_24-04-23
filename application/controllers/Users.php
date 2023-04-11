@@ -266,6 +266,46 @@ class Users extends CI_Controller {
         $this->load->view('users/important_draft');
         $this->load->view('users/footers/footer'); 
     }
+    public function important_draft_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/important_draft_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function important_draft_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/important_draft_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_publish_List(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_publish_List');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_publish_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_publish_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_under_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_under_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_under_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_under_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_revised_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_revised_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_revised_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_revised_view');
+        $this->load->view('users/footers/footer'); 
+    }
     public function share_your_thoughts(){
         $this->load->view('users/headers/header');
         $this->load->view('users/share_your_thoughts');

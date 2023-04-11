@@ -90,7 +90,7 @@
 
 
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.js"></script>
-
+<script src="<?php echo base_url();?>assets/js/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/owl.carousel.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/font_resize.js"></script>

@@ -51,7 +51,7 @@
                        
                 </div>
                 <div class="World_of_standers_inner_Box">
-                    <a href="<?php echo base_url().'users/important_draft' ?>">
+                    <a href="<?php echo base_url().'users/important_draft_list' ?>">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/Draft1.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -62,7 +62,7 @@
                        
                 </div>
                 <div class="World_of_standers_inner_Box">
-                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/Published_Standards_new/new_standards">
+                    <a href="<?php echo base_url().'users/standard_publish_List' ?>">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/PUBLISHED.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -73,7 +73,7 @@
                        
                 </div>
                 <div class="World_of_standers_inner_Box">
-                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/review/">
+                    <a href="<?php echo base_url().'users/standard_under_list' ?>">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/REVIEW.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -84,7 +84,7 @@
                        
                 </div>
                 <div class="World_of_standers_inner_Box">
-                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/standard_review/Standard_review/">
+                    <a href="<?php echo base_url().'users/standard_revised_list' ?>">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/revised.png" class="card-img-top" alt="Discussion Forum">
                        
