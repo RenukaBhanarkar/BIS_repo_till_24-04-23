@@ -70,10 +70,10 @@
                                            
                                             <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
 
-                                                <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/replicateQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" >Replicate</a>
+                                                <a class="btn btn-success btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/replicateQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" >Replicate</a>
 
                                                 <?php if (($row['status'] == 1) || ($row['status'] == 4 )) { ?>
-                                                    <a class="btn btn-info btn-sm mr-2 text-white" href="<?php echo base_url(); ?>subadmin/editQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="Edit">
+                                                    <a class="btn btn-warning btn-sm mr-2 text-white" href="<?php echo base_url(); ?>subadmin/editQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="Edit">
                                                         Edit
                                                     </a>
 
@@ -87,7 +87,7 @@
 
                                             <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
                                                 <?php if (($row['status'] == 1) || ($row['status'] == 4 ))  { ?>
-                                                    <button type="button" class="btn btn-primary btn-sm mr-2" data-id="<?php echo $row['que_bank_id']; ?>" id="sendForApproval">Send For Approval</button>
+                                                    <button type="button" class="btn btn-info btn-sm mr-2" data-id="<?php echo $row['que_bank_id']; ?>" id="sendForApproval">Send For Approval</button>
                                             <?php  } } ?>
 
                                         </td>

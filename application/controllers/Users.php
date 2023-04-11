@@ -308,6 +308,21 @@ class Users extends CI_Controller {
         $this->load->view('users/standard_revised_view');
         $this->load->view('users/footers/footer'); 
     }
+    public function new_work_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/new_work_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function new_work_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/new_work_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function new_work_view_comments(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/new_work_view_comments');
+        $this->load->view('users/footers/footer'); 
+    }
     public function share_your_thoughts(){
         $this->load->view('users/headers/header');
         $this->load->view('users/share_your_thoughts');

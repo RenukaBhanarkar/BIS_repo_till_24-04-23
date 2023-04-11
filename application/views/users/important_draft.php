@@ -36,7 +36,7 @@
         <div class="container">
             <div class="row my-5">
                 <div class="World_of_standers_inner_Box  shadow">
-                    <a href="https://www.bis.gov.in/?s=priliminary+drafts&sort_by=changed" target="_blank">
+                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/draft/" target="_blank">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/New_work_item.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -47,7 +47,7 @@
                        
                 </div>
                 <div class="World_of_standers_inner_Box  shadow">
-                    <a href="https://www.bis.gov.in/?s=wide+circulation+" target="_blank">
+                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/draft/wcdraftDepartment" target="_blank">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/Draft1.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -71,10 +71,10 @@
             </div>
             <div class="portfolio-menu mt-2 mb-4">
                <ul>
-                  <li class="btn btn-outline-dark active" data-filter="*">All</li>
+                  <li class="btn btn-outline-dark active" data-filter="*">Image</li>
                   <!-- <li class="btn btn-outline-dark" data-filter=".gts">Girls T-shirt</li>
                   <li class="btn btn-outline-dark" data-filter=".lap">Laptops</li> -->
-                  <li class="btn btn-outline-dark text" data-filter=".selfie">selfie</li>
+                  <li class="btn btn-outline-dark text" data-filter=".selfie">Video</li>
                </ul>
             </div>
             <div class="portfolio-item row">

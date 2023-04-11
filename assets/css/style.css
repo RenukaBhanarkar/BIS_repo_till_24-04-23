@@ -2312,3 +2312,18 @@ textarea {
 	height: 295px;
     width: 378px;
 }
+.bg-light-comment{
+	--bs-bg-opacity: 1;
+    background: black;
+}
+.common_content{
+	width: 100%;
+    text-align: left;
+    padding-top: 2px;
+}
+.view_content {
+    padding: 16px;
+}
+.artical-comment:hover {
+    background: #80808047;
+}

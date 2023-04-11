@@ -40,7 +40,7 @@
         <div class="container">
             <div class="row my-5">
                 <div class="World_of_standers_inner_Box">
-                    <a href="<?php echo base_url().'users/item_proposal_list' ?>">
+                    <a href="<?php echo base_url().'users/new_work_list' ?>">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/New_work_item.png" class="card-img-top" alt="Discussion Forum">
                        

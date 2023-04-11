@@ -1447,6 +1447,11 @@ class Admin extends CI_Controller
          $this->load->view('admin/join_the_classroom_dashboard');
          $this->load->view('admin/footers/admin_footer');
     }
+    public function Manage_session_list(){
+        $this->load->view('admin/headers/admin_header');
+         $this->load->view('admin/Manage_session_list');
+         $this->load->view('admin/footers/admin_footer');
+    }
     public function live_session_list(){
         $this->load->view('admin/headers/admin_header');
         $this->load->view('admin/live_session_list');

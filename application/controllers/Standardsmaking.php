@@ -273,6 +273,16 @@ public function publish($id)
         $this->load->view('Standardsmaking/live_session_form');
         $this->load->view('admin/footers/admin_footer');
     }
+    public function manage_session_list(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('Standardsmaking/manage_session_list');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function publish_list(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('Standardsmaking/publish_list');
+        $this->load->view('admin/footers/admin_footer');
+    }
 
     public function live_session_view(){
         $this->load->view('admin/headers/admin_header');

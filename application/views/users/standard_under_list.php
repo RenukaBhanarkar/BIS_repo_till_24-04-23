@@ -1,7 +1,7 @@
 
 
     <!-- Begin Page Content -->
-    <div class="container">
+    <div class="container-fluid">
         <!-- Content Row -->
       
         <div class="row">
@@ -13,8 +13,8 @@
              </div>
             <div class="col-12 mt-3">
             <div class="card card-body">
-                <table id="example" class="hover table-bordered" style="width:100%; height:91px;">
-                    <thead style="text-align: center; height: 41px;">
+                <table id="example" class="table hover table-bordered">
+                    <thead>
                         <tr>
                             <th>Sr. No.</th>
                             <th>Title</th>
@@ -22,15 +22,15 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody style="text-align: center;">
+                    <tbody>
                       
                                 <tr>
                                  <td>1</td>
                                  <td>Title</td>
                                  <td>Share Your Thought</td>
-                                 <td class="border-bottom-0" style="padding: 18px;">
-                                    <button onClick="location.href='standard_under_view'" class="btn btn-primary btn-sm mr-2">View</button>
-                                    <button onClick="location.href='3'" class="btn btn-success btn-sm mr-2">Join Discussion</button>
+                                 <td class="border-bottom-0">
+                                    <button onClick="location.href='standard_under_view'" class="btn btn-primary btn-sm mr-2">View Details</button>
+                                    <button onClick="location.href='new_work_view_comments'" class="btn btn-success btn-sm mr-2">Join Discussion</button>
                                     
                                  </td>
                                  </tr>
