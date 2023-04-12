@@ -9,16 +9,13 @@
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Create new post/ live session</li>
                 </ol>
-            </nav>
-        </div>
-
-        <!-- Content Row -->
-        
+            </nav> 
+        </div> 
         <div class="row">
             <div class="col-12">
                 <div class="card border-top card-body">
                     <div>
-                        <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url(); ?>admin/live_session_form'">Create New Post / Session</button>
+                        <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url(); ?>Standardsmaking/live_session_form'">Create New Post / Session</button>
                     </div>
                 </div>
             </div>
@@ -38,12 +35,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>1</td>
-                              <td>How science turns into standards of the BIS</td>
-                              <td>Text Video Live Session Link</td>
-                              <td>12/03/2023 07:40 AM</td>
-                              <td>Created Published Unpublish</td>
+                            <?php foreach ($liveSessionList as $key => $value) {?>
+
+                                <tr>
+                              <td><?= $key + 1;?></td>
+                              <td><?= $value['title']?></td>
+                              <td>
+                                <?php 
+                                if ($value['type_of_post']==1) {  $data='Text Upload'; }
+                                if ($value['type_of_post']==2) { $data='Video Upload'; }
+                                if ($value['type_of_post']==3) { $data='Live session link'; }
+                                ?>
+
+                                <?= $data?></td> 
+                              <td><?= $value['created_on']?></td>
+                              <td><?= $value['status_name']?></td>
                               <td class="d-flex">
                               <a href="#" class="btn btn-primary btn-sm mr-2" title="View">View</a>
                                   <a class="btn btn-info btn-sm mr-2" title="View" data-toggle="modal" data-target="#editForm">Edit</a>
@@ -51,6 +57,10 @@
                                   <a class="btn btn-success btn-sm mr-2" title="View" data-toggle="modal" data-target="#createForm">Create</a>
                                   <a class="btn btn-primary btn-sm mr-2" title="View" data-toggle="modal" data-target="#archivesForm">Archives</a>
                             </td>
+                        </tr>
+                                
+                           <?php }?>
+
 
                         </tbody>
                     </table>

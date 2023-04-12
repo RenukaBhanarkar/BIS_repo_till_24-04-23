@@ -6,7 +6,7 @@
         <div class="row">
         <div class="bloginfo">
                 <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">New Work Item Proposals</h3>
-            </div>
+            </div> 
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
              </div>
@@ -27,20 +27,25 @@
                         </tr>
                     </thead>
                     <tbody style="text-align: center;">
-                      
-                                <tr>
-                                 <td>1</td>
-                                 <td>Subject</td>
-                                 <td>Name of proposer</td>
-                                 <td>Organization Type</td>
-                                 <td>Date of receipt</td>
-                                 <td>Current Stage</td>
-                                 <td>Concerned Bis Department</td>
-                                 <td class="d-flex border-bottom-0" style="padding: 18px;">
-                                    <button onClick="location.href='item_proposal_view'" class="btn btn-primary btn-sm mr-2">View Details</button>
+                        <?php foreach ($getAll as $key => $value) {?>
+                           <tr>
+                                 <td><?=  $key+1 ;?></td>
+                                 <td><?= $value['standard_subject'];?></td>
+                                 <td><?= $value['proposer_name'];?></td>
+                                 <td><?= $value['org_type'];?></td>
+                                 <td><?= $value['date_of_receipt'];?></td>
+                                 <td><?= $value['current_stage'];?></td>
+                                 <td><?= $value['current_bis_dept'];?></td>
+                                 <td  style="padding: 18px;">
+                                    <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url().'users/item_proposal_view/'?><?php echo encryptids("E", $value['id'] )?>"> View Details</a>
+
+                                    <!-- <button onClick="location.href='item_proposal_view'" class="btn btn-primary btn-sm mr-2">View Details</button> -->
                                     
                                  </td>
                                  </tr>
+                        <?php }?>
+                      
+                                
  
                     </tbody>
                 </table>

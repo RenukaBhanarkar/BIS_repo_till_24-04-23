@@ -212,6 +212,15 @@
         $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_inconversation_with_expert.status'); 
         return $this->db->get('tbl_inconversation_with_expert')->result_array();  
     }
+
+    public function getRecentSearch()
+    {   
+        $this->db->select('tbl_inconversation_with_expert.*,tbl_mst_status.status_name'); 
+         $this->db->where('status ',5); 
+        $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_inconversation_with_expert.status'); 
+        $this->db->limit(5);
+        return $this->db->get('tbl_inconversation_with_expert')->result_array();  
+    }
     public function checkUserAttempt($user_id='',$quiz_id='')
    {
         $this->db->where('user_id',$user_id); 
@@ -250,6 +259,25 @@
     {   
         $this->db->where('id',$id); 
         return $quiz = $this->db->get('tbl_inconversation_with_expert')->row_array();
+    }
+
+
+    // 11-04-2023
+
+    public function insertItemProposal($formdata)
+    { 
+        $this->db->replace('tbl_item_proposal',$formdata); 
+        return $insert_id = $this->db->insert_id();
+    }
+    public function ItemProposalCount()
+    {
+        return $quiz = $this->db->get('tbl_item_proposal')->result_array();
+        // return count($quiz);
+    }
+    public function getItemProposal($id)
+    {   
+        $this->db->where('id',$id); 
+        return $quiz = $this->db->get('tbl_item_proposal')->row_array();
     }
 
 }
