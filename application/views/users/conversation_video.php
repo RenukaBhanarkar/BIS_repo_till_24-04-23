@@ -1,3 +1,5 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <style>
 h1 {
     font-size: 20px;
@@ -104,7 +106,9 @@ h1 {
                         <h3> <?= $Conversation['title']?> </h3>
                         <span>10M Views • <?= time_elapsed_string($Conversation['created_on'])?></span>
                         <a href="" class="like_button" type="button"><i class="fa fa-heart" style="margin:4px;"></i>like</a>
-                        <a href="" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>share</a>
+                        <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $Conversation['id'] )?>" data-toggle="tooltip" title="Copy Link and Share" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>share</a>
+
+                          
                     </div> 
                 </div>
                 <div class="description_text">
@@ -114,57 +118,21 @@ h1 {
 
 
              <div class="col-md-4">
-                <h1>Recent Search</h1>
-                        <div class="video_recent">
-                        <img src="https://img.youtube.com/vi/PpXUTUXU7Qc/maxresdefault.jpg" alt="" class="recent_img"/>
+                <h1>Recent Search</h1> 
+                <?php foreach ($getRecentSearch as $key => $value) {?>
+                    <div class="video_recent">
+                        <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <img src="<?= base_url()?><?= $value['video_thumbnail']?>" alt="" class="recent_img"/>
+                        </a>
                             <div class="video__details">
                                 <div class="title">
-                                    <h3><a href="">Top 5 Programming Languages to Learn in 2021 | Best Programming Languages to Learn</h3></a>
+                                    <h3><a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <?= $value['title']?></a></h3>
                                     
-                                    <span>10M Views • 3 Months Ago</span>
+                                    <span>10M Views • <?= time_elapsed_string($value['created_on'])?></span>
                                 </div>
                             </div>  
                         </div>
-                        <div class="video_recent">
-                        <img src="https://img.youtube.com/vi/PpXUTUXU7Qc/maxresdefault.jpg" alt="" class="recent_img"/>
-                            <div class="video__details">
-                                <div class="title">
-                                <h3><a href="">Top 5 Programming Languages to Learn in 2021 | Best Programming Languages to Learn</h3></a>
-                                    
-                                    <span>10M Views • 3 Months Ago</span>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="video_recent">
-                        <img src="https://img.youtube.com/vi/PpXUTUXU7Qc/maxresdefault.jpg" alt="" class="recent_img"/>
-                            <div class="video__details">
-                                <div class="title">
-                                <h3><a href="">Top 5 Programming Languages to Learn in 2021 | Best Programming Languages to Learn</h3></a>
-                                    
-                                    <span>10M Views • 3 Months Ago</span>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="video_recent">
-                        <img src="https://img.youtube.com/vi/PpXUTUXU7Qc/maxresdefault.jpg" alt="" class="recent_img"/>
-                            <div class="video__details">
-                                <div class="title">
-                                <h3><a href="">Top 5 Programming Languages to Learn in 2021 | Best Programming Languages to Learn</h3></a>
-                                    
-                                    <span>10M Views • 3 Months Ago</span>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="video_recent">
-                        <img src="https://img.youtube.com/vi/PpXUTUXU7Qc/maxresdefault.jpg" alt="" class="recent_img"/>
-                            <div class="video__details">
-                                <div class="title">
-                                <h3><a href="">Top 5 Programming Languages to Learn in 2021 | Best Programming Languages to Learn</h3></a>
-                                    
-                                    <span>10M Views • 3 Months Ago</span>
-                                </div>
-                            </div>  
-                        </div>
+               <?php }?>
+ 
                      
             </div>  
     </div>      
@@ -200,4 +168,19 @@ function time_elapsed_string($datetime, $full = false) {
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
-?> 
+?>
+<script>
+$('.share_button').click(function (e) {
+   e.preventDefault();
+   var copyText = $(this).attr('href');
+
+   document.addEventListener('copy', function(e) {
+      e.clipboardData.setData('text/plain', copyText);
+      e.preventDefault();
+   }, true);
+
+   document.execCommand('copy');  
+   console.log('copied text : ', copyText);
+   alert('copied text: ' + copyText); 
+ });
+ </script> 

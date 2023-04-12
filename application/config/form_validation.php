@@ -121,5 +121,35 @@ $config = array(
 			'rules' => 'required'
 		),
 		
-)
+),
+		'conversation_form' => array(
+		array(
+			'field' => 'title',
+			'label' => 'Title',
+			'rules' => 'required'
+		),
+		array( 
+			'field' => 'description',
+			'label' => 'Description',
+			'rules' => 'required'
+		),
+	),
+
+		'live_session_form' => array(
+		array(
+			'field' => 'title',
+			'label' => 'Title',
+			'rules' => 'required'
+		),
+		array( 
+			'field' => 'description',
+			'label' => 'Description ',
+			'rules' => 'required'
+		),
+		array( 
+			'field' => 'type_of_post',
+			'label' => 'type of post',
+			'rules' => 'required'
+		),
+	),
 );

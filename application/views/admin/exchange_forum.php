@@ -61,7 +61,7 @@
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
-                            <h5 class="font-weight-bold text-danger mb-1">Your Wall</h5>
+                            <h5 class="font-weight-bold text-success mb-1">Your Wall</h5>
                             <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
 
                         </div>
@@ -74,7 +74,7 @@
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
-                            <h5 class="font-weight-bold text-danger mb-1">learning Science via Standards</h5>
+                            <h5 class="font-weight-bold text-teal mb-1">learning Science via Standards</h5>
                             <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
 
                         </div>
@@ -87,7 +87,7 @@
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
-                            <h5 class="font-weight-bold text-danger mb-1">By the Mentors</h5>
+                            <h5 class="font-weight-bold text-info mb-1">By the Mentors</h5>
                             <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
 
                         </div>
@@ -100,7 +100,7 @@
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
-                            <h5 class="font-weight-bold text-danger mb-1">CMS</h5>
+                            <h5 class="font-weight-bold text-dark mb-1">Content Management System</h5>
                             <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
 
                         </div>
@@ -134,7 +134,7 @@
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
-                            <h5 class="font-weight-bold text-danger mb-1">Shared your through</h5>
+                            <h5 class="font-weight-bold text-danger mb-1">Share your thoughts</h5>
                             <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
-                            <h5 class="font-weight-bold text-danger mb-1">Join the Class Room</h5>
+                            <h5 class="font-weight-bold text-success mb-1">Join the Class Room</h5>
                             <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
 
                         </div>
@@ -159,7 +159,7 @@
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
-                            <h5 class="font-weight-bold text-danger mb-1">In Conversation with Expert</h5>
+                            <h5 class="font-weight-bold text-primary mb-1">In Conversation with Expert</h5>
                             <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
 
                         </div>

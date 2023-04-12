@@ -64,10 +64,10 @@
                         <td><?php echo $row['department']; ?></td> -->
                         <td><?php echo date('d-m-Y h:i:s', strtotime($row['created_on'])) ?></td>
                         <td class="d-flex border-bottom-0">
-                          <a class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url(); ?>admin/admin_creation_view'"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                          <a class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url(); ?>admin/admin_creation_view'">View</a>
                           <!-- <a class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye" aria-hidden="true"></i></a> -->
-                          <a class="btn btn-info btn-sm mr-2 text-white" data-bs-toggle="modal" data-bs-target="#edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                          <a class="btn btn-danger btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                          <a class="btn btn-info btn-sm mr-2 text-white" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
+                          <a class="btn btn-danger btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#delete">delete</a>
                           <a class="btn btn-primary btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#delete">Set Permission</a>
 
                         </td>

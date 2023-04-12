@@ -262,7 +262,7 @@ h1 {
                 <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <?= $value['title']?></a>
                 </h3>
                 
-                <span>10M Views • 3 Months Ago</span>
+                <span>10M Views • <?= time_elapsed_string($value['created_on'])?></span>
               </div>
             </div>
           </div>
@@ -282,3 +282,37 @@ menu.addEventListener('click', function () {
   sidebar.classList.toggle('show-sidebar');
 });
     </script>    
+
+
+    <?php
+
+function time_elapsed_string($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
+
+?>

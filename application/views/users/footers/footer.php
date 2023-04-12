@@ -90,12 +90,20 @@
 
 
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery-3.5.1.js"></script>
+<!-- <script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script> -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/owl.carousel.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/font_resize.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/dark_mode.js"></script>
 <script>
+    $(document).ready(function () {
+    $('#example').DataTable();
+    });
+   </script>
+<script>
+
 $('#carouselExampleControls').owlCarousel({
     loop: true,
   margin: 30,
@@ -190,7 +198,10 @@ $('.login_details').hide()
 jQuery('.show').on('click', function() {
     jQuery('.login_details').toggle();
 });
-
+$('.after_login_details').hide()
+jQuery('.after_show').on('click', function() {
+    jQuery('.after_login_details').toggle();
+});
 $(document).ready(function(){
     $.ajax({
     url:"<?php echo base_url(); ?>admin/useful_links_web/",

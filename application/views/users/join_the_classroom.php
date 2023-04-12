@@ -5,12 +5,17 @@
 }
 h2.up_coming {
     font-weight: 600;
-    margin-top: 43px;
+    /* margin-top: 43px; */
     margin-bottom: 16px;
     /* FONT-WEIGHT: 600; */
-    color: darkblue;
-    font-family: emoji;
-    font-size: 27px;
+    color: white;
+    /* font-family: emoji; */
+    font-size: 30px;
+    padding: 12px;
+}
+section.background_coming {
+    background: #000000e8;
+    color: white;
 }
 .owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
     display: inherit;
@@ -37,6 +42,21 @@ a.view-btn {
     background: #869791;
     color: #f00;
     text-decoration: none;
+}
+.owl-theme .owl-dots .owl-dot span {
+    width: 25px;
+    height: 6px;
+    margin: 5px 3px;
+    background: #D6D6D6;
+    display: block;
+    -webkit-backface-visibility: visible;
+    transition: opacity 200ms ease;
+    border-radius: 30px;
+}
+.owl-theme .owl-dots {
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    display: none;
 }
 #owl-caraousal_2 .owl-dots {
     text-align: center;
@@ -83,7 +103,7 @@ a.view-btn {
     position: absolute;
 }
 #owl-caraousal_4 .owl-dots {
-    text-align: center;
+    text-align: center; 
     -webkit-tap-highlight-color: transparent;
     display: none;
 }
@@ -108,7 +128,7 @@ a.view-btn {
 </style>
 <section class="background_coming">
         <div class="container">
-            <h2 class="up_coming">Upcomings</h2>
+            <h2 class="up_coming">Upcomings Sessions</h2>
             <div class="coming_content" style="margin-top:32px;">
                 <div class="owl-carousel owl-theme" id="owl-caraousal_1">
                 <div class="item">

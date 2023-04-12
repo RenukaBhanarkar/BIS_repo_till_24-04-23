@@ -222,7 +222,7 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer');       
     }
     public function hyperlinking_policy(){
-        $data=$this->users_model->get_legal_data('hlp');
+        $data=$this->Users_model->get_legal_data('hlp');
         $this->load->view('users/headers/header');
         $this->load->view('users/hyperlinking_policy',$data);
         $this->load->view('users/footers/footer');  
@@ -248,24 +248,119 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer');  
     }
     public function privacy_policy(){
-        $data=$this->users_model->get_legal_data('policy_p');
+        $data=$this->Users_model->get_legal_data('policy_p');
         $this->load->view('users/headers/header');
         $this->load->view('users/privacy_policy',$data);
         $this->load->view('users/footers/footer');  
     }
     public function item_proposal_list(){
         $this->load->view('users/headers/header');
-        $this->load->view('users/item_proposal_list');
+        $curl_req1 = curl_init(); 
+        curl_setopt_array($curl_req1, array(
+            CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_SSL_VERIFYPEER => false, 
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ),
+        ));
+        $responseNew = curl_exec($curl_req1);
+        $responseNew = json_decode($responseNew, true); 
+        $newCount =count($responseNew['nwip_data']);
+        $arr=array();
+        $getAll= $this->Users_model->ItemProposalCount();
+        $arr['getAll']=$getAll;
+        $insertedCount = count($getAll); 
+        if ($newCount > $insertedCount ) 
+        {
+            foreach($responseNew['nwip_data'] as $data)
+                { 
+                    $this->Users_model->insertItemProposal($data);
+                }
+        }
+
+
+        $this->load->view('users/item_proposal_list',$arr);
         $this->load->view('users/footers/footer'); 
     }
-    public function item_proposal_view(){
+    public function item_proposal_view($id){
+
+        $id = encryptids("D", $id);
+        $itemProposal = $this->Users_model->getItemProposal($id);
+        $data = array();
+        $data['itemProposal'] = $itemProposal;
+
+         
+
         $this->load->view('users/headers/header');
-        $this->load->view('users/item_proposal_view');
+        $this->load->view('users/item_proposal_view',$data);
         $this->load->view('users/footers/footer'); 
     }
     public function important_draft(){
         $this->load->view('users/headers/header');
         $this->load->view('users/important_draft');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function important_draft_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/important_draft_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function important_draft_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/important_draft_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_publish_List(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_publish_List');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_publish_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_publish_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_under_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_under_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_under_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_under_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_revised_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_revised_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function standard_revised_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/standard_revised_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function new_work_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/new_work_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function new_work_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/new_work_view');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function new_work_view_comments(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/new_work_view_comments');
         $this->load->view('users/footers/footer'); 
     }
     public function share_your_thoughts(){
@@ -279,8 +374,6 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer'); 
     }
     public function conversation_with_experts(){
-
-        $Conversation = $this->Users_model->getPublishedConversation();
         $Conversation = $this->Users_model->getPublishedConversation();
         $data = array();
         $data['Conversation'] = $Conversation;
@@ -290,10 +383,13 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer'); 
     }
     public function conversation_video($id){
+
+        $getRecentSearch = $this->Users_model->getRecentSearch();
+        $data = array();
+        $data['getRecentSearch'] = $getRecentSearch;
          
         $id = encryptids("D", $id);
-        $Conversation = $this->users_model->getConversation($id);
-        $data = array();
+        $Conversation = $this->Users_model->getConversation($id);
         $data['Conversation'] = $Conversation;
 
         $this->load->view('users/headers/header');
@@ -330,43 +426,43 @@ class Users extends CI_Controller {
     }
     public function get_legal_data(){
         
-        $data=$this->users_model->get_legal_data('cap');
+        $data=$this->Users_model->get_legal_data('cap');
         print_r($data);
     }
     
     public function cap(){
-        $data=$this->users_model->get_legal_data('cap');
+        $data=$this->Users_model->get_legal_data('cap');
         $this->load->view('users/headers/header');
         $this->load->view('users/content_archival_policy',$data);
         $this->load->view('users/footers/footer');  
     }
     public function cmap(){
-        $data=$this->users_model->get_legal_data('cmap');
+        $data=$this->Users_model->get_legal_data('cmap');
         $this->load->view('users/headers/header');
         $this->load->view('users/cmap',$data);
         $this->load->view('users/footers/footer');  
     }
     public function copyright(){
-        $data=$this->users_model->get_legal_data('copyright_policy');
+        $data=$this->Users_model->get_legal_data('copyright_policy');
         $this->load->view('users/headers/header');
         $this->load->view('users/copyright',$data);
         $this->load->view('users/footers/footer');  
     }
     public function content_review_policy(){
-        $data=$this->users_model->get_legal_data('crp');
+        $data=$this->Users_model->get_legal_data('crp');
         $this->load->view('users/headers/header');
         $this->load->view('users/content_review_policy',$data);
         $this->load->view('users/footers/footer');  
     }
     public function disclaimer(){
-        $data=$this->users_model->get_legal_data('disclamer');
+        $data=$this->Users_model->get_legal_data('disclamer');
         $this->load->view('users/headers/header');
         $this->load->view('users/disclaimer',$data);
         $this->load->view('users/footers/footer');  
     }
     public function quiz(){
 
-        $getUserAllQuize = $this->users_model->getUserAllQuize();
+        $getUserAllQuize = $this->Users_model->getUserAllQuize();
         $data = array();
         $data['getUserAllQuize'] = $getUserAllQuize; 
         $this->load->view('users/headers/header');
@@ -538,7 +634,7 @@ class Users extends CI_Controller {
     {  
          
         $data=array(); 
-        $quiz = $this->users_model->viewQuiz($id);
+        $quiz = $this->Users_model->viewQuiz($id);
         $quizdata=array();
         $data['quizdata']=$quiz;
         $this->load->view('users/headers/header');
@@ -550,7 +646,7 @@ class Users extends CI_Controller {
         $UserId = $this->session->userdata('admin_id'); 
         // $user_id = encryptids("D", $UserId);
         $user_id = 213456;
-        $checkUserAvailable=$this->users_model->checkUserAvailable($quiz_id,$user_id);
+        $checkUserAvailable=$this->Users_model->checkUserAvailable($quiz_id,$user_id);
         if ($checkUserAvailable > 0) 
         {
              $this->session->set_flashdata('MSG', ShowAlert("You have Already taken this Quiz.", "SS"));
@@ -559,9 +655,9 @@ class Users extends CI_Controller {
         else
         {
             $data=array();
-            $que_details = $this->users_model->viewQuestion($quiz_id);
+            $que_details = $this->Users_model->viewQuestion($quiz_id);
             $data['que_details']=$que_details;
-            $quiz = $this->users_model->viewQuiz($quiz_id); 
+            $quiz = $this->Users_model->viewQuiz($quiz_id); 
             $data['quizdata']=$quiz; 
             $this->load->view('users/quiz_start',$data);
         } 
@@ -604,15 +700,15 @@ class Users extends CI_Controller {
                     $formdata['corr_opt'] = $corr_opt; 
                     // print_r($formdata);
 
-                    $this->users_model->insertQuestion($formdata);
+                    $this->Users_model->insertQuestion($formdata);
 
                     $successCount++;
                     if ($successCount == $number) 
                     {
-                        $wrong_ques=$this->users_model->getWrongAns($quiz_id,$user_id); 
-                        $correct_ques=$this->users_model->getCorrectAns($quiz_id,$user_id); 
-                        $not_ans_ques=$this->users_model->getNotSelected($quiz_id,$user_id); 
-                        $quiz = $this->users_model->getTotalmarkAndQuestion($quiz_id);
+                        $wrong_ques=$this->Users_model->getWrongAns($quiz_id,$user_id); 
+                        $correct_ques=$this->Users_model->getCorrectAns($quiz_id,$user_id); 
+                        $not_ans_ques=$this->Users_model->getNotSelected($quiz_id,$user_id); 
+                        $quiz = $this->Users_model->getTotalmarkAndQuestion($quiz_id);
 
                         $formdata2 = array();
                         $formdata2['user_id'] = $user_id; 
@@ -635,7 +731,7 @@ class Users extends CI_Controller {
 
 
                         $formdata2['score'] = $score;  
-                        if ($this->users_model->insertQuziSubmission($formdata2)) 
+                        if ($this->Users_model->insertQuziSubmission($formdata2)) 
                         {
                             $this->session->set_flashdata('MSG', ShowAlert("Submission Successfully", "SS"));
                             redirect(base_url() . "users/quiz_submission", 'refresh');
@@ -680,7 +776,7 @@ class Users extends CI_Controller {
      {
         $user_id = $this->input->post('user_id');
         $quiz_id = $this->input->post('quiz_id');
-        $attempt = $this->users_model->checkUserAttempt($user_id,$quiz_id); 
+        $attempt = $this->Users_model->checkUserAttempt($user_id,$quiz_id); 
         $user_counter=$attempt['user_counter'];
         $data['userAttempt'] = $user_counter; 
         echo  json_encode($data);

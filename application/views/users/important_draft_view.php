@@ -19,56 +19,61 @@
       
         <div class="row mt-5">
            <div class="bloginfo">
-                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">New Work Item Proposals</h3>
+                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Important Draft Standards View</h3>
             </div>
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
              </div>
-            <div class="proposal_view">
+            <div class="proposal_view mb-5">
             <div class="col-12 mt-3">
                     <div class="row">
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Subject</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">Document Number</label>
                                     <div>
-                                        <p><?= $itemProposal['standard_subject']?></p>
+                                        <p>22133</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Name of proposer</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">Department Id</label>
                                     <div>
-                                        <p><?= $itemProposal['proposer_name']?></p>
+                                        <p>74</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Organization Type</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">Department Name</label>
                                     <div>
-                                        <p><?= $itemProposal['org_type']?></p>
+                                        <p>PGD</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Date of receipt</label>
-                                    <div> 
-                                        <p><?= date("d-m-Y", strtotime($itemProposal['date_of_receipt']));?></p>
+                                    <label class="d-block text-font" style="font-weight: 600;">Committee Number</label>
+                                    <div>
+                                        <p>39</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Current Stage</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">Document Title</label>
                                     <div>
-                                        <p><?= $itemProposal['current_stage']?></p>
+                                        <p>Optics and optical instruments  Ancillary devices for geodetic</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Concerned BIS Department</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">Document Type</label>
                                     <div>
-                                        <p><?= $itemProposal['current_bis_dept']?></p>
+                                        <p>Revision</p>
                                     </div>    
-                            </div>  
-                
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">Department Stage</label>
+                                    <div>
+                                        <p>P-Draft</p>
+                                    </div>    
+                            </div>
                     </div>    
              </div>
              <div class="col-md-12 submit_btn p-3" style="text-align: end;">
-                               <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>users/item_proposal_list'">Back</a>
-                          </div>  
+                               <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>users/important_draft_list'">Back</a>
+                        </div>  
              </div>
         </div>
        </div>

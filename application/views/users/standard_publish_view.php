@@ -19,56 +19,55 @@
       
         <div class="row mt-5">
            <div class="bloginfo">
-                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">New Work Item Proposals</h3>
+                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Standards Published View</h3>
             </div>
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
              </div>
-            <div class="proposal_view">
+            <div class="proposal_view mb-5">
             <div class="col-12 mt-3">
                     <div class="row">
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Subject</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">pk_is_id</label>
                                     <div>
-                                        <p><?= $itemProposal['standard_subject']?></p>
+                                        <p>533</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Name of proposer</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">IsNumber</label>
                                     <div>
-                                        <p><?= $itemProposal['proposer_name']?></p>
+                                        <p>IS 16093 IS 16093</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Organization Type</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">is_title</label>
                                     <div>
-                                        <p><?= $itemProposal['org_type']?></p>
+                                        <p>Installation of gas based instantaneous water heater - Code of practice</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Date of receipt</label>
-                                    <div> 
-                                        <p><?= date("d-m-Y", strtotime($itemProposal['date_of_receipt']));?></p>
+                                    <label class="d-block text-font" style="font-weight: 600;">commttid</label>
+                                    <div>
+                                        <p>1</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Current Stage</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">depName</label>
                                     <div>
-                                        <p><?= $itemProposal['current_stage']?></p>
+                                        <p>MED 23</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Concerned BIS Department</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">Idate_of_published</label>
                                     <div>
-                                        <p><?= $itemProposal['current_bis_dept']?></p>
+                                        <p>2013-12-31 00:00:00</p>
                                     </div>    
-                            </div>  
-                
+                            </div>
                     </div>    
              </div>
              <div class="col-md-12 submit_btn p-3" style="text-align: end;">
-                               <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>users/item_proposal_list'">Back</a>
-                          </div>  
+                               <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>users/standard_publish_List'">Back</a>
+                        </div>  
              </div>
         </div>
        </div>
