@@ -157,7 +157,7 @@
                     <div class="your_wall_main_card_view">
                         <div class="yourWall_image">
                             <img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$by_the_mentor['image']; ?>" alt="not found" class="w-100 h-100">
-                            <span><i class="fa fa-calendar icons"><?php echo $by_the_mentor['created_on']; ?></i></span>
+                            <span><i class="fa fa-calendar icons"><?php echo date("m-d-Y",strtotime($by_the_mentor['created_on'])); ?></i></span>
                         </div>
                         <div class="Text-container_view ">
                             <h6 class="yourWall_title_view ">

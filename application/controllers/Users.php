@@ -510,10 +510,11 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer');  
     }
     public function add_your_wall(){
-        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
-        if(!$admin_id){
-            redirect(base_url() . "users/login", 'refresh');
-        }
+        // $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        // $formdata['user_id'] = $admin_id;
+        // if(!$admin_id){
+        //     redirect(base_url() . "users/login", 'refresh');
+        // }
         $banner_img = "yourwall" . time() . '.jpg';
         $config['upload_path'] = './uploads/your_wall/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -535,7 +536,7 @@ class Users extends CI_Controller {
         $formdata['description'] = $this->input->post('description');
         $formdata['status'] = '1';
         $formdata['image'] = $banner_img;    
-        $formdata['user_id'] = $admin_id;
+        
         //print_r($formdata); die;    
         $this->load->model('admin/your_wall_model');
         $id=$this->your_wall_model->addYourWall($formdata);
@@ -564,7 +565,7 @@ class Users extends CI_Controller {
         }else{
             // die;
             $this->session->set_flashdata('MSG', ShowAlert("Please Login", "SS"));
-            redirect(base_url() . "users/login", 'refresh');
+            redirect(base_url() . "users/byTheMentor", 'refresh');
         }
         $title = $this->input->post('title');
         $description = $this->input->post('description');

@@ -56,14 +56,14 @@
                                         <td><?php echo $list_wow['title'] ?></td>
                                         <!-- <td><?php echo $list_wow['description'] ?></td> -->
                                         <td><?php if ($list_wow['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/admin/wall_of_wisdom/<?php echo $list_wow['image'] ?>" width="150px">
+                                                <img src="<?php echo base_url(); ?>uploads/admin/wall_of_wisdom/<?php echo $list_wow['image'] ?>" width="50px" style="text-align:center;">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
                                         </td>
                                         <td><?php echo $list_wow['status_name']; ?></td>
                                         <td><?php echo $list_wow['reject_reason']; ?></td>
-                                        <td class="d-flex border-bottom-0">
+                                        <td class="d-flex border-bottom-0" style=" width: 320px;">
                                             <a href="<?php echo base_url().'wall_of_wisdom/detail/'.$list_wow['id']; ?>" >
                                                 <button class="btn btn-primary btn-sm mr-2">View</button>
                                             </a>
@@ -116,7 +116,7 @@
     </div>
     </div>
     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fs-5" id="exampleModalLabel">New Post</h5>
@@ -139,11 +139,38 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Upload Image:</label>
-                            <input type="file" class="form-control" id="document1" value="" name="document" accept="image/*" required>
-                            <span id="imgError1" class="text-danger">
-                                Only jpg,jpeg,png accepted
-                            </span>
+                           
+                                        <input type="file" class="form-control" id="document1" value="" name="document" accept="image/*" required="" onchange="loadFileThumbnail1(event)">
+                                        <span id="imgError1" class="text-danger">
+                                        
+                                        </span>
+                                        <button type="button" id="preview123456" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#Previewimg1">
+                                            Preview
+                                        </button>
+                            
+                                        
+                            
                         </div>
+                        <div class="modal fade" id="Previewimg1" tabindex="-1" aria-labelledby="PreviewimgLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="max-width:700px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Image Preview</h5>
+
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <img src="" id="outputThumbnail1" width="100%"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <!-- <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
+                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button> -->
+                                        </div> 
+                                    </div>
+                                    </div>
+                                </div>
 
                 </div>
                 <div class="modal-footer">
@@ -156,7 +183,7 @@
     </div>
     <!-- --------- edit modal ----------- -->
     <div class="modal fade" id="editModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fs-5" id="exampleModalLabel">Update Post</h5>
@@ -166,7 +193,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo base_url(); ?>wall_of_wisdom/editWallOfWisdom"  class="was-validated" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url(); ?>wall_of_wisdom/editWallOfWisdom" name="updatepost" class="was-validated" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Title<sup class="text-danger">*</sup></label>
                             <input type="text" class="form-control" id="title1" name="title" minlength="5" maxlength="250" placeholder="Enter Title" required>
@@ -190,7 +217,8 @@
                                 <div class=""  id="add_file">
                                 <div class="d-flex">
                                         <div>
-                                            <input type="file" id="document2" name="document" class="form-control-file" required onchange="loadFileThumbnail(event)">
+                                            <input type="file" id="document2" name="document" class="form-control" onchange="loadFileThumbnail(event)" >
+                                            <span  class="error_text" id="imgerror3" style="color:red;"></span>
                                             <input type="hidden" id="image1" name="old_doc">
                                             <input type="hidden" id="id1" name="id">
                                             <span class="error_text"><?php echo form_error('banner_img');?></span>
@@ -258,7 +286,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" >Update</button>
+                    <button type="submit" name="submit" class="btn btn-primary" onclick="return updateButton()">Update</button>
                     </form>
                 </div>
             </div>
@@ -400,12 +428,83 @@
         </div>
     </div>
 
+    <div class="modal fade" id="invalidfiletype" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Only jpg,png,jpeg files accepted.</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="lessSize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>File size shoud be 50KB or more</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="greaterSize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>File size shoud be less than 250KB </p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script type="text/javascript">
 var loadFileThumbnail = function(event) 
     {
        //  $("#Previewimg").show();
         var outputThumbnail = document.getElementById('outputThumbnail');
+        
+        outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail.src);
+        }
+    };
+    var loadFileThumbnail1 = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail = document.getElementById('outputThumbnail1');
         
         outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
         console.log(outputThumbnail.src);
@@ -452,7 +551,7 @@ var loadFileThumbnail = function(event)
                 $("#err_description").text("This value is required");
                 $("#description").focus();
                 var is_valid = false;
-            } else if ((description.length < 6)) {
+            } else if ((description.length < 10)) {
                 $("#err_description").text("Please Enter minimum 5 Characters");
                 $("#description").focus();
                 var is_valid = false;
@@ -469,25 +568,30 @@ var loadFileThumbnail = function(event)
         if ($("#document1").val() != '') {
                     var fileSize = $('#document1')[0].files[0].size;
 
-                    if (fileSize > 509600) {
+                    if (fileSize > 256000) {
                         var is_valid = false;
+                        $('#greaterSize').modal('show');
+                        $("#document1").val();
                         if ($("#imgError1").next(".validation").length == 0) // only add if not added
                         {
                             var is_valid = false;
-                            alert("Please select file size greater than 500 KB");
+                            // alert("Please select file size greater than 500 KB");
+                            return false;
                             $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
                         }
                         var is_valid = false;
                         if (!focusSet) {
                             $("#document1").focus();
                         }
-                    } else if(fileSize < 20480){
+                    } else if(fileSize < 51200){
                         is_valid = false;
+                        $("#document1").val();
                         if ($("#imgError1").next(".validation").length == 0) 
                         {
                         is_valid = false;
-                           alert("Please select file size greater than 20 KB");
-                           $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20 KB </div>");
+                        $('#lessSize').modal('show');
+                        //    alert("Please select file size greater than 20 KB");
+                        //    $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20 KB </div>");
                         return false;
                         }
                         is_valid = false;
@@ -502,7 +606,9 @@ var loadFileThumbnail = function(event)
                     var fileName = $("#document1").val();;
                     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
                     if ($.inArray(fileNameExt, validExtensions) == -1) {
-                        //alert("Invalid file type");
+                        $('#document1').val('');
+                        // alert("Invalid file type");
+                        $('#invalidfiletype').modal('show');
                         var  is_valid = false;
                         if ($("#imgError1").next(".validation").length == 0) // only add if not added
                         {
@@ -533,6 +639,124 @@ var loadFileThumbnail = function(event)
             };
     </script>
     <script>
+        
+        function updateButton() {
+           
+           var title = $("#title1").val();
+           // var description = $("#description").val();
+           var description= CKEDITOR.instances['description1'].getData(); 
+           var is_valid = true;
+           //var numbers = /[0-9]/g;
+           //var upperCaseLetters = /[A-Z]/g;
+           //var lowerCaseLetters = /[a-z]/g;
+
+           if (title == "") {
+               $("#err_title").text("This value is required");
+               $("#u_email").focus();
+               var  is_valid = false;
+           } else if (!(title.length > 4)) {
+               $("#err_title").text("Please Enter minimum 5 Characters");
+               $("#u_title").focus();
+               var is_valid = false;
+           }else if (title.length > 250) {
+               $("#err_title").text("Maximum 250 characters allowed");
+               $("#u_title").focus();
+               var is_valid = false;
+           } else {
+               $("#err_title").text("");
+           }
+           if (description == "") {
+               $("#err_description").text("This value is required");
+               $("#description").focus();
+               var is_valid = false;
+           } else if ((description.length < 10)) {
+               $("#err_description").text("Please Enter minimum 5 Characters");
+               $("#description").focus();
+               var is_valid = false;
+           } else if ((description.length > 1000)) {
+               $("#err_description").text("Maximum 1000 characters allowed");
+               $("#description").focus();
+               var is_valid = false;
+           } else {
+               $("#err_description").text("");
+           }
+           
+
+
+       if ($("#document2").val() != '') {
+                   var fileSize = $('#document2')[0].files[0].size;
+
+                   if (fileSize > 256000) {
+                       var is_valid = false;
+                       $('#greaterSize').modal('show');
+                       $("#document2").val();
+                       if ($("#imgerror3").next(".validation").length == 0) // only add if not added
+                       {
+                           var is_valid = false;
+                           // alert("Please select file size greater than 500 KB");
+                           return false;
+                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                       }
+                       var is_valid = false;
+                       if (!focusSet) {
+                           $("#document2").focus();
+                       }
+                   } else if(fileSize < 51200){
+                       is_valid = false;
+                       $("#document2").val();
+                       if ($("#imgerror3").next(".validation").length == 0) 
+                       {
+                       is_valid = false;
+                       $('#lessSize').modal('show');
+                       //    alert("Please select file size greater than 20 KB");
+                       //    $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20 KB </div>");
+                       return false;
+                       }
+                       is_valid = false;
+                       if (!focusSet) {
+                           $("#document2").focus();
+                       }
+                   }else{
+                       $("#imgerror3").next(".validation").remove(); // remove it
+                   }
+                   // check type  start 
+                   var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+                   var fileName = $("#document1").val();;
+                   var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   if ($.inArray(fileNameExt, validExtensions) == -1) {
+                       $('#document2').val('');
+                       // alert("Invalid file type");
+                       $('#invalidfiletype').modal('show');
+                       var  is_valid = false;
+                       if ($("#imgerror3").next(".validation").length == 0) // only add if not added
+                       {
+                           $("#imgerror3").text('Please upload .jpg / .jpeg/.png image ');
+                           // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                       }
+                       allFields = false;
+                       if (!focusSet) {
+                           $("#document2").focus();
+                       }
+                   } else {
+                       is_valid = true;
+                       $("#imgerror3").next(".validation").remove(); // remove it
+                   }
+               }else{
+                   $("#imgerror3").text('Please select file');
+                   $("#document2").focus();
+               }
+
+
+
+
+               if (is_valid) {
+               return true;
+           } else {
+               return false;
+           }
+           };
+    </script>
+    <script>
         // function sendapproval(){
 
         // }
@@ -540,13 +764,19 @@ var loadFileThumbnail = function(event)
             $('#editModal1').modal('show');
             $('#delete_preview').show();
                     $('#add_file').hide();
-                    $('#icon_file').attr('required',false);
+                    // $('#icon_file').attr('required',false);
                     // $('#outputicon').attr('src',)
             $('.del_icon').on('click',function(){
                                 $('#delete_preview').hide();
                                 $('#add_file').show();
-                                // $('#icon_file').add('attr','required');
+                                $('#document2').val('');
                                 $('#document2').attr('required',true);
+
+                                // $('#document2').attr('required');
+                                return false;
+                                
+                                // $('#icon_file').add('attr','required');
+                                // $('#document2').attr('required',true);
             });
             $.ajax({
                             url: '<?php echo base_url(); ?>Wall_of_wisdom/get_wow/'+que_id,
@@ -556,7 +786,8 @@ var loadFileThumbnail = function(event)
                                 var res = JSON.parse(result); 
                                 console.log(res.id);
                                 $('#id1').val(res.id);
-                                $('#description1').val(res.description);
+                                // $('#description1').val(res.description);
+                                CKEDITOR.instances['description1'].setData(res.description)
                                 $('#image1').val(res.image);
                                 $('#title1').val(res.title);
                                
@@ -698,10 +929,70 @@ var loadFileThumbnail = function(event)
         $(document).ready(function() {
             $('#example').DataTable();            
         });
+
+
+
+        $('#updatepost').submit( 'click',function() { 
+            alert("cvx");
+                    // e.preventDefault();
+                    var focusSet = false;
+                    var allfields = true;
+                    var title = $("#title").val();
+                    var description = $("#description").val(); 
+
+                    if ($("#document2").val() == '') {
+                        alert('please select Image');
+                        $("#document1").val('');
+                       false;
+                        allfields = false;
+                    }
+                   
+
+
+
+
+
+
+
+
+                    if (title == "" || title== null) {
+                        if ($("#title").next(".validation").length == 0) // only add if not added
+                        {
+                            $("#title").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please Enter Quiz Title </div>");
+                        }
+                        if (!focusSet) { $("#title").focus(); }
+                        allfields = false;
+                    } else {
+                        allfields =true;
+                        $("#title").next(".validation").remove(); // remove it
+                    } 
+
+                    if (description == "" || description== null) {
+                        // if ($("#description").next(".validation").length == 0) // only add if not added
+                        // {
+                        //     $("#description_error").show();
+                        // }
+                        // if (!focusSet) { $("#description").focus(); }
+                        allfields = false;
+                    } else {
+                        allfields =true;
+                            $("#description_error").hide();
+
+                    } 
+
+                    if (allfields) { 
+                        $('#addwall').submit();
+                        return true;
+                    } else {
+                        return false;
+                    }
+                    // $('#addwall').submit();
+                });
     </script>
     <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script>
                         CKEDITOR.replace( 'description' );
+                        CKEDITOR.replace( 'description1' );
                         </script>
 
 

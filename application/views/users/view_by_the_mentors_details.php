@@ -11,6 +11,7 @@
                            <div class="card-body"> 
                                 <div class="row">
                                <div class="mb-2 col-md-4">
+                                <!-- <?php print_r($data); ?> -->
                                     <label class="d-block text-font">ID</label>
                                     <div>
                                         <p><?php  echo $data['id']; ?></p>
@@ -19,19 +20,19 @@
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font"> Name</label>
                                     <div>
-                                        <p><?php // echo $data['name']; ?></p>dummy_name
+                                        <p><?php  echo $data['user_name']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Email Id</label>
                                     <div>
-                                        <p><?php // echo $data['email_id']; ?></p>dummy_email
+                                        <p><?php  echo $data['email']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Contact</label>
                                     <div>
-                                        <p>Not Available</p>
+                                        <p><?php  echo $data['user_mobile']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
