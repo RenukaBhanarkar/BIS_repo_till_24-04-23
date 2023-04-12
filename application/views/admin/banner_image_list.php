@@ -180,8 +180,8 @@
                                                                                         <img src="" id="outputicon" width="100%"/>
                                                                                         </div>
                                                                                         <div class="modal-footer">
-                                                                                        <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
-                                                                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button>
+                                                                                        <!-- <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
+                                                                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button> -->
                                                                                         </div> 
                                                                                     </div>
                                                                                     </div>
@@ -273,8 +273,8 @@
                                         <img id="outputThumbnail" width="100%"/>
                                         </div>
                                         <div class="modal-footer">
-                                        <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
-                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save</button>
+                                        <!-- <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
+                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save</button> -->
                                         </div>
                                     </div>
                                     </div>

@@ -105,7 +105,14 @@ h5{
                               <div class="d-flex">
                                     <input type="file" class="form-control input-font" name="document" id="" accept="pdf/*">
                               </div>
+                              <span style="color:red;" id="err_doc"></span>
                   </div>
+                  <!-- <div class="mb-3 col-md-4">
+                          <label class="d-block text-font">Upload Thumbnail for Document</label>
+                              <div class="d-flex">
+                                    <input type="file" class="form-control input-font" name="thumbnail" id="thumbnail" accept="image/*">
+                              </div>
+                  </div> -->
                   <div class="mb-3 col-md-12">
                           <label class="d-block text-font">Description<sup class="text-danger">*</sup></label>
                           <textarea class="form-control input-font" name="description" id="description" required minlength="5" maxlength="1000"></textarea>
@@ -125,6 +132,7 @@ h5{
   <script> 
   function submitButton() {
              var title = $("#title").val();
+             var document = $("#document").val();
             //  var description= $("#description").val();
              var description = CKEDITOR.instances['description'].getData(); 
              var is_valid = true;
@@ -153,6 +161,11 @@ h5{
                 $("#err_description").text("Description suould be 5 to 1000 characters");
                  $("#description").focus();
                  is_valid = false;
+             }else if (title == "") {
+                 $("#err_doc").text("This value is required");
+                 $("#document").focus();
+                 is_valid = false;
+             
              }else {
                  $("#err_description").text("");
              }            
