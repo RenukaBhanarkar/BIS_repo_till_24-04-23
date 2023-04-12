@@ -30,37 +30,37 @@
                             <div class="mb-2 col-md-4">
                                     <label class="d-block text-font" style="font-weight: 600;">Subject</label>
                                     <div>
-                                        <p>IT Services</p>
+                                        <p><?= $itemProposal['standard_subject']?></p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
                                     <label class="d-block text-font" style="font-weight: 600;">Name of proposer</label>
                                     <div>
-                                        <p>IT Services</p>
+                                        <p><?= $itemProposal['proposer_name']?></p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
                                     <label class="d-block text-font" style="font-weight: 600;">Organization Type</label>
                                     <div>
-                                        <p>IT Services</p>
+                                        <p><?= $itemProposal['org_type']?></p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
                                     <label class="d-block text-font" style="font-weight: 600;">Date of receipt</label>
-                                    <div>
-                                        <p>23/03/2023</p>
+                                    <div> 
+                                        <p><?= date("d-m-Y", strtotime($itemProposal['date_of_receipt']));?></p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
                                     <label class="d-block text-font" style="font-weight: 600;">Current Stage</label>
                                     <div>
-                                        <p>IT Services</p>
+                                        <p><?= $itemProposal['current_stage']?></p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
                                     <label class="d-block text-font" style="font-weight: 600;">Concerned BIS Department</label>
                                     <div>
-                                        <p>IT Services</p>
+                                        <p><?= $itemProposal['current_bis_dept']?></p>
                                     </div>    
                             </div>  
                 
