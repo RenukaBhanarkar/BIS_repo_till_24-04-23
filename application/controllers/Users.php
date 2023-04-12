@@ -373,6 +373,11 @@ class Users extends CI_Controller {
         $this->load->view('users/join_the_classroom');
         $this->load->view('users/footers/footer'); 
     }
+    public function join_the_classroom_view(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/join_the_classroom_view');
+        $this->load->view('users/footers/footer'); 
+    }
     public function conversation_with_experts(){
         $Conversation = $this->Users_model->getPublishedConversation();
         $data = array();
