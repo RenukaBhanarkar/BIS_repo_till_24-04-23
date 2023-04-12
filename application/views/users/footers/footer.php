@@ -198,7 +198,10 @@ $('.login_details').hide()
 jQuery('.show').on('click', function() {
     jQuery('.login_details').toggle();
 });
-
+$('.after_login_details').hide()
+jQuery('.after_show').on('click', function() {
+    jQuery('.after_login_details').toggle();
+});
 $(document).ready(function(){
     $.ajax({
     url:"<?php echo base_url(); ?>admin/useful_links_web/",

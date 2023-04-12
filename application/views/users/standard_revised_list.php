@@ -30,7 +30,7 @@
                                  <td>Share Your Thought</td>
                                  <td class="border-bottom-0">
                                     <button onClick="location.href='standard_revised_view'" class="btn btn-primary btn-sm mr-2">View Details</button>
-                                    <button onClick="location.href='#'" class="btn btn-success btn-sm mr-2">Join Discussion</button>
+                                    <button onClick="location.href='new_work_view_comments'" class="btn btn-success btn-sm mr-2">Join Discussion</button>
                                     
                                  </td>
                                  </tr>

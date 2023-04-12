@@ -26,17 +26,41 @@
              </div>
             <div class="proposal_view mb-5">
             <div class="col-12 mt-3">
-                    <div class="row">
+            <div class="row">
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Tile</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">pk_is_id</label>
                                     <div>
-                                        <p>IT Services</p>
+                                        <p>533</p>
                                     </div>    
                             </div>
                             <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font" style="font-weight: 600;">Department</label>
+                                    <label class="d-block text-font" style="font-weight: 600;">IsNumber</label>
                                     <div>
-                                        <p>IT Services</p>
+                                        <p>IS 16093 IS 16093</p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">is_title</label>
+                                    <div>
+                                        <p>Installation of gas based instantaneous water heater - Code of practice</p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">commttid</label>
+                                    <div>
+                                        <p>1</p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">depName</label>
+                                    <div>
+                                        <p>MED 23</p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">Idate_of_published</label>
+                                    <div>
+                                        <p>2013-12-31 00:00:00</p>
                                     </div>    
                             </div>
                     </div>    

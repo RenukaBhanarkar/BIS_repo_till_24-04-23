@@ -37,6 +37,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
             border-radius: 5px;
             object-fit: fill;
         }
+        .profile-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 17px;
+    background: linear-gradient( 133.16deg, rgba(193, 86, 154, 0.2) 0%, rgba(236, 112, 38, 0.2) 112.68% );
+}
+.after_login_details ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.after_login_details li {
+    border-bottom: 1px solid #e9e9e9;
+    cursor: default;
+    margin-bottom: 0;
+}
+.after_login_details ul li a {
+    font-size: 12px;
+    line-height: 16px;
+    color: #333 !important;
+    cursor: pointer;
+    display: block;
+    padding: 11px 15px;
+}
+.after_login_details ul li a:hover {
+    background: #f7f7f7;
+}
     </style>
 </head>
 
@@ -69,6 +97,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     </span>
                                 </li>
                                 <li><a href="#" class="show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li>
+                                <!-- <li><a href="#" class="after_show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -82,6 +111,41 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <a href="https://www.services.bis.gov.in/php/BIS_2.0/outsider-registration" class="ac-register jquery-once-2-processed" title="Register">Register</a>
             </div>
         </div>
+        <div class="after_login_details">
+            <div class="profile-top nodtranslate">
+                <div class="profile-pic"><img src="https://auth.mygov.in/avatar/20fb3fcb-8a0e-4151-82ae-4df1d6639867" width="86px;"></div>
+                <span class="mt-2">BhagyashreeAvcahar</span>
+            </div>
+		    <ul>
+		      <li>
+			<a class="capital" title="Edit Profile" data-bs-toggle="modal" data-bs-target="#editProfile">Edit Profile</a>
+		      </li>
+		      <li>
+			<a class="capital" title="My Activity" href="/user/115324241">My Activity</a>
+		      </li>
+		      <li>
+		    	<a class="capital" title="Notifications" href="/notification/list">Notifications</a>
+		      </li>
+		      
+		    </ul>
+	  	  </div>
+          <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Form</h5>
+                                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to Edit?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" name="Submit" class="btn btn-success btn-sm text-white" id="btnsubmit" > 
+                            </div>
+                        </div>
+                    </div>
+          </div>
         <div class="menu_header" id="menu_header">
             <div class="container-fluid">
                 <div class="row">

@@ -1669,6 +1669,19 @@ footer .main_footer .f_contact ul li i {
 	background-color: #fff;
 	color: black;
 }
+.after_login_details {
+    position: absolute;
+    right: 20px;
+    top: 7%;
+    width: 226px;
+    z-index: 10;
+    /* padding: 20px; */
+    display: none;
+    box-shadow: 0 2px 3px rgb(0 0 0 / 30%);
+    
+    background-color: #fff;
+    color: black;
+}
 .login-link-wrapper {
 	display: flex;
 	justify-content: space-between;

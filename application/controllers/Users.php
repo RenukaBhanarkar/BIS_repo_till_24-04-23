@@ -592,7 +592,7 @@ class Users extends CI_Controller {
     {  
          
         $data=array(); 
-        $quiz = $this->users_model->viewQuiz($id);
+        $quiz = $this->Users_model->viewQuiz($id);
         $quizdata=array();
         $data['quizdata']=$quiz;
         $this->load->view('users/headers/header');
