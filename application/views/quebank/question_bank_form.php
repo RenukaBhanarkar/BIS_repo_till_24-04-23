@@ -158,45 +158,72 @@
                                     <div class="row mt-3" id="opt1_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 1</label>
-
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option1" id="option1">
+                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                                    <option value="0" selected>--Type--</option>
+                                                    <option value="2" id="option_text">Text</option>
+                                                    <option value="3" id="option_image">Image</option>
+                                                    
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <!-- <input class="form-control input-font ml-3" type="text" name="option1" id="option1" style="width: 180px;"> -->
+                                                <input class="form-control-file input-font ml-3" type="file" name="image_file" id="image_file" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 2</label>
-
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option2" id="option2">
+                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                                    <option value="0" selected>--Type--</option>
+                                                    <option value="2">Text</option>
+                                                    <option value="3">Image</option>
+                                                    
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option2" id="option2" style="width: 180px;">
+                                                <!-- <input class="form-control-file input-font ml-3" type="file" name="image_file" id="image_file" style="width: 180px;"> -->
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 3</label>
-
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option3" id="option3">
+                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                                    <option value="0" selected>--Type--</option>
+                                                    <option value="2">Text</option>
+                                                    <option value="3">Image</option>
+                                                   
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option3" id="option3" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 4</label>
-
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option4" id="option4">
+                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                                    <option value="0" selected>--Type--</option>
+                                                    <option value="2">Text</option>
+                                                    <option value="3">Image</option>
+                                                    
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option4" id="option4" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt5_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 5</label>
-
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option5" id="option5">
+                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                                    <option value="0" selected>--Type--</option>
+                                                    <option value="2">Text</option>
+                                                    <option value="3">Image</option>
+                                                    
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option5" id="option5" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
@@ -208,31 +235,35 @@
                                     <div class="row mt-3" id="opt1_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 1 in Hindi</label>
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option1_h" id="option1_h">
+                                           
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option1_h" id="option1_h" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 2 in hindi</label>
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option2_h" id="option2_h">
+                                            <label class="d-block text-font mr-3">Option 2 in Hindi</label>
+                                            
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option2_h" id="option2_h" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 3 in hindi</label>
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option3_h" id="option3_h">
+                                            <label class="d-block text-font mr-3">Option 3 in Hindi</label>
+                                            
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option3_h" id="option3_h" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 4 in Hindi</label>
-                                            <div class="form-check">
+                                            
+                                            <div class="form-check" style="padding-left:0px;">
                                                 <input class="form-control input-font ml-3" type="text" name="option4_h" id="option4_h">
                                             </div>
                                         </div>
@@ -240,8 +271,9 @@
                                     <div class="row mt-3" id="opt5_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 5 in Hindi</label>
-                                            <div class="form-check">
-                                                <input class="form-control input-font ml-3" type="text" name="option5_h" id="option5_h">
+                                            
+                                            <div class="form-check" style="padding-left:0px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option5_h" id="option5_h" required>
                                             </div>
                                         </div>
                                     </div>
@@ -314,6 +346,7 @@
                                                     <!-- <th>Image</th> -->
                                                     <th>Number of Options</th>
                                                     <th>Option details</th>
+                                                    <th>Option Details in Hindi</th>
                                                     <th>Correct Option No</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -343,7 +376,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saveQueBank">Save</button>
+                                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="saveQueBank">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,7 +387,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Conformation</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -362,7 +395,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" onclick="location.href='question_bank_list'">Save changes</button>
+                                                    <button type="button" class="btn btn-primary" onclick="location.href='question_bank_list'">Cancel</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -443,7 +476,7 @@
                             // console.log(res);
                             if (res.status == 0) {
                                 if ($("#err_que_bank").next(".validation").length == 0) {
-                                    $("#err_que_bank").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please add questions equal to total no of questions in bank</div>");
+                                    $("#err_que_bank").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please add questions equal to total no of questions in bank</div>");
                                 }
                                 if (!focusSet) {
                                     $("#err_que_bank").focus();
@@ -804,7 +837,7 @@
                             var option2 = $("#option2").val();
                             if (option1 == "") {
                                 if ($("#option1").next(".validation").length == 0) {
-                                    $("#option1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 1</div>");
+                                    $("#option1").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 1</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option1").focus();
@@ -815,7 +848,7 @@
                             }
                             if (option2 == "") {
                                 if ($("#option2").next(".validation").length == 0) {
-                                    $("#option2").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 2</div>");
+                                    $("#option2").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 2</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option2").focus();
@@ -830,7 +863,7 @@
 
                             if (option3 == "") {
                                 if ($("#option3").next(".validation").length == 0) {
-                                    $("#option3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 3</div>");
+                                    $("#option3").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 3</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option3").focus();
@@ -845,7 +878,7 @@
 
                             if (option4 == "") {
                                 if ($("#option4").next(".validation").length == 0) {
-                                    $("#option4").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 4</div>");
+                                    $("#option4").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 4</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option4").focus();
@@ -859,7 +892,7 @@
                             var option5 = $("#option5").val();
                             if (option5 == "") {
                                 if ($("#option5").next(".validation").length == 0) {
-                                    $("#option5").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 5</div>");
+                                    $("#option5").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option5").focus();
@@ -890,7 +923,7 @@
                             var option2_h = $("#option2_h").val();
                             if (option1_h == "") {
                                 if ($("#option1_h").next(".validation").length == 0) {
-                                    $("#option1_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 1</div>");
+                                    $("#option1_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 1</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option1_h").focus();
@@ -901,7 +934,7 @@
                             }
                             if (option2_h == "") {
                                 if ($("#option2_h").next(".validation").length == 0) {
-                                    $("#option2_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 2</div>");
+                                    $("#option2_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 2</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option2_h").focus();
@@ -916,7 +949,7 @@
 
                             if (option3_h == "") {
                                 if ($("#option3_h").next(".validation").length == 0) {
-                                    $("#option3_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 3</div>");
+                                    $("#option3_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 3</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option3_h").focus();
@@ -931,7 +964,7 @@
 
                             if (option4_h == "") {
                                 if ($("#option4_h").next(".validation").length == 0) {
-                                    $("#option4_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 4</div>");
+                                    $("#option4_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 4</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option4_h").focus();
@@ -945,7 +978,7 @@
                             var option5_h = $("#option5_h").val();
                             if (option5_h == "") {
                                 if ($("#option5_h").next(".validation").length == 0) {
-                                    $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 5</div>");
+                                    $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option5_h").focus();

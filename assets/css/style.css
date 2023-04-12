@@ -1711,10 +1711,7 @@ a.ac-register.jquery-once-2-processed:hover {
 	flex: 1 1 auto;
 	padding: 0rem 1rem;
 }
-.card-body.new-card.text-center:hover {
-	background: #014e9c;
-	color: white;
-}
+
 .h5.card-title {
 	padding-top: 10px;
 	font-weight: 600;
@@ -1723,7 +1720,7 @@ h5.card-title {
 	padding-top: 10px;
 	font-weight: 600;
 }
-button.btn_common:hover {
+button.btn_common {
 	background: yellowgreen;
 }
 .wall-inner {
@@ -1747,7 +1744,7 @@ button.btn_common:hover {
 	padding-top: 19px;
 }
 .new-content {
-	padding: 48px;
+	padding: 60px 0px 91px 0px;
 }
 .image-card {
 	position: relative;
@@ -1762,6 +1759,13 @@ button.btn_common:hover {
 	margin: 12px;
 	/* border-top: 4px solid green; */
 	height: 100%;
+}
+.card.image-card:hover {
+    transition: all .5s;
+    transform: scale(1.2);
+}
+p.card-text {
+    font-size: 18px;
 }
 .card-body-new {
 	flex: 1 1 auto;

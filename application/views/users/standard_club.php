@@ -42,7 +42,7 @@
             <div class="row">
                <div class="inner_content d-flex p-0">
                 <div class="col-sm-3">
-                    <div class="card">
+                    <div class="card" style="background: #014e9c; color:white;">
                         <div class="card-body new-card text-center">
                                  <h5 class="card-title">Winners of the Post Maker</h5>
                                  <hr>
@@ -99,8 +99,8 @@
     <section>
         <div class="container pt-4 pb-5" id="start-quiz">
             <div class="row text-center">
-                <h3>Quiz</h3>
-                <p>Quiz Tasks</p>
+                <h3>Quiz Competition</h3>
+                <p>Quizez For You</p>
             </div>    
             <div class="row">
                 <?php foreach ($allquize as $key => $quize) {  ?>
@@ -123,11 +123,11 @@
         </div>
     </section>
     <section style="background-color: #e3effb94;">
-        <div class="container" style="margin-left: 19px;">
+        <div class="container">
             <div class="row">
             <div class="new-content d-flex">
                   <a href="<?php echo base_url().'wall_of_wisdom/wallOfWisdom' ?>">
-                    <div class="card image-card" style="width: 18rem;">                    
+                    <div class="card image-card" style="width: 21rem;">                    
                         <img src="<?=base_url();?>assets/images/wall_1.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
                           <p class="card-text">Wall Of Wisdom</p>
@@ -135,7 +135,7 @@
                       </div>
                     </a>
                     <a>
-                      <div class="card image-card" style="width: 18rem;">
+                      <div class="card image-card" style="width: 21rem;">
                         <img src="<?=base_url();?>assets/images/wall_2.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
                           <p class="card-text">learning Science via Standards</p>
@@ -143,7 +143,7 @@
                       </div>
                       </a>
                       <a href="<?php echo base_url().'users/yourwall' ?>">
-                      <div class="card image-card" style="width: 18rem;">                      
+                      <div class="card image-card" style="width: 21rem;">                      
                         <img src="<?=base_url();?>assets/images/wall_3.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
                           <p class="card-text">Your Wall</p>
@@ -151,7 +151,7 @@
                       </div>
                       </a>
                       <a href="<?php echo base_url()."users/byTheMentor" ?>">
-                      <div class="card image-card" style="width: 18rem;">
+                      <div class="card image-card" style="width: 21rem;">
                       
                         <img src="<?=base_url();?>assets/images/wall_4.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">

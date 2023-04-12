@@ -97,7 +97,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     </span>
                                 </li>
                                 <li><a href="#" class="show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li>
-                                <!-- <li><a href="#" class="after_show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li> -->
+                                <li><a href="#" class="after_show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li>
                             </ul>
                         </div>
                     </div>

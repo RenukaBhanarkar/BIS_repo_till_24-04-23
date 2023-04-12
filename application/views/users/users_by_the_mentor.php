@@ -55,11 +55,9 @@ h5{
                           <div class="title">
                               <p style="font-weight:600;"><?php echo $list['title'];?></p>
                           </div>
-                          <div class="card-body">
-                              <!-- <span class="time_left"> -->
-                                  <p class="last-date"><?php echo $list['description'];?></p>
-                              <!-- </span> -->
-                          </div>
+                          <div class="last-date"><?php echo $list['description'];?></div>
+                           
+                          
                           
                       </div>
                   </div>

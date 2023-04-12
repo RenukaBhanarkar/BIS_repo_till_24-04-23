@@ -130,7 +130,7 @@
                         <p class="time-and-qus" style="color:white;">
                             <span class="number-quiz"><span class="question_no"><?= $quizdata['total_question'];?></span><span class="quiz-text">Questions</span>
                             </span>
-                            <span class="number-quiz"><span class="question_no"><?= $quizdata['duration'];?></span><span class="quiz-text">Sec</span>
+                            <span class="number-quiz"><span class="question_no"><?= $quizdata['duration'];?></span><span class="quiz-text">Minutes</span>
                             </span>
                         </p>
                         <p class="time-start-end d-flex">
