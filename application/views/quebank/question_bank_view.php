@@ -47,6 +47,7 @@
                                                 <th>Question Title</th>                                              
                                                 <th>Number of Options</th>
                                                 <th>Options</th>
+                                                <th>Options details in Hindi</th>
                                                 <th>Correct Option No</th>
                                                 <!-- <th>Action</th> -->
                                             </tr>
@@ -81,6 +82,7 @@
                                                       <?php } ?>                                               
                                                     </td>
                                                     <td><?php echo $r['no_of_options']; ?></td>
+                                                    
                                                     <td>
                                                         <?php
                                                          $opt1_e = $opt2_e = $opt3_e= $opt4_e= $opt5_e ="NA";
@@ -107,6 +109,7 @@
                                                                     '<br>5. ' .$opt5_e .' 5. ' .$opt5_h ;
                                                         } ?>
                                                     </td>
+                                                    <td><ul>Hindi Text</ul><img src="http://localhost/BIS/BIS_repo/assets/admin/img/picture.png" alt="#" width="33"></td>
                                                     <td><?php echo $r['corr_opt_e']; ?></td>
                                                    
                                                     <!-- <td class="d-flex border-bottom-0"><a class="btn btn-primary btn-sm mr-2"><i class="fa fa-eye" aria-hidden="true" data-toggle="modal" data-target="#view_data"></i></a></td> -->

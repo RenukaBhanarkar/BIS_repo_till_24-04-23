@@ -316,7 +316,7 @@ a.view-btn {
                             <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
                     </div></div>
                             </div>
-                            <a href="/home/697/talk/" class="view-btn" title="View All">View All</a>
+                            <a href="join_the_classroom_view" class="view-btn" title="View All">View All</a>
                             </div>
                             
                     </div>
@@ -403,8 +403,8 @@ a.view-btn {
                             <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
                     </div></div>
                             </div>
-                            <a href="/home/697/talk/" class="view-btn" title="View All" style="margin-right: 16px;">View PDF</a>
-                            <a href="/home/697/talk/" class="view-btn" title="View All">View All</a>
+                            <a href="#" class="view-btn" title="View All" style="margin-right: 16px;">View PDF</a>
+                            <a href="#" class="view-btn" title="View All">View All</a>
                             </div>
                             
                     </div>
@@ -491,7 +491,7 @@ a.view-btn {
                             <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
                     </div></div>
                             </div>
-                            <a href="/home/697/talk/" class="view-btn" title="View All">View All</a>
+                            <a href="#" class="view-btn" title="View All">View All</a>
                             </div>
                             
                     </div>

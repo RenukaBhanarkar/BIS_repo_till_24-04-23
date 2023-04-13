@@ -68,12 +68,13 @@
                                  <?php } ?>
                                      <?php if (encryptids("D", $_SESSION['admin_type']) == 3){ ?>
                                       <?php if($quiz['status']==3 || $quiz['status']==6 ){?>
-                                        <a href="publishQuiz/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">Publish</a>
+                                        <a href="publishQuiz/<?= $quiz['id']?>"class="btn btn-success btn-sm mr-2">Publish</a>
                                         
                                     <?php } ?>
                                     <?php if($quiz['status']==5){?>
                                          
-                                        <a href="unPublishQuiz/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">UnPublish</a>
+                                        <a href="unPublishQuiz/<?= $quiz['id']?>"class="btn btn-info btn-sm mr-2">UnPublish</a>
+                                        <a href="unPublishQuiz/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">Archives</a>
                                     <?php } ?>
                                    
                                     <?php if($quiz['status']==1 || $quiz['status']==4 ){?>

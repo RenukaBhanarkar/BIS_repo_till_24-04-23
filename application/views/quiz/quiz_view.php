@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Quiz Creation View</h1>
+        <h1 class="h3 mb-0 text-gray-800">Quiz View</h1>
 
     </div>
     <!-- Content Row -->
@@ -226,9 +226,13 @@
                                         <th>Question No.</th>
                                         <th>Question</th>
                                         <th>Option 1</th>
+                                        <th>Option 1 in Hindi</th>
                                         <th>Option 2</th>
+                                        <th>Option 2 in Hindi</th>
                                         <th>Option 3</th>
+                                        <th>Option 2 in Hindi</th>
                                         <th>Option 4</th>
+                                        <th>Option 4 in Hindi</th>
                                         <th>Option 5</th>
                                         <th>Correct</th>
 
