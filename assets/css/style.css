@@ -2078,9 +2078,9 @@ p.card-text {
 	word-spacing: 1px;
 	cursor: pointer;
 }
-.yourWall_image img {
+/* .yourWall_image img {
 	object-fit: cover;
-}
+} */
 .form-label {
 	font-size: 13px;
 	font-weight: 500;

@@ -108,7 +108,7 @@
                         <div class="yourWall_image"> 
 
                             <img src="<?php echo base_url().'uploads/your_wall/'.$published_wall['image'] ?>" alt="not found" class="w-100 h-100">
-                            <span><i class="fa fa-calendar icons"><?php echo $published_wall['created_on']; ?></i></span>
+                            <span><i class="fa fa-calendar icons"><?php echo date("m-d-Y",strtotime($published_wall['created_on'])); ?></i></span>
                         </div>
                         <div class="Text-container_view ">
                             

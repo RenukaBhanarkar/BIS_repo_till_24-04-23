@@ -10,13 +10,13 @@
                         <div class="card border-top">
                            <div class="card-body"> 
                                 <div class="row">
-                               <div class="mb-2 col-md-4">
-                                <!-- <?php print_r($data); ?> -->
+                               <!-- <div class="mb-2 col-md-4">
+                                <?php// print_r($data); ?> 
                                     <label class="d-block text-font">ID</label>
                                     <div>
                                         <p><?php  echo $data['id']; ?></p>
                                     </div>    
-                                </div>
+                                </div> -->
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font"> Name</label>
                                     <div>
@@ -35,12 +35,12 @@
                                         <p><?php  echo $data['user_mobile']; ?></p>
                                     </div>    
                                 </div>
-                                <div class="mb-2 col-md-4">
+                                <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Date and Time</label>
                                     <div>
                                         <p><?php echo $data['created_on']; ?></p>
                                     </div>    
-                                </div>
+                                </div> -->
                                
                               </div>
                           </div>
@@ -79,7 +79,7 @@
                             </div>
                             
 
-                            <div >
+                            <!-- <div >
                                     <label class="d-block text-font">Action<sup class="text-danger">*</sup></label>
                                     <div>
                                         <p><?php if($data['status_name']=='Created' || $data['status_name']=='UnPublished'){  ?>
@@ -90,7 +90,14 @@
                                             
                                         </p>
                                     </div> 
-                            </div>
+                            </div> -->
+                            <!-- <div>
+                                <?php
+                                $thumbnail_file =  base_url().'/uploads/pdf.png'; 
+                            $xpdf_cmd = base_url().$data['document'].' -f 1 -l 1 -r 100 '.base_url().' '.$thumbnail_file;
+                            exec($xpdf_cmd);
+                                    ?>
+                            </div> -->
                           </div>
                           <div class="col-md-12 submit_btn p-3">
                                <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>admin/byTheMentors'">Back</a>

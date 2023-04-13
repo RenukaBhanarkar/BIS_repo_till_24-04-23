@@ -562,7 +562,13 @@ class Users extends CI_Controller {
     }
 
     public function add_btm(){
-        // print_r($_SESSION); 
+        $formdata1['user_id']= encryptids("D", $_SESSION['admin_id']);
+        $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
+        $formdata1['user_name']=  encryptids("D", $_SESSION['admin_name']);
+        // $formdata1['admin']=  encryptids("D", $_SESSION['admin']);
+        $formdata1['user_type']=  encryptids("D", $_SESSION['admin_type']);
+        // $formdata1['user_post']= encryptids("D", $_SESSION['admin_post']);
+        // print_r($formdata); 
         // die;
         if(isset($_SESSION['admin_id'])){
             // $formdata['user_id']=$_SESSION['admin_id'];
@@ -621,13 +627,17 @@ class Users extends CI_Controller {
                 move_uploaded_file($_FILES["document"]["tmp_name"],$btm_path);
                // die;
         }
+        $this->load->model('admin/by_the_mentor_model');
+        $uid=$this->by_the_mentor_model->add_user($formdata1);
+
+        // print_r($uid);
 
         $formdata['title']=$title;
         $formdata['description']=$description;
         $formdata['image']=$btm_img;
         $formdata['document']=$btm_document;
         $formdata['status']="1";
-        //print_r($formdata); die;
+        // print_r($formdata); die;
         $this->load->model('admin/by_the_mentor_model');
         $id=$this->by_the_mentor_model->add_btm($formdata);
         if($id){

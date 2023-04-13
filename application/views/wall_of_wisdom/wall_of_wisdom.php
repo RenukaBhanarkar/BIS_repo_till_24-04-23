@@ -70,7 +70,7 @@
                                             <?php 
                                             if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
                                             <?php if($list_wow['status'] == 1){ ?>
-                                                <button onclick="sendapproval('<?php echo $list_wow['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white">Send For Approval</button>
+                                            <button onclick="sendapproval('<?php echo $list_wow['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white">Send For Approval</button>
                                            <?php } ?>
                                            
                                             <?php if (!($list_wow['status'] == 5 || $list_wow['status'] == 2)) { ?>
@@ -83,9 +83,9 @@
                                            
                                             if (encryptids("D", $_SESSION['admin_type']) == 3) {
                                                 if ($list_wow['status'] == 3 || $list_wow['status'] == 6) {  ?>
-                                                    <button class="btn btn-primary publish" onclick="sendPublish('<?php echo $list_wow['id']; ?>')" data-id='<?php echo $list_wow['id']; ?>'>Publish</button>
+                                                    <button class="btn btn-primary btn-sm publish" onclick="sendPublish('<?php echo $list_wow['id']; ?>')" data-id='<?php echo $list_wow['id']; ?>'>Publish</button>
                                                 <?php } else if ($list_wow['status'] == 5) { ?>
-                                                    <button class="btn btn-primary unpublish_record" onclick="sendUnPublish('<?php echo $list_wow['id']; ?>')" data-id='<?php echo $list_wow['id']; ?>'>UnPublish</button>
+                                                    <button class="btn btn-primary btn-sm unpublish_record" onclick="sendUnPublish('<?php echo $list_wow['id']; ?>')" data-id='<?php echo $list_wow['id']; ?>'>UnPublish</button>
                                                 <?php  }
                                             }else if(encryptids("D", $_SESSION['admin_type']) == 2){ ?>
                                                     <?php if($list_wow['status'] == 3){ ?>

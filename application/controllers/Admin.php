@@ -539,7 +539,7 @@ class Admin extends CI_Controller
                         $document =  $oldDocument;
                     }
                 }   
-
+                // print_r($formdata); die;
         if($document){          
             $formdata['image']=$document;
         }
@@ -1363,6 +1363,13 @@ class Admin extends CI_Controller
         $this->load->view('users/view_by_the_mentors_details',$data);
         $this->load->view('admin/footers/admin_footer');
     }
+    public function bythementor_archivelist(){
+        $this->load->model('admin/By_the_mentor_model');        
+        $data['bythementors']=$this->By_the_mentor_model->all_archievd_btm();
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/archived_by_the_mentors',$data);
+        $this->load->view('admin/footers/admin_footer');
+    }
     public function btm_publish(){
         try {            
             $this->load->model('admin/By_the_mentor_model');
@@ -1412,6 +1419,56 @@ class Admin extends CI_Controller
         }
         redirect(base_url() . "admin/view_btm", 'refresh');
     }
+    public function btm_archive(){
+        try {   
+            $this->load->model('admin/By_the_mentor_model');         
+            $que_id = $this->input->post('que_id');
+            $id = $this->By_the_mentor_model->btm_archive($que_id);
+            if ($id) {
+                
+                $data['status'] = 1;
+                $data['message'] = 'Record Archived.';
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to Archive.';           
+            }
+            
+            $this->session->set_flashdata('MSG', ShowAlert("Record Archives Successfully", "SS"));
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "admin/bythementor_archivelist", 'refresh');
+    } 
+
+    public function btm_unarchive(){
+        try {   
+            $this->load->model('admin/By_the_mentor_model');         
+            $que_id = $this->input->post('que_id');
+            $id = $this->By_the_mentor_model->btm_unarchive($que_id);
+            if ($id) {
+                
+                $data['status'] = 1;
+                $data['message'] = 'Record Unarchived.';
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to Unarchive.';           
+            }
+            
+            $this->session->set_flashdata('MSG', ShowAlert("Record Unarchives Successfully", "SS"));
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "admin/bythementor_archivelist", 'refresh');
+    } 
+    
     public function deleteByTheMentor(){
         try {   
             $this->load->model('admin/By_the_mentor_model');         
@@ -1457,10 +1514,10 @@ class Admin extends CI_Controller
         $this->load->view('admin/live_session_list');
         $this->load->view('admin/footers/admin_footer');
     }
-    public function live_session_form(){
-        $this->load->view('admin/headers/admin_header');
-        $this->load->view('admin/live_session_form');
-        $this->load->view('admin/footers/admin_footer');
-    }
+    // public function live_session_form(){
+    //     $this->load->view('admin/headers/admin_header');
+    //     $this->load->view('admin/live_session_form');
+    //     $this->load->view('admin/footers/admin_footer');
+    // }
     
 }

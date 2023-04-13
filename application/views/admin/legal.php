@@ -166,15 +166,26 @@
 // });
 
 function submitButton() {
-    
-             var terms_condition = $("#terms_condition").val();
-             var privacy_policy= $("#privacy_policy").val();
-             var hlp= $("#hlp").val();
-             var disclamer= $("#disclamer").val();
-             var copyright_policy= $("#copyright_policy").val();
-             var cmap= $("#cmap").val();
-             var cap= $("#cap").val();
-             var crp= $("#crp").val();
+    // CKEDITOR.instances[**fieldname**].setData(**your data**)
+    var terms_condition = CKEDITOR.instances['terms_condition'].getData();
+    var copyright_policy = CKEDITOR.instances['copyright_policy'].getData();
+    var hlp = CKEDITOR.instances['hlp'].getData();
+    var privacy_policy = CKEDITOR.instances['privacy_policy'].getData();
+    var disclamer = CKEDITOR.instances['disclamer'].getData();
+    var cmap = CKEDITOR.instances['cmap'].getData();
+    var cap = CKEDITOR.instances['cap'].getData();
+    var crp = CKEDITOR.instances['crp'].getData();
+
+
+
+            //  var terms_condition = $("#terms_condition").val();
+            //  var privacy_policy= $("#privacy_policy").val();
+            //  var hlp= $("#hlp").val();
+            //  var disclamer= $("#disclamer").val();
+            //  var copyright_policy= $("#copyright_policy").val();
+            //  var cmap= $("#cmap").val();
+            //  var cap= $("#cap").val();
+            //  var crp= $("#crp").val();
 
 
              var is_valid = true;
