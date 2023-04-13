@@ -1,6 +1,6 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
-
+ 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">In Conversation with Expert</h1>
@@ -51,8 +51,9 @@
                               <td><a href="<?= base_url()?><?= $value['video']?>"><i class="fa fa-video"></i></a></td>
                               <td><?= $value['status_name'];?></td>
                               <td class="d-flex">
+                                <a href="conversation_view/<?= $value['id'];?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
                                 <?php if ($value['status']!=5) {?>
-                                      <a href="conversation_view/<?= $value['id'];?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
+                                      
                                   <a href="conversation_edit/<?= $value['id'];?>" class="btn btn-info btn-sm mr-2" title="View">Edit</a>
                                   <a class="btn btn-danger btn-sm mr-2" href="conversation_delete/<?= $value['id'];?>">Delete</a>
                                   <a class="btn btn-success btn-sm mr-2" href="publish/<?= $value['id'];?>">Publish</a>
