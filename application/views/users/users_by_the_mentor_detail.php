@@ -157,7 +157,7 @@
                     <div class="your_wall_main_card_view">
                         <div class="yourWall_image">
                             <img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$by_the_mentor['image']; ?>" alt="not found" class="w-100 h-100">
-                            <span><i class="fa fa-calendar icons"><?php echo date("m-d-Y",strtotime($by_the_mentor['created_on'])); ?></i></span>
+                            <span><i class="fa fa-calendar icons"></i><?php echo date("m-d-Y",strtotime($by_the_mentor['created_on'])); ?></span>
                         </div>
                         <div class="Text-container_view ">
                             <h6 class="yourWall_title_view ">
@@ -170,8 +170,13 @@
 
                         </div>
                         <div class="" style="text-align: end; margin-right: 23px;">
+                            <button class="btn btn-primary mb-4 mr-4">
+                                By <?php echo $by_the_mentor['user_name']; ?>
+                            </button>
+                        </div>
+                        <div class="" style="text-align: end; margin-right: 23px;">
                             <a class="btn btn-primary mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank">
-                                Document
+                                Document<img  src="<?php echo base_url().'uploads/pdf.png'; ?>" width="25px"/></a>
                             </a>
                         </div>
                         
