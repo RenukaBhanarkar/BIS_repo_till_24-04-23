@@ -10,7 +10,7 @@
     /* border: 1px solid rgba(0,0,0,.125); */
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     border-radius: 0.25rem;
-    height: 100%;
+    height: 350px;
     transition: transform 250ms;
 }
 #last-date{
