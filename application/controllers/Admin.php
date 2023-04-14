@@ -1560,10 +1560,41 @@ class Admin extends CI_Controller
         $this->load->view('admin/live_session_list');
         $this->load->view('admin/footers/admin_footer');
     }
-    // public function live_session_form(){
-    //     $this->load->view('admin/headers/admin_header');
-    //     $this->load->view('admin/live_session_form');
-    //     $this->load->view('admin/footers/admin_footer');
-    // }
+    public function learning_science_list(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/learning_science_list');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function learning_science_form(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/learning_science_form');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function learning_science_edit(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/learning_science_edit');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function learning_science_view(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/learning_science_view');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function learning_science_archived(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/learning_science_archived');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function learning_science_dashboard(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/learning_science_dashboard');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function bt_the_mentorList(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/bt_the_mentorList');
+        $this->load->view('admin/footers/admin_footer');
+    }
+  
     
 }

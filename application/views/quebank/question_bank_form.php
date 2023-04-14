@@ -55,8 +55,9 @@
                                 </div>
                             </div>
                             <div class="col-md-12 submit_btn p-3">
-
+                            <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
                                 <input type="submit" name="Submit" id="createQueBank" class="btn btn-info btn-sm">
+                                
                             </div>
                         </form>
                         <!-- que creation -->
@@ -89,9 +90,9 @@
                                 </div>
                             </div>
                             <div class="row" id="question-eng">
-                                <div class="mb-2 col-md-4">
+                                <div class="mb-2 col-md-12">
                                     <label class="d-block text-font">Question<sup class="text-danger">*</sup></label>
-                                    <input type="text" class="form-control input-font" name="que" id="que" placeholder="Enter Question">
+                                    <textarea type="text" class="form-control input-font" name="que" id="que" placeholder="Enter Question"></textarea>
                                 </div>
                                 <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Question in Hindi<sup class="text-danger">*</sup></label>
@@ -99,9 +100,9 @@
                                 </div> -->
                             </div>
                             <div class="row" id="question-hindi" style="display:none;">
-                                <div class="mb-2 col-md-4">
+                                <div class="mb-2 col-md-12">
                                     <label class="d-block text-font">Question in Hindi<sup class="text-danger">*</sup></label>
-                                    <input type="text" class="form-control input-font" name="que_h" id="que_h" placeholder="Question in Hindi">
+                                    <textarea type="text" class="form-control input-font" name="que_h" id="que_h" placeholder="Question in Hindi"></textarea>
                                 </div>
                             </div>
                             <div class="row" id="image-block" style="display:none;">
@@ -336,7 +337,7 @@
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <div class="card border-top card-body">
-                                        <table id="example" class="hover table-bordered" style="width:100%">
+                                        <table id="example" class="table-bordered display nowrap" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>Sr. No.</th>
@@ -358,9 +359,10 @@
                                     </div>
                                     <div class="col-md-12 submit_btn p-3">
                                         <a class="btn btn-success btn-sm text-white" data-bs-toggle="modal" data-bs-target="#submitForm">Submit</a>
+                                        <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
+                                        <input type="reset" name="Reset" class="btn btn-warning btn-sm text-white">
                                         <div id="err_que_bank"></div>
-                                        <!-- <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
-                                        <input type="reset" name="Reset" class="btn btn-warning btn-sm text-white"> -->
+                                        
                                     </div>
 
                                     <!-- Modal -->

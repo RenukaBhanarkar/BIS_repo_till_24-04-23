@@ -3,7 +3,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Quiz Creation</h1>
+            <h1 class="h3 mb-0 text-gray-800">Quiz Archive</h1>
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -11,23 +11,7 @@
                 </ol>
               </nav>           
         </div>     
-        <?php if (encryptids("D", $_SESSION['admin_type']) == 3  ){ ?> 
-        <div class="row">
-            <div class="col-12">
-                 <div class="card border-top card-body">
-                    <div>
-                           <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?= base_url();?>Quiz/quiz_reg'">Add New Quiz</button> 
-                           <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?= base_url();?>Quiz/quiz_archive'">Archive</button> 
-                    </div>
-                 </div>   
-            </div>     
-        </div>
-        <?php } ?>
-        <?php
-          if ($this->session->flashdata('MSG')) {
-            echo $this->session->flashdata('MSG');
-          }
-          ?>
+
         <div class="row">
             <div class="col-12 mt-3">
             <div class="card border-top card-body">
@@ -63,24 +47,9 @@
                                  <td><?= $quiz['status_name']?></td>
                                  <td class="d-flex border-bottom-0">
                                   
-                                 <a href="quiz_view/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">View</a> 
-                                     <?php if (encryptids("D", $_SESSION['admin_type']) == 3){ ?>
-                                      <?php if($quiz['status']==3 || $quiz['status']==6 ){?>
-                                        <a href="publishQuiz/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">Publish</a>
-                                        
-                                    <?php } ?>
-                                    <?php if($quiz['status']==5){?>
-                                         
-                                        <a href="unPublishQuiz/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">UnPublish</a>
-                                    <?php } ?>
-                                   
-                                    <?php if($quiz['status']==1 || $quiz['status']==4 ){?>
-                                        <a href="editquiz/<?= $quiz['id']?>" class="btn btn-info btn-sm mr-2 text-white">Edit</a>
-                                        <a href="sendApprove/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">Create</a>
-                                          <button onClick="" class="btn btn-danger btn-sm mr-2">Delete</button>
-
-                                    <?php } ?>
-                                    <?php } ?>
+                                 <a href="quiz_view/<?= $quiz['id']?>"class="btn btn-primary btn-sm mr-2">View</a>
+                                 <a href="quiz_list"class="btn btn-primary btn-sm mr-2">Restore</a> 
+                                    
                                 </td>
                             </tr>
                             <?php } }?>

@@ -27,8 +27,10 @@
     <script src="<?php echo base_url();?>assets/admin/js/demo/chart-pie-demo.js"></script> -->
     <script>
     $(document).ready(function () {
-    $('#example').DataTable();
+    $('#example').DataTable({
+        scrollX: true,
     });
+});
    </script>
     <!-- Scroll to Top Button-->
   

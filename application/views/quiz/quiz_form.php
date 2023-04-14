@@ -35,9 +35,9 @@
             <div class="card border-top">
                <div class="card-body"> 
                 <div class="row">
-                    <div class="mb-2 col-md-4">
+                    <div class="mb-2 col-md-12">
                         <label class="d-block text-font">Title of Quiz<sup class="text-danger">*</sup></label>
-                        <input type="text" class="form-control input-font" name="title" id="title" value="<?php echo set_value('title')?>" placeholder="Enter Quiz Title">
+                        <textarea type="text" class="form-control input-font" name="title" id="title" value="<?php echo set_value('title')?>" placeholder="Enter Quiz Title"></textarea>
                         <span class="error_text"><?php echo form_error('title');?></span>
                         
                     </div>
@@ -120,6 +120,19 @@
                          <span class="error_text"><?php echo form_error('quiz_level_id');?></span>
                          
                     </div>  
+                    <div class="mb-2 col-md-4">
+                        <label class="d-block text-font">Regional Level<sup class="text-danger">*</sup></label>
+                        <select id="regional" name="regional" class="form-control input-font">
+                            <option value="" selected disabled>--select--</option>
+                            <option value="#">Maharashtra</option>
+                            <option value="#">Karnataka</option>
+                       
+
+                        </select>
+                         <span class="error_text"><?php echo form_error('quiz_level_id');?></span>
+                         
+                    </div>
+                    
                 </div>
                
                 <div class="row">
@@ -176,6 +189,20 @@
                          <span class="error_text"><?php echo form_error('language_id');?></span>
 
                        </div>
+                       <div class="mb-2 col-md-4">
+                        <label class="d-block text-font">Question Switching Type<sup class="text-danger">*</sup></label>
+                        <select id="language_id" name="language_id" class="form-control input-font" value="<?php echo set_value('language_id'); ?>">
+                            <option value="" selected disabled>--Select Type--</option>
+                             
+                            <option value="#">Serially</option>
+                            <option value="#">Random</option>
+                       
+
+                        </select>
+
+                         <span class="error_text"><?php echo form_error('language_id');?></span>
+
+                       </div>
                          
                 </div>
                 
@@ -196,7 +223,7 @@
                          <span class="error_text"><?php echo form_error('fdetails');?></span>
                     </div> 
                     <div class="mb-2 col-md-4">
-                        <label class="d-block text-font">Icon (Image upload)<sup class="text-danger">*</sup></label>
+                        <label class="d-block text-font">Icon (Image upload)</label>
                         <div class="d-flex">
                          <div>
                             <input type="file" id="fprize_img" accept="image/jpeg,image/png,image/jpg" onchange="loadFileFirst(event)" name="fprize_img" class="form-control-file" >
@@ -246,7 +273,7 @@
                          <span class="error_text"><?php echo form_error('sdetails');?></span>
                     </div>
                     <div class="mb-2 col-md-4">
-                        <label class="d-block text-font">Icon (Image upload)<sup class="text-danger">*</sup></label>
+                        <label class="d-block text-font">Icon (Image upload)</label>
                         <div class="d-flex">
                          <div>
                             <input type="file" id="sprize_img" accept="image/jpeg,image/png,image/jpg" onchange="loadFileSecond(event)" name="sprize_img" class="form-control-file" >
@@ -295,7 +322,7 @@
                          <span class="error_text"><?php echo form_error('tdetails');?></span>
                     </div>
                     <div class="mb-2 col-md-4">
-                        <label class="d-block text-font">Icon (Image upload)<sup class="text-danger">*</sup></label>
+                        <label class="d-block text-font">Icon (Image upload)</label>
                         <div class="d-flex">
                          <div>
                             <input type="file" id="tprize_img" accept="image/jpeg,image/png,image/jpg" onchange="loadFileThird(event)" name="tprize_img" class="form-control-file">
@@ -343,6 +370,38 @@
                         <input type="text" class="form-control input-font" name="cdetails" id="cdetails" placeholder="Enter Details"value="<?php echo set_value('cdetails')?>">
                          <span class="error_text"><?php echo form_error('cdetails');?></span>
                     </div>
+                    <div class="mb-2 col-md-4">
+                        <label class="d-block text-font">Icon (Image upload)</label>
+                        <div class="d-flex">
+                         <div>
+                            <input type="file" id="tprize_img" accept="image/jpeg,image/png,image/jpg" onchange="loadFileThird(event)" name="tprize_img" class="form-control-file">
+                             <span class="error_text"><?php echo form_error('tprize_img');?></span>
+                         </div>
+                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalThird">
+                            Preview
+                          </button>
+                        </div>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalThird" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="max-width: 700px;">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <img id="outputThird" width="100%"/>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" onclick="resetThird();" data-bs-dismiss="modal">ReSet</button>
+                                  <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>       
+                                      <!-- Modal -->
+                      </div>
                 </div>
                 <div class="row mt-2">
                 <div class="col-md-4 prizes-section">
@@ -387,6 +446,10 @@
                         <label class="d-block text-font">Question Bank Id<sup class="text-danger">*</sup></label>
                         <input type="text" class="form-control input-font" name="qbid" id="qbid" placeholder="Enter Question Bank ID" readonly> 
                     </div>
+                    <div class="mb-2 col-md-4">
+                        <label class="d-block text-font">Language<sup class="text-danger">*</sup></label>
+                        <input type="text" class="form-control input-font" name="Language" id="Language" placeholder="Enter Language" readonly> 
+                    </div>
                 </div>
                 <div class="row">
                     <div class="mb-2 col-md-4">
@@ -400,16 +463,22 @@
                 </div>
                 <div class="row mt-2">
                 <div class="mb-2 col-md-12">
-                <table id="example" class="hover table-bordered" style="width:100%">
+                <table id="example" class="table-bordered display nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th>Question No.</th>
                             <th>Question</th>
+                            <th>Question in Hindi</th>
                             <th>Option 1</th>
+                            <th>Option 1 in Hindi</th>
                             <th>Option 2</th>
+                            <th>Option 2 in Hindi</th>
                             <th>Option 3</th>
+                            <th>Option 3 in Hindi</th>
                             <th>Option 4</th>
+                            <th>Option 4 in Hindi</th>
                             <th>Option 5</th>
+                            <th>Option 5 in Hindi</th>
                             <th>Correct Option</th>
                             
                         </tr>
