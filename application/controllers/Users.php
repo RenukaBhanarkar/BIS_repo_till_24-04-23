@@ -496,8 +496,10 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer');  
     }
     public function winners(){
+        $this->load->model('Admin/Admin_model');
+        $data=$this->Admin_model->winner_wall_list();
         $this->load->view('users/headers/header');
-        $this->load->view('users/winners');
+        $this->load->view('users/winners',$data);
         $this->load->view('users/footers/footer');  
     }
     public function yourwall(){
@@ -562,6 +564,11 @@ class Users extends CI_Controller {
     }
 
     public function add_btm(){
+        // print_r($_FILES);
+        // if(!($_FILES['document']['name'])){
+        //     echo "not set";
+        // }
+        // die;
         $formdata1['user_id']= encryptids("D", $_SESSION['admin_id']);
         $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
         $formdata1['user_name']=  encryptids("D", $_SESSION['admin_name']);
@@ -599,7 +606,7 @@ class Users extends CI_Controller {
                     $data['message'] = $this->upload->display_errors();
                 }
         }
-        if(isset($_FILES['document'])){
+        if(!($_FILES['document']['name'])==""){
           //  echo "document";
           
                 $btm_document = "btm_document" . time() . '.pdf';
@@ -626,7 +633,10 @@ class Users extends CI_Controller {
                 $target_dir = "uploads/by_the_mentots/doc";
                 move_uploaded_file($_FILES["document"]["tmp_name"],$btm_path);
                // die;
+        }else{
+            $btm_document="";
         }
+        
         $this->load->model('admin/by_the_mentor_model');
         $uid=$this->by_the_mentor_model->add_user($formdata1);
 

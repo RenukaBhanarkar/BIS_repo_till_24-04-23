@@ -1349,12 +1349,34 @@ class Admin extends CI_Controller
     } 
     public function byTheMentors(){
         $this->load->model('admin/By_the_mentor_model');        
-        $data['bythementors']=$this->By_the_mentor_model->allbtm();
-       // print_r($data['bythementors']); die;
+        // $data['bythementors']=$this->By_the_mentor_model->allbtm();
+        $data['created']=$this->By_the_mentor_model->allbtmbycreated();
+        $data['approved']=$this->By_the_mentor_model->allbtmbyapproved();
+        $data['rejected']=$this->By_the_mentor_model->allbtmbyrejected();
+        // print_r($data); die;
+    //    print_r($data['bythementors']); die;
         $this->load->view('admin/headers/admin_header');
         $this->load->view('users/by_the_montor_list',$data);
         $this->load->view('admin/footers/admin_footer');
     }
+    public function rejectbtTheMentor(){
+        // print_r($_POST);
+        // die;
+        $this->load->model('admin/By_the_mentor_model');   
+         $formdata['id'] = $this->input->post('id');
+         $formdata['reject_reason'] = $this->input->post('reason');
+         $formdata['status']="4";
+ 
+         $id = $this->By_the_mentor_model->rejectbtm($formdata);
+        //  print_r($id); die;
+         if($id){
+             $this->session->set_flashdata('MSG', ShowAlert("Record Rejected", "SS"));
+             redirect(base_url() . "admin/byTheMentors", 'refresh');
+         } else {
+             $this->session->set_flashdata('MSG', ShowAlert("Failed to update reject,Please try again", "DD"));
+             redirect(base_url() . "admin/byTheMentors", 'refresh');
+         } 
+      }
     public function view_btm($id){
         $this->load->model('admin/By_the_mentor_model');
         $data['data']=$this->By_the_mentor_model->get_btm($id);
@@ -1468,6 +1490,30 @@ class Admin extends CI_Controller
         }
         redirect(base_url() . "admin/bythementor_archivelist", 'refresh');
     } 
+    public function approve_btm(){
+        try {   
+            $this->load->model('admin/By_the_mentor_model');         
+            $que_id = $this->input->post('que_id');
+            $id = $this->By_the_mentor_model->btm_approve($que_id);
+            if ($id) {
+                
+                $data['status'] = 1;
+                $data['message'] = 'Record Archived.';
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to Archive.';           
+            }
+            
+            $this->session->set_flashdata('MSG', ShowAlert("Record Approve Successfully", "SS"));
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "admin/byTheMentors", 'refresh');
+    }
     
     public function deleteByTheMentor(){
         try {   

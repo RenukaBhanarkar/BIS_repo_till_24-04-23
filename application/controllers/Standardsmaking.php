@@ -14,7 +14,7 @@ class Standardsmaking extends CI_Controller
         $this->load->model('Standards_Making/Standards_Making_model');
         date_default_timezone_set("Asia/Calcutta");
          
-    }
+    } 
     public function index()
     {
         if ($this->Admin_model->checkAdminLogin()) {
@@ -367,30 +367,195 @@ public function publish($id)
         $this->load->view('admin/footers/admin_footer');
     }
     public function manage_session_list(){
+        $LiveSessionList = $this->Standards_Making_model->getLiveSessionList();
+        $data = array();
+        $data['liveSessionList'] = $LiveSessionList;
+
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('Standardsmaking/manage_session_list');
+        $this->load->view('Standardsmaking/manage_session_list',$data);
         $this->load->view('admin/footers/admin_footer');
     }
     public function publish_list(){
+        $PublishSessionList = $this->Standards_Making_model->getPublishSessionList();
+        $data = array();
+        $data['liveSessionList'] = $PublishSessionList;
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('Standardsmaking/publish_list');
+        $this->load->view('Standardsmaking/publish_list',$data);
         $this->load->view('admin/footers/admin_footer');
     }
 
-    public function live_session_view(){
+    public function live_session_view($id){
+        $id = encryptids("D", $id);
+        $data=array();
+        $liveSessionView = $this->Standards_Making_model->liveSessionViewView($id); 
+        $data['liveSession']=$liveSessionView;
+
         $this->load->view('admin/headers/admin_header');
-         $this->load->view('Standardsmaking/live_session_view');
+         $this->load->view('Standardsmaking/live_session_view',$data);
          $this->load->view('admin/footers/admin_footer');
     }
-    public function live_session_edit(){
-        $this->load->view('admin/headers/admin_header');
-        $this->load->view('Standardsmaking/live_session_edit');
+    public function live_session_edit($id){
+         $id = encryptids("D", $id);
+        $data=array();
+        $liveSessionView = $this->Standards_Making_model->liveSessionViewView($id); 
+        $data['liveSession']=$liveSessionView;
+
+        $this->load->view('admin/headers/admin_header');  
+        if ($this->form_validation->run('live_session_form') == FALSE) 
+        {
+            $this->load->view('Standardsmaking/live_session_edit',$data);
+        } 
+        else 
+        {
+            if (!file_exists('uploads/live_session_form/video')) { mkdir('uploads/live_session_form/video', 0777, true); }
+
+            if (!file_exists('uploads/live_session_form/thumbnail')) { mkdir('uploads/live_session_form/thumbnail', 0777, true); }
+
+            if (!file_exists('uploads/live_session_form/doc_pdf')) { mkdir('uploads/live_session_form/doc_pdf', 0777, true); }
+
+            if (!file_exists('uploads/live_session_form/image')) { mkdir('uploads/live_session_form/image', 0777, true); }
+
+            $videosize=$_FILES['video']['size'];  
+            if ($videosize > 0 ) 
+            {
+                $videopath = 'uploads/live_session_form/video/'; 
+                $videolocation = $videopath . time() .'video'. $_FILES['video']['name']; 
+                move_uploaded_file($_FILES['video']['tmp_name'], $videolocation);
+            }
+            else
+            {
+                $videolocation=$this->input->post('lastvideo');
+                // $videolocation=$this->input->post('lastvideo');
+            }
+
+            $thumbnailsize=$_FILES['thumbnail']['size']; 
+            if ($thumbnailsize > 0 ) 
+            {
+                $thumbnailpath = 'uploads/live_session_form/thumbnail/'; 
+                $thumbnaillocation = $thumbnailpath . time() .'thumbnail'. $_FILES['thumbnail']['name']; 
+                move_uploaded_file($_FILES['thumbnail']['tmp_name'], $thumbnaillocation);
+            }
+            else
+            {
+                $thumbnaillocation=$this->input->post('lastthumbnail'); 
+                // $videolocation=$this->input->post('lastvideo');
+            }
+             $imagesize=$_FILES['image']['size']; 
+            if ($imagesize > 0 ) 
+            {
+                $imagepath = 'uploads/live_session_form/image/'; 
+                $imagelocation = $imagepath . time() .'image'. $_FILES['image']['name']; 
+                move_uploaded_file($_FILES['image']['tmp_name'], $imagelocation);
+            }
+            else
+            {
+                $imagelocation=$this->input->post('lastimage'); 
+                // $videolocation=$this->input->post('lastvideo');
+            }
+
+             $doc_pdfsize=$_FILES['doc_pdf']['size']; 
+            if ($doc_pdfsize > 0 ) 
+            {
+                $doc_pdfpath = 'uploads/live_session_form/doc_pdf/'; 
+                $doc_pdflocation = $doc_pdfpath . time() .'doc_pdf'. $_FILES['doc_pdf']['name']; 
+                move_uploaded_file($_FILES['doc_pdf']['tmp_name'], $doc_pdflocation);
+            }
+            else
+            {
+                $doc_pdflocation=$this->input->post('lastdoc_pdf');
+                // $videolocation=$this->input->post('lastvideo');
+            } 
+
+            $formdata = array(); 
+            $frmid = $this->input->post('id');
+            $formdata['type_of_post'] = $this->input->post('type_of_post');
+            $formdata['title'] = $this->input->post('title');
+            $formdata['description'] = $this->input->post('description'); 
+            $formdata['session_link'] = $this->input->post('session_link'); 
+            $formdata['thumbnail'] =$thumbnaillocation; 
+            $formdata['video'] = $videolocation;
+            $formdata['image'] = $imagelocation;
+            $formdata['doc_pdf'] = $doc_pdflocation; 
+            $formdata['updated_on'] = date('Y-m-d h:i:s');
+            $id = $this->Standards_Making_model->joinclassroomFormUpdate($formdata,$frmid);
+            if ($id)
+            {
+                $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
+                redirect(base_url() . "Standardsmaking/live_session_list", 'refresh');
+            }
+            else
+            {
+                $this->session->set_flashdata('MSG', ShowAlert("Failed to create new post/ live session, Please try again", "DD"));
+                redirect(base_url() . "Standardsmaking/live_session_form", 'refresh');
+            }
+        }
+
+
+        
         $this->load->view('admin/footers/admin_footer');
     }
     public function live_session_archived(){
+        $PublishSessionList = $this->Standards_Making_model->getArchivedSessionList();
+        $data = array();
+        $data['liveSessionList'] = $PublishSessionList;
+
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('Standardsmaking/live_session_archived');
+        $this->load->view('Standardsmaking/live_session_archived',$data);
         $this->load->view('admin/footers/admin_footer');
+    }
+
+    public function deleteLiveSession(){
+        try {   
+                 
+            $id = $this->input->post('id');
+            $id = $this->Standards_Making_model->deleteLiveSession($id);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Deleted successfully.';
+                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }
+            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));            
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "Standardsmaking/manage_session_list", 'refresh');
+    }
+
+    public function updateStatusLiveSession(){
+        try {  
+
+                 
+            $id = $this->input->post('id');
+            $formdata['status'] = $this->input->post('status'); 
+            $formdata['updated_on'] = date('Y-m-d h:i:s');
+
+            $id = $this->Standards_Making_model->updateStatusLiveSession($id,$formdata);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Updated successfully.';
+                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }
+            $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));            
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "Standardsmaking/manage_session_list", 'refresh');
     }
      
 }

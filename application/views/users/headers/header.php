@@ -96,8 +96,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         } ?>
                                     </span>
                                 </li>
+                                <?php if (!isset($_SESSION['admin_name'])) { ?>
                                 <li><a href="#" class="show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li>
-                                <!-- <li><a href="#" class="after_show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li> -->
+                                <?php } else{ ?>
+                                <li><a href="#" class="after_show"><img src="<?php echo base_url(); ?>assets/images/user.png" style="height:31px;"></a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -114,7 +117,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="after_login_details">
             <div class="profile-top nodtranslate">
                 <div class="profile-pic"><img src="https://auth.mygov.in/avatar/20fb3fcb-8a0e-4151-82ae-4df1d6639867" width="86px;"></div>
-                <span class="mt-2">BhagyashreeAvcahar</span>
+                <span class="mt-2"><?php echo encryptids("D", $_SESSION['admin_name']); ?></span>
             </div>
 		    <ul>
 		      <li>

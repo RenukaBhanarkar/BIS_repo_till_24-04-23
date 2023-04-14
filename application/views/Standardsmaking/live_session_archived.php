@@ -28,16 +28,35 @@
                             </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>1</td>
-                              <td>How science turns into standards of the BIS</td>
-                              <td>This video is basically about the standards explaining the science and technology of the system.</td>
-                              <td><i class="fa fa-video"></i></td>
-                              <td>Created Published Unpublish</td>
+
+                             <?php foreach ($liveSessionList as $key => $value) {?>
+
+                                <tr>
+                              <td><?= $key + 1;?></td>
+                              <td><?= $value['title']?></td>
+                              <td>
+                                <?php 
+                                if ($value['type_of_post']==1) {  $data='Text Upload'; }
+                                if ($value['type_of_post']==2) { $data='Video Upload'; }
+                                if ($value['type_of_post']==3) { $data='Live session link'; }
+                                ?>
+
+                                <?= $data?></td> 
+                              <td><?= $value['created_on']?></td>
+                              <td><?= $value['status_name']?></td>
                               <td class="d-flex">
-                                 <a href="live_session_view" class="btn btn-primary btn-sm mr-2" title="View">View</a>
-                                 <a class="btn btn-info btn-sm mr-2" title="View">Restore</a>
-                              </td>
+
+                                <?php $id= encryptids("E", $value['id'] )?>
+
+                                <a href="live_session_view/<?= $id;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
+                                 
+                                  <button onclick="updateStatusLiveSession('<?= $value['id']?>',1);" data-id='<?php echo $value['id']; ?>' class="btn btn-secondary btn-sm mr-2 delete_img">Restore</button> 
+                            </td>
+                        </tr>
+                                
+                           <?php }?>
+
+                            
 
                         </tbody>
                     </table>
@@ -45,8 +64,54 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="updatemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><span class="sms"></span> Record</h5>
+                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to <span class="sms"> </span> ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary updatestatus" data-bs-dismiss="modal"><span class="sms"> </span></button>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- /.container-fluid -->
 
     </div>
+    <script type="text/javascript">
+        function updateStatusLiveSession(id,status) 
+    {
+        console.log(status)
+        if (status==1)  { $(".sms").text('Restore'); } 
+        $('#updatemodel').modal('show');
+        $('.updatestatus').on('click', function() 
+        {
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url(); ?>Standardsmaking/updateStatusLiveSession',
+                data: {
+                    id: id,
+                    status: status,
+                },
+                success: function(result) 
+                {
+                    location.reload();
+                },
+                error: function(result) {
+                    alert("Error,Please try again.");
+                }
+            });
+        });
+    }
+
+    </script>
     <!-- End of Main Content -->
  </body>

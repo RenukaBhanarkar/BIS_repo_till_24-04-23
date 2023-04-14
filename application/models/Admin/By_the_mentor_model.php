@@ -40,6 +40,53 @@ class By_the_mentor_model extends CI_Model {
         return $result;
        
     }
+    public function allbtmbycreated(){
+        // print_r($id); die;
+        
+        // $data=['btm.status'=>1];
+        $this->db->select('btm.*,tms.status_name');
+        $this->db->from('tbl_by_the_mentors as btm');
+        $this->db->join('tbl_mst_status tms','tms.id=btm.status');
+        $this->db->where('btm.status','1');
+        $this->db->order_by('btm.created_on','desc');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    public function allbtmbyapproved(){     
+        // print_r($id); die;
+        
+        //  $data=['btm.status'=>'5','btm.status'=>'6'];  
+        $this->db->select('btm.*,tms.status_name');
+        $this->db->from('tbl_by_the_mentors as btm');
+        $this->db->join('tbl_mst_status tms','tms.id=btm.status');
+        $this->db->where('btm.status','5');
+        $this->db->or_where('btm.status','6');
+        $this->db->or_where('btm.status','3');
+        $this->db->order_by('btm.created_on','desc');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    public function rejectbtm($data){
+        $this->db->where('id',$data['id']);
+        if($this->db->update('tbl_by_the_mentors',$data)){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    public function allbtmbyrejected(){        
+        $this->db->select('btm.*,tms.status_name');
+        $this->db->from('tbl_by_the_mentors as btm');
+        $this->db->join('tbl_mst_status tms','tms.id=btm.status');
+        $this->db->where('btm.status','4');
+        $this->db->order_by('btm.created_on','desc');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
     public function get_btm($id){
         
         //$this->db->select('tyw.*,ta.name,ta.email_id,tms.status_name');
@@ -102,7 +149,15 @@ class By_the_mentor_model extends CI_Model {
     }
     public function btm_unarchive($id){
         $this->db->where('id', $id);
-        if ($this->db->update('tbl_by_the_mentors',['status'=>'6'],['id'=>$id])) {
+        if ($this->db->update('tbl_by_the_mentors',['status'=>'1'],['id'=>$id])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function btm_approve($id){
+        $this->db->where('id', $id);
+        if ($this->db->update('tbl_by_the_mentors',['status'=>'3'],['id'=>$id])) {
             return true;
         } else {
             return false;

@@ -10,7 +10,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Create new post/ live session</li>
                 </ol>
             </nav> 
-        </div> 
+        </div>  
         <div class="row">
             <div class="col-12">
                 <div class="card border-top card-body">
@@ -19,7 +19,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+        <?php
+          if ($this->session->flashdata('MSG')) {
+            echo $this->session->flashdata('MSG');
+          }
+          ?>
        <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
@@ -51,8 +56,11 @@
                               <td><?= $value['created_on']?></td>
                               <td><?= $value['status_name']?></td>
                               <td class="d-flex">
-                              <a href="#" class="btn btn-primary btn-sm mr-2" title="View">View</a>
-                                  <a class="btn btn-info btn-sm mr-2" title="View" data-toggle="modal" data-target="#editForm">Edit</a>
+
+                                <?php $id= encryptids("E", $value['id'] )?>
+
+                                <a href="live_session_view/<?= $id;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
+                                <a href="live_session_edit/<?= $id;?>" class="btn btn-info btn-sm mr-2" title="View">Edit</a> 
                                   <a class="btn btn-danger btn-sm mr-2" title="View" data-toggle="modal" data-target="#deleteForm">Delete</a>
                                   <a class="btn btn-success btn-sm mr-2" title="View" data-toggle="modal" data-target="#createForm">Create</a>
                                   <a class="btn btn-primary btn-sm mr-2" title="View" data-toggle="modal" data-target="#archivesForm">Archives</a>

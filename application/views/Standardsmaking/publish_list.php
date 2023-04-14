@@ -32,22 +32,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>1</td>
-                              <td>How science turns into standards of the BIS</td>
-                              <td>Text</td>
-                              <td>12/02/2023</td>
+                            <?php foreach ($liveSessionList as $key => $value) {?>
+
+                                <tr>
+                              <td><?= $key + 1;?></td>
+                              <td><?= $value['title']?></td>
+                              <td>
+                                <?php 
+                                if ($value['type_of_post']==1) {  $data='Text Upload'; }
+                                if ($value['type_of_post']==2) { $data='Video Upload'; }
+                                if ($value['type_of_post']==3) { $data='Live session link'; }
+                                ?>
+
+                                <?= $data?></td> 
+                              <td><?= $value['created_on']?></td>
+
                               <td>567</td>
                               <td>45</td>
-                              <td>Pending</td>
-                              <td>Rejection</td>
-                              <td>12/03/2023</td>
-                              <td class="d-flex" style="width: 241px;">
-                                 <a href="#" class="btn btn-primary btn-sm mr-2" title="View">View</a>
-                                 <a class="btn btn-secondary btn-sm mr-2" title="View">Archives</a>
-                                 <a class="btn btn-success btn-sm mr-2" title="View">User Details</a>
+                              <td><?= $value['status_name']?></td>
+                              <td><?= $value['reason']?></td>
+                              <td><?= $value['updated_on']?></td>
+                              <td class="" style="width:559px;">
+                                 <?php $id= encryptids("E", $value['id'] )?>
+
+                                <a href="live_session_view/<?= $id;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
+                                <button onclick="updateStatusLiveSession('<?= $value['id']?>',9);" data-id='<?php echo $value['id']; ?>' class="btn btn-secondary btn-sm mr-2 delete_img">Archives</button> 
 
                               </td>
+                              
+                               
+                        </tr>
+                                
+                           <?php }?>
+                            
 
                         </tbody>
                     </table>
