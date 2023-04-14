@@ -32,7 +32,7 @@
              </div>    
            </div>
             <div class="winner-content">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleControls_1" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
                         <div class="cards-wrapper">

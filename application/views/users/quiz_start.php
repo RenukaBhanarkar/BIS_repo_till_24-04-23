@@ -94,6 +94,7 @@
                          
                              
                             <div class="d-flex float-end my-4">
+                            <button type="button" id="review" class="btn btn-primary" style="margin-right: 838px;">Mark For Review</button>
                                 <button type="button" id="prevBtn" class="btn btn-primary startQuiz me-2" onclick="nextPrev(-1)">Previous</button>
                                 <button type="button" id="nextBtn" class="btn btn-success startQuiz me-2" onclick="nextPrev(1)"><span>Next</span></button>
                             </div>
@@ -105,7 +106,7 @@
                     <div class="quiz-left-side ">
                         <div class="user-name">
 
-                            <img src="assets/images/user.png" class="user-icon">
+                            <img src="<?php echo base_url(); ?>assets/images/user.png" class="user-icon">
                             <div class="nav-bar-user-icon-section">
                                 <span class="user-profile-font"><b>Admin Name</b></span>
 
@@ -134,7 +135,8 @@
                             <ol>
                                 <li><span class="Quiz-circle green"></span>Answered </li>
                                 <li><span class="Quiz-circle red"></span>Not Answered </li> 
-                                <li><span class="Quiz-circle gray"></span>Not Visited</li> 
+                                <li><span class="Quiz-circle gray"></span>Not Visited</li>
+                                <li><span class="Quiz-circle blue"></span>Mark for Review</li> 
                             </ol>
                         </div>
                         <!-- <input type="" name="Submit" class="btn btn-info btn-sm"> -->

@@ -1838,7 +1838,7 @@ p.card-text {
 	position: absolute;
 	width: 100%;
 	display: none;
-	width: 262px;
+	width: 100%;
 	top: 0px;
 }
 .quiz-section {

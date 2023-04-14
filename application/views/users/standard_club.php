@@ -10,6 +10,14 @@
         p{
           text-align: center;
         }
+        .item {
+    height: 319px;
+}
+.owl-theme .owl-dots {
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    display: none;
+}
     </style>
 <section id="exchange_forum">
      <div class="container-fluid">
@@ -44,7 +52,7 @@
                 <div class="col-sm-3">
                     <div class="card" style="background: #014e9c; color:white;">
                         <div class="card-body new-card text-center">
-                                 <h5 class="card-title">Winners of the Post Maker</h5>
+                                 <h5 class="card-title">Winners of the Quiz</h5>
                                  <hr>
                                  <img src="<?=base_url();?>assets/images/background_img.webp" class="inner_image">
                                  <p class="card-text"><strong>Anis Mulani</strong></p>
@@ -122,6 +130,101 @@
             </div>    
         </div>
     </section>
+    <!-- <section class="">
+      <div class="container">
+      <div class="bloginfo">
+                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Standard Writting Competition</h3>
+            </div>
+        <div class="col-md-5">
+                <div class="row">
+                        <div class="live_content">
+                           <div class="live_section_title">
+                                    
+                            </div>
+                            <div class="owl-carousel owl-theme" id="owl-caraousal_2" style="padding: 30px 0px 0px 0px;">
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1" >Title of Competition/p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                                <div class="item"><div class="quiz-section">
+                            <div class="quiz-box_live">
+                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
+                            </div> 
+                            <p class="quiz-text overflow-hidden p-1">Title of Competition</p>
+                    </div></div>
+                            </div>
+                            <a href="join_the_classroom_view" class="view-btn" title="View All">View All</a>
+                            </div>
+                            
+                    </div>
+
+            </div>
+       
+      </div>
+
+    </section> -->
     <section style="background-color: #e3effb94;">
         <div class="container">
             <div class="row">

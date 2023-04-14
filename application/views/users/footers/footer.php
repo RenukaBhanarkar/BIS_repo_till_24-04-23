@@ -130,6 +130,7 @@ $('#carouselExampleControls').owlCarousel({
     }
     }
 });
+
 $('#owl-caraousal_1').owlCarousel({
     loop:true,
     margin:10,
