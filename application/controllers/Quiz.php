@@ -544,4 +544,9 @@ class Quiz extends CI_Controller
         $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
         return substr(str_shuffle($str_result), 0, $length_of_string );
     }
+    public function quiz_archive(){        
+        $this->load->view('admin/headers/admin_header');;
+        $this->load->view('Quiz/quiz_archive');
+        $this->load->view('admin/footers/admin_footer');
+    }
 }

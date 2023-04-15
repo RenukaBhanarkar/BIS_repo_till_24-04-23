@@ -254,6 +254,12 @@ class Subadmin extends CI_Controller
         $this->load->view('quebank/question_bank_form');
         $this->load->view('admin/footers/admin_footer');
     }
+    public function question_bank_archive()
+    {
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('quebank/question_bank_archive');
+        $this->load->view('admin/footers/admin_footer');
+    }
     // public function question_bank_edit()
     // {
     //     $this->load->view('admin/headers/admin_header');

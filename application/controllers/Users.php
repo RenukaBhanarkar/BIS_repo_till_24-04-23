@@ -838,6 +838,11 @@ class Users extends CI_Controller {
         $this->load->view('users/user_attempt');
         $this->load->view('users/footers/footer');
     }
+    public function learning_standard(){        
+        $this->load->view('users/headers/header');
+        $this->load->view('users/learning_standard');
+        $this->load->view('users/footers/footer');
+    }
 
 
 }
