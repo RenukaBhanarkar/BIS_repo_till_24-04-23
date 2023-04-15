@@ -517,6 +517,22 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer');  
     }
     public function add_your_wall(){
+        $formdata1['user_id']= encryptids("D", $_SESSION['admin_id']);
+        $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
+        $formdata1['user_name']=  encryptids("D", $_SESSION['admin_name']);
+        // $formdata1['admin']=  encryptids("D", $_SESSION['admin']);
+        $formdata1['user_type']=  encryptids("D", $_SESSION['admin_type']);
+        // $formdata1['user_post']= encryptids("D", $_SESSION['admin_post']);
+        // print_r($formdata); 
+        // die;
+        if(isset($_SESSION['admin_id'])){
+            // $formdata['user_id']=$_SESSION['admin_id'];
+            $formdata['user_id']= encryptids("D", $_SESSION['admin_id']);
+        }else{
+            // die;
+            $this->session->set_flashdata('MSG', ShowAlert("Please Login", "SS"));
+            redirect(base_url() . "users/yourwall", 'refresh');
+        }
         // $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         // $formdata['user_id'] = $admin_id;
         // if(!$admin_id){
@@ -542,7 +558,11 @@ class Users extends CI_Controller {
         $formdata['title'] = $this->input->post('title');
         $formdata['description'] = $this->input->post('description');
         $formdata['status'] = '1';
-        $formdata['image'] = $banner_img;    
+        $formdata['image'] = $banner_img;   
+        
+        $this->load->model('admin/by_the_mentor_model');
+        $uid=$this->by_the_mentor_model->add_user($formdata1);
+
         
         //print_r($formdata); die;    
         $this->load->model('admin/your_wall_model');

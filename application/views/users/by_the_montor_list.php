@@ -17,7 +17,7 @@
             <!-- Content Row -->
 
             <!-- Content Row -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12">
                     <div class="card border-top card-body">
                         <div>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         <?php }  ?>
         <div class="row" style="padding:10px;">
         <div class="card p-3 shadow">
@@ -35,16 +35,17 @@
                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">New Requests</button>
                         <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Approve Requests</button>
                         <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Rejected Requests</button>
+                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-archive" type="button" role="tab" aria-controls="nav-archive" aria-selected="false">Archive Requests</button>
                     </div>
                 </nav>
             <div class="tab-content p-3 border bg-light" id="nav-tabContent">
               <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="col-12 mt-3">
                    <div class="card border-top card-body">
-                    <table id="example" class="table table-bordered">
+                    <table id="example" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Sr. No.</th>
+                                <th>Sr. No.</th>                               
                                 <th>Title</th>
                                 <th>Created On</th>
                                 <th>Image</th>
@@ -59,7 +60,7 @@
                                 foreach ($created as $list_btm1) { ?>
 
                                     <tr>
-                                        <td><?php echo $i++ ?></td>
+                                        <td><?php echo $i++ ?></td>                                        
                                         <td><?php echo $list_btm1['title']; ?></td>                                        
                                         <td><?php echo $list_btm1['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm1['image']) { ?>
@@ -77,18 +78,19 @@
                                         <td class="d-flex border-bottom-0">
                                             <!-- <button onClick="" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal"
                                         data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button> -->
-                                        <a href="<?php echo base_url(); ?>admin/view_btm/<?php echo $list_btm1['id'] ?>"><button class="btn btn-info btn-sm mr-2">view</button></a>
+                                        <a href="<?php echo base_url(); ?>admin/view_btm/<?php echo $list_btm1['id'] ?>"><button class="btn btn-info btn-sm mr-2">View</button></a>
+                                        <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {  ?>
                                             <?php if($list_btm1['status'] == '1'){ ?>
                                                 <button onclick="deleteByTheMentor(' <?php echo $list_btm1['id']; ?> ');" data-id='<?php echo $list_btm1['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
                                                 <!-- <button class="btn btn-primary btn-sm mr-2" onclick="sendPublish('<?php echo $list_btm1['id']; ?>')" data-id ='<?php echo $list_btm1['id']; ?>'>Publish</button> -->
                                                 <button onclick="approve('<?php echo $list_btm1['id']; ?>')" class="btn btn-success btn-sm mr-2 text-white">Approve</button>
                                                 <!-- <button class="btn btn-primary btn-sm" onclick="sendReject('<?php echo $list_btm1['id']; ?>')" data-id ='<?php echo $list_btm1['id']; ?>'>Reject</button> -->
                                                 <button onclick="reject('<?php echo $list_btm1['id']; ?>')" class="btn btn-danger btn-sm mr-2 text-white">Reject</button>
-                                                <!-- <button class="btn btn-primary btn-sm ml-2" onclick="sendArchive('<?php echo $list_btm1['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Archive</button> -->
+                                                <button class="btn btn-primary btn-sm ml-2" onclick="sendArchive('<?php echo $list_btm1['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Archive</button>
                                           
                                                 <!-- <button class="btn btn-primary btn-sm" onclick="sendUnPublish('<?php echo $list_btm1['id']; ?>')" data-id ='<?php echo $list_btm1['id']; ?>'>UnPublish</button> -->
                                          <?php } ?>
-                                        
+                                        <?php } ?>
                                             <!-- Modal -->
                                             
                                     </tr>
@@ -100,13 +102,15 @@
                 </div>
             </div>
             </div>
-            <div class="tab-pane fade active show" id="nav-profile" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="col-12 mt-3">
                    <div class="card border-top card-body">
-                    <table id="example1" class="table table-bordered">
+                    <table id="example1" class=" table-bordered display nowrap" style="width:100%;" >
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
+                                <th>Name</th>
+                                <th>Email</th>
                                 <th>Title</th>
                                 <th>Created On</th>
                                 <th>Image</th>
@@ -118,10 +122,12 @@
                         <tbody>
                             <?php if (!empty($approved)) {
                                 $i = 1;
-                                foreach ($approved as $list_btm) { ?>
+                                foreach ($approved as $list_btm) { ?> 
 
                                     <tr>
                                         <td><?php echo $i++ ?></td>
+                                        <td><?php echo $list_btm['user_name']; ?></td>
+                                        <td><?php echo $list_btm['email']; ?></td>        
                                         <td><?php echo $list_btm['title']; ?></td>                                        
                                         <td><?php echo $list_btm['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm['image']) { ?>
@@ -136,17 +142,18 @@
                                         <td class="d-flex border-bottom-0">
                                             <!-- <button onClick="" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal"
                                         data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button> -->
-                                        <a href="<?php echo base_url(); ?>admin/view_btm/<?php echo $list_btm['id'] ?>"><button class="btn btn-info btn-sm mr-2">view</button></a>
+                                        <a href="<?php echo base_url(); ?>admin/view_btm/<?php echo $list_btm['id'] ?>"><button class="btn btn-info btn-sm mr-2">View</button></a>
+                                        <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {  ?>
                                             <?php if(!($list_btm['status_name'] == 'Published')){ ?>
                                                 <!-- <button onclick="deleteByTheMentor(' <?php echo $list_btm['id']; ?> ');" data-id='<?php echo $list_btm['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button> -->
                                                 <button class="btn btn-success btn-sm" onclick="sendPublish('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Publish</button>
                                                 <button class="btn btn-primary btn-sm ml-2" onclick="sendArchive('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Archive</button>
                                             <?php }else if($list_btm['status_name'] == 'Published'){ ?>
                                                 <button class="btn btn-primary btn-sm" onclick="sendUnPublish('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>UnPublish</button>
-                                         <?php } ?>
+                                         <?php } }?>
                                         
                                             <!-- Modal -->
-                                            
+                                        </td>      
                                     </tr>
                             <?php }
                             } ?>
@@ -156,10 +163,10 @@
                 </div>
             </div>
             </div>
-            <div class="tab-pane fade active show" id="nav-contact" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-pane fade show" id="nav-contact" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="col-12 mt-3">
                    <div class="card border-top card-body">
-                    <table id="example2" class="table table-bordered">
+                    <table id="example2" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -194,17 +201,71 @@
                                         <td class="d-flex border-bottom-0">
                                             <!-- <button onClick="" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal"
                                         data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button> -->
-                                        <a href="<?php echo base_url(); ?>admin/view_btm/<?php echo $list_btm['id'] ?>"><button class="btn btn-info btn-sm mr-2">view</button></a>
+                                        <a href="<?php echo base_url(); ?>admin/view_btm/<?php echo $list_btm['id'] ?>"><button class="btn btn-info btn-sm mr-2">View</button></a>
+                                        <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {  ?>
                                            
                                                 <button onclick="deleteByTheMentor(' <?php echo $list_btm['id']; ?> ');" data-id='<?php echo $list_btm['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
                                                 <!-- <button class="btn btn-primary btn-sm" onclick="sendPublish('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Publish</button> -->
                                                 <button class="btn btn-primary btn-sm ml-2" onclick="sendArchive('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Archive</button>
                                           
                                                 <!-- <button class="btn btn-primary btn-sm" onclick="sendUnPublish('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>UnPublish</button> -->
-                                 
+                                 <?php } ?>
                                         
                                             <!-- Modal -->
                                             
+                                    </tr>
+                            <?php }
+                            } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane fade show" id="nav-archive" role="tabpanel" aria-labelledby="nav-archive-tab">
+                <div class="col-12 mt-3">
+                   <div class="card border-top card-body">
+                    <table id="example" class="table table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Title</th>
+                                <th>Created On</th>
+                                <th>Image</th>
+                                <th>Document</th>                                
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($archive)) {
+                                $i = 1;
+                                foreach ($archive as $list_btm1) { ?>
+
+                                    <tr>
+                                        <td><?php echo $i++ ?></td>
+                                        <td><?php echo $list_btm1['title']; ?></td>                                        
+                                        <td><?php echo $list_btm1['created_on']; ?></td>                                        
+                                        <td><?php if ($list_btm1['image']) { ?>
+                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                            <?php } else {
+                                                echo "No Uploaded";
+                                            } ?>
+                                        </td>
+                                        <td style="text-align: center;"><?php if(empty($list_btm1['document'])){ echo "-"; }else{?>
+                                            <a href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$list_btm1['document']; ?>" target="_blank"><img  src="<?php echo base_url().'uploads/pdf.png'; ?>" width="25px"/></a>
+                                            <?php } ?>
+                                        </td>
+                                        <td><?php echo $list_btm1['status_name']; ?> </td>
+
+                                        <td class="d-flex border-bottom-0">
+                                            <!-- <button onClick="" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal"
+                                        data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button> -->
+                                        <a href="<?php echo base_url(); ?>admin/view_btm/<?php echo $list_btm1['id'] ?>"><button class="btn btn-info btn-sm mr-2">View</button></a>
+                                        <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {  ?>
+                                        <button class="btn btn-info btn-sm" onclick="sendUnArchive('<?php echo $list_btm1['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Restore</button>                                        
+                                            <!-- Modal -->
+                                            <?php } ?>
                                     </tr>
                             <?php }
                             } ?>
@@ -236,7 +297,7 @@
                 <p>Are you sure you want to delete?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
                 <button type="button" class="btn btn-primary abcd" data-bs-dismiss="modal">Delete</button>
             </div>
         </div>
@@ -252,10 +313,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to Publish activity?</p>
+                    <p>Are you sure you want to Publish ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
                     <button type="button" class="btn btn-primary publish" data-bs-dismiss="modal">Publish</button>
                 </div>
             </div>
@@ -272,10 +333,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to Unpublish activity?</p>
+                    <p>Are you sure you want to Unpublish ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
                     <button type="button" class="btn btn-primary unpublish" data-bs-dismiss="modal">Unpublish</button>
                 </div>
             </div>
@@ -293,10 +354,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to Archive activity?</p>
+                    <p>Are you sure you want to Archive ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
                     <button type="button" class="btn btn-primary archive" data-bs-dismiss="modal">Archive</button>
                 </div>
             </div>
@@ -313,11 +374,31 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to Approve activity?</p>
+                    <p>Are you sure you want to Approve ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary approve" data-bs-dismiss="modal">Approve</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-success approve" data-bs-dismiss="modal">Approve</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="restore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Unarchive </h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Restore ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-primary restore" data-bs-dismiss="modal">Restore</button>
                 </div>
             </div>
         </div>
@@ -361,8 +442,16 @@
         //     $('#delete').modal('show');
         // })
         
-        $('#example1').DataTable();
-        $('#example2').DataTable();
+        $('#example1').DataTable({
+            scrollx:true,
+            responsive: true
+        });
+        $('#example2').DataTable({
+            scrollx:true
+        });
+        $('#example').DataTable({
+            scrollx:true
+        });
     })
     function reject(que_id){
             $('#rejectModal1').modal('show');
@@ -388,6 +477,28 @@
             });
         });
     }
+    function sendUnArchive(que_id) {
+            // var c = confirm("Are you sure to Unpublish By The Mentor details? ");
+            // if (c == true) {     
+                $('#restore').modal('show');
+                $('.restore').on('click', function() {          
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo base_url(); ?>admin/btm_unarchive',
+                    data: {
+                        que_id: que_id,
+                    },
+                    success: function(result) { 
+                        console.log(result);                      
+                        location.reload();
+                    },
+                    error: function(result) {
+                        alert("Error,Please try again.");
+                    }
+                });
+
+            });
+        }
 
     function approve(que_id){
             // var c = confirm("Are you sure to Approve activity? ");

@@ -1230,11 +1230,41 @@ class Admin extends CI_Controller
       
     public function your_wall_list(){
           
-        $data['yourwall']=$this->Your_wall_model->allYourwall();
+        // $data['yourwall']=$this->Your_wall_model->allYourwall();
       //  print_r($data['yourwall']); die;
+      $data['archive']=$this->Your_wall_model->all_archievd(); 
+      $data['created']=$this->Your_wall_model->allbycreated();
+      $data['approved']=$this->Your_wall_model->allbyapproved();
+      $data['rejected']=$this->Your_wall_model->allbyrejected();
+    // print_r($data); die;
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('admin/your_wall_list',$data);
+        $this->load->view('admin/your_wall_list_new',$data);
         $this->load->view('admin/footers/admin_footer');
+    }
+    public function approve_yourwall(){
+        try {            
+            $this->load->model('admin/Your_wall_model');
+            $que_id = $this->input->post('que_id');
+            $id = $this->Your_wall_model->approveYourwall($que_id);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Approved successfully.';                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to approve, Please try again.';               
+            }
+            // echo  json_encode($data);
+            // return true;
+            $this->session->set_flashdata('MSG', ShowAlert($data['message'], "SS"));           
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "admin/your_wall_list", 'refresh');
     }
     public function your_wall_view($id){
         $id = encryptids("D", $id);
@@ -1255,13 +1285,9 @@ class Admin extends CI_Controller
                 
             } else {
                 $data['status'] = 0;
-                $data['message'] = 'Failed to delete, Please try again.';
-               
-            }
-            // echo  json_encode($data);
-            // return true;
-            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));
-            
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }           
+            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));            
             
         } catch (Exception $e) {
             echo json_encode([
@@ -1271,6 +1297,72 @@ class Admin extends CI_Controller
             return true;
         }
         redirect(base_url() . "admin/photos", 'refresh');
+    }
+    public function reject_yourwall(){
+        $this->load->model('admin/Your_wall_model');   
+         $formdata['id'] = $this->input->post('id');
+         $formdata['reject_reason'] = $this->input->post('reason');
+         $formdata['status']="4";
+ 
+         $id = $this->Your_wall_model->reject($formdata);
+        //  print_r($id); die;
+         if($id){
+             $this->session->set_flashdata('MSG', ShowAlert("Record Rejected", "SS"));
+             redirect(base_url() . "admin/your_wall_list", 'refresh');
+         } else {
+             $this->session->set_flashdata('MSG', ShowAlert("Failed to update reject,Please try again", "DD"));
+             redirect(base_url() . "admin/your_wall_list", 'refresh');
+         } 
+    }
+    public function restore_yourwall(){
+        try {            
+            $this->load->model('admin/Your_wall_model');
+            $que_id = $this->input->post('que_id');
+            $id = $this->Your_wall_model->restore($que_id);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Approved successfully.';                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to approve, Please try again.';               
+            }
+            // echo  json_encode($data);
+            // return true;
+            $this->session->set_flashdata('MSG', ShowAlert($data['message'], "SS"));           
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "admin/your_wall_list", 'refresh');
+    }
+    public function archive_yourwall(){
+        try {            
+            $this->load->model('admin/Your_wall_model');
+            $que_id = $this->input->post('que_id');
+            $id = $this->Your_wall_model->archive($que_id);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Approved successfully.';                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to approve, Please try again.';               
+            }
+            // echo  json_encode($data);
+            // return true;
+            $this->session->set_flashdata('MSG', ShowAlert($data['message'], "SS"));           
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "admin/your_wall_list", 'refresh');
     }
     public function yourwallPublish(){
         try {            
@@ -1348,7 +1440,9 @@ class Admin extends CI_Controller
         redirect(base_url() . "admin/yourwall", 'refresh');
     } 
     public function byTheMentors(){
-        $this->load->model('admin/By_the_mentor_model');        
+        $this->load->model('admin/By_the_mentor_model');  
+        // $this->load->model('admin/By_the_mentor_model');        
+        $data['archive']=$this->By_the_mentor_model->all_archievd_btm();      
         // $data['bythementors']=$this->By_the_mentor_model->allbtm();
         $data['created']=$this->By_the_mentor_model->allbtmbycreated();
         $data['approved']=$this->By_the_mentor_model->allbtmbyapproved();
@@ -1479,8 +1573,9 @@ class Admin extends CI_Controller
                 $data['status'] = 0;
                 $data['message'] = 'Failed to Unarchive.';           
             }
+            return $data;
             
-            $this->session->set_flashdata('MSG', ShowAlert("Record Unarchives Successfully", "SS"));
+           // $this->session->set_flashdata('MSG', ShowAlert("Record Unarchives Successfully", "SS"));
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',
@@ -1488,7 +1583,7 @@ class Admin extends CI_Controller
             ]);
             return true;
         }
-        redirect(base_url() . "admin/bythementor_archivelist", 'refresh');
+        redirect(base_url() . "admin/byTheMentors", 'refresh');
     } 
     public function approve_btm(){
         try {   
