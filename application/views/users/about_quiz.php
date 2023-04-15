@@ -234,7 +234,7 @@ span.last-date {
                             </span>
                         </p>
                         <p class="time-start-end d-flex" style="margin-bottom:0px; margin-left: 8px;">
-                            <span class="start-end-time-title">End Date <span class="quiz-text-date m-2"><?= date("m-d-Y", strtotime($quizdata['end_date']));?></span>
+                            <span class="start-end-time-title">Marks<span class="quiz-text-date m-2">50</span>
                             </span>
                         </p>
                         </div>
