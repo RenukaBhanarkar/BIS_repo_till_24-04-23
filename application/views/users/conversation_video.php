@@ -86,8 +86,7 @@ h1 {
     border-radius: 10px;
     font-weight: 700;
     font-size: 14px;
-}
-   
+}   
 </style>    
 <section>
     <div class="container-fluid">
@@ -106,11 +105,6 @@ h1 {
                     <div class="title-text">
                         <h3> <?= $Conversation['title']?> </h3>
                         <span>10M Views • <?= time_elapsed_string($Conversation['created_on'])?></span>
-                        <div class='large-font text-center top-20'>
-                            <ion-icon name="heart">
-                                <div class='red-bg'></div>
-                            </ion-icon>
-                        </div>
                         <a href="" class="like_button" type="button"><i class="fa fa-heart" style="margin:4px;"></i>like</a>
                         <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $Conversation['id'] )?>" data-toggle="tooltip" title="Copy Link and Share" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>share</a>
 
