@@ -161,7 +161,7 @@ a.quizplay-btn:hover {
                
               <div class="col-md-3">
                 <div class="card-winners">
-                    <img src="<?php echo base_url(); ?><?= $AllQuize['banner_img']?>">
+                    <img src="<?php echo base_url(); ?><?= $AllQuize['banner_img']?>" style="height: 176px;">
                     <div class="winner-body p-2">
                     <div class="title">
                             <a href="about_quiz/<?= $AllQuize['id']?>" title="Inviting suggestion on Vivad se Vishwas II – Settling Contractual ..."><?= $AllQuize['title']?></a>

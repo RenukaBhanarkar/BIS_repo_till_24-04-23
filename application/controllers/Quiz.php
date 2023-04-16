@@ -7,7 +7,7 @@ class Quiz extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Admin/Admin_model');
-        $this->load->model('Quiz/quiz_model');
+        $this->load->model('Quiz/Quiz_model');
        
     }
     public function index()
@@ -40,7 +40,7 @@ class Quiz extends CI_Controller
     public function ongoing_quiz_view() 
     {
         // $data=array();
-        // $quiz = $this->quiz_model->viewQuiz($id);
+        // $quiz = $this->Quiz_model->viewQuiz($id);
         // $quizdata=array();
         // $data['quizdata']=$quiz; 
         
@@ -50,7 +50,7 @@ class Quiz extends CI_Controller
     }
     public function closed_quiz_list()
     {
-        $ClosedQuiz = $this->quiz_model->getAllClosedQuize();
+        $ClosedQuiz = $this->Quiz_model->getAllClosedQuize();
         $data = array();
         $data['ClosedQuiz'] = $ClosedQuiz; 
          
@@ -70,39 +70,39 @@ class Quiz extends CI_Controller
     {
        $this->load->view('admin/headers/admin_header');
       
-        $quizlavel = $this->quiz_model->getQuizLevel();
-        $getAvailability = $this->quiz_model->getAvailability();
-        $getQuizLanguage = $this->quiz_model->getQuizLanguage(); 
-        $getAllQb = $this->quiz_model->getAllQb(); 
+        $quizlavel = $this->Quiz_model->getQuizLevel();
+        $getAvailability = $this->Quiz_model->getAvailability();
+        $getQuizLanguage = $this->Quiz_model->getQuizLanguage(); 
+        $getAllQb = $this->Quiz_model->getAllQb(); 
             
         //quize Data 
         $data=array();
-        $quiz = $this->quiz_model->getQuiz($id);
+        $quiz = $this->Quiz_model->getQuiz($id);
         $quizdata=array();
         $data['quizdata']=$quiz; 
         //End Quize Data
 
         //Get First Prize data
         $prize_id=1;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['firstprize']=$prize;
         //end First Prizr Data
 
         //get Second Prize Data
         $prize_id=2;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['secondprize']=$prize;
         //End Second Prize data
 
         //get Third Prize Data
         $prize_id=3;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['thirdprize']=$prize;
         //End Third Prize data
 
         //get Fourth Prize Data
         $prize_id=4;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['fourthprize']=$prize; 
 
         $data['quizlavel']=$quizlavel;
@@ -185,7 +185,7 @@ class Quiz extends CI_Controller
             $formdata['modify_by'] = $modify_by;
             $formdata['modify_on'] = date('Y-m-d : h:i:s');
 
-            $quiz_id = $this->quiz_model->updateQuiz($id,$formdata);
+            $quiz_id = $this->Quiz_model->updateQuiz($id,$formdata);
 
             if ($quiz_id) 
             { 
@@ -209,10 +209,10 @@ class Quiz extends CI_Controller
                 $formdata4['prize_details'] = $this->input->post('cdetails');
                 $formdata4['prize_img'] = "NA";
 
-                $this->quiz_model->updatePrize($fprize_id,$id,$formdata1);
-                $this->quiz_model->updatePrize($sprize_id,$id,$formdata2);
-                $this->quiz_model->updatePrize($tprize_id,$id,$formdata3);
-                $this->quiz_model->updatePrize($cprize_id,$id,$formdata4);  
+                $this->Quiz_model->updatePrize($fprize_id,$id,$formdata1);
+                $this->Quiz_model->updatePrize($sprize_id,$id,$formdata2);
+                $this->Quiz_model->updatePrize($tprize_id,$id,$formdata3);
+                $this->Quiz_model->updatePrize($cprize_id,$id,$formdata4);  
 
                 $this->session->set_flashdata('MSG', ShowAlert("Record Update Successfully", "SS"));
                 redirect(base_url() . "quiz/quiz_list", 'refresh');
@@ -236,24 +236,40 @@ class Quiz extends CI_Controller
     }
  
    
-   
+   //ajax
+   public function getAllRegions(){
+    $region_id = $this->input->post('id');
+
+    $details = array();
+    $details = $this->Quiz_model->getAllRegions($region_id);
+    if (empty($details)) {
+        $data['status'] = 0;
+        $data['message'] = 'Failed to get details , Please try again.';
+        $data['region'] = $details;
+    } else {
+        $data['status'] = 1;
+        $data['message'] = 'Details Available.';
+        $data['region'] = $details;
+    }
+    echo  json_encode($data);
+    exit();
+   }
     public function quiz_reg()
     {
-        $this->load->view('admin/headers/admin_header');
+         
+        $quizlavel = $this->Quiz_model->getQuizLevel();
+        $getAvailability = $this->Quiz_model->getAvailability();
+        $getQuizLanguage = $this->Quiz_model->getQuizLanguage();
+        $getAllQb = $this->Quiz_model->getAllQb();
        
-      
-
-        $quizlavel = $this->quiz_model->getQuizLevel();
-        $getAvailability = $this->quiz_model->getAvailability();
-        $getQuizLanguage = $this->quiz_model->getQuizLanguage();
-        $getAllQb = $this->quiz_model->getAllQb();
-
         $formdataall=array();
         $formdataall['quizlavel']=$quizlavel;
         $formdataall['getAvailability']=$getAvailability;
         $formdataall['getQuizLanguage']=$getQuizLanguage;
         $formdataall['getAllQb']=$getAllQb;
+       
 
+        $this->load->view('admin/headers/admin_header'); 
         if ($this->form_validation->run('quiz_form_validation_rule') == FALSE) 
         {
             $this->load->view('quiz/quiz_form',$formdataall);
@@ -265,15 +281,21 @@ class Quiz extends CI_Controller
             move_uploaded_file($_FILES['banner_img']['tmp_name'], $banner_imglocation);
 
             $prizepath = 'uploads/prize_img/'; 
-
+            if (!empty($_FILES['fprize_img']['tmp_name'])) {
             $fprize_imglocation = $prizepath . time() .'prize_img'. $_FILES['fprize_img']['name']; 
-            move_uploaded_file($_FILES['fprize_img']['tmp_name'], $fprize_imglocation); 
+            move_uploaded_file($_FILES['fprize_img']['tmp_name'], $fprize_imglocation); }
 
+            if (!empty($_FILES['sprize_img']['tmp_name'])) {
             $sprize_imglocation = $prizepath . time()  .'prize_img'.$_FILES['sprize_img']['name']; 
-            move_uploaded_file($_FILES['sprize_img']['tmp_name'], $sprize_imglocation);
+            move_uploaded_file($_FILES['sprize_img']['tmp_name'], $sprize_imglocation);}
 
+            if (!empty($_FILES['tprize_img']['tmp_name'])) {
             $tprize_imglocation = $prizepath . time() .'prize_img'. $_FILES['tprize_img']['name']; 
-            move_uploaded_file($_FILES['tprize_img']['tmp_name'], $tprize_imglocation);
+            move_uploaded_file($_FILES['tprize_img']['tmp_name'], $tprize_imglocation);}
+
+            if (!empty($_FILES['cprize_img']['tmp_name'])) {
+                $cprize_imglocation = $prizepath . time() .'prize_img'. $_FILES['cprize_img']['name']; 
+                move_uploaded_file($_FILES['cprize_img']['tmp_name'], $cprize_imglocation);}
 
             $encAdminId = $this->session->userdata('admin_id');
             $created_by = encryptids("D", $encAdminId);            
@@ -281,6 +303,7 @@ class Quiz extends CI_Controller
             $formdata = array();
             $formdata['quiz_id'] = date('mdy').$this->random_strings(4);
             $formdata['title'] = $this->input->post('title');
+            $formdata['title_hindi'] = $this->input->post('title_hindi');
             $formdata['description'] = $this->input->post('description');
             $formdata['terms_conditions'] = $this->input->post('terms_conditions');
             $formdata['duration'] = $this->input->post('duration');
@@ -291,6 +314,11 @@ class Quiz extends CI_Controller
             $formdata['end_date'] = $this->input->post('end_date');
             $formdata['end_time'] = $this->input->post('end_time');
             $formdata['quiz_level_id'] = $this->input->post('quiz_level_id');
+            if($this->input->post('quiz_level_id')!= 1){
+                $formdata['region_id'] = $this->input->post('region_id');
+            }
+         
+            $formdata['switching_type'] = $this->input->post('switching_type');
             $formdata['banner_img'] = $banner_imglocation;
             $formdata['language_id'] = $this->input->post('language_id');
             $formdata['availability_id'] = $this->input->post('availability_id');
@@ -301,7 +329,7 @@ class Quiz extends CI_Controller
             $formdata['created_by'] = $created_by;
             $formdata['status'] = 1;
 
-            $quiz_id = $this->quiz_model->insertQuiz($formdata);
+            $quiz_id = $this->Quiz_model->insertQuiz($formdata);
 
             if ($quiz_id) {
 
@@ -311,28 +339,34 @@ class Quiz extends CI_Controller
                 $formdata1['prize_details'] = $this->input->post('fdetails');
                 $formdata1['prize_img'] = $fprize_imglocation;
 
-                $formdata2['quiz_id'] = $quiz_id;
-                $formdata2['prize_id'] = 2;
-                $formdata2['no_of_prize'] = $this->input->post('sprize');
-                $formdata2['prize_details'] = $this->input->post('sdetails');
-                $formdata2['prize_img'] = $sprize_imglocation; 
-
+                if($this->input->post('sprize')!= ""){
+                    $formdata2['quiz_id'] = $quiz_id;
+                    $formdata2['prize_id'] = 2;
+                    $formdata2['no_of_prize'] = $this->input->post('sprize');
+                    $formdata2['prize_details'] = $this->input->post('sdetails');
+                    $formdata2['prize_img'] = $sprize_imglocation; 
+                }
+              
+                if($this->input->post('tprize')!= ""){
                 $formdata3['quiz_id'] = $quiz_id;
                 $formdata3['prize_id'] = 3;
                 $formdata3['no_of_prize'] = $this->input->post('tprize');
                 $formdata3['prize_details'] = $this->input->post('tdetails');
                 $formdata3['prize_img'] =$tprize_imglocation; 
+                }
 
+                if($this->input->post('cprize')!= ""){
                 $formdata4['quiz_id'] = $quiz_id;
                 $formdata4['prize_id'] = 4;
                 $formdata4['no_of_prize'] = $this->input->post('cprize');
                 $formdata4['prize_details'] = $this->input->post('cdetails');
-                $formdata4['prize_img'] = "NA";
+                $formdata4['prize_img'] = $cprize_imglocation;
+                }
 
-                $this->quiz_model->insertPrize($formdata1);
-                $this->quiz_model->insertPrize($formdata2);
-                $this->quiz_model->insertPrize($formdata3);
-                $this->quiz_model->insertPrize($formdata4);
+                $this->Quiz_model->insertPrize($formdata1);
+                $this->Quiz_model->insertPrize($formdata2);
+                $this->Quiz_model->insertPrize($formdata3);
+                $this->Quiz_model->insertPrize($formdata4);
 
                 $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
                 redirect(base_url() . "quiz/quiz_list", 'refresh');
@@ -349,7 +383,7 @@ class Quiz extends CI_Controller
     {
         
       
-        $allquize = $this->quiz_model->getAllQuize();
+        $allquize = $this->Quiz_model->getAllQuize();
         $data = array();
         $data['allquize'] = $allquize;
 
@@ -369,32 +403,32 @@ class Quiz extends CI_Controller
       
          
         $data=array();
-        $quiz = $this->quiz_model->viewQuiz($id);
+        $quiz = $this->Quiz_model->viewQuiz($id);
         $quizdata=array();
         $data['quizdata']=$quiz; 
         //End Quize Data
           
         //Get First Prize data
         $prize_id=1;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['firstprize']=$prize;
         //end First Prizr Data
 
         //get Second Prize Data
         $prize_id=2;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['secondprize']=$prize;
         //End Second Prize data
 
         //get Third Prize Data
         $prize_id=3;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['thirdprize']=$prize;
         //End Third Prize data
 
         //get Fourth Prize Data
         $prize_id=4;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['fourthprize']=$prize;
         
         $this->load->view('quiz/quiz_view',$data);
@@ -405,7 +439,7 @@ class Quiz extends CI_Controller
     public function getQbdata($id)
     {
       
-        $data['result'] = $this->quiz_model->getQbdataa($id);
+        $data['result'] = $this->Quiz_model->getQbdataa($id);
         echo  json_encode($data); 
     }
 
@@ -420,7 +454,7 @@ class Quiz extends CI_Controller
         $formdata['modify_on'] = date('Y-m-d : h:i:s');
         $formdata['status']=2;
         
-        $quiz_id = $this->quiz_model->sendToApprove($id,$formdata);
+        $quiz_id = $this->Quiz_model->sendToApprove($id,$formdata);
         if ($quiz_id==1) 
         {
             $this->session->set_flashdata('MSG', ShowAlert("Quiz Send for Approve", "SS"));
@@ -442,7 +476,7 @@ class Quiz extends CI_Controller
         $formdata['modify_by'] = $modify_by;
         $formdata['modify_on'] = date('Y-m-d : h:i:s'); 
         $formdata['status']=5;
-        $quiz_id = $this->quiz_model->updatepublish($id,$formdata);
+        $quiz_id = $this->Quiz_model->updatepublish($id,$formdata);
         if ($quiz_id==1) 
         {
             $this->session->set_flashdata('MSG', ShowAlert("Quiz Published", "SS"));
@@ -462,7 +496,7 @@ class Quiz extends CI_Controller
         $formdata['modify_by'] = $modify_by;
         $formdata['modify_on'] = date('Y-m-d : h:i:s'); 
         $formdata['status']=6;
-        $quiz_id = $this->quiz_model->updatepublish($id,$formdata);
+        $quiz_id = $this->Quiz_model->updatepublish($id,$formdata);
         if ($quiz_id==1) 
         {
             $this->session->set_flashdata('MSG', ShowAlert("Quiz Un-Published", "SS"));
@@ -490,32 +524,32 @@ class Quiz extends CI_Controller
     {
              
         $data=array();
-        $quiz = $this->quiz_model->viewQuiz($id);
+        $quiz = $this->Quiz_model->viewQuiz($id);
         $quizdata=array();
         $data['quizdata']=$quiz; 
         //End Quize Data
 
         //Get First Prize data
         $prize_id=1;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['firstprize']=$prize;
         //end First Prizr Data
 
         //get Second Prize Data
         $prize_id=2;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['secondprize']=$prize;
         //End Second Prize data
 
         //get Third Prize Data
         $prize_id=3;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['thirdprize']=$prize;
         //End Third Prize data
 
         //get Fourth Prize Data
         $prize_id=4;
-        $prize = $this->quiz_model->getPrizeId($prize_id,$id); 
+        $prize = $this->Quiz_model->getPrizeId($prize_id,$id); 
         $data['fourthprize']=$prize;
 
         $this->load->view('admin/headers/admin_header');
@@ -531,7 +565,7 @@ class Quiz extends CI_Controller
     {
         $data=array();
 
-        $users = $this->quiz_model->getQuizSubmissionUsers($id); 
+        $users = $this->Quiz_model->getQuizSubmissionUsers($id); 
         $data['UsersDetails']=$users; 
 
         $this->load->view('admin/headers/admin_header');
@@ -543,5 +577,10 @@ class Quiz extends CI_Controller
     {
         $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
         return substr(str_shuffle($str_result), 0, $length_of_string );
+    }
+    public function quiz_archive(){        
+        $this->load->view('admin/headers/admin_header');;
+        $this->load->view('Quiz/quiz_archive');
+        $this->load->view('admin/footers/admin_footer');
     }
 }

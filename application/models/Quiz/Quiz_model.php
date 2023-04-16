@@ -38,6 +38,12 @@ class Quiz_model extends CI_Model {
     { 
          return $this->db->get("tbl_mst_quiz_availability")->result_array();
     }
+    public function getAllRegions()
+    { 
+         return $this->db->get("tbl_mst_regions")->result_array();
+    }
+    
+    
     public function getQuizLevel()
     { 
          return $this->db->get("tbl_mst_quiz_level")->result_array();

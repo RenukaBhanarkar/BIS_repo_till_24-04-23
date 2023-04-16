@@ -44,9 +44,10 @@ class By_the_mentor_model extends CI_Model {
         // print_r($id); die;
         
         // $data=['btm.status'=>1];
-        $this->db->select('btm.*,tms.status_name');
+        $this->db->select('btm.*,tms.status_name,tu.user_name,tu.email');
         $this->db->from('tbl_by_the_mentors as btm');
         $this->db->join('tbl_mst_status tms','tms.id=btm.status');
+        $this->db->join('tbl_users tu','tu.user_id=btm.user_id');
         $this->db->where('btm.status','1');
         $this->db->order_by('btm.created_on','desc');
         $query=$this->db->get();
@@ -57,9 +58,10 @@ class By_the_mentor_model extends CI_Model {
         // print_r($id); die;
         
         //  $data=['btm.status'=>'5','btm.status'=>'6'];  
-        $this->db->select('btm.*,tms.status_name');
+        $this->db->select('btm.*,tms.status_name,tu.user_name,tu.email');
         $this->db->from('tbl_by_the_mentors as btm');
-        $this->db->join('tbl_mst_status tms','tms.id=btm.status');
+        $this->db->join('tbl_mst_status tms','tms.id=btm.status'); 
+        $this->db->join('tbl_users tu','tu.user_id=btm.user_id');
         $this->db->where('btm.status','5');
         $this->db->or_where('btm.status','6');
         $this->db->or_where('btm.status','3');
@@ -78,9 +80,10 @@ class By_the_mentor_model extends CI_Model {
         
     }
     public function allbtmbyrejected(){        
-        $this->db->select('btm.*,tms.status_name');
+        $this->db->select('btm.*,tms.status_name,tu.user_name,tu.email');
         $this->db->from('tbl_by_the_mentors as btm');
         $this->db->join('tbl_mst_status tms','tms.id=btm.status');
+        $this->db->join('tbl_users tu','tu.user_id=btm.user_id');
         $this->db->where('btm.status','4');
         $this->db->order_by('btm.created_on','desc');
         $query=$this->db->get();
@@ -164,9 +167,10 @@ class By_the_mentor_model extends CI_Model {
         }
     }
     public function all_archievd_btm(){
-        $this->db->select('btm.*,tms.status_name');
+        $this->db->select('btm.*,tms.status_name,tu.user_name,tu.email');
         $this->db->from('tbl_by_the_mentors btm'); 
-        $this->db->join('tbl_mst_status tms','tms.id=btm.status');       
+        $this->db->join('tbl_mst_status tms','tms.id=btm.status');      
+        $this->db->join('tbl_users tu','tu.user_id=btm.user_id'); 
         $this->db->where('status','9');
         $this->db->order_by('created_on','desc');
         $query=$this->db->get();

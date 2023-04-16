@@ -17,8 +17,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url();?>assets/admin/js/sb-admin-2.min.js"></script>
-    <!-- <script src="<?php echo base_url();?>assets/admin/js/ckeditor"></script> -->
-    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    
+    
     <!-- Page level plugins -->
     <!-- <script src="<?php echo base_url();?>assets/admin/vendor/chart.js/Chart.min.js"></script> -->
 
@@ -27,8 +27,10 @@
     <script src="<?php echo base_url();?>assets/admin/js/demo/chart-pie-demo.js"></script> -->
     <script>
     $(document).ready(function () {
-    $('#example').DataTable();
+    $('#example').DataTable({
+        scrollX: true,
     });
+});
    </script>
     <!-- Scroll to Top Button-->
   

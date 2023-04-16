@@ -26,7 +26,7 @@
                     <div class="modal fade " id="newform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
                             <div class="modal-content">
-                                <form action="<?php echo base_url() . 'admin/add_video'; ?>" method="post" class="was-validated" enctype="multipart/form-data">
+                                <form action="<?php echo base_url() . 'admin/add_video'; ?>" method="post" class="was-validated" enctype="multipart/form-data" id="add_videos">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Add Video</h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                            <button class="btn btn-primary">Submit</button>
+                                            <button class="btn btn-primary save">Submit</button>
                                         </div>
                                     </div>
                                 </form>
@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example" class="table table-bordered">
+                    <table id="videos" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -219,6 +219,12 @@
     // }
 
     $(document).ready(function(){
+        $('#videos').DataTable();
+        $('#add_videos').removeClass('was-validated');
+
+        $('.save').on('click',function(){
+        $('#add_videos').addClass('was-validated');
+    })
 
 $('#example').on('click','.delete',function() { 
         $('#delete').modal('show');

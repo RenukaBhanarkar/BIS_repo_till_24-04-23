@@ -230,15 +230,18 @@
             <div class="row">
             <div class="new-content d-flex">
                   <a href="<?php echo base_url().'wall_of_wisdom/wallOfWisdom' ?>">
-                    <div class="card image-card" style="width: 21rem;">                    
+                    <div class="card image-card" style="width: 21rem; z-index: 1000;">                    
                         <img src="<?=base_url();?>assets/images/wall_1.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
                           <p class="card-text">Wall Of Wisdom</p>
                         </div>                    
                       </div>
-                    </a>
+                    </a> 
                     <a href="<?php echo base_url().'users/learning_standerd' ?>">
-                      <div class="card image-card" style="width: 21rem;">
+                     
+ 
+                      <div class="card image-card" style="width: 21rem; z-index: 1000;">
+ 
                         <img src="<?=base_url();?>assets/images/wall_2.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
                           <p class="card-text">learning Science via Standards</p>
@@ -246,7 +249,7 @@
                       </div>
                       </a>
                       <a href="<?php echo base_url().'users/yourwall' ?>">
-                      <div class="card image-card" style="width: 21rem;">                      
+                      <div class="card image-card" style="width: 21rem; z-index: 1000;">                      
                         <img src="<?=base_url();?>assets/images/wall_3.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
                           <p class="card-text">Your Wall</p>
@@ -254,7 +257,7 @@
                       </div>
                       </a>
                       <a href="<?php echo base_url()."users/byTheMentor" ?>">
-                      <div class="card image-card" style="width: 21rem;">
+                      <div class="card image-card" style="width: 21rem; z-index: 1000;">
                       
                         <img src="<?=base_url();?>assets/images/wall_4.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">

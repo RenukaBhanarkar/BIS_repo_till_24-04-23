@@ -3,7 +3,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Quiz Bank Form</h1>
+            <h1 class="h3 mb-0 text-gray-800">Question Bank Form</h1>
         </div>
         <?php
         if ($this->session->flashdata('MSG')) {
@@ -20,24 +20,19 @@
                                 <h4 class="m-2">Question Bank Details</h4>
                             </div>
                         </div>
-                        <?php if (!empty($allRecords)) {
-                    foreach ($allRecords as $row) { ?>
-                        <form id="que_bank_form" action="<?php echo base_url(); ?>subadmin/editQueBank">
-                      
+                        <form id="que_bank_form" method="POST" action="<?php echo base_url(); ?>subadmin/createQueBank">
                             <div class="row">
                                 <div class="mb-2 col-md-4">
-                                <input type="hidden" id="que_bank_id_edit" name="que_bank_id_edit" value="<?php echo $row['que_bank_id']; ?>">
-                                <input type="hidden" id="language_edit" name="language_edit" value="<?php echo $row['language']; ?>">
                                     <label class="d-block text-font">Question Bank Title<sup class="text-danger">*</sup></label>
-                                    <input type="text" value="<?php echo $row['title']; ?>" class="form-control input-font" name="title" id="title" placeholder="Enter Question Bank Title">
+                                    <input type="text" class="form-control input-font" name="title" id="title" placeholder="Enter Question Bank Title">
                                 </div>
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Total Number of Question<sup class="text-danger">*</sup></label>
-                                    <input type="text"  value="<?php echo $row['no_of_ques']; ?>"class="form-control input-font" name="no_of_ques" id="no_of_ques" placeholder="Enter Total Number of Question">
+                                    <input type="text" class="form-control input-font" name="no_of_ques" id="no_of_ques" placeholder="Enter Total Number of Question">
                                 </div>
                                 <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Total Marks<sup class="text-danger">*</sup></label>
-                                    <input type="text" value="<?php // echo $row['total_marks']; ?>" class="form-control input-font" name="total_marks" id="total_marks" placeholder="Enter Total Marks">
+                                    <input type="text" class="form-control input-font" name="total_marks" id="total_marks" placeholder="Enter Total Marks">
                                 </div> -->
                             </div>
                             <div class="row">
@@ -45,25 +40,26 @@
                                     <label class="d-block text-font">Language of Question<sup class="text-danger">*</sup></label>
                                     <div class="d-flex">
                                         <div class="form-check mr-2">
-                                            <input class="form-check-input" type="radio" name="language"  value="1"  <?php if($row['language'] == 1) {echo "checked";} ?>>
-                                            <label class="form-check-label" >English</label>
+                                            <input class="form-check-input" type="radio" name="language" id="english_div" value="1" checked>
+                                            <label class="form-check-label" for="english_div">English</label>
                                         </div>
                                         <div class="form-check mr-2">
-                                            <input class="form-check-input" type="radio" name="language"  value="2"   <?php if($row['language']== 2){echo "checked";}?> >
-                                            <label class="form-check-label" >Hindi</label>
+                                            <input class="form-check-input" value="2" type="radio" name="language" id="hindi_div">
+                                            <label class="form-check-label" for="hindi_div">Hindi</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="language" value="3"  <?php if($row['language']== 3){echo "checked";}?> >
-                                            <label class="form-check-label"  >Both</label>
+                                            <input class="form-check-input" value="3" type="radio" name="language" id="both_div">
+                                            <label class="form-check-label" for="both_div">Both</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 submit_btn p-3">
-                                <input type="submit" name="Update" value="Update" id="editQueBank" class="btn btn-info btn-sm">
+                            <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
+                                <input type="submit" name="Submit" id="createQueBank" class="btn btn-info btn-sm">
+                                
                             </div>
                         </form>
-                       
                         <!-- que creation -->
                         <form id="questions_form" action="<?php echo base_url() . 'subadmin/createQuestions' ?>" method="post" enctype="multipart/form-data">
                             <div class="row mt-2">
@@ -71,10 +67,8 @@
                                     <h4 class="m-2">Question Creation</h4>
                                 </div>
                             </div>
-                            <input type="hidden" id="que_bank_id" name="que_bank_id" value="<?php echo $row['que_bank_id']; ?>">                           
-
-                            <input type="hidden" id="que_language" name="que_language" value="<?php echo $row['language']; ?>">
-                           
+                            <input type="hidden" id="que_bank_id" name="que_bank_id">
+                            <input type="hidden" id="que_language" name="que_language">
 
                             <div class="row mt-3">
                                 <div class="mb-2 col-md-4">
@@ -95,22 +89,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php if($row['language'] == 1|| $row['language'] ==3){ ?>
                             <div class="row" id="question-eng">
-                                <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font">Question in English<sup class="text-danger">*</sup></label>
-                                    <input type="text" class="form-control input-font" name="que" id="que" placeholder="Enter Question">
+                                <div class="mb-2 col-md-12">
+                                    <label class="d-block text-font">Question<sup class="text-danger">*</sup></label>
+                                    <textarea type="text" class="form-control input-font" name="que" id="que" placeholder="Enter Question"></textarea>
                                 </div>
-                            </div>
-                            <?php } ?>
-                            <?php if($row['language'] == 2 || $row['language'] == 3){ ?>
-                            <div class="row" id="question-hindi" >
-                                <div class="mb-2 col-md-4">
+                                <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Question in Hindi<sup class="text-danger">*</sup></label>
-                                    <input type="text" class="form-control input-font" name="que_h" id="que_h" placeholder="Question in Hindi">
+                                    <input type="text" class="form-control input-font" name="hindi" id="hindi" placeholder="Enter Marks">
+                                </div> -->
+                            </div>
+                            <div class="row" id="question-hindi" style="display:none;">
+                                <div class="mb-2 col-md-12">
+                                    <label class="d-block text-font">Question in Hindi<sup class="text-danger">*</sup></label>
+                                    <textarea type="text" class="form-control input-font" name="que_h" id="que_h" placeholder="Question in Hindi"></textarea>
                                 </div>
                             </div>
-                            <?php } ?>
                             <div class="row" id="image-block" style="display:none;">
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
@@ -165,39 +159,41 @@
                                     <div class="row mt-3" id="opt1_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 1</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
-
                                             <div class="form-check" style="padding-left:0px;">
                                                 <input class="form-control input-font ml-3" type="text" name="option1" id="option1" style="width: 180px;">
+                                                <input class="form-control-file input-font ml-3" type="file" name="image_file" id="image_file" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 2</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
                                             <div class="form-check" style="padding-left:0px;">
                                                 <input class="form-control input-font ml-3" type="text" name="option2" id="option2" style="width: 180px;">
+                                                <!-- <input class="form-control-file input-font ml-3" type="file" name="image_file" id="image_file" style="width: 180px;"> -->
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-3" id="opt3_blk" style="padding-left:0px;">
+                                    <div class="row mt-3" id="opt3_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 3</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
                                             <div class="form-check" style="padding-left:0px;">
@@ -208,10 +204,10 @@
                                     <div class="row mt-3" id="opt4_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 4</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
                                             <div class="form-check" style="padding-left:0px;">
@@ -224,8 +220,8 @@
                                             <label class="d-block text-font mr-3">Option 5</label>
                                             <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option value="2">Text</option>
+                                                    <option value="3">Image</option>
                                                     
                                             </select>
                                             <div class="form-check" style="padding-left:0px;">
@@ -241,40 +237,46 @@
                                     <div class="row mt-3" id="opt1_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 1 in Hindi</label>
+                                           
                                             <div class="form-check" style="padding-left:0px;">
-                                                <input class="form-control input-font ml-3" type="text" name="option1_h" id="option1_h" style="width: 180px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option1_h" id="option1_h" required>
+                                                <input class="form-control-file input-font ml-3" type="file" name="image_file_h" id="image_file_h" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 2 in hindi</label>
+                                            <label class="d-block text-font mr-3">Option 2 in Hindi</label>
+                                            
                                             <div class="form-check" style="padding-left:0px;">
-                                                <input class="form-control input-font ml-3" type="text" name="option2_h" id="option2_h" style="width: 180px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option2_h" id="option2_h" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 3 in hindi</label>
+                                            <label class="d-block text-font mr-3">Option 3 in Hindi</label>
+                                            
                                             <div class="form-check" style="padding-left:0px;">
-                                                <input class="form-control input-font ml-3" type="text" name="option3_h" id="option3_h" style="width: 180px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option3_h" id="option3_h" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 4 in Hindi</label>
+                                            
                                             <div class="form-check" style="padding-left:0px;">
-                                                <input class="form-control input-font ml-3" type="text" name="option4_h" id="option4_h" style="width: 180px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option4_h" id="option4_h">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt5_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 5 in Hindi</label>
+                                            
                                             <div class="form-check" style="padding-left:0px;">
-                                                <input class="form-control input-font ml-3" type="text" name="option5_h" id="option5_h" style="width: 180px;">
+                                                <input class="form-control input-font ml-3" type="text" name="option5_h" id="option5_h" required>
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +289,7 @@
                                         <div class="row mt-3">
                                             <div class="mb-2 col-md-4 d-flex">
 
-                                                <input class="form-control-radio input-font ml-3" type="radio" name="correct_answer" id="r1" value="1">
+                                                <input class="form-control-radio input-font ml-3" type="radio" name="correct_answer" id="r1" value="1" style="margin-top: -7px;">
 
                                             </div>
                                         </div>
@@ -330,97 +332,73 @@
                             </div> -->
                             <div class="col-md-12 submit_btn p-3">
                                 <!-- <a class="btn btn-primary btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Create</a> -->
-                                <a class="btn btn-primary btn-sm text-white" id="createQuestion">Add New Question</a>
+                                <a class="btn btn-primary btn-sm text-white" id="createQuestion">Create</a>
                                 <!-- <input type="submit" name="Submit" id="createQueBank" class="btn btn-info btn-sm"> -->
                                 <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
                             </div>
-                            </form><!-- end que creation -->
-                            <?php }  } ?>
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <div class="card border-top card-body">
-                                        <table id="example" class="hover table-bordered" style="width:100%">
+                                        <table id="example" class="table-bordered display nowrap" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>Sr. No.</th>
                                                     <th>Question Id</th>
                                                     <th>Question Type</th>
                                                     <th>Question Title</th>
+                                                    <th>Question Title in Hindi</th>
+                                                    <!-- <th>Image</th> -->
                                                     <th>Number of Options</th>
                                                     <th>Option details</th>
+                                                    <th>Option Details in Hindi</th>
                                                     <th>Correct Option No</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <?php if (!empty($allRecords)) {
-                                                foreach ($allRecords as $row) { ?>
-                                            <tbody id="que_body">
-                                            <?php
-                                                        $i = 1;
-                                                        foreach ($row['queList'] as $r) { ?>
-                                                            <tr id="row<?php echo $r['que_id']; ?>">
-                                                                <td><?php echo $i; ?></td>
-                                                                <td><?php echo $r['que_id']; ?></td>
-                                                                <td><?php if ($r['que_type'] == 1) {
-                                                                        echo "Text";
-                                                                    } else if ($r['que_type'] == 2) {
-                                                                        echo "Image";
-                                                                    } else {
-                                                                        echo "Text and Image";
-                                                                    } ?></td>
-                                                                 <td>
-                                                    <?php if($r['language'] == 1) {  echo $r['que'];} 
-                                                          else if($r['language'] == 2){  echo $r['que_h'];}
-                                                          else{ echo $r['que'].'<br>'; echo $r['que_h']; }
-                                                    ?> 
-                                                     <?php if($r['que_type'] == 2 || $r['que_type'] == 3 ) { ?>
-                                                        <br>
-                                                        <img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid<?php echo $r['que_bank_id'];?>/<?php echo $r['image'];?>">                                   
-                                                      <?php } ?>                                               
-                                                    </td>
-                                                    <td><?php echo $r['no_of_options']; ?></td>
-                                                    <td>
-                                                                <?php
-                                                         $opt1_e = $opt2_e = $opt3_e= $opt4_e= $opt5_e ="NA";
-                                                         $opt1_h = $opt2_h = $opt3_h= $opt4_h= $opt5_h ="NA";
-                                                            if ($r['opt1_e'] != "" ){$opt1_e = $r['opt1_e'];}
-                                                            if ($r['opt2_e'] != "" ){$opt2_e = $r['opt2_e'];}
-                                                            if ($r['opt3_e'] != "" ){$opt3_e = $r['opt3_e'];}
-                                                            if ($r['opt4_e'] != "" ){$opt4_e = $r['opt4_e'];}
-                                                            if ($r['opt5_e'] != "" ){$opt5_e = $r['opt5_e'];}
-                                                            if ($r['opt1_h'] != "" ){$opt1_h = $r['opt1_h'];}
-                                                            if ($r['opt2_h'] != "" ){$opt2_h = $r['opt2_h'];}
-                                                            if ($r['opt3_h'] != "" ){$opt3_h = $r['opt3_h'];}
-                                                            if ($r['opt4_h'] != "" ){$opt4_h = $r['opt4_h'];}
-                                                            if ($r['opt5_h'] != "" ){$opt5_h = $r['opt5_h'];}
-                                                            if($r['language'] == 1) {  
-                                                                echo "1. ".$opt1_e.'<br>2. '. $opt2_e.'<br>3. '. $opt3_e. '<br>4. ' .$opt4_e. '<br>5. ' .$opt5_e ;
-                                                            }else if($r['language'] == 2) { 
-                                                                echo "1. ".$opt1_h.'<br>2. '. $opt2_h.'<br>3. '. $opt3_h. '<br>4. ' .$opt4_h. '<br>5. ' .$opt5_h ; ?>
-                                                        <?php }else{
-                                                               echo '1. '.$opt1_e.' 1. '.$opt1_h.
-                                                                    '<br>2. '. $opt2_e.' 2. '. $opt2_h.
-                                                                    '<br>3. '. $opt3_e.' 3. '. $opt3_h.
-                                                                    '<br>4. ' .$opt4_e.' 4. ' .$opt4_h .
-                                                                    '<br>5. ' .$opt5_e .' 5. ' .$opt5_h ;
-                                                        } ?>
-                                                        </td>
-                                                                <td><?php echo $r['corr_opt_e']; ?></td>
-                                                              
-                                                                <td><span class="btn btn-sm btn-danger deletedata" onclick="deleteQuestion(<?php echo $r['que_id']; ?>);" data-id='<?php echo $r['que_id']; ?>'>Delete</td>
-                                                               
-                                                            </tr>
-                                                        <?php } ?>
-
+                                            <!-- <tbody id="que_body">
+                                             
+                                            </tbody> -->
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>12345</td>
+                                                <td>Text</td>
+                                                <td>title</td>
+                                                <td>title</td>
+                                                <td>10</td>
+                                                <td>details</td>
+                                                <td><img src="http://localhost/BIS/BIS_repo/assets/admin/img/photo.png" alt="" class="" style="width: 30px;" data-toggle="modal" data-target="#img_popup"></td>
+                                                <td>2</td>
+                                                <td>action</td>
+                                             </tr>
                                             </tbody>
-                                            <?php }} ?>
                                         </table>
+                                                        <!-- Modal -->
+                                        <div class="modal fade" id="img_popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" style="max-width: 700px;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Image</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close" fdprocessedid="tv8px"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <img src="http://localhost/BIS/BIS_repo/assets/images/img_2.jpg" width="100%"/>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-secondary" onclick="resetThird();" data-bs-dismiss="modal">ReSet</button>
+                                                <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button> -->
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>       
+                                                    <!-- Modal -->
                                     </div>
                                     <div class="col-md-12 submit_btn p-3">
                                         <a class="btn btn-success btn-sm text-white" data-bs-toggle="modal" data-bs-target="#submitForm">Submit</a>
+                                        <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
+                                        <input type="reset" name="Reset" class="btn btn-warning btn-sm text-white">
                                         <div id="err_que_bank"></div>
-                                        <!-- <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
-                                        <input type="reset" name="Reset" class="btn btn-warning btn-sm text-white"> -->
+                                        
                                     </div>
 
                                     <!-- Modal -->
@@ -436,7 +414,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saveQueBank">Save</button>
+                                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="saveQueBank">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -447,7 +425,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Conformation</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -455,7 +433,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" onclick="location.href='question_bank_list'">Save changes</button>
+                                                    <button type="button" class="btn btn-primary" onclick="location.href='question_bank_list'">Cancel</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -463,18 +441,15 @@
                                     <!-- Modal -->
                                 </div>
                             </div>
-                        
-                       
+                        </form><!-- end que creation -->
                     </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
         </div>
-    
-                                                    
         <!-- End of Content Wrapper -->
-<script>
+        <script>
             //Banner Image Preview
             var loadFileBanner = function(event) {
                 $("#outputbanner").show();
@@ -490,12 +465,10 @@
                 $("#outputbanner").hide();
             }
             //end
-           // $('#questions_form').hide();
-
-            //$('#question-hindi').hide();
-            //$('#opt_blk_hin').hide();
-            //$('#opt_blk_eng').show();
-            $('input[name="language"]').attr('disabled', 'disabled');
+            $('#questions_form').hide();
+            $('#question-hindi').hide();
+            $('#opt_blk_hin').hide();
+            $('#opt_blk_eng').show();
 
             $(document).ready(function() {
 
@@ -522,6 +495,7 @@
                         $('#question-eng').show();
                     }
                 });
+                
 
                 // $("#saveQueBank").click(function() {
                 // window.location.replace("<?php echo base_url(); ?>subadmin/question_bank_list");
@@ -541,7 +515,7 @@
                             // console.log(res);
                             if (res.status == 0) {
                                 if ($("#err_que_bank").next(".validation").length == 0) {
-                                    $("#err_que_bank").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please add questions equal to total no of questions in bank</div>");
+                                    $("#err_que_bank").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please add questions equal to total no of questions in bank</div>");
                                 }
                                 if (!focusSet) {
                                     $("#err_que_bank").focus();
@@ -607,7 +581,7 @@
                     }
                 });
 
-                $('#que_bank_form').on('click', '#editQueBank', function(e) {
+                $('#que_bank_form').on('click', '#createQueBank', function(e) {
                     e.preventDefault();
                     var focusSet = false;
                     var allfields = true;
@@ -649,7 +623,6 @@
                     //     $("#total_marks").next(".validation").remove();
                     // }
                     if (allfields) {
-                        var que_bank_id = $("#que_bank_id_edit").val();
                         var url = $('#que_bank_form').attr('action');
                         var userForm = document.getElementById("que_bank_form");
                         var fd = new FormData(userForm);
@@ -676,8 +649,7 @@
 
                                     $("#que_language").val(language);
                                     $('input[name="language"]').attr('disabled', 'disabled');
-                                   // $('#que_bank_id').val(res.id);
-                                    $('#que_bank_id').val(que_bank_id);
+                                    $('#que_bank_id').val(res.id);
                                     $('#questions_form').show();
                                 }
                             },
@@ -904,7 +876,7 @@
                             var option2 = $("#option2").val();
                             if (option1 == "") {
                                 if ($("#option1").next(".validation").length == 0) {
-                                    $("#option1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 1</div>");
+                                    $("#option1").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 1</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option1").focus();
@@ -915,7 +887,7 @@
                             }
                             if (option2 == "") {
                                 if ($("#option2").next(".validation").length == 0) {
-                                    $("#option2").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 2</div>");
+                                    $("#option2").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 2</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option2").focus();
@@ -930,7 +902,7 @@
 
                             if (option3 == "") {
                                 if ($("#option3").next(".validation").length == 0) {
-                                    $("#option3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 3</div>");
+                                    $("#option3").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 3</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option3").focus();
@@ -945,7 +917,7 @@
 
                             if (option4 == "") {
                                 if ($("#option4").next(".validation").length == 0) {
-                                    $("#option4").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 4</div>");
+                                    $("#option4").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 4</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option4").focus();
@@ -959,7 +931,7 @@
                             var option5 = $("#option5").val();
                             if (option5 == "") {
                                 if ($("#option5").next(".validation").length == 0) {
-                                    $("#option5").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 5</div>");
+                                    $("#option5").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option5").focus();
@@ -990,7 +962,7 @@
                             var option2_h = $("#option2_h").val();
                             if (option1_h == "") {
                                 if ($("#option1_h").next(".validation").length == 0) {
-                                    $("#option1_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 1</div>");
+                                    $("#option1_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 1</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option1_h").focus();
@@ -1001,7 +973,7 @@
                             }
                             if (option2_h == "") {
                                 if ($("#option2_h").next(".validation").length == 0) {
-                                    $("#option2_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 2</div>");
+                                    $("#option2_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 2</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option2_h").focus();
@@ -1016,7 +988,7 @@
 
                             if (option3_h == "") {
                                 if ($("#option3_h").next(".validation").length == 0) {
-                                    $("#option3_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 3</div>");
+                                    $("#option3_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 3</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option3_h").focus();
@@ -1031,7 +1003,7 @@
 
                             if (option4_h == "") {
                                 if ($("#option4_h").next(".validation").length == 0) {
-                                    $("#option4_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 4</div>");
+                                    $("#option4_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 4</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option4_h").focus();
@@ -1045,7 +1017,7 @@
                             var option5_h = $("#option5_h").val();
                             if (option5_h == "") {
                                 if ($("#option5_h").next(".validation").length == 0) {
-                                    $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please enter option 5</div>");
+                                    $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
                                 }
                                 if (!focusSet) {
                                     $("#option5_h").focus();
@@ -1122,7 +1094,7 @@
 
             function displayQuestions() {
                 var que_bank_id = $("#que_bank_id").val();
-                $.post("<?php echo base_url(); ?>subadmin/getQuestionListByQueBankId", {
+                $.post("<?php echo base_url(); ?>subadmin/getQuestionListByQueBankId/", {
                     que_bank_id: que_bank_id
                 }, function(result) {
                     if (result.status == 0) {
@@ -1234,7 +1206,7 @@
                                     '<td>' + type + '</td>' + dynamicImg +
                                     '<td>' + data[i].no_of_options + '</td>' +
                                     '<td>' + '1. ' + op1 + '1. ' + op1_h + '<br>2. ' + op2 + '   2. ' + op2_h + '<br>3. ' + op3 + '   3. ' + op3_h + '<br>4. ' + op4 + '   4. ' + op4_h + '<br>5. ' + op5 + '   5. ' + op5_h + '</td>' +
-                                    '<td>' + data[i].corr_opt_e + '</td>' +
+                                    '<td><i class="fa-fa-image" ></i></td>' +
                                     '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
                                     '</tr>';
                             }
@@ -1287,5 +1259,39 @@
             //         e.preventDefault();
             //     }
             // });
-</script>
-       
+
+
+        </script>
+        <!-- Footer -->
+
+        <!-- End of Footer -->
+        <script>
+            $("#image_file").hide();
+    $("#option1").hide();
+$("#type_select").click(function(){
+    // alert( 'cheack value');
+    // var abc=$('#option_text').val();
+    pqr=$('#type_select').val();
+    // console.log(abc);
+    console.log(pqr);
+  $("#option1").show();
+  $("#option1_h").show();
+  $("#image_file").hide();
+  $("#image_file_h").hide();
+  if(pqr=="text_value"){
+    $("#image_file").hide();
+    $("#image_file_h").hide();
+    $("#option1").show();
+    $("#option1_h").show();
+  }else{
+    $("#image_file").show();
+    $("#image_file_h").show();
+    $("#option1").hide();
+    $("#option1_h").hide();
+  }
+});
+$("#option_image").click(function(){
+  $("#option1").hide();
+  $("#image_file").show();
+});
+        </script>

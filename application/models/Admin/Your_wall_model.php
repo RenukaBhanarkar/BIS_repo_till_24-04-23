@@ -67,5 +67,65 @@ class Your_wall_model extends CI_Model {
     public function yourwallUnpublish($id){
         $this->db->update('tbl_your_wall',['status'=>'6'],['id'=>$id]);
     }
+    public function all_archievd(){
+        $this->db->select('tyw.*,tms.status_name,tu.user_name,tu.email');
+        $this->db->from('tbl_your_wall tyw'); 
+        $this->db->join('tbl_mst_status tms','tms.id=tyw.status');      
+        $this->db->join('tbl_users tu','tu.user_id=tyw.user_id'); 
+        $this->db->where('status','9');
+        $this->db->order_by('created_on','desc');
+        $query=$this->db->get();
+        $res=$query->result_array();
+        return $res;
+    }
+    public function allbycreated(){
+        $this->db->select('tyw.*,tms.status_name,tu.user_name,tu.email');
+        $this->db->from('tbl_your_wall tyw'); 
+        $this->db->join('tbl_mst_status tms','tms.id=tyw.status');      
+        $this->db->join('tbl_users tu','tu.user_id=tyw.user_id'); 
+        $this->db->where('status','1');
+        $this->db->order_by('created_on','desc');
+        $query=$this->db->get();
+        $res=$query->result_array();
+        return $res;
+    }
+    public function allbyapproved(){
+        $this->db->select('tyw.*,tms.status_name,tu.user_name,tu.email');
+        $this->db->from('tbl_your_wall tyw'); 
+        $this->db->join('tbl_mst_status tms','tms.id=tyw.status');      
+        $this->db->join('tbl_users tu','tu.user_id=tyw.user_id'); 
+        $this->db->where('status','5');
+        $this->db->or_where('status','6');
+        $this->db->or_where('status','3');
+        $this->db->order_by('created_on','desc');
+        $query=$this->db->get();
+        $res=$query->result_array();
+        return $res;
+    }
+    public function allbyrejected(){
+        $this->db->select('tyw.*,tms.status_name,tu.user_name,tu.email');
+        $this->db->from('tbl_your_wall tyw'); 
+        $this->db->join('tbl_mst_status tms','tms.id=tyw.status');      
+        $this->db->join('tbl_users tu','tu.user_id=tyw.user_id'); 
+        $this->db->where('status','4');     
+        $this->db->order_by('created_on','desc');
+        $query=$this->db->get();
+        $res=$query->result_array();
+        return $res;
+    }
+    public function reject($data){
+        $this->db->where('id',$data['id']);
+        if($this->db->update('tbl_your_wall',$data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function restore($id){
+        $this->db->update('tbl_your_wall',['status'=>'1'],['id'=>$id]);
+    }
+    public function archive($id){
+        $this->db->update('tbl_your_wall',['status'=>'9'],['id'=>$id]);
+    }
 
 }

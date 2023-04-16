@@ -6,6 +6,11 @@ $config = array(
 			'label' => 'Title of Quiz',
 			'rules' => 'required'
 		),
+		array(
+			'field' => 'title_hindi',
+			'label' => 'Hindi Title of Quiz',
+			'rules' => 'required'
+		),
 		array( 
 			'field' => 'description',
 			'label' => 'Description of Quiz',
@@ -55,9 +60,7 @@ $config = array(
 			'field' => 'quiz_level_id',
 			'label' => 'Level of Quiz',
 			'rules' => 'required'
-		),
-
-		 
+		),		 
 		array(
 			'field' => 'language_id',
 			'label' => 'Launguage of Quiz',
@@ -73,8 +76,6 @@ $config = array(
 			'label' => 'Prize Details',
 			'rules' => 'required'
 		),
-		
-
 		array(
 			'field' => 'sprize',
 			'label' => 'Number of Prizes',
@@ -85,9 +86,6 @@ $config = array(
 			'label' => 'Prize Details',
 			'rules' => 'required'
 		),
-		 
-
-
 		array(
 			'field' => 'tprize',
 			'label' => 'Number of Prizes',
@@ -98,8 +96,6 @@ $config = array(
 			'label' => 'Prize Details',
 			'rules' => 'required'
 		),
-		 
-
 		array(
 			'field' => 'cprize',
 			'label' => 'Number of Prizes',

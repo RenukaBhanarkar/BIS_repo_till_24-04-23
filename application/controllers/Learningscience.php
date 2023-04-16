@@ -185,7 +185,7 @@ class Learningscience extends CI_Controller
         $data['lsvStandardsView']=$lsvStandardsView;
 
         $this->load->view('admin/headers/admin_header');  
-        if ($this->form_validation->run('live_session_form') == FALSE) 
+        if ($this->form_validation->run('lsv_standards_form') == FALSE) 
         {
             $this->load->view('learningscience/lsv_standards_edit',$data);
         } 

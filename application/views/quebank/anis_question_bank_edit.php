@@ -3,7 +3,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Quiz Bank Form</h1>
+            <h1 class="h3 mb-0 text-gray-800">Question Bank Form</h1>
         </div>
         <?php
         if ($this->session->flashdata('MSG')) {
@@ -98,7 +98,7 @@
                             <?php if($row['language'] == 1|| $row['language'] ==3){ ?>
                             <div class="row" id="question-eng">
                                 <div class="mb-2 col-md-4">
-                                    <label class="d-block text-font">Question in English<sup class="text-danger">*</sup></label>
+                                    <label class="d-block text-font">Question<sup class="text-danger">*</sup></label>
                                     <input type="text" class="form-control input-font" name="que" id="que" placeholder="Enter Question">
                                 </div>
                             </div>
@@ -165,25 +165,26 @@
                                     <div class="row mt-3" id="opt1_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 1</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
 
                                             <div class="form-check" style="padding-left:0px;">
                                                 <input class="form-control input-font ml-3" type="text" name="option1" id="option1" style="width: 180px;">
+                                                <input class="form-control-file input-font ml-3" type="file" name="image_file" id="image_file" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 2</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
                                             <div class="form-check" style="padding-left:0px;">
@@ -194,10 +195,10 @@
                                     <div class="row mt-3" id="opt3_blk" style="padding-left:0px;">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 3</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
                                             <div class="form-check" style="padding-left:0px;">
@@ -208,10 +209,10 @@
                                     <div class="row mt-3" id="opt4_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 4</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
                                             <div class="form-check" style="padding-left:0px;">
@@ -222,10 +223,10 @@
                                     <div class="row mt-3" id="opt5_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 5</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
+                                            <select class="form-control input-font" id="type_select" name="type_select" aria-label="Default select example" style="width:103px;">
                                                     <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
+                                                    <option  value="text_value" id="option_text">Text</option>
+                                                    <option  value="img_value" id="option_text">Image</option>
                                                     
                                             </select>
                                             <div class="form-check" style="padding-left:0px;">
@@ -243,6 +244,7 @@
                                             <label class="d-block text-font mr-3">Option 1 in Hindi</label>
                                             <div class="form-check" style="padding-left:0px;">
                                                 <input class="form-control input-font ml-3" type="text" name="option1_h" id="option1_h" style="width: 180px;">
+                                                <input class="form-control-file input-font ml-3" type="file" name="image_file" id="image_file_h" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
@@ -339,13 +341,14 @@
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <div class="card border-top card-body">
-                                        <table id="example" class="hover table-bordered" style="width:100%">
+                                        <table id="example" class="table-bordered display nowrap" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>Sr. No.</th>
                                                     <th>Question Id</th>
                                                     <th>Question Type</th>
                                                     <th>Question Title</th>
+                                                    <th>Question Title in Hindi</th>
                                                     <th>Number of Options</th>
                                                     <th>Option details</th>
                                                     <th>Correct Option No</th>
@@ -378,6 +381,7 @@
                                                         <img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid<?php echo $r['que_bank_id'];?>/<?php echo $r['image'];?>">                                   
                                                       <?php } ?>                                               
                                                     </td>
+                                                    <td>Title Hindi</td>
                                                     <td><?php echo $r['no_of_options']; ?></td>
                                                     <td>
                                                                 <?php
@@ -1288,4 +1292,29 @@
             //     }
             // });
 </script>
-       
+  <script>
+            $("#image_file").hide();
+    $("#option1").hide();
+$("#type_select").click(function(){
+    // alert( 'cheack value');
+    // var abc=$('#option_text').val();
+    pqr=$('#type_select').val();
+    // console.log(abc);
+    console.log(pqr);
+  $("#option1").show();
+  $("#option1_h").show();
+  $("#image_file").hide();
+  $("#image_file_h").hide();
+  if(pqr=="text_value"){
+    $("#image_file").hide();
+    $("#image_file_h").hide();
+    $("#option1").show();
+    $("#option1_h").show();
+  }else{
+    $("#image_file").show();
+    $("#image_file_h").show();
+    $("#option1").hide();
+    $("#option1_h").hide();
+  }
+});
+  </script>     

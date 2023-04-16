@@ -148,7 +148,7 @@ a.view-btn {
 <section class="">
     <div class="container-fluid">
         <div class="live_session d-flex">
-             <div class="col-md-4" style="background: linear-gradient(180.83deg, rgb(246 196 79 / 82%) 1.43%, rgba(194, 87, 155, 0.1) 98.57%);">
+             <div class="col-md-4 col-sm-4 col-lg-4" style="background: linear-gradient(180.83deg, rgb(246 196 79 / 82%) 1.43%, rgba(194, 87, 155, 0.1) 98.57%);">
                 <div class="row">
                     <div class="live_content">
                         <div class="live_section_title">
@@ -170,7 +170,7 @@ a.view-btn {
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4 col-lg-4">
                 <div class="row">
                     <div class="live_content">
                         <div class="live_section_title">
@@ -193,7 +193,7 @@ a.view-btn {
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" style="background: linear-gradient(180.83deg, rgb(38 135 214) 1.43%, rgba(194, 87, 155, 0.1) 98.57%);">
+            <div class="col-md-4 col-sm-4 col-lg-4" style="background: linear-gradient(180.83deg, rgb(38 135 214) 1.43%, rgba(194, 87, 155, 0.1) 98.57%);">
                 <div class="row">
                     <div class="live_content">
                         <div class="live_section_title">

@@ -112,9 +112,10 @@
         <?php foreach($wow as $list){ ?>
             
             <div class="col-md-4 mb-4">
-            <a href="<?php echo base_url().'users/wall_of_wisdom_view/'.$list['id']; ?>">
+            <!-- <a href="<?php echo base_url().'users/wall_of_wisdom_view/'.$list['id']; ?>"> -->
                   <div class="card-winners">
-                      <img src="<?php echo base_url().'uploads/admin/wall_of_wisdom/'.$list['image']; ?>" class="card-img-top" alt="Discussion Forum">
+                  <a href="<?php echo base_url().'users/wall_of_wisdom_view/'.$list['id']; ?>">
+                      <img src="<?php echo base_url().'uploads/admin/wall_of_wisdom/'.$list['image']; ?>" class="card-img-top" alt="Discussion Forum"></a>
                       <div class="winner-body p-2">
                           <!-- <div class="node-status"><span>Status : </span>
                               <div class="status-open">Open</div>
@@ -127,12 +128,12 @@
                                   <span class="last-date"><?php echo $list['description']; ?> </span>
                               </span>
                           </div>
-                          <div class="node-status like_review"><span><img src="<?php echo base_url(); ?>/assets/images/thumb-up.jpeg" style="width:18px;"></span>
-                              <div class="status-open" style="margin-left:10px;">50</div>
+                          <div onclick="like('<?php echo $list['id']; ?>')" class="node-status like_review"><span><img src="<?php echo base_url(); ?>/assets/images/thumb-up.jpeg" style="width:18px;"></span>
+                              <div  class="status-open likes" wow-id='<?php echo $list['id']; ?>' style="margin-left:10px;"><?php echo $list['likes']; ?></div>
                           </div>
                       </div>
                   </div>
-                  </a>
+                  <!-- </a> -->
                 </div>
          
                     <?php }  ?>
@@ -146,3 +147,30 @@
             
         
     </section>
+    <script>
+        function like(que_id){
+            // console.log(que_id);
+            // var c = confirm("Are you sure to Approve activity? ");
+            // if (c == true) {
+                // $('#approve').modal('show');
+                // $('.approve').on('click', function() {
+                // const $loader = $('.igr-ajax-loader');
+                //$loader.show();
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo base_url(); ?>Wall_of_wisdom/like',
+                    data: {
+                        que_id: que_id,
+                    },
+                    success: function(result) {
+                        // console.log(result);
+                       location.reload();
+                    },
+                    error: function(result) {
+                        alert("Error,Please try again.");
+                    }
+                });
+
+            // })
+        }
+    </script>

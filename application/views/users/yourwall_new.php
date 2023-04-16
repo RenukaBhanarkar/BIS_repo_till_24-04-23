@@ -112,23 +112,23 @@
                     <div class="row">
                         <div class="col-sm-6 mt-3">
 
-                            <input type="text" class="form-control title-height mb-4" name="title" placeholder="Title" required>
+                            <input type="text" class="form-control title-height mb-4" name="title" id="title" placeholder="Title" >
                             
 
                         </div>
                         <div class="col-sm-6 mt-3">
                             <div class="file-upload-wrapper" data-text="Select your file">
-                                <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" required>
+                                <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" >
                                 <span id="err_image" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group ">
-                                <textarea class="form-control  w-100" rows="8" placeholder="Share Your Description......" name="description" id="description" required></textarea>
+                                <textarea class="form-control  w-100" rows="8" placeholder="Share Your Description......" name="description" id="description" ></textarea>
                                 
 
                                 <div class="button-group float-end mt-3">
-                                    <button  type="submit" name="submit" class="btn btn-danger">Submit</button>
+                                    <button onclick="return submitButton()" type="submit" name="submit" class="btn btn-danger submit">Submit</button>
                                     
                                 </div>
                             </div>
@@ -143,6 +143,86 @@
             <ul class="posts">
             </ul>
         </div>
+
+        <!-- <div class="modal fade" id="invalidfiletype" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Only jpg,png,jpeg files accepted.</p>
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> 
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="modal fade" id="submit_alert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to submit ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="submit" onclick="submit1()" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="lessSize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>File size shoud be 20KB or more</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="greaterSize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>File size shoud be less than 250KB </p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
         <div class="modal fade" id="invalidfiletype" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -165,10 +245,21 @@
     </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script>
+            function submit1(){
+                // event.preventDefault();
+                // return true;
+                 $('#addwall').submit();
+            }
             $(document).ready(function(){
+
+                $('#addwall').removeClass('was-validated');
+
+
                 $('#image').on('change', function(){
+                    $('#addwall').addClass('was-validated');
                     console.log("sdfgsdf");
                     var focusSet = false;
+                    var is_valid = true;
                     if ($("#image").val() != '') {
                     var fileSize = $('#image')[0].files[0].size;
 
@@ -177,33 +268,36 @@
                     // }
 
                     if (fileSize > 509600) {
-                        var is_valid = false;
+                         is_valid = false;
                         allfields = false;
                         $("#image").val('');
-                        alert("Please select file size less than 500 KB");
-                        if ($("#imgError1").next(".validation").length == 0) // only add if not added
-                        {
-                            var is_valid = false;
-                            alert("Please select file size less than 500 KB");
-                            $("#err_image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
-                        }
-                        var is_valid = false;
+                        // alert("Please select file size less than 500 KB");
+                        $('#greaterSize').modal('show');
+                        // if ($("#imgError1").next(".validation").length == 0) // only add if not added
+                        // {
+                        //     var is_valid = false;
+                        //     // alert("Please select file size less than 500 KB");
+                        //     $("#err_image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                        // }
+                        //  is_valid = false;
                         if (!focusSet) {
                             $("#image").focus();
                         }
+                        return false;
                     } else if(fileSize < 20480){
                         $("#image").val('');
                         is_valid = false;
                         allfields = false;
-                        alert("Please select file size greater than 20 KB");
-                        if ($("#err_image").next(".validation").length == 0) 
-                        {
-                        is_valid = false;
-                        //    alert("Please select file size greater than 20 KB");
-                           $("#err_image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20KB </div>");
-                        return false;
-                        }
-                        is_valid = false;
+                        // $('#lessSize').modal('show');
+                        // // alert("Please select file size greater than 20 KB");
+                        // if ($("#err_image").next(".validation").length == 0) 
+                        // {
+                        // is_valid = false;
+                        // //    alert("Please select file size greater than 20 KB");
+                        // //    $("#err_image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20KB </div>");
+                        // return false;
+                        // }
+                        // is_valid = false;
                        
                     }else{
                         
@@ -219,29 +313,30 @@
                         $('#image').val('');
                         // alert("Invalid file type");
                         $('#invalidfiletype').modal('show');
-                        var  is_valid = false;
-                        if ($("#imgError1").next(".validation").length == 0) // only add if not added
-                        {
-                            $("#imgError1").text('Please upload .jpg / .jpeg/.png image ');
-                            // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
-                        }
+                          is_valid = false;
+                        // if ($("#imgError1").next(".validation").length == 0) // only add if not added
+                        // {
+                        //     // $("#imgError1").text('Please upload .jpg / .jpeg/.png image ');
+                        //     // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                        // }
                         allFields = false;
-                        if (!focusSet) {
-                            $("#image").focus();
-                        }
+                        // if (!focusSet) {
+                        //     $("#image").focus();
+                        // }
                     } else {
-                        is_valid = true;
+                        // is_valid = true;
                         $("#imgError1").next(".validation").remove(); // remove it
                     }
                     
                 }else{
-                    $("#imgError1").text('Please select file');
+                    $("#imgError1").text('This value is required');
                     $("#image").focus();
                     return false;
                 }
                 if(is_valid){
                     return true;
                 }else{
+                    // alert('is_valid');
                     return false;
                 }
             });
@@ -250,8 +345,13 @@
         <script>
            
            
-    $('#addwall').submit( 'click',function() { 
+    // $('#addwall').submit( 'click',function(e) {
+        // $('.submit').on( 'click',function(e) {
+            function submitButton() {
+    // event.preventDefault();
+           var is_valid = true;
                     // e.preventDefault();
+                    $('#addwall').addClass('was-validated');
                     var focusSet = false;
                     var allfields = true;
                     var title = $("#title").val();
@@ -259,13 +359,14 @@
                     var image = $("#image").val(); 
 
                     if ($("#image").val() == '') {
-                        alert('please select Image');
+                        // alert('please select Image');
                         $("#image").val('');
-                        $("#err_image").text("This value is required");
-                
-                var  is_valid = false;
-                       false;
-                        allfields = false;
+                        $("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                        $("#err_image").text("This value is required");                
+                is_valid = false;
+                allfields = false;
+                    }else{
+                       
                     }
                    
 
@@ -279,37 +380,166 @@
                     if (title == "" || title== null) {
                         if ($("#title").next(".validation").length == 0) // only add if not added
                         {
-                            $("#title").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please Enter Quiz Title </div>");
+                            $('#title').attr('required',true);
+                            $("#title").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
                         }
                         if (!focusSet) { $("#title").focus(); }
                         allfields = false;
                     } else {
-                        allfields =true;
+                        // allfields =true;
+                        // is_valid = true;
                         $("#title").next(".validation").remove(); // remove it
                     } 
 
                     if (description == "" || description== null) {
-                        // if ($("#description").next(".validation").length == 0) // only add if not added
-                        // {
-                        //     $("#description_error").show();
-                        // }
-                        // if (!focusSet) { $("#description").focus(); }
+                        if ($("#description").next(".validation").length == 0) // only add if not added
+                        {
+                            $('#description').attr('required',true);
+                            $("#description").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
+                        }
+                        if (!focusSet) { $("#description").focus(); }
                         allfields = false;
                     } else {
-                        allfields =true;
+                        // is_valid = true;
+                        // allfields =true;
                             $("#description_error").hide();
 
                     } 
 
+                //     if ($("#image").val() != '') {
+                //     var fileSize = $('#image')[0].files[0].size;
+                //     if (fileSize > 509600) {
+                //         var is_valid = false;
+                //         allfields = false;
+                //         $("#image").val('');
+                //         // alert("Please select file size less than 500 KB");
+                //         $('#greaterSize').modal('show');
+                //         if ($("#imgError1").next(".validation").length == 0) // only add if not added
+                //         {
+                //             var is_valid = false;
+                //             // alert("Please select file size less than 500 KB");
+                //             $("#err_image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                //         }
+                //         var is_valid = false;
+                //         if (!focusSet) {
+                //             $("#image").focus();
+                //         }
+                //         return false;
+                //     } else if(fileSize < 20480){
+                //         $("#image").val('');
+                //         is_valid = false;
+                //         allfields = false;
+                //         $('#lessSize').alert('show');
+                //         // alert("Please select file size greater than 20 KB");
+                //         if ($("#err_image").next(".validation").length == 0) 
+                //         {
+                //         is_valid = false;
+                //         //    alert("Please select file size greater than 20 KB");
+                //            $("#err_image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20KB </div>");
+                //         return false;
+                //         }
+                //         is_valid = false;
+                       
+                //     }else{
+                        
+                //         $("#err_image").next(".validation").remove(); // remove it
+                //         $("#err_image").after("");
+                //     }
+                //     // check type  start
+                    
+                //     var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+                //     var fileName = $("#image").val();;
+                //     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                //     if ($.inArray(fileNameExt, validExtensions) == -1) {
+                //         $('#image').val('');
+                        
+                //         // alert("Invalid file type");
+                //         $('#invalidfiletype').modal('show');
+                //         var  is_valid = false;
+                //         if ($("#imgError1").next(".validation").length == 0) // only add if not added
+                //         {
+                //             $("#imgError1").text('Please upload .jpg / .jpeg/.png image ');
+                //             // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                //         }
+                //         allFields = false;
+                //         if (!focusSet) {
+                //             $("#image").focus();
+                //         }
+                //     } else {
+                //         is_valid = true;
+                //         $("#imgError1").next(".validation").remove(); // remove it
+                //     }
+                    
+                // }else{
+                //     $("#imgError1").text('This value is required');
+                //     $("#image").focus();
+                //     return false;
+                // }
+
+
+
+
+
+// alert(allfields);
+//                 if(is_valid){
+//                     // return true;
+// alert('not valid');
                     if (allfields) { 
-                        $('#addwall').submit();
-                        return true;
+                        // $('#addwall').submit();
+                        // $('#submit_alert').modal('show');
+                        Swal.fire({
+                            title: 'Do you want to Submit?',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: 'Submit',
+                            denyButtonText: `Cancle`,
+                            }).then((result) => {
+                            /* Read more about isConfirmed, isDenied below */
+                            if (result.isConfirmed) {
+                                Swal.fire('Saved!', '', 'success')
+                                // return true;
+                                $('#addwall').submit();
+                                return true
+                            } else if (result.isDenied) {
+                                Swal.fire('Changes are not saved', '', 'info')
+                            }
+                            })
+                        // return true;
                     } else {
                         return false;
                     }
-                    // $('#addwall').submit();
-                });
-</script>
+                // }else{
+                //     return false;
+                // }
 
+// function submit(e){
+//     e.preventDefault();
+//     $('#addwall').submit();
+// }
+// $('.ok').on('click',function(e){
+//     e.preventDefault();
+//     $('#addwall').submit();
+// });
+                
+
+
+
+
+
+
+
+                    // if (allfields) { 
+                    //     $('#addwall').submit();
+                    //     return true;
+                    // } else {
+                    //     return false;
+                    // }
+
+
+                    // $('#addwall').submit();
+                // });
+                    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
   

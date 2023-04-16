@@ -27,7 +27,7 @@
                 <div class="modal fade " id="newform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-xl" role="document">
-                        <form action="<?php echo base_url(); ?>admin/add_photos" class="was-validated" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url(); ?>admin/add_photos" class="was-validated" method="post" enctype="multipart/form-data" id="add_photo">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Add Photo</h5>
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <button class="btn btn-primary">Submit</button>
+                                    <button class="btn btn-primary save">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example" class="table table-bordered">
+                    <table id="photos" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -237,13 +237,19 @@
 //     }  
 
 $(document).ready(function(){
-
+    $('#add_photo').removeClass('was-validated');
     $('#example').on('click','.delete',function() { 
             $('#delete').modal('show');
+            $('#add_photo').removeClass('was-validated');
             var id=$(this).attr('data-id');  
             
             $('#abcd').attr('href','<?php echo base_url(); ?>admin/deletePhotos/'+id);
         });
+    $('.save').on('click',function(){
+        $('#add_photo').addClass('was-validated');
+    })
+
+    $('#photos').DataTable();
 });
 
 

@@ -2,7 +2,7 @@
 
 #banner-section {
     padding: 37px 37px 37px 37px;
-    background: #d4d0d0;
+    background: #ebe6e6;
     margin-top: 35px;
     border-radius: 10px;
 }
@@ -68,7 +68,7 @@
     font-size: 16px;
     font-weight: 600;
     padding: 10px;
-    background: azure;
+    background: mintcream;
     border-radius: 10px;
 }
 
@@ -145,6 +145,8 @@
     min-height: 150px;
     position: relative;
     padding: 0 0 50px;
+    text-align: center;
+    color: brown;
 }
 .start_content{
     width: 100%;
@@ -164,7 +166,7 @@
 .title_join {
     text-align: center;
     margin-top: 10px;
-    color: brown;
+    color: black;
     padding: 3px;
 }
 span.span_description {
@@ -197,6 +199,7 @@ span.date-time {
 span.last-date {
     font-size: 18px;
     font-weight: 600;
+    color: black;
 }
 .quiz-text-date{
     font-size: 14px;
@@ -227,20 +230,34 @@ span.last-date {
                         </p>
                         <div class="d-flex">
                         <p class="time-start-end d-flex" style="margin-bottom:0px;">
-                            <span class="start-end-time-title mr-2">Start Date<span class="quiz-text-date m-2"><?= date("m-d-Y", strtotime($quizdata['start_date']));?></span>
+                            <span class="start-end-time-title mr-2">Start Date<span class="quiz-text-date m-2"><?= date("m-d-Y", strtotime($quizdata['start_date']));?><span style="margin-left: 12px;">12:00PM</span></span>
                             </span>
                         </p>
                         <p class="time-start-end d-flex" style="margin-bottom:0px; margin-left: 8px;">
+                            <span class="start-end-time-title">Marks<span class="quiz-text-date m-2">50</span>
+                            </span>
+                        </p>
+                        </div>
+                        <div class="d-flex">
+                        <p class="time-start-end d-flex" style="margin-bottom:0px; margin-top: 10px;">
                             <span class="start-end-time-title">End Date <span class="quiz-text-date m-2"><?= date("m-d-Y", strtotime($quizdata['end_date']));?></span>
                             </span>
                         </p>
                         </div>
-                        <a href="<?= base_url();?>users/quiz_start/<?= $quizdata['id'];?>" class="btn startQuiz"> <span>Login to Start Quiz</span></a>
+                        <?php 
+                       
+                         $user_type = encryptids("D", $this->session->userdata('admin_type'));
+                       
+                         if($user_type != "") { ?>
+                            <a href="<?= base_url();?>users/quiz_start/<?= $quizdata['id'];?>" class="btn startQuiz"> <span>Start Quiz</span></a>
+                        <?php  }  else { ?> 
+                            <a href="<?= base_url();?>users/login" class="btn startQuiz"> <span>Login to Start Quiz</span></a>
+                        <?php } ?>
                           <?php 
-          if ($this->session->flashdata('MSG')) {   
-            echo $this->session->flashdata('MSG');  
-          } 
-          ?>
+                            if ($this->session->flashdata('MSG')) {   
+                                echo $this->session->flashdata('MSG');  
+                            } 
+                        ?>
                     </div>
                 </div>
             </div>
@@ -271,16 +288,17 @@ span.last-date {
             </div>
         <div class="join_container">
             <div class="view_join_content">
-                   <a href="">
+                    <h3>First Prize</h3>
+                  
                    <div class="start_content">
                         <img src="<?php echo base_url(); ?>assets/images/prize_2.avif" alt="" class="join_img">
 
                    </div>
-                   </a>
+                
                    <div class="#">
                         <div class="title_join">
-                            <h3>First Prize</h3>
-                            <span class="last-date">Number of Prize<span class="date-time" style="margin-left: 14px;">10</span></span>
+                        <h3>Laptop</h3>
+                            <span class="last-date">Number of Prizes :<span class="date-time" style="margin-left:5px;">10</span></span>
                             <!-- <span class="span_description">women ki help karna unko zindge me age badne me help karna chahiye or ye jarruri bhi hai per eske liye campaign karna bhi bahut jarruri hai jise ladies eske liye jagruk ho or unko pta chle ki gov.t unke liye kya kya kar rahi hai jese ki gao gao ja kar ladies ko bataya jye jise wahaa ki ladies jagruk ho sake mahilawo ko comety bana kar ke apna startup karna chahiye jaha pe pm ke dwara unko aarthik help bhi mil sake</span> -->
                             
                         </div>
@@ -288,16 +306,17 @@ span.last-date {
                     </div>
             </div>
             <div class="view_join_content">
-                   <a href="">
+                    <h3>Second Prize</h3>
+                   
                    <div class="start_content">
                         <img src="<?php echo base_url(); ?>assets/images/prize_2.avif" alt="" class="join_img">
 
                    </div>
-                   </a>
+                 
                    <div class="#">
                         <div class="title_join">
-                        <h3>Second Prize</h3>
-                            <span class="last-date">Number of Prize<span class="date-time" style="margin-left: 14px;">10</span></span>
+                        <h3>Mobile</h3>
+                            <span class="last-date">Number of Prizes :<span class="date-time" style="margin-left:5px;">10</span></span>
                             <!-- <span class="span_description">women ki help karna unko zindge me age badne me help karna chahiye or ye jarruri bhi hai per eske liye campaign karna bhi bahut jarruri hai jise ladies eske liye jagruk ho or unko pta chle ki gov.t unke liye kya kya kar rahi hai jese ki gao gao ja kar ladies ko bataya jye jise wahaa ki ladies jagruk ho sake mahilawo ko comety bana kar ke apna startup karna chahiye jaha pe pm ke dwara unko aarthik help bhi mil sake</span> -->
                             
                         </div>
@@ -305,16 +324,17 @@ span.last-date {
                     </div>
             </div>
             <div class="view_join_content">
-                   <a href="">
+                    <h3>Third Prize</h3>
+                  
                    <div class="start_content">
                         <img src="<?php echo base_url(); ?>assets/images/prize_2.avif" alt="" class="join_img">
 
                    </div>
-                   </a>
+                   
                    <div class="#">
                         <div class="title_join">
-                        <h3>Third Prize</h3>
-                            <span class="last-date">Number of Prize<span class="date-time" style="margin-left: 14px;">10</span></span>
+                        <h3>Mashine</h3>
+                            <span class="last-date">Number of Prizes :<span class="date-time" style="margin-left:5px;">10</span></span>
                             <!-- <span class="span_description">women ki help karna unko zindge me age badne me help karna chahiye or ye jarruri bhi hai per eske liye campaign karna bhi bahut jarruri hai jise ladies eske liye jagruk ho or unko pta chle ki gov.t unke liye kya kya kar rahi hai jese ki gao gao ja kar ladies ko bataya jye jise wahaa ki ladies jagruk ho sake mahilawo ko comety bana kar ke apna startup karna chahiye jaha pe pm ke dwara unko aarthik help bhi mil sake</span> -->
                             
                         </div>
@@ -322,16 +342,17 @@ span.last-date {
                     </div>
             </div>
             <div class="view_join_content">
-                   <a href="">
+                    <h3>Consolation Prize</h3>
+                  
                    <div class="start_content">
                         <img src="<?php echo base_url(); ?>assets/images/prize_2.avif" alt="" class="join_img">
 
                    </div>
-                   </a>
+                  
                    <div class="#">
                         <div class="title_join">
-                        <h3>Consolation Prize</h3>
-                            <span class="last-date">Number of Prize<span class="date-time" style="margin-left: 14px;">10</span></span>
+                        <h3>Tablet</h3>
+                            <span class="last-date">Number of Prizes :<span class="date-time" style="margin-left:5px;">10</span></span>
                             <!-- <span class="span_description">women ki help karna unko zindge me age badne me help karna chahiye or ye jarruri bhi hai per eske liye campaign karna bhi bahut jarruri hai jise ladies eske liye jagruk ho or unko pta chle ki gov.t unke liye kya kya kar rahi hai jese ki gao gao ja kar ladies ko bataya jye jise wahaa ki ladies jagruk ho sake mahilawo ko comety bana kar ke apna startup karna chahiye jaha pe pm ke dwara unko aarthik help bhi mil sake</span> -->
                             
                         </div>
