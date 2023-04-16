@@ -4,10 +4,10 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Question Bank Archive</h1>
-            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <nav  aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Question Bank</li>
+                    <li class="breadcrumb-item active" aria-current="page">Question Bank Archive</li>
                 </ol>
             </nav>
         </div>
@@ -27,8 +27,8 @@
                                 <th>Total Marks</th>
                                 <th>Date Created</th>
                                 <th>Last Edited</th>
-                                <th>Linked Quiz ID</th>
-                                <th>Created on</th>
+                                <th>Linked Quiz</th>
+                              
                                 <th>Status</th>
                                 <th>Reason of Rejection</th>
                                 <th>Action</th>
@@ -49,17 +49,19 @@
                                             <td><?php echo date('d-m-Y', strtotime($row["modified_on"])) ?></td>
                                         <?php } else { ?>
                                             <td>--</td>
-                                        <?php } ?>
-                                        <td>--</td>
-                                        <td>12/03/2023 12:00 PM</td>
+                                        <?php } ?>                                        
+                                        <td><?php echo $row['quiz_title']; ?></td>
                                         <td><?php echo $row['status_name']; ?></td>
-                                        <td>Rejection</td>
+                                        <?php if ($row["rejection_reason"] != "") { ?>
+                                        <td><?php echo $row['rejection_reason']; ?></td>
+                                        <?php }else{ ?> 
+                                        <td>--</td>
+                                        <?php } ?>
                                         <td class="d-flex border-bottom-0">
-                                            <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/viewQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="View">View</a>\
-                                            <a class="btn btn-info btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/viewQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="View">Restore</a>
-                                           
-                                            
+                                            <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/viewQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="View">View</a>
 
+                                           <button type="button" class="btn btn-info btn-sm mr-2" data-id="<?php echo $row['que_bank_id']; ?>" id="RestoreQueBank">Restore</button>                                         
+                                            
                                         </td>
                                 <?php $i++;
                                 }
@@ -105,7 +107,7 @@
             }
         }
         $(document).ready(function() {
-            $('#listView').on('click', '#sendForApproval', function(e) {
+            $('#listView').on('click', '#RestoreQueBank', function(e) {
                 e.preventDefault();
                 const $root = $(this);
                 var id = $root.data('id');
@@ -115,7 +117,7 @@
                     dataType: 'json',
                     data: {
                         "id": id,
-                        "status": 2
+                        "status": 1
                     },
                     success: function(res) {
                         if (res.status == 0) {
@@ -123,7 +125,7 @@
 
                         } else {
                             alert(res.message);
-                            window.location.replace("<?php echo base_url(); ?>subadmin/question_bank_list");
+                            window.location.replace("<?php echo base_url(); ?>subadmin/questionBankList");
                         }
                     },
                     error: function(xhr, status, error) {

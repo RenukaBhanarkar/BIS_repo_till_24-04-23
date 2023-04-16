@@ -84,7 +84,7 @@ class Admin extends CI_Controller
         $this->Admin_model->adminLogout();
         //$this->session->session_unset();
         $this->session->sess_destroy();
-        redirect(base_url() . 'Users/login');
+        redirect(base_url() . 'Users');
         exit();
     }
     public function users()
