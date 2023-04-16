@@ -3,7 +3,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Quiz Bank Form</h1>
+            <h1 class="h3 mb-0 text-gray-800">Question Bank Form</h1>
         </div>
         <?php
         if ($this->session->flashdata('MSG')) {
@@ -55,9 +55,9 @@
                                 </div>
                             </div>
                             <div class="col-md-12 submit_btn p-3">
-                            <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
+                                <!-- <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a> -->
                                 <input type="submit" name="Submit" id="createQueBank" class="btn btn-info btn-sm">
-                                
+
                             </div>
                         </form>
                         <!-- que creation -->
@@ -91,7 +91,7 @@
                             </div>
                             <div class="row" id="question-eng">
                                 <div class="mb-2 col-md-12">
-                                    <label class="d-block text-font">Question<sup class="text-danger">*</sup></label>
+                                    <label class="d-block text-font">Question in English<sup class="text-danger">*</sup></label>
                                     <textarea type="text" class="form-control input-font" name="que" id="que" placeholder="Enter Question"></textarea>
                                 </div>
                                 <!-- <div class="mb-2 col-md-4">
@@ -159,135 +159,173 @@
                                     <div class="row mt-3" id="opt1_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 1</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
-                                                    <option value="0" selected>--Type--</option>
-                                                    <option value="2" id="option_text">Text</option>
-                                                    <option value="3" id="option_image">Image</option>
-                                                    
+                                            <select class="form-control input-font" id="opt_type_1" name="opt_type_1" aria-label="Default select example" style="width:103px;">
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
                                             </select>
-                                            <div class="form-check" style="padding-left:0px;">
-                                                <!-- <input class="form-control input-font ml-3" type="text" name="option1" id="option1" style="width: 180px;"> -->
-                                                <input class="form-control-file input-font ml-3" type="file" name="image_file" id="image_file" style="width: 180px;">
+                                            <div class="form-check" style="padding-left:0px;" id="option1_text_blk">
+                                                <input class="form-control input-font ml-3" type="text" name="option1" id="option1" style="width: 180px;">
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option1_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option1_image" id="option1_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 2</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
-                                                    <option value="0" selected>--Type--</option>
-                                                    <option value="2">Text</option>
-                                                    <option value="3">Image</option>
-                                                    
+                                            <select class="form-control input-font" id="opt_type_2" name="opt_type_2" aria-label="Default select example" style="width:103px;">
+
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
+
                                             </select>
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <div class="form-check" style="padding-left:0px;" id="option2_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option2" id="option2" style="width: 180px;">
-                                                <!-- <input class="form-control-file input-font ml-3" type="file" name="image_file" id="image_file" style="width: 180px;"> -->
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option2_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option2_image" id="option2_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 3</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
-                                                    <option value="0" selected>--Type--</option>
-                                                    <option value="2">Text</option>
-                                                    <option value="3">Image</option>
-                                                   
+                                            <select class="form-control input-font" id="opt_type_3" name="opt_type_3" aria-label="Default select example" style="width:103px;">
+
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
+
                                             </select>
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <div class="form-check" style="padding-left:0px;" id="option3_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option3" id="option3" style="width: 180px;">
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option3_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option3_image" id="option3_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 4</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
-                                                    <option value="0" selected>--Type--</option>
-                                                    <option value="2">Text</option>
-                                                    <option value="3">Image</option>
-                                                    
+                                            <select class="form-control input-font" id="opt_type_4" name="opt_type_4" aria-label="Default select example" style="width:103px;">
+
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
+
                                             </select>
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <div class="form-check" style="padding-left:0px;" id="option4_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option4" id="option4" style="width: 180px;">
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option4_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option4_image" id="option4_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt5_blk">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 5</label>
-                                            <select class="form-control input-font" id="no_of_options" name="no_of_options" aria-label="Default select example" style="width:103px;">
-                                                    <option value="0" selected>--Type--</option>
-                                                    <option value="2">Text</option>
-                                                    <option value="3">Image</option>
-                                                    
+                                            <select class="form-control input-font" id="opt_type_5" name="opt_type_5" aria-label="Default select example" style="width:103px;">
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
                                             </select>
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <div class="form-check" style="padding-left:0px;" id="option5_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option5" id="option5" style="width: 180px;">
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option5_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option5_image" id="option5_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-md-4" id="opt_blk_hin">
-
-
                                     <div class="row mt-3" id="opt1_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 1 in Hindi</label>
-                                           
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <select class="form-control input-font" id="opt_type_h_1" name="opt_type_h_1" aria-label="Default select example" style="width:103px;">
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;" id="option1_h_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option1_h" id="option1_h" required>
+
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option1_h_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option1_h_image" id="option1_h_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 2 in Hindi</label>
-                                            
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <select class="form-control input-font" id="opt_type_h_2" name="opt_type_h_2" aria-label="Default select example" style="width:103px;">
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;" id="option2_h_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option2_h" id="option2_h" required>
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option2_h_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option2_h_image" id="option2_h_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 3 in Hindi</label>
-                                            
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <select class="form-control input-font" id="opt_type_h_3" name="opt_type_h_3" aria-label="Default select example" style="width:103px;">
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;" id="option3_h_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option3_h" id="option3_h" required>
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option3_h_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option3_h_image" id="option3_h_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 4 in Hindi</label>
-                                            
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <select class="form-control input-font" id="opt_type_h_4" name="opt_type_h_4" aria-label="Default select example" style="width:103px;">
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;" id="option4_h_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option4_h" id="option4_h">
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option4_h_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option4_h_image" id="option4_h_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt5_blk_h">
                                         <div class="mb-2 col-md-12 d-flex">
                                             <label class="d-block text-font mr-3">Option 5 in Hindi</label>
-                                            
-                                            <div class="form-check" style="padding-left:0px;">
+                                            <select class="form-control input-font" id="opt_type_h_5" name="opt_type_h_5" aria-label="Default select example" style="width:103px;">
+                                                <option value="1">Text</option>
+                                                <option value="2">Image</option>
+                                            </select>
+                                            <div class="form-check" style="padding-left:0px;" id="option5_h_text_blk">
                                                 <input class="form-control input-font ml-3" type="text" name="option5_h" id="option5_h" required>
+                                            </div>
+                                            <div class="form-check" style="padding-left:0px;" id="option5_h_image_blk">
+                                                <input class="form-control-file input-font ml-3" type="file" name="option5_h_image" id="option5_h_image" style="width: 180px;">
                                             </div>
                                         </div>
                                     </div>
 
 
                                 </div>
+
                                 <div class="col-md-4" id="corr_opt_blk">
                                     <label class="d-block text-font mr-3">Correct Option</label>
                                     <div id="cor_opt">
                                         <div class="row mt-3">
                                             <div class="mb-2 col-md-4 d-flex">
 
-                                                <input class="form-control-radio input-font ml-3" type="radio" name="correct_answer" id="r1" value="1">
+                                                <input class="form-control-radio input-font ml-3" type="radio" name="correct_answer" id="r1" value="1" style="margin-top: -7px;">
 
                                             </div>
                                         </div>
@@ -321,13 +359,22 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
-                            <!-- <div class="row">
-                                <div class="mb-2 col-md-4 d-flex">
-                                    <label class="d-block text-font mr-3" style="width:154px;">Correct Answer option No</label>
-                                    <input class="form-control input-font" type="text" name="correct_answer" id="correct_answer">
+                            <div class="row">
+                                <div class=col-md-12>
+                                    <div id="imgErrorNew1"></div>
+                                    <div id="imgErrorNew2"></div>
+                                    <div id="imgErrorNew3"></div>
+                                    <div id="imgErrorNew4"></div>
+                                    <div id="imgErrorNew5"></div>
+                                    <div id="imgErrorNewHindi1"></div>
+                                    <div id="imgErrorNewHindi2"></div>
+                                    <div id="imgErrorNewHindi3"></div>
+                                    <div id="imgErrorNewHindi4"></div>
+                                    <div id="imgErrorNewHindi5"></div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="col-md-12 submit_btn p-3">
                                 <!-- <a class="btn btn-primary btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Create</a> -->
                                 <a class="btn btn-primary btn-sm text-white" id="createQuestion">Create</a>
@@ -344,6 +391,7 @@
                                                     <th>Question Id</th>
                                                     <th>Question Type</th>
                                                     <th>Question Title</th>
+                                                    <th>Question Title in Hindi</th>
                                                     <!-- <th>Image</th> -->
                                                     <th>Number of Options</th>
                                                     <th>Option details</th>
@@ -353,16 +401,47 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="que_body">
-
+                                             
                                             </tbody>
+                                           <!-- <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>12345</td>
+                                                    <td>Text</td>
+                                                    <td>title</td>
+                                                    <td>title</td>
+                                                    <td>10</td>
+                                                    <td>details</td>
+                                                    <td><img src="<?php echo base_url(); ?>assets/admin/img/bis_logo.png" style="width: 30px;" data-toggle="modal" data-target="#img_popup"></td>
+                                                    <td>2</td>
+                                                    <td>action</td>
+                                                </tr>
+                                            </tbody>-->
                                         </table>
+                                       
+                                        <!--<div class="modal fade" id="img_popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" style="max-width: 700px;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Image</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close" fdprocessedid="tv8px"><span aria-hidden="true">�</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img src="http://localhost/BIS/BIS_repo/assets/images/img_2.jpg" width="100%" />
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      -->
                                     </div>
                                     <div class="col-md-12 submit_btn p-3">
                                         <a class="btn btn-success btn-sm text-white" data-bs-toggle="modal" data-bs-target="#submitForm">Submit</a>
                                         <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a>
                                         <input type="reset" name="Reset" class="btn btn-warning btn-sm text-white">
                                         <div id="err_que_bank"></div>
-                                        
                                     </div>
 
                                     <!-- Modal -->
@@ -434,6 +513,18 @@
             $('#opt_blk_hin').hide();
             $('#opt_blk_eng').show();
 
+            $('#option1_image_blk').hide();
+            $('#option2_image_blk').hide();
+            $('#option3_image_blk').hide();
+            $('#option4_image_blk').hide();
+            $('#option5_image_blk').hide();
+
+            $('#option1_h_image_blk').hide();
+            $('#option2_h_image_blk').hide();
+            $('#option3_h_image_blk').hide();
+            $('#option4_h_image_blk').hide();
+            $('#option5_h_image_blk').hide();
+
             $(document).ready(function() {
 
                 $('input[type=radio][name=language]').change(function() {
@@ -457,6 +548,107 @@
                         $('#opt_blk_hin').show();
                         $('#question-hindi').show();
                         $('#question-eng').show();
+                    }
+                });
+
+                $(document).on("change", "#opt_type_1", function() {
+                    var opt_type = $("#opt_type_1 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option1_text_blk").show();
+                        $("#option1_image_blk").hide();
+                    } else {
+                        $("#option1_text_blk").hide();
+                        $("#option1_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_2", function() {
+                    var opt_type = $("#opt_type_2 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option2_text_blk").show();
+                        $("#option2_image_blk").hide();
+                    } else {
+                        $("#option2_text_blk").hide();
+                        $("#option2_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_3", function() {
+                    var opt_type = $("#opt_type_3 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option3_text_blk").show();
+                        $("#option3_image_blk").hide();
+                    } else {
+                        $("#option3_text_blk").hide();
+                        $("#option3_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_4", function() {
+                    var opt_type = $("#opt_type_4 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option4_text_blk").show();
+                        $("#option4_image_blk").hide();
+                    } else {
+                        $("#option4_text_blk").hide();
+                        $("#option4_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_5", function() {
+                    var opt_type = $("#opt_type_5 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option5_text_blk").show();
+                        $("#option5_image_blk").hide();
+                    } else {
+                        $("#option5_text_blk").hide();
+                        $("#option5_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_h_1", function() {
+                    var opt_type = $("#opt_type_h_1 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option1_h_text_blk").show();
+                        $("#option1_h_image_blk").hide();
+                    } else {
+                        $("#option1_h_text_blk").hide();
+                        $("#option1_h_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_h_2", function() {
+                    var opt_type = $("#opt_type_h_2 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option2_h_text_blk").show();
+                        $("#option2_h_image_blk").hide();
+                    } else {
+                        $("#option2_h_text_blk").hide();
+                        $("#option2_h_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_h_3", function() {
+                    var opt_type = $("#opt_type_h_3 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option3_h_text_blk").show();
+                        $("#option3_h_image_blk").hide();
+                    } else {
+                        $("#option3_h_text_blk").hide();
+                        $("#option3_h_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_h_4", function() {
+                    var opt_type = $("#opt_type_h_4 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option4_h_text_blk").show();
+                        $("#option4_h_image_blk").hide();
+                    } else {
+                        $("#option4_h_text_blk").hide();
+                        $("#option4_h_image_blk").show();
+                    }
+                });
+                $(document).on("change", "#opt_type_h_5", function() {
+                    var opt_type = $("#opt_type_h_5 :selected").val();
+                    if (opt_type == 1) {
+                        $("#option5_h_text_blk").show();
+                        $("#option5_h_image_blk").hide();
+                    } else {
+                        $("#option5_h_text_blk").hide();
+                        $("#option5_h_image_blk").show();
                     }
                 });
 
@@ -550,7 +742,7 @@
                     var allfields = true;
                     var title = $("#title").val();
                     var no_of_ques = $("#no_of_ques").val();
-                   // var total_marks = $("#total_marks").val();
+                    // var total_marks = $("#total_marks").val();
 
                     if (title == "") {
                         if ($("#title").next(".validation").length == 0) {
@@ -754,10 +946,10 @@
                     var focusSet = false;
                     var allfields = true;
                     var language = $("#que_language").val();
-                    //  $("#que_language").val(language);
-                    //alert(language);
+
                     //////////////////////
                     var que_type = $('input[name="que_type"]:checked').val();
+
                     if (que_type == 2 || que_type == 3) {
                         if ($("#que_image").val() == '') {
                             if ($("#imgError").next(".validation").length == 0) {
@@ -835,73 +1027,128 @@
                             }
                         }
                         if (no_of_options == 2 || no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
-                            var option1 = $("#option1").val();
-                            var option2 = $("#option2").val();
-                            if (option1 == "") {
-                                if ($("#option1").next(".validation").length == 0) {
-                                    $("#option1").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 1</div>");
+                            ///////////////////
+                            var opt_type_1 = $("#opt_type_1 :selected").val();
+                            if (opt_type_1 == 1) {
+                                var option1 = $("#option1").val();
+                                if (option1 == "") {
+                                    if ($("#option1").next(".validation").length == 0) {
+                                        $("#option1").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 1</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option1").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option1").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option1").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option1").next(".validation").remove();
+                                var option1_image = $("#option1_image").val();
+                                var msg = ImageValidation(option1_image, 1);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
                             }
-                            if (option2 == "") {
-                                if ($("#option2").next(".validation").length == 0) {
-                                    $("#option2").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 2</div>");
+
+                            ////////////////////
+                            ///////////////////
+                            var opt_type_2 = $("#opt_type_2 :selected").val();
+                            if (opt_type_2 == 1) {
+                                var option2 = $("#option2").val();
+                                if (option2 == "") {
+                                    if ($("#option2").next(".validation").length == 0) {
+                                        $("#option2").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 2</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option2").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option2").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option2").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option2").next(".validation").remove();
+                                var option2_image = $("#option2_image").val();
+                                var msg = ImageValidation(option2_image, 2);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
                             }
+                            ////////////////////
                         }
                         if (no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
-                            var option3 = $("#option3").val();
+                            var opt_type_3 = $("#opt_type_3 :selected").val();
+                            if (opt_type_3 == 1) {
+                                var option3 = $("#option3").val();
 
-                            if (option3 == "") {
-                                if ($("#option3").next(".validation").length == 0) {
-                                    $("#option3").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 3</div>");
+                                if (option3 == "") {
+                                    if ($("#option3").next(".validation").length == 0) {
+                                        $("#option3").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 3</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option3").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option3").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option3").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option3").next(".validation").remove();
+                                var option3_image = $("#option3_image").val();
+                                var msg = ImageValidation(option3_image, 3);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
+
                             }
+
                         }
                         if (no_of_options == 4 || no_of_options == 5) {
-                            var option4 = $("#option4").val();
+                            var opt_type_4 = $("#opt_type_4 :selected").val();
+                            if (opt_type_4 == 1) {
+                                var option4 = $("#option4").val();
 
-                            if (option4 == "") {
-                                if ($("#option4").next(".validation").length == 0) {
-                                    $("#option4").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 4</div>");
+                                if (option4 == "") {
+                                    if ($("#option4").next(".validation").length == 0) {
+                                        $("#option4").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 4</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option4").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option4").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option4").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option4").next(".validation").remove();
+                                var option4_image = $("#option4_image").val();
+                                var msg = ImageValidation(option4_image, 4);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
+
                             }
+
                         }
                         if (no_of_options == 5) {
-                            var option5 = $("#option5").val();
-                            if (option5 == "") {
-                                if ($("#option5").next(".validation").length == 0) {
-                                    $("#option5").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
+                            var opt_type_5 = $("#opt_type_5 :selected").val();
+                            if (opt_type_5 == 1) {
+                                var option5 = $("#option5").val();
+                                if (option5 == "") {
+                                    if ($("#option5").next(".validation").length == 0) {
+                                        $("#option5").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option5").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option5").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option5").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option5").next(".validation").remove();
+                                var option5_image = $("#option5_image").val();
+                                var msg = ImageValidation(option5_image, 5);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
+
                             }
                         }
                     }
@@ -1039,6 +1286,16 @@
                                     $('#option3_h').val('');
                                     $('#option4_h').val('');
                                     $('#option5_h').val('');
+                                    $('#option1_image').val('');
+                                    $('#option2_image').val('');
+                                    $('#option3_image').val('');
+                                    $('#option4_image').val('');
+                                    $('#option5_image').val('');
+                                    $('#option1_h_image').val('');
+                                    $('#option2_h_image').val('');
+                                    $('#option3_h_image').val('');
+                                    $('#option4_h_image').val('');
+                                    $('#option5_h_image').val('');
 
 
                                     displayQuestions();
@@ -1055,6 +1312,108 @@
                 });
             });
 
+            function ImageValidation(img, id) {
+
+                var i = 0;
+                if (img == '') {
+                    i++;
+
+                    if ($("#imgErrorNew" + id).next(".validation").length == 0) {
+                        $("#imgErrorNew" + id).after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select image for English option " + id + "</div>");
+                    } else {
+                        $("#imgErrorNew" + id).next(".validation").remove();
+                    }
+                } else {
+                    $("#imgErrorNew" + id).next(".validation").remove();
+                }
+
+                //check size of doc and type  if newly uploaded
+                if (img != '') {
+
+                    var fileSize = $("#option" + id + "_image")[0].files[0].size;
+
+                    if (fileSize > 102400) {
+                        i++;
+
+                        if ($("#imgErrorNew" + id).next(".validation").length == 0) {
+
+                            $("#imgErrorNew" + id).after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 100 KB for English option " + id + " </div>");
+                        }
+                    } else {
+                        $("#imgErrorNew" + id).next(".validation").remove();
+                        var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+                        var fileName = $("#option" + id + "_image").val();;
+                        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                        if ($.inArray(fileNameExt, validExtensions) == -1) {
+                            alert("Invalid file type");
+                            i++;
+
+                            if ($("#imgErrorNew" + id).next(".validation").length == 0) {
+                                $("#imgErrorNew" + id).after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image for English option " + id + " </div>");
+                            }
+                        } else {
+                            $("#imgErrorNew" + id).next(".validation").remove();
+                        }
+                    }
+
+
+
+                    // check type  start 
+
+
+
+                }
+                return i;
+            }
+
+            function ImageValidationHindi(img, id) {
+
+                var i = 0;
+                if (img == '') {
+                    i++;
+
+                    if ($("#imgErrorNewHindi" + id).next(".validation").length == 0) {
+                        $("#imgErrorNewHindi" + id).after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select image for Hindi option " + id + "</div>");
+                    } else {
+                        $("#imgErrorNewHindi" + id).next(".validation").remove();
+                    }
+                } else {
+                    $("#imgErrorNewHindi" + id).next(".validation").remove();
+                }
+
+                //check size of doc and type  if newly uploaded
+                if (img != '') {
+
+                    var fileSize = $("#option" + id + "_h_image")[0].files[0].size;
+
+                    if (fileSize > 102400) {
+                        i++;
+
+                        if ($("#imgErrorNewHindi" + id).next(".validation").length == 0) {
+
+                            $("#imgErrorNewHindi" + id).after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 100 KB for Hindi option " + id + " </div>");
+                        }
+                    } else {
+                        $("#imgErrorNewHindi" + id).next(".validation").remove();
+                        var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+                        var fileName = $("#option" + id + "_h_image").val();;
+                        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                        if ($.inArray(fileNameExt, validExtensions) == -1) {
+                            alert("Invalid file type");
+                            i++;
+
+                            if ($("#imgErrorNewHindi" + id).next(".validation").length == 0) {
+                                $("#imgErrorNewHindi" + id).after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image for Hindi option " + id + " </div>");
+                            }
+                        } else {
+                            $("#imgErrorNewHindi" + id).next(".validation").remove();
+                        }
+                    }
+                    // check type  start 
+                }
+                return i;
+            }
+
             function displayQuestions() {
                 var que_bank_id = $("#que_bank_id").val();
                 $.post("<?php echo base_url(); ?>subadmin/getQuestionListByQueBankId/", {
@@ -1065,11 +1424,25 @@
                     } else {
                         res = JSON.parse(result);
                         //console.log(res.data)
+
                         data = res.data;
                         var row = '';
                         j = 0
                         for (i in data) {
                             j++;
+                            var op1 ="NA";
+                            var op2 ="NA";
+                            var op3 ="NA";
+                            var op4 ="NA";
+                            var op5 ="NA";
+                            var op1_h ="NA";
+                            var op2_h ="NA";
+                            var op3_h ="NA";
+                            var op4_h ="NA";
+                            var op5_h ="NA";
+
+                            
+
                             if (data[i].que_type == 1) {
                                 var type = "Text";
                             } else if (data[i].que_type == 2) {
@@ -1089,95 +1462,129 @@
                             }
                             if (data[i].image != '') {
                                 var img = data[i].image;
-                                var dynamicImg = '<td>' + engQue + '<br>' + hindiQue + '<br>' +
+                                var dynamicImg = '<td>' + engQue + '<br>' + 
                                     '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
                                     '/' + img + '"></td>';
                             } else {
-                                var dynamicImg = '<td>' + engQue + '<br>' + hindiQue + '</td>';
+                                var dynamicImg = '<td>' + engQue + '</td>';
+                            }
+                            if (data[i].image != '') {
+                                var img = data[i].image;
+                                var dynamicImgHindi= '<td>'  + hindiQue + '<br>' +
+                                    '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
+                                    '/' + img + '"></td>';
+                            } else {
+                                var dynamicImgHindi = '<td>'  + hindiQue + '</td>';
                             }
                             /////////////////////////////////////////////// 
                             if (data[i].language == 1) {
-                                if (data[i].opt1_e == '') {
-                                    var op1 = 'NA'; } else {  var op1 = data[i].opt1_e;  }
-                                if (data[i].opt2_e == '') {
-                                    var op2 = 'NA';  } else { var op2 = data[i].opt2_e;  }
-                                if (data[i].opt3_e == '') {
-                                    var op3 = 'NA';  } else {  var op3 = data[i].opt3_e; }
-                                if (data[i].opt4_e == '') {
-                                    var op4 = 'NA';  } else {  var op4 = data[i].opt4_e; }
-                                if (data[i].opt5_e == '') {
-                                    var op5 = 'NA';  } else {  var op5 = data[i].opt5_e; }
-                                row += '<tr id="row' + data[i].que_id + '">' +
-                                    '<td>' + j + '</td>' +
-                                    '<td>' + data[i].que_id + '</td>' +
-                                    '<td>' + type + '</td>' + dynamicImg +
-                                    // '<td>' + data[i].que +
-                                    // '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
-                                    // '/' + img + '"></td>' +
-                                    '<td>' + data[i].no_of_options + '</td>' +
-                                    // '<td>'+ '1. ' + data[i].opt1_e + '<br>2. '+ data[i].opt2_e + '<br>3. '+ data[i].opt3_e +   '<br>4. '+ data[i].opt4_e + '<br>5. '+ data[i].opt5_e   +'</td>'+
+                                if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
 
-                                    '<td>' + '1. ' + op1 + '<br>2. ' + op2 + '<br>3. ' + op3 + '<br>4. ' + op4 + '<br>5. ' + op5 + '</td>' +
+                                    if (data[i].opt1_e == 0 || data[i].opt1_e == "") {
+                                   
+                                   var op1_img = data[i].option1_image;
+                               var op1 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op1_img + '">';
+                               } else {
+                                   var op1 = data[i].opt1_e;
+                               }
+                               if (data[i].opt2_e == 0 || data[i].opt2_e == "") {
+                                   var op2_img = data[i].option2_image;
+                               var op2 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op2_img + '">';
+                               } else {
+                                   var op2 = data[i].opt2_e;
+                               }
 
-                                    '<td>' + data[i].corr_opt_e + '</td>' +
-                                    '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
-                                    '</tr>';
-                            } else if (data[i].language == 2) {
-                                if (data[i].opt1_h == '') {
-                                    var op1 = 'NA';  } else {    var op1 = data[i].opt1_h;   }
-                                if (data[i].opt2_h == '') {
-                                    var op2 = 'NA'; } else {   var op2 = data[i].opt2_h;  }
-                                if (data[i].opt3_h == '') {
-                                    var op3 = 'NA';  } else {  var op3 = data[i].opt3_h;  }
-                                if (data[i].opt4_h == '') {
-                                    var op4 = 'NA'; } else {  var op4 = data[i].opt4_h;  }
-                                if (data[i].opt5_h == '') {
-                                    var op5 = 'NA';   } else { var op5 = data[i].opt5_h;  }
-                                row += '<tr id="row' + data[i].que_id + '">' +
-                                    '<td>' + j + '</td>' +
-                                    '<td>' + data[i].que_id + '</td>' +
-                                    '<td>' + type + '</td>' + dynamicImg +
-                                    '<td>' + data[i].no_of_options + '</td>' +
-                                    '<td>' + '1. ' + op1 + '<br>2. ' + op2 + '<br>3. ' + op3 + '<br>4. ' + op4 + '<br>5. ' + op5 + '</td>' +
-                                    '<td>' + data[i].corr_opt_e + '</td>' +
-                                    '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
-                                    '</tr>';
-                            } else {
-                                if (data[i].opt1_e == '') {
-                                    var op1 = 'NA';   } else { var op1 = data[i].opt1_e; }
-                                if (data[i].opt2_e == '') {
-                                    var op2 = 'NA';  } else {   var op2 = data[i].opt2_e; }
-                                if (data[i].opt3_e == '') {
-                                    var op3 = 'NA';  } else { var op3 = data[i].opt3_e;  }
-                                if (data[i].opt4_e == '') {
-                                    var op4 = 'NA';  } else { var op4 = data[i].opt4_e;   }
-                                if (data[i].opt5_e == '') {
-                                    var op5 = 'NA';  } else {  var op5 = data[i].opt5_e; }
-                                if (data[i].opt1_h == '') {
-                                    var op1_h = 'NA';  } else { var op1_h = data[i].opt1_h;  }
-                                if (data[i].opt2_h == '') { 
-                                    var op2_h = 'NA'; } else { var op2_h = data[i].opt2_h;  }
-                                if (data[i].opt3_h == '') {
-                                    var op3_h = 'NA';  } else { var op3_h = data[i].opt3_h;   }
-                                if (data[i].opt4_h == '') {
-                                    var op4_h = 'NA'; } else { var op4_h = data[i].opt4_h;  }
-                                if (data[i].opt5_h == '') {
-                                    var op5_h = 'NA'; } else { var op5_h = data[i].opt5_h;    }
-                                row += '<tr id="row' + data[i].que_id + '">' +
-                                    '<td>' + j + '</td>' +
-                                    '<td>' + data[i].que_id + '</td>' +
-                                    '<td>' + type + '</td>' + dynamicImg +
-                                    '<td>' + data[i].no_of_options + '</td>' +
-                                    '<td>' + '1. ' + op1 + '1. ' + op1_h + '<br>2. ' + op2 + '   2. ' + op2_h + '<br>3. ' + op3 + '   3. ' + op3_h + '<br>4. ' + op4 + '   4. ' + op4_h + '<br>5. ' + op5 + '   5. ' + op5_h + '</td>' +
-                                    '<td>' + data[i].corr_opt_e + '</td>' +
-                                    '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
-                                    '</tr>';
+                                }
+                                if ( data[i].no_of_options == 3 || data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                    if (data[i].opt3_e == 0 || data[i].opt3_e == "") {
+                                    var op3_img = data[i].option3_image;
+                                var op3 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op3_img + '">';
+                                } else {
+                                    var op3 = data[i].opt3_e;
+                                }
+                                }
+                                if (  data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                    if (data[i].opt4_e == 0 || data[i].opt4_e == '') {
+                                    var op4_img = data[i].option4_image;
+                                var op4 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op4_img + '">';
+                                } else {
+                                    var op4 = data[i].opt4_e;
+                                }
+                                }
+                                if (  data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                    if (data[i].opt5_e == 0 || data[i].opt5_e == '') {
+                                    var op5_img = data[i].option5_image;
+                                var op5 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op5_img + '">';
+                                } else {
+                                    var op5 = data[i].opt5_e;
+                                }
+                               
+                                }
+                               
+
                             }
+                            if (data[i].language == 2) {
+                                if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                    if (data[i].opt1_h == '') {
+                                var op1_h_img = data[i].option1_h_image;
+                                var op1_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op1_h_img + '">';
+                                } else {
+                                    var op1_h = data[i].opt1_h;
+                                }
+                                if (data[i].opt2_h == '') {
+                                     var op2_h_img = data[i].option2_h_image;
+                                var op2_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op2_h_img + '">';
+                                } else {
+                                    var op2_h= data[i].opt2_h;
+                                }
+                                }
+                                if ( data[i].no_of_options == 3 || data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                    if (data[i].opt3_h == '') {
+                                    var op3_h_img = data[i].option3_h_image;
+                                var op3_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op3_h_img + '">';
+                                } else {
+                                    var op3_h = data[i].opt3_h;
+                                }
+                                }
+                                if ( data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                    if (data[i].opt4_h == '') {
+                                    var op4_h_img = data[i].option4_h_image;
+                                var op4_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op4_h_img + '">';
+                                } else {
+                                    var op4_h = data[i].opt4_h;
+                                }
+                                }
+                                if ( data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                    if (data[i].opt5_h == '') {
+                                    var op5_h_img = data[i].option5_h_image;
+                                var op5_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op5_h_img + '">';
+                                } else {
+                                    var op5_h = data[i].opt5_h;
+                                }
+                                }
+                                
+                            }   
+                                row += '<tr id="row' + data[i].que_id + '">' +
+                                    '<td>' + j + '</td>' +
+                                    '<td>' + data[i].que_id + '</td>' +
+                                    '<td>' + type + '</td>' + dynamicImg + dynamicImgHindi +
+                                   
+                                    '<td>' + data[i].no_of_options + '</td>' +
+                                  
+                                    '<td>' + '1. ' + op1 + '<br>2. ' + op2 + '<br>3. ' + op3 + '<br>4. ' + op4 + '<br>5. ' + op5 + '</td>' +
+
+                                    '<td>' + '1. ' + op1_h + '<br>2. ' + op2_h + '<br>3. ' + op3_h + '<br>4. ' + op4_h + '<br>5. ' + op5_h + '</td>' +
+
+                                    '<td>' + data[i].corr_opt_e + '</td>' +
+                                    '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
+                                    '</tr>';
+                            
                         }
                         $("#que_body").html(row);
                     }
                 });
             }
+
             function deleteQuestion(que_id) {
                 var c = confirm("Are you sure to delete these details? ");
                 if (c == true) {

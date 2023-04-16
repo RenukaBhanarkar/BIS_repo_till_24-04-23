@@ -408,6 +408,81 @@ class Subadmin extends CI_Controller
             }
         }
         //}
+        $option1_image = "";
+        $option2_image = "";
+        $option3_image = "";
+        $option4_image = "";
+        $option5_image = "";
+        $option1_h_image = "";
+        $option2_h_image = "";
+        $option3_h_image = "";
+        $option4_h_image = "";
+        $option5_h_image = "";
+        $opt_type_1 = clearText($this->input->post('opt_type_1'));
+        if($opt_type_1 == 2){
+            if (!empty($_FILES['option1_image']['tmp_name'])) {
+                $option1_image = $this->uploadImageEng($que_bank_id,1,$foldername);
+            }
+        }
+        $opt_type_2 = clearText($this->input->post('opt_type_2'));
+        if($opt_type_2 == 2){
+            if (!empty($_FILES['option2_image']['tmp_name'])) {
+                $option2_image = $this->uploadImageEng($que_bank_id,2,$foldername);
+            }
+        }
+        $opt_type_3 = clearText($this->input->post('opt_type_3'));
+        if($opt_type_3 == 2){
+            if (!empty($_FILES['option3_image']['tmp_name'])) {
+                $option3_image = $this->uploadImageEng($que_bank_id,3,$foldername);
+            }
+        }
+        $opt_type_4 = clearText($this->input->post('opt_type_4'));
+        if($opt_type_4 == 2){
+            if (!empty($_FILES['option4_image']['tmp_name'])) {
+                $option4_image = $this->uploadImageEng($que_bank_id,4,$foldername);
+            }
+        }
+        $opt_type_5 = clearText($this->input->post('opt_type_5'));
+        if($opt_type_5 == 2){
+            if (!empty($_FILES['option5_image']['tmp_name'])) {
+                $option5_image = $this->uploadImageEng($que_bank_id,5,$foldername);
+            }
+        }
+        //hindi 
+        $opt_type_h_1 = clearText($this->input->post('opt_type_h_1'));
+        if($opt_type_h_1 == 2){
+            if (!empty($_FILES['option1_h_image']['tmp_name'])) {
+                $option1_h_image = $this->uploadImageHindi($que_bank_id,1,$foldername);
+            }
+        }
+        $opt_type_h_2 = clearText($this->input->post('opt_type_h_2'));
+        if($opt_type_h_2 == 2){
+            if (!empty($_FILES['option2_h_image']['tmp_name'])) {
+                $option2_h_image = $this->uploadImageHindi($que_bank_id,2,$foldername);
+            }
+        }
+
+        $opt_type_h_3 = clearText($this->input->post('opt_type_h_3'));
+        if($opt_type_h_3 == 2){
+            if (!empty($_FILES['option3_h_image']['tmp_name'])) {
+                $option3_h_image = $this->uploadImageHindi($que_bank_id,3,$foldername);
+            }
+        }
+
+        $opt_type_h_4 = clearText($this->input->post('opt_type_h_4'));
+        if($opt_type_h_4 == 2){
+            if (!empty($_FILES['option4_h_image']['tmp_name'])) {
+                $option4_h_image = $this->uploadImageHindi($que_bank_id,4,$foldername);
+            }
+        }
+
+        $opt_type_h_5 = clearText($this->input->post('opt_type_h_5'));
+        if($opt_type_h_5 == 2){
+            if (!empty($_FILES['option5_h_image']['tmp_name'])) {
+                $option5_h_image = $this->uploadImageHindi($que_bank_id,5,$foldername);
+            }
+        }
+
 
         $corr_opt_e = clearText($this->input->post('correct_answer'));
         // $language = clearText($this->input->post('language')); 
@@ -436,6 +511,16 @@ class Subadmin extends CI_Controller
                 'opt5_h' => $option5_h,
                 'created_by' => $admin_id,
                 'corr_opt_e' => $corr_opt_e,
+                'option1_image'=>$option1_image,
+                'option2_image'=>$option2_image,
+                'option3_image'=>$option3_image,
+                'option4_image'=>$option4_image,
+                'option5_image'=>$option5_image,
+                'option1_h_image' => $option1_h_image,
+                'option2_h_image' => $option2_h_image,
+                'option3_h_image' => $option3_h_image,
+                'option4_h_image' => $option4_h_image,
+                'option5_h_image' => $option5_h_image,
                 //'language' =>$language
                 //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
             );
@@ -451,6 +536,43 @@ class Subadmin extends CI_Controller
         echo  json_encode($data);
         exit();
     }
+    function uploadImageEng($que_bank_id,$id,$foldername){
+         // echo $_FILES['que_image']['tmp_name'];exit();
+        
+        
+         $option_image = $que_bank_id . '_' . $id.'_'.time() . '.jpg';
+         $config['upload_path'] = './uploads/que_img/' . $foldername;
+         $config['allowed_types'] = 'gif|jpg|png|jpeg';
+         $config['max_size']    = '10000';
+         $config['max_width']  = '3024';
+         $config['max_height']  = '2024';
+         $config['file_name'] = $option_image;
+         $this->load->library('upload', $config);
+         $this->upload->initialize($config);
+         if (!$this->upload->do_upload('option'.$id.'_image')) {
+             // $data['status'] = 0;
+             $data['msg'] = $this->upload->display_errors();
+         }
+        return  $option_image;
+    }
+    function uploadImageHindi($que_bank_id,$id,$foldername){
+        // echo $_FILES['que_image']['tmp_name'];exit();
+      
+        $option_image = $que_bank_id . '_h_' . $id.'_'.time() . '.jpg';
+        $config['upload_path'] = './uploads/que_img/' . $foldername;
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']    = '10000';
+        $config['max_width']  = '3024';
+        $config['max_height']  = '2024';
+        $config['file_name'] = $option_image;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload('option'.$id.'_h_image')) {
+            // $data['status'] = 0;
+            $data['msg'] = $this->upload->display_errors();
+        }
+       return  $option_image;
+   }
 
     //ajax call
     public function getQuestionListByQueBankId()
