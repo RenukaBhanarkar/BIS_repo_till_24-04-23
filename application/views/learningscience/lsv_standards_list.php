@@ -3,16 +3,28 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Manage Session/Post</h1>
+            <h1 class="h3 mb-0 text-gray-800">Create new post/ live session</h1>
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Manage Session/Post</li>
+                    <li class="breadcrumb-item active" aria-current="page">Create new post/ live session</li>
                 </ol>
             </nav> 
-        </div>
-
-        <!-- Content Row -->
+        </div>  
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-top card-body">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url(); ?>learningscience/lsv_standards_form'">Create New Post / Session</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <?php
+          if ($this->session->flashdata('MSG')) {
+            echo $this->session->flashdata('MSG');
+          }
+          ?>
        <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
@@ -23,17 +35,12 @@
                                 <th>Title</th>
                                 <th>Type of Post</th>
                                 <th>Created on</th>
-                                <th>Likes</th>
-                                <th>Views/Joined</th>
                                 <th>Status</th>
-                                <th>Reason of Rejection</th>
-                                <th>Last Updated</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <?php foreach ($liveSessionList as $key => $value) {?>
+                            <?php foreach ($lsvstandardslist as $key => $value) {?>
 
                                 <tr>
                               <td><?= $key + 1;?></td>
@@ -47,75 +54,36 @@
 
                                 <?= $data?></td> 
                               <td><?= $value['created_on']?></td>
+                              <td>New Entry</td>
+                              <td class="d-flex">
 
-                              <td>567</td>
-                              <td>45</td>
-                              <td><?= $value['status_name']?></td>
-                              <td><?= $value['reason']?></td>
-                              <td><?= $value['updated_on']?></td>
+                                <?php $id= encryptids("E", $value['id'] )?>
 
-                              <td class="" style="width:559px;">
-                                 <?php $id= encryptids("E", $value['id'] )?>
-                                 <a href="live_session_view/<?= $id;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
-                                 
-                                 <?php if ($value['status']!=5 && $value['status']!=2 && $value['status']!=3) 
-                                 {?>
-                                     <a href="live_session_edit/<?= $id;?>" class="btn btn-info btn-sm mr-2" title="View">Edit</a>  
-                                      
-                                 <?php } ?>
-                                  
-                                 <?php if ($value['status']==1) 
-                                 {?>
-                                     <button onclick="updateStatusLiveSession('<?= $value['id']?>',2);" data-id='<?php echo $value['id']; ?>' class="btn btn-info btn-sm mr-2 delete_img"> Approval</button> 
-                                      
-                                 <?php } ?>
-                                 <?php if ($value['status']==3  || $value['status']==6 ) 
-                                 {?>
-                                     <button onclick="updateStatusLiveSession('<?= $value['id']?>',5);" data-id='<?php echo $value['id']; ?>' class="btn btn-success btn-sm mr-2 delete_img">Publish</button> 
-                                      
-                                 <?php }?>
-
-                                 <?php if ($value['status']==5) 
-                                 {?>
-                                     <button onclick="updateStatusLiveSession('<?= $value['id']?>',6);" data-id='<?php echo $value['id']; ?>' class="btn btn-warning btn-sm mr-2 delete_img">Unpublish</button> 
-                                      
-                                 <?php } ?>
-
-                                 <?php if ($value['status']!=2 && $value['status']!=5 ) 
-                                 {?>
-                                     <button onclick="deleteLiveSession(' <?= $value['id']?> ');" data-id='<?php echo $value['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
-                                     <button onclick="updateStatusLiveSession('<?= $value['id']?>',9);" data-id='<?php echo $value['id']; ?>' class="btn btn-secondary btn-sm mr-2 delete_img">Archives</button> 
-                                      
-                                 <?php } ?>
-
-                                  
-                                 
-
-
-                                  
-
-
-                                  
-
-                                    
-                                  
-
-                                  
-
-                              </td>
-                              
-                               
+                                <a href="lsv_standards_view/<?= $id;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
+                                <a href="lsv_standards_edit/<?= $id;?>" class="btn btn-info btn-sm mr-2" title="View">Edit</a> 
+                                  <button onclick="deleteLsvStandards(' <?= $value['id']?> ');" data-id='<?php echo $value['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
+                                  <button onclick="updateLsvStandards('<?= $value['id']?>',1);" data-id='<?php echo $value['id']; ?>' class="btn btn-info btn-sm mr-2 delete_img">Create</button> 
+                                  <button onclick="updateLsvStandards('<?= $value['id']?>',9);" data-id='<?php echo $value['id']; ?>' class="btn btn-secondary btn-sm mr-2 delete_img">Archives</button> 
+                            </td>
                         </tr>
                                 
                            <?php }?>
-                           
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+ </body>
+  
+
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -154,44 +122,21 @@
         </div>
     </div>
 </div>
-    <!-- /.container-fluid -->
 
-    </div>
+                                    <!-- Modal -->
 <script type="text/javascript">
-    function deleteLiveSession(id) 
-    {
-        $('#delete').modal('show');
-        $('.deletecall').on('click', function() 
-        {
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url(); ?>Standardsmaking/deleteLiveSession',
-                data: {
-                    id: id,
-                },
-                success: function(result) 
-                {
-                    location.reload();
-                },
-                error: function(result) {
-                    alert("Error,Please try again.");
-                }
-            });
-        });
-    }
 
-    function updateStatusLiveSession(id,status) 
-    { 
-        if (status==2)  { $(".sms").text('Send For Approval'); }
-        if (status==5)  { $(".sms").text('Publish'); }
-        if (status==6)  { $(".sms").text('UnPublish'); }
+function updateLsvStandards(id,status) 
+    {
+        console.log(status)
+        if (status==1)  { $(".sms").text('Create'); } 
         if (status==9)  { $(".sms").text('Archives'); }
         $('#updatemodel').modal('show');
         $('.updatestatus').on('click', function() 
         {
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url(); ?>Standardsmaking/updateStatusLiveSession',
+                url: '<?php echo base_url(); ?>Learningscience/updateLsvStandards',
                 data: {
                     id: id,
                     status: status,
@@ -206,8 +151,25 @@
             });
         });
     }
-
-
-    </script>
-    <!-- End of Main Content -->
- </body>
+     function deleteLsvStandards(id) 
+    {
+        $('#delete').modal('show');
+        $('.deletecall').on('click', function() 
+        {
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url(); ?>Learningscience/deleteLsvStandards',
+                data: {
+                    id: id,
+                },
+                success: function(result) 
+                {
+                    location.reload();
+                },
+                error: function(result) {
+                    alert("Error,Please try again.");
+                }
+            });
+        });
+    }
+</script>

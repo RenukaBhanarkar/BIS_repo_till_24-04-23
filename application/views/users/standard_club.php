@@ -237,7 +237,7 @@
                         </div>                    
                       </div>
                     </a>
-                    <a>
+                    <a href="<?php echo base_url().'users/learning_standerd' ?>">
                       <div class="card image-card" style="width: 21rem;">
                         <img src="<?=base_url();?>assets/images/wall_2.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">

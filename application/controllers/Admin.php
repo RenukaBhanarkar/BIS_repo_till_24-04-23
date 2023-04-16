@@ -11,6 +11,8 @@ class Admin extends CI_Controller
         $this->load->model('subadmin/Que_bank_model');
         $this->load->model('subadmin/Questions_model');
         $this->load->model('Admin/Your_wall_model');
+        $this->load->model('Standards_Making/Standards_Making_model');
+        $this->load->model('Learningscience/Learningscience_model');
          
     }
     public function index()
@@ -1223,8 +1225,6 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('MSG', ShowAlert("Failed to Send for Approve admin,Please try again", "DD"));
             redirect(base_url() . "Quiz/quiz_list", 'refresh');
         }
-
-
     }  
  
       
@@ -1549,12 +1549,59 @@ class Admin extends CI_Controller
         $this->load->view('admin/headers/admin_header');
          $this->load->view('admin/join_the_classroom_dashboard');
          $this->load->view('admin/footers/admin_footer');
-    }
+    } 
     public function Manage_session_list(){
+
+        $newRequest = $this->Standards_Making_model->getnewRequest();
+        $ApprovedRequest = $this->Standards_Making_model->getApprovedRequest();
+        $RejectedRequest = $this->Standards_Making_model->getRejectedRequest();
+        // $PublishedRequest = $this->Standards_Making_model->getPublishedRequest();
+        $data = array();
+        $data['newRequest'] = $newRequest;
+        $data['ApprovedRequest'] = $ApprovedRequest;
+        $data['RejectedRequest'] = $RejectedRequest;
+        // $data['PublishedRequest'] = $PublishedRequest;
         $this->load->view('admin/headers/admin_header');
-         $this->load->view('admin/Manage_session_list');
+         $this->load->view('admin/Manage_session_list',$data);
          $this->load->view('admin/footers/admin_footer');
     }
+
+    public function manage_lsv_standards_list(){
+
+        $newRequest = $this->Learningscience_model->getnewRequest();
+        $ApprovedRequest = $this->Learningscience_model->getApprovedRequest();
+        $RejectedRequest = $this->Learningscience_model->getRejectedRequest();
+        // $PublishedRequest = $this->Learningscience_model->getPublishedRequest();
+        $data = array();
+        $data['newRequest'] = $newRequest;
+        $data['ApprovedRequest'] = $ApprovedRequest;
+        $data['RejectedRequest'] = $RejectedRequest;
+        // $data['PublishedRequest'] = $PublishedRequest;
+        $this->load->view('admin/headers/admin_header');
+         $this->load->view('admin/manage_lsv_standards_list',$data);
+         $this->load->view('admin/footers/admin_footer');
+    }
+    public function live_session_view($id){
+        $id = encryptids("D", $id);
+        $data=array();
+        $liveSessionView = $this->Standards_Making_model->liveSessionViewView($id); 
+        $data['liveSession']=$liveSessionView;
+
+        $this->load->view('admin/headers/admin_header');
+         $this->load->view('admin/live_session_view',$data);
+         $this->load->view('admin/footers/admin_footer');
+    }
+     public function lsv_standards_view($id){
+        $id = encryptids("D", $id);
+        $data=array();
+        $liveSessionView = $this->Learningscience_model->lsvStandardsViewAdmin($id); 
+        $data['liveSession']=$liveSessionView;
+
+        $this->load->view('admin/headers/admin_header');
+         $this->load->view('admin/lsv_standards_view',$data);
+         $this->load->view('admin/footers/admin_footer');
+    }
+    
     public function live_session_list(){
         $this->load->view('admin/headers/admin_header');
         $this->load->view('admin/live_session_list');
@@ -1565,5 +1612,54 @@ class Admin extends CI_Controller
     //     $this->load->view('admin/live_session_form');
     //     $this->load->view('admin/footers/admin_footer');
     // }
+
+    public function updateLiveSessiionStatus($id)
+    {
+        $this->load->model('Admin/Admin_model');
+        $formdata['status'] = $this->input->post('status_id');
+        $formdata['reason'] = $this->input->post('remark');
+
+        $encAdminId = $this->session->userdata('admin_id');
+            $modify_by = encryptids("D", $encAdminId);
+
+            $formdata['modify_by'] = $modify_by;
+            $formdata['updated_on'] = date('Y-m-d : h:i:s'); 
+        $quiz_id = $this->Admin_model->updateLiveSessiionStatus($id,$formdata);
+        if ($quiz_id==1) 
+        {
+            $this->session->set_flashdata('MSG', ShowAlert("Status Updated", "SS"));
+                redirect(base_url() . "admin/Manage_session_list", 'refresh');
+        }
+        else 
+        {
+            $this->session->set_flashdata('MSG', ShowAlert("Failed to Update,Please try again", "DD"));
+            redirect(base_url() . "Quiz/quiz_list", 'refresh');
+        }
+    } 
+
+    public function updateLvsStandarStatus($id)
+    {
+        $this->load->model('Admin/Admin_model');
+        $formdata['status'] = $this->input->post('status_id');
+        $formdata['reason'] = $this->input->post('remark');
+
+        $encAdminId = $this->session->userdata('admin_id');
+            $modify_by = encryptids("D", $encAdminId);
+
+            $formdata['modify_by'] = $modify_by;
+            $formdata['updated_on'] = date('Y-m-d : h:i:s'); 
+        $quiz_id = $this->Learningscience_model->updateLvsStandarStatus($id,$formdata);
+        if ($quiz_id==1) 
+        {
+            $this->session->set_flashdata('MSG', ShowAlert("Status Updated", "SS"));
+                redirect(base_url() . "admin/manage_lsv_standards_list", 'refresh');
+        }
+        else 
+        {
+            $this->session->set_flashdata('MSG', ShowAlert("Failed to Update,Please try again", "DD"));
+            redirect(base_url() . "admin/manage_lsv_standards_list", 'refresh');
+        }
+    }
+
     
 }

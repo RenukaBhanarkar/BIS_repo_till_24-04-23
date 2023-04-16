@@ -205,22 +205,7 @@
     return $data[0];
  }
 
-  public function getPublishedConversation()
-    {   
-        $this->db->select('tbl_inconversation_with_expert.*,tbl_mst_status.status_name'); 
-         $this->db->where('status ',5); 
-        $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_inconversation_with_expert.status'); 
-        return $this->db->get('tbl_inconversation_with_expert')->result_array();  
-    }
-
-    public function getRecentSearch()
-    {   
-        $this->db->select('tbl_inconversation_with_expert.*,tbl_mst_status.status_name'); 
-         $this->db->where('status ',5); 
-        $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_inconversation_with_expert.status'); 
-        $this->db->limit(5);
-        return $this->db->get('tbl_inconversation_with_expert')->result_array();  
-    }
+  
     public function checkUserAttempt($user_id='',$quiz_id='')
    {
         $this->db->where('user_id',$user_id); 
@@ -254,16 +239,81 @@
         }
         
    }
-
-   public function getConversation($id)
+   // In Conversation With Experts  Function Start For FrontEnd
+    public function getPublishedConversation()
     {   
+        $this->db->select('tbl_inconversation_with_expert.*,tbl_mst_status.status_name'); 
+         $this->db->where('status ',5); 
+        $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_inconversation_with_expert.status'); 
+        return $this->db->get('tbl_inconversation_with_expert')->result_array();  
+    }
+
+    public function getRecentSearch()
+    {   
+        $this->db->select('tbl_inconversation_with_expert.*,tbl_mst_status.status_name'); 
+         $this->db->where('status ',5); 
+        $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_inconversation_with_expert.status'); 
+        $this->db->limit(5);
+        return $this->db->get('tbl_inconversation_with_expert')->result_array();  
+    }
+    public function getConversation($id)
+    {
         $this->db->where('id',$id); 
         return $quiz = $this->db->get('tbl_inconversation_with_expert')->row_array();
     }
+    public function checkConversationView($id,$ip_address)
+    {
+        $this->db->where('conversation_id',$id); 
+        $this->db->where('ip_address',$ip_address); 
+        $info = $this->db->get('tbl_conversation_video_info')->row_array();
+        if (empty($info))
+        {
+            $formdata['conversation_id']=$id;
+            $formdata['ip_address']=$ip_address;
+            $formdata['user_view']=1; 
+             $this->db->insert('tbl_conversation_video_info',$formdata); 
+             $insert_id = $this->db->insert_id();
+             if ($insert_id) {
+                $query = $this->db->query("SELECT * FROM tbl_conversation_video_info");
+                $viewcount=$query->num_rows();
+                $formdata2['views']=$viewcount;
+                $this->db->where('id',$id); 
+                return $update = $this->db->update('tbl_inconversation_with_expert', $formdata2); 
+            }
+        }
+        else
+        {   
+            return 0;  
+        }
+    }
 
+     public function updateLikes($id,$ip_address)
+     {
+        $this->db->where('conversation_id', $id);
+        $this->db->where('ip_address', $ip_address);
+        $data['user_like']=1;
+        if ($this->db->update('tbl_conversation_video_info', $data)) 
+        {
+            $query = $this->db->query("SELECT * FROM tbl_conversation_video_info WHERE user_like=1 AND conversation_id=$id");
+            $viewcount=$query->num_rows();
+            $formdata2['likes']=$viewcount;
+            $this->db->where('id',$id); 
+            $update = $this->db->update('tbl_inconversation_with_expert', $formdata2);
+            if ($update) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        } 
+        else  { return false; }
+    }
+   // In Conversation With Experts  Function End For FrontEnd
 
-    // 11-04-2023
-
+    // Item Proposal Function Start For FrontEnd
     public function insertItemProposal($formdata)
     { 
         $this->db->replace('tbl_item_proposal',$formdata); 
@@ -271,13 +321,84 @@
     }
     public function ItemProposalCount()
     {
-        return $quiz = $this->db->get('tbl_item_proposal')->result_array();
-        // return count($quiz);
+        return $quiz = $this->db->get('tbl_item_proposal')->result_array(); 
     }
     public function getItemProposal($id)
     {   
         $this->db->where('id',$id); 
         return $quiz = $this->db->get('tbl_item_proposal')->row_array();
     }
+    // Item Proposal Function End For FrontEnd
 
+    // Join The classroom Function Start For FrontEnd
+    public function getUpcomingsSessions()
+    {
+        $this->db->where('status ',5); 
+        $this->db->order_by('created_on', 'desc'); 
+       return $quiz = $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+    public function getLiveSessions()
+    {
+        $this->db->where('type_of_post',3); 
+        $this->db->where('status ',5); 
+        $this->db->order_by('created_on', 'desc'); 
+        return $quiz = $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+
+    public function getLatestPosts()
+    {
+        $this->db->where('type_of_post',1); 
+        $this->db->where('status ',5); 
+        $this->db->order_by('created_on', 'desc'); 
+       return $quiz = $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+    public function getInformativeVideo()
+    {
+        $this->db->where('type_of_post',2); 
+        $this->db->where('status ',5); 
+        $this->db->order_by('created_on', 'desc'); 
+       return $quiz = $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+
+    public function getJoinTheClassroomContaint($id)
+    {   
+        $this->db->where('id',$id);  
+        return $quiz = $this->db->get('tbl_join_the_classroom')->row_array();
+    } 
+    // Join The classroom Function End For FrontEnd
+
+    // learning Standerd Function Start For FrontEnd
+    public function getlearningStanderdSessions()
+    {
+        $this->db->where('type_of_post',3); 
+        $this->db->where('status ',5); 
+        $this->db->order_by('created_on', 'desc'); 
+       return $quiz = $this->db->get('tbl_learning_science_via_standards')->result_array();
+    }
+
+    public function getlearningStanderdPosts()
+    {
+        $this->db->where('type_of_post',1); 
+        $this->db->where('status ',5); 
+        $this->db->order_by('created_on', 'desc'); 
+       return $quiz = $this->db->get('tbl_learning_science_via_standards')->result_array();
+    }
+    public function getlearningStanderdInformativeVideo()
+    {
+        $this->db->where('type_of_post',2); 
+        $this->db->where('status ',5); 
+        $this->db->order_by('created_on', 'desc'); 
+       return $quiz = $this->db->get('tbl_learning_science_via_standards')->result_array();
+    }
+
+    public function getContaintlearningStanderd($id)
+    {   
+        $this->db->where('id',$id);  
+        return $quiz = $this->db->get('tbl_learning_science_via_standards')->row_array();
+    }
+    // learning Standerd Function End For FrontEnd
+
+
+
+     
 }

@@ -6,7 +6,7 @@
             <h1 class="h3 mb-0 text-gray-800">Create new post/ live session</h1>
         </div>
 
-        <form name="live_session_form" id="live_session_form" action="<?php echo base_url().'Standardsmaking/live_session_form'?>" method="post"enctype="multipart/form-data">
+        <form name="lsv_standards_form" id="lsv_standards_form" action="<?php echo base_url().'learningscience/lsv_standards_form'?>" method="post"enctype="multipart/form-data">
       <!-- Content Row -->
         <div class="row">
             <div class="col-12 mt-3">
@@ -313,7 +313,7 @@ var loadFileThumbnail = function(event)
         </script>
 
         <script type="text/javascript">
-    $('#live_session_form').submit(function(e) { 
+    $('#lsv_standards_form').submit(function(e) { 
                     e.preventDefault();
                     var focusSet = false;
                     var allfields = true;
@@ -591,7 +591,7 @@ var loadFileThumbnail = function(event)
                      
                     console.log(allfields)
                     if (allfields) { 
-                        $('#live_session_form').submit();
+                        $('#lsv_standards_form').submit();
                     } else {
                         $('#closeform').trigger('click');
                         return false; 

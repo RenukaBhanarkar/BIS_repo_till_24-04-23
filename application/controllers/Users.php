@@ -11,7 +11,6 @@ class Users extends CI_Controller {
         $this->load->model('Quiz/quiz_model');
         $this->load->model('Users/Users_model');
         $this->load->model('Admin/Wall_of_wisdom_model', 'wow');
-        
         date_default_timezone_set("Asia/Calcutta");
     }
     public function index()
@@ -253,56 +252,7 @@ class Users extends CI_Controller {
         $this->load->view('users/privacy_policy',$data);
         $this->load->view('users/footers/footer');  
     }
-    public function item_proposal_list(){
-        $this->load->view('users/headers/header');
-        $curl_req1 = curl_init(); 
-        curl_setopt_array($curl_req1, array(
-            CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_SSL_VERIFYPEER => false, 
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/json',
-                'Accept: application/json'
-            ),
-        ));
-        $responseNew = curl_exec($curl_req1);
-        $responseNew = json_decode($responseNew, true); 
-        $newCount =count($responseNew['nwip_data']);
-        $arr=array();
-        $getAll= $this->Users_model->ItemProposalCount();
-        $arr['getAll']=$getAll;
-        $insertedCount = count($getAll); 
-        if ($newCount > $insertedCount ) 
-        {
-            foreach($responseNew['nwip_data'] as $data)
-                { 
-                    $this->Users_model->insertItemProposal($data);
-                }
-        }
-
-
-        $this->load->view('users/item_proposal_list',$arr);
-        $this->load->view('users/footers/footer'); 
-    }
-    public function item_proposal_view($id){
-
-        $id = encryptids("D", $id);
-        $itemProposal = $this->Users_model->getItemProposal($id);
-        $data = array();
-        $data['itemProposal'] = $itemProposal;
-
-         
-
-        $this->load->view('users/headers/header');
-        $this->load->view('users/item_proposal_view',$data);
-        $this->load->view('users/footers/footer'); 
-    }
+    
     public function important_draft(){
         $this->load->view('users/headers/header');
         $this->load->view('users/important_draft');
@@ -368,51 +318,6 @@ class Users extends CI_Controller {
         $this->load->view('users/share_your_thoughts');
         $this->load->view('users/footers/footer'); 
     } 
-    public function join_the_classroom(){
-        $this->load->view('users/headers/header');
-        $this->load->view('users/join_the_classroom');
-        $this->load->view('users/footers/footer'); 
-    }
-    public function join_the_classroom_view(){
-        $this->load->view('users/headers/header');
-        $this->load->view('users/join_the_classroom_view');
-        $this->load->view('users/footers/footer'); 
-    }
-    public function join_the_classroom_watch_now(){
-        $this->load->view('users/headers/header');
-        $this->load->view('users/join_the_classroom_watch_now');
-        $this->load->view('users/footers/footer'); 
-    }
-    public function conversation_with_experts(){
-        $Conversation = $this->Users_model->getPublishedConversation();
-        $data = array();
-        $data['Conversation'] = $Conversation;
-
-        $this->load->view('users/headers/header');
-        $this->load->view('users/conversation_with_experts',$data);
-        $this->load->view('users/footers/footer'); 
-    }
-    public function conversation_video($id){
-
-        $getRecentSearch = $this->Users_model->getRecentSearch();
-        $data = array();
-        $data['getRecentSearch'] = $getRecentSearch;
-         
-        $id = encryptids("D", $id);
-        $Conversation = $this->Users_model->getConversation($id);
-        $data['Conversation'] = $Conversation;
-
-        $this->load->view('users/headers/header');
-        $this->load->view('users/conversation_video',$data);
-        $this->load->view('users/footers/footer'); 
-    }
-    // public function join_the_classroom(){
-    //     $this->load->view('users/headers/header');
-    //     $this->load->view('users/join_the_classroom');
-    //     $this->load->view('users/footers/footer'); 
-    // }
-
-
     public function wall_of_wisdom_view($id){
        // $this->load->model('Admin/Wall_of_wisdom_model wow');
         $data['wow']=$this->wow->get_wow($id);
@@ -818,6 +723,231 @@ class Users extends CI_Controller {
         $this->load->view('users/user_attempt');
         $this->load->view('users/footers/footer');
     }
+    
+    // In Conversation With Experts function Start for frontend
+    public function conversation_with_experts(){
+        $Conversation = $this->Users_model->getPublishedConversation();
+        $data = array();
+        $data['Conversation'] = $Conversation;
+        $this->load->view('users/headers/header');
+        $this->load->view('users/conversation_with_experts',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    public function conversation_video($id)
+    {
+        $getRecentSearch = $this->Users_model->getRecentSearch();
+        $data = array();
+        $data['getRecentSearch'] = $getRecentSearch;     
+        $id = encryptids("D", $id);
+        $Conversation = $this->Users_model->getConversation($id);
+        $data['Conversation'] = $Conversation;
+        $ip=$_SERVER['REMOTE_ADDR']; 
+        $ConversationView = $this->Users_model->checkConversationView($id,$ip);
+        $this->load->view('users/headers/header');
+        $this->load->view('users/conversation_video',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    public function updateLikes()
+    {
+        $id = $this->input->post('id');
+        $ip=$_SERVER['REMOTE_ADDR'];  
+        $return = $this->Users_model->updateLikes($id,$ip);
+        if ($return) 
+        {
+            $Conversation = $this->Users_model->getConversation($id); 
+            $data['likes'] = $Conversation['likes'];
+            $data['status'] = 1;
+            $data['message'] = 'Updated successfully.';
+        } 
+        echo json_encode([
+            'status' => '1',
+            'data' => $data,
+        ]);
+    }
+    // In Conversation With Experts function End for frontend
+
+
+    // item proposal function Start for frontend
+    public function item_proposal_list(){
+        $this->load->view('users/headers/header');
+        $curl_req1 = curl_init(); 
+        curl_setopt_array($curl_req1, array(
+            CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_SSL_VERIFYPEER => false, 
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ),
+        ));
+        $responseNew = curl_exec($curl_req1);
+        $responseNew = json_decode($responseNew, true); 
+        $newCount =count($responseNew['nwip_data']);
+        $arr=array();
+        $getAll= $this->Users_model->ItemProposalCount();
+        $arr['getAll']=$getAll;
+        $insertedCount = count($getAll); 
+        if ($newCount > $insertedCount ) 
+        {
+            foreach($responseNew['nwip_data'] as $data)
+                { 
+                    $this->Users_model->insertItemProposal($data);
+                }
+        }
+        $this->load->view('users/item_proposal_list',$arr);
+        $this->load->view('users/footers/footer'); 
+    }
+    public function item_proposal_view($id)
+    {
+        $id = encryptids("D", $id);
+        $itemProposal = $this->Users_model->getItemProposal($id);
+        $data = array();
+        $data['itemProposal'] = $itemProposal;
+        $this->load->view('users/headers/header');
+        $this->load->view('users/item_proposal_view',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    // item proposal function End  for frontend
+
+    // Join The classroom function Start for frontend
+     public function join_the_classroom(){
+        $data=array();
+        $data['UpcomingsSessions']=$this->Users_model->getUpcomingsSessions();
+        $data['LiveSessions']=$this->Users_model->getLiveSessions();
+        $data['LatestPosts']=$this->Users_model->getLatestPosts();
+        $data['InformativeVideo']=$this->Users_model->getInformativeVideo();
+        $this->load->view('users/headers/header');
+        $this->load->view('users/join_the_classroom',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    public function join_the_classroom_view()
+    {
+        $data=array(); 
+        $data['LiveSessions']=$this->Users_model->getLiveSessions(); 
+        $this->load->view('users/headers/header');
+        $this->load->view('users/join_the_classroom_view',$data);
+        $this->load->view('users/footers/footer'); 
+    }  
+    public function join_the_classroom_watch_now($id)
+    {
+        $id = encryptids("D", $id);
+        $WatchNow = $this->Users_model->getJoinTheClassroomContaint($id);
+        $data = array();
+        $data['WatchNow'] = $WatchNow;
+        $this->load->view('users/headers/header');
+        $this->load->view('users/join_the_classroom_watch_now',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    public function letest_post_view(){    
+        $data=array(); 
+        $data['letestPostView']=$this->Users_model->getLatestPosts();     
+        $this->load->view('users/headers/header');
+        $this->load->view('users/letest_post_view',$data);
+        $this->load->view('users/footers/footer');
+    }
+    public function letest_post_readMore($id){
+
+        $id = encryptids("D", $id);
+        $ReadMore = $this->Users_model->getJoinTheClassroomContaint($id);
+        $data = array();
+        $data['ReadMore'] = $ReadMore;        
+        $this->load->view('users/headers/header');
+        $this->load->view('users/letest_post_readMore',$data);
+        $this->load->view('users/footers/footer');
+    }
+     public function informative_video_view(){    
+        $data=array(); 
+        $data['informativeVideos']=$this->Users_model->getInformativeVideo();     
+        $this->load->view('users/headers/header');
+        $this->load->view('users/informative_video_view',$data);
+        $this->load->view('users/footers/footer');
+    }
+    public function informative_video_watch($id){
+
+        $id = encryptids("D", $id);
+        $WatchNow = $this->Users_model->getJoinTheClassroomContaint($id);
+        $data = array();
+        $data['WatchNow'] = $WatchNow;
+        $this->load->view('users/headers/header');
+        $this->load->view('users/informative_video_watch',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    // Join The classroom function End for frontend
+
+
+    //  learning standerd Function Start for Frontend 
+    public function learning_standerd(){
+        $data=array(); 
+        $data['LiveSessions']=$this->Users_model->getlearningStanderdSessions();
+        $data['LatestPosts']=$this->Users_model->getlearningStanderdPosts();
+        $data['InformativeVideo']=$this->Users_model->getlearningStanderdInformativeVideo();
+        $this->load->view('users/headers/header');
+        $this->load->view('users/learning_standerd',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    public function learning_standerd_sessions_view_all()
+    {
+        $data=array(); 
+        $data['LiveSessions']=$this->Users_model->getlearningStanderdSessions(); 
+        $this->load->view('users/headers/header');
+        $this->load->view('users/learning_standerd_sessions_view_all',$data);
+        $this->load->view('users/footers/footer');
+    }
+
+    public function learning_standerd_sessions_watch_now($id){
+        $id = encryptids("D", $id);
+        $WatchNow = $this->Users_model->getContaintlearningStanderd($id);
+        $data = array();
+        $data['WatchNow'] = $WatchNow;
+        $this->load->view('users/headers/header');
+        $this->load->view('users/learning_standerd_sessions_watch_now',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+    public function learning_standerd_posts_all()
+    {
+       $data=array(); 
+        $data['letestPostView']=$this->Users_model->getlearningStanderdPosts();     
+        $this->load->view('users/headers/header');
+        $this->load->view('users/learning_standerd_posts_all',$data);
+        $this->load->view('users/footers/footer');
+    }
+    public function learning_standerd_post_readMore($id)
+    {
+        $id = encryptids("D", $id);
+        $ReadMore = $this->Users_model->getContaintlearningStanderd($id);
+        $data = array();
+        $data['ReadMore'] = $ReadMore;        
+        $this->load->view('users/headers/header');
+        $this->load->view('users/learning_standerd_post_readMore',$data);
+        $this->load->view('users/footers/footer');
+    }
+    public function learning_standerd_informative_video_all()
+    {
+        $data=array(); 
+        $data['informativeVideos']=$this->Users_model->getlearningStanderdInformativeVideo();     
+        $this->load->view('users/headers/header');
+        $this->load->view('users/learning_standerd_informative_video_all',$data);
+        $this->load->view('users/footers/footer');
+    }
+    public function learning_standerd_informative_video_watch($id='')
+    {
+        $id = encryptids("D", $id);
+        $WatchNow = $this->Users_model->getContaintlearningStanderd($id);
+        $data = array();
+        $data['WatchNow'] = $WatchNow;
+        $this->load->view('users/headers/header');
+        $this->load->view('users/learning_standerd_informative_video_watch',$data);
+        $this->load->view('users/footers/footer'); 
+    }
+
+    //  learning standerd Function End for Frontend 
+
 
 
 }

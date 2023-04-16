@@ -110,6 +110,32 @@ class Standards_Making_model extends CI_Model {
         $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_join_the_classroom.status'); 
         return $this->db->get('tbl_join_the_classroom')->result_array();  
     }
+    public function getLiveSession()
+    { 
+        $this->db->where('status ',0);  
+        return $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+    public function getnewRequest()
+    { 
+        $this->db->where('status ',2);  
+        return $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+    public function getApprovedRequest()
+    { 
+        $this->db->where('status ',3);  
+        return $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+    public function getRejectedRequest()
+    { 
+        $this->db->where('status ',4);  
+        return $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+    public function getPublishedRequest()
+    { 
+        $this->db->where('status ',5);  
+        return $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+     
     
      
 }
