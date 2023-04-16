@@ -4,7 +4,7 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Question Bank List</h1>
-            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Question Bank</li>
@@ -40,11 +40,11 @@
                                 <th>Quiz Bank ID</th>
                                 <th>Question Bank Title</th>
                                 <th>Number of Questions</th>
-                                <th>Total Marks</th>
+                              
                                 <th>Date Created</th>
                                 <th>Last Edited</th>
-                                <th>Linked Quiz ID</th>
-                                <th>Created on</th>
+                                <th>Linked Quiz </th>
+                                
                                 <th>Status</th>
                                 <th>Reason of Rejection</th>
                                 <th>Action</th>
@@ -59,37 +59,45 @@
                                         <td><?php echo $row['que_bank_id']; ?></td>
                                         <td><?php echo $row['title']; ?></td>
                                         <td><?php echo $row['no_of_ques']; ?></td>
-                                        <td><?php echo $row['total_marks']; ?></td>
+                                        
                                         <td><?php echo date('d-m-Y', strtotime($row["created_on"])) ?></td>
                                         <?php if ($row["modified_on"]) { ?>
                                             <td><?php echo date('d-m-Y', strtotime($row["modified_on"])) ?></td>
                                         <?php } else { ?>
                                             <td>--</td>
                                         <?php } ?>
-                                        <td>--</td>
-                                        <td>12/03/2023 12:00 PM</td>
+                                        <td><?php echo $row['quiz_title']; ?></td>
+                                        
                                         <td><?php echo $row['status_name']; ?></td>
-                                        <td>Rejection</td>
+                                        <?php if ($row["rejection_reason"] != "") { ?>
+                                        <td><?php echo $row['rejection_reason']; ?></td>
+                                        <?php }else{ ?> 
+                                        <td>--</td>
+                                        <?php } ?>
                                         <td class="d-flex border-bottom-0" style="width: 403px;">
                                             <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/viewQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="View">View</a>
                                            
                                             <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
 
                                                 <a class="btn btn-success btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/replicateQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" >Replicate</a>
-                                                <a class="btn btn-info btn-sm mr-2" href="question_bank_archive" >Archive</a>
 
-                                                <?php if (($row['status'] == 1) || ($row['status'] == 4 )) { ?>
+                                                
+
+                                                <?php if (($row['status'] == 1) || ($row['status'] == 4 )) { 
+                                                    
+                                                    if($row['quiz_title'] == "" ){ ?>
+                                                     
                                                     <a class="btn btn-warning btn-sm mr-2 text-white" href="<?php echo base_url(); ?>subadmin/editQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="Edit">
                                                         Edit
                                                     </a>
+                                                    <button class="btn btn-danger btn-sm mr-2" onclick="deleteRecord(<?php echo $row['que_bank_id']; ?>)">Delete</button>
 
-                                            <?php  } } ?>
+                                                    <button type="button" class="btn btn-info btn-sm mr-2" data-id="<?php echo $row['que_bank_id']; ?>" id="archiveQueBank">Archive</button>
+
+
+                                            <?php } } } ?>
                                             
-                                            <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
-                                                <?php if (($row['status'] == 1) || ($row['status'] == 4 )) { ?>
-                                            <button class="btn btn-danger btn-sm mr-2" onclick="deleteRecord(<?php echo $row['que_bank_id']; ?>)">Delete</button>
-
-                                            <?php  } } ?>
+                                           
 
                                             <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
                                                 <?php if (($row['status'] == 1) || ($row['status'] == 4 ))  { ?>
@@ -159,7 +167,35 @@
 
                         } else {
                             alert(res.message);
-                            window.location.replace("<?php echo base_url(); ?>subadmin/question_bank_list");
+                            window.location.replace("<?php echo base_url(); ?>subadmin/questionBankList");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        //toastr.error('Failed to add '+xData.name+' in wishlist.');
+                        console.log(error);
+                    }
+                });
+
+            });
+            $('#listView').on('click', '#archiveQueBank', function(e) {
+                e.preventDefault();
+                const $root = $(this);
+                var id = $root.data('id');
+                jQuery.ajax({
+                    type: "POST",
+                    url: '<?php echo base_url(); ?>subadmin/changeStatus',
+                    dataType: 'json',
+                    data: {
+                        "id": id,
+                        "status": 9
+                    },
+                    success: function(res) {
+                        if (res.status == 0) {
+                            alert(res.message);
+
+                        } else {
+                            alert(res.message);
+                            window.location.replace("<?php echo base_url(); ?>subadmin/questionBankList");
                         }
                     },
                     error: function(xhr, status, error) {

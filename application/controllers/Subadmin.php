@@ -256,8 +256,10 @@ class Subadmin extends CI_Controller
     }
     public function question_bank_archive()
     {
+        $data = array();
+        $data['allRecords'] = $this->Que_bank_model->getListOfArchiveQueBank();
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('quebank/question_bank_archive');
+        $this->load->view('quebank/question_bank_archive', $data);
         $this->load->view('admin/footers/admin_footer');
     }
     // public function question_bank_edit()
@@ -686,6 +688,7 @@ class Subadmin extends CI_Controller
     {
         $data = array();
         $data['allRecords'] = $this->Que_bank_model->getAllQueBankForSubadmin();
+       // echo json_encode( $data['allRecords']);exit();
         $this->load->view('admin/headers/admin_header');
         $this->load->view('quebank/question_bank_list', $data);
         $this->load->view('admin/footers/admin_footer');
@@ -695,7 +698,7 @@ class Subadmin extends CI_Controller
         $data = array();
         $qui_bank_id =   encryptids("D", $this->input->get('id'));
         $data['allRecords'] = $this->Que_bank_model->getDetailsByQueBankId($qui_bank_id);
-       // echo json_encode( $data['allRecords']);exit();
+         //echo json_encode( $data['allRecords']);exit();
         $this->load->view('admin/headers/admin_header');
         $this->load->view('quebank/question_bank_edit', $data);
         $this->load->view('admin/footers/admin_footer');
