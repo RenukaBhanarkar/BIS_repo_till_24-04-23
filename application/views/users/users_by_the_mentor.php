@@ -106,12 +106,12 @@ h5{
                   <div class="mb-3 col-md-4">
                           <label class="d-block text-font">Title<sup class="text-danger">*</sup></label>
                               <div class="d-flex">
-                                    <input type="text" class="form-control input-font" name="title" id="title" placeholder="Enter Title" placeholder="Enter Title" required minlength="5" maxlength="200">
+                                    <input type="text" class="form-control input-font" name="title" id="title" placeholder="Enter Title" placeholder="Enter Title"  minlength="5" maxlength="200">
                               </div>
                               <span style="color:red;" id="err_title"></span>
                   </div>
                   <div class="mb-3 col-md-4">
-                          <label class="d-block text-font">Upload Image<sup class="text-danger">*</sup></label>
+                          <label class="d-block text-font">Upload Thumbnail<sup class="text-danger">*</sup></label>
                               <div class="">
                                     <input type="file" class="form-control input-font" name="image" id="document2" required accept="image/*">
                                     <span style="color:red;" id="err_image"></span>
@@ -133,12 +133,14 @@ h5{
                   </div> -->
                   <div class="mb-3 col-md-12">
                           <label class="d-block text-font">Description<sup class="text-danger">*</sup></label>
-                          <textarea class="form-control input-font" name="description" id="description" required minlength="5" maxlength="1000"></textarea>
+                          <textarea class="form-control input-font" name="description" id="description" required minlength="5" maxlength="2000"></textarea>
                               <span style="color:red;"  id="err_description"></span>
                   </div>
                   <div class="mb-3 col-md-12">
                        <div class="mentor_submit">
-                          <button onclick="return submitButton()" type="submit" class="btn btn-primary btn-sm mr-2">Submit</button>
+                          <button onclick="return submitButton(event)" type="submit" class="btn btn-success btn-sm mr-2">Submit</button>
+                          <button  type="reset" class="btn btn-warning btn-sm mr-2">Reset</button>
+                          <!-- <button  data-bs-toggle="modal" data-bs-target="#sure" type="submit" class="btn btn-primary btn-sm mr-2">Submit</button> -->
                        </div> 
                   </div> 
              </div> 
@@ -147,6 +149,25 @@ h5{
     </div>
   </div>
 
+  <div class="modal fade" id="sure" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to submit?</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button  type="submit" class="btn btn-success sure" data-bs-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
   <div class="modal fade" id="invalidfiletype" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -171,7 +192,7 @@ h5{
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -191,7 +212,7 @@ h5{
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -210,13 +231,13 @@ h5{
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size should be greater than 5MB </p>
+                    <p>File size should be less than 5MB </p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -229,7 +250,7 @@ h5{
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -245,14 +266,19 @@ h5{
         </div>
     </div>
   
-  <script> 
-  function submitButton() {
+  <script type="text/javascript"> 
+  function sure(){
+    $('.sure').modal('show');
+
+  }
+  function submitButton(event) {
+    event.preventDefault();
              var title = $("#title").val();
              var document = $("#document").val();
             //  var description= $("#description").val();
              var description = CKEDITOR.instances['description'].getData(); 
              var is_valid = true;
-                        console.log(description.length)
+                        // console.log(description.length)
              if (title == "") {
                  $("#err_title").text("This value is required");
                  $("#title").focus();
@@ -265,25 +291,28 @@ h5{
              } else {
                  $("#err_title").text("");
              }
+
              if (description== "") {
                  $("#err_description").text("This value is required");
                  $("#link1").focus();
                  is_valid = false;
              } else if (description.length < 10 ) {
-                 $("#err_description").text("Description suould be 5 to 1000 characters");
+                 $("#err_description").text("Description suould be 5 to 2000 characters");
                  $("#description").focus();
                  is_valid = false;
-             } else if(description.length > 1500 ){
-                $("#err_description").text("Description suould be 5 to 1000 characters");
+             } else if (description.length > 2000 ){
+                // return false;
+                console.log(description.length)
+                // alert("character length excedded")
+                Swal.fire('Description suould lessthan 2000 characters')
+                
+                $("#err_description").text("Description suould be 5 to 2000 characters");
                  $("#description").focus();
-                 is_valid = false;
-             }else if (title == "") {
-                 $("#err_doc").text("This value is required");
-                 $("#document").focus();
-                 is_valid = false;
-             
+                is_valid = false;
+                  return false;
              }else {
                  $("#err_description").text("");
+
              }     
              
              
@@ -344,13 +373,16 @@ h5{
                        if (!focusSet) {
                            $("#document2").focus();
                        }
+                    //    return false;
                    } else {
+                    // return true;
                        is_valid = true;
                        $("#imgerror3").next(".validation").remove(); // remove it
                    }
                }else{
                    $("#err_image").text('This value is required');
-                //    $("#document2").focus();
+                   $("#document2").focus();
+                   return false;
                }
 
 
@@ -457,14 +489,40 @@ h5{
 
 
              if (is_valid) { 
-                $('#updateform').attr('action','<?php echo base_url().'users/add_btm'?>');                
-                 return true;
+                // return false;
+                $('#updateform').attr('action','<?php echo base_url().'users/add_btm'?>'); 
+                // $('#sure').modal('show');
+
+                Swal.fire({
+                            title: 'Do you want to Submit?',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: 'Submit',
+                            denyButtonText: `Cancle`,
+                            }).then((result) => {
+                            /* Read more about isConfirmed, isDenied below */
+                            if (result.isConfirmed) {
+                                Swal.fire('Saved!', '', 'success')
+                                $('#updateform').submit();
+                            } else if (result.isDenied) {
+                                Swal.fire('Changes are not saved', '', 'info')
+                            }
+                            })
+                
+                // $('.sure').on('click',function(e){
+                //     e.preventDefault();
+                //     $('#updateform').submit();
+
+                // })
+                              
+                //  return true;
              } else {
                  return false;
              }
          };
 </script>
 <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
          CKEDITOR.replace( 'description' );
             </script>

@@ -272,6 +272,72 @@ class Wall_of_wisdom extends CI_Controller
          $this->load->view('wall_of_wisdom/wall_of_wisdon_detail',$data);
          $this->load->view('admin/footers/admin_footer');
      }
+     public function archive(){
+        $data['archive'] = $this->wow->archive();
+        $this->load->view('admin/headers/admin_header');
+         $this->load->view('wall_of_wisdom/archive',$data);
+         $this->load->view('admin/footers/admin_footer');
+     }
+     public function restore(){
+        try {                     
+             $que_id = $this->input->post('que_id');
+             $id = $this->wow->restore($que_id);
+             if ($id) {
+                 $this->session->set_flashdata('MSG', ShowAlert("Record Approved Successfully", "SS"));
+                 return true;
+                 
+             } else {
+                 $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));   
+                 return false;            
+             }
+             
+             
+         } catch (Exception $e) {
+             echo json_encode([
+                 'status' => 'error',
+                 'message' => $e->getMessage(),
+             ]);
+             return true;
+         }
+         redirect(base_url() . "wall_of_wisdom", 'refresh');
+     }
+
+     public function sendarchive(){
+        try {                     
+            $que_id = $this->input->post('que_id');
+            $id = $this->wow->sendarchive($que_id);
+            if ($id) {
+                $this->session->set_flashdata('MSG', ShowAlert("Record Archived Successfully", "SS"));
+                return true;
+                
+            } else {
+                $this->session->set_flashdata('MSG', ShowAlert("Failed", "SS"));   
+                return false;            
+            }
+            
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "wall_of_wisdom", 'refresh');
+     }
+
+     public function like(){
+        $que_id = $this->input->post('que_id');
+        $id = $this->wow->like($que_id);
+        // $increase=$id_1;
+        // $res=$this->wow->update_like($increase);
+        // return $id;
+        // echo $id;
+        // print_r($id);
+        // if($id=="success"){
+        //     return true;
+        // }
+     }
  
 
 }

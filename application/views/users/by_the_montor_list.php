@@ -29,7 +29,7 @@
             </div> -->
         <?php }  ?>
         <div class="row" style="padding:10px;">
-        <div class="card p-3 shadow">
+        <div class="card p-3 shadow" style="width: -webkit-fill-available;">
                 <nav>
                     <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">New Requests</button>
@@ -42,7 +42,7 @@
               <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="col-12 mt-3">
                    <div class="card border-top card-body">
-                    <table id="example" class="table table-bordered" style="width:100%">
+                    <table id="example10" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>                               
@@ -92,7 +92,7 @@
                                          <?php } ?>
                                         <?php } ?>
                                             <!-- Modal -->
-                                            
+                                        </td>   
                                     </tr>
                             <?php }
                             } ?>
@@ -116,7 +116,7 @@
                                 <th>Image</th>
                                 <th>Document</th>                                
                                 <th>Status</th>
-                                <th>2</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,7 +176,7 @@
                                 <th>Document</th>                                
                                 <th>Status</th>
                                 <th>Reject Reason</th>
-                                <th>3</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -388,7 +388,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Unarchive </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Restore </h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -441,7 +441,10 @@
         // $('.delete_img').on('click',function(){
         //     $('#delete').modal('show');
         // })
-        
+        $('#example10').DataTable({
+            scrollx:true,
+            responsive: true
+        });
         $('#example1').DataTable({
             scrollx:true,
             responsive: true
@@ -449,9 +452,9 @@
         $('#example2').DataTable({
             scrollx:true
         });
-        $('#example').DataTable({
-            scrollx:true
-        });
+        // $('#example').DataTable({
+        //     scrollx:true
+        // });
     })
     function reject(que_id){
             $('#rejectModal1').modal('show');

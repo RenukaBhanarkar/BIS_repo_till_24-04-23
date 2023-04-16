@@ -12,7 +12,7 @@
             </nav>
         </div>
 <div class="row" style="padding: 10px;">
-	<div class="card p-3 shadow">
+	<div class="card p-3 shadow" style="width: -webkit-fill-available;">
 		<nav>
 			<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
 				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">New Requests</button>

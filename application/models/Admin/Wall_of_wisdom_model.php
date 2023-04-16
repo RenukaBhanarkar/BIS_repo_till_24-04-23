@@ -128,4 +128,52 @@ class Wall_of_wisdom_model extends CI_Model {
          $result=$query->result_array();
          return $result[0];
     }
+    public function archive(){
+        $this->db->select('wow.*,tms.status_name');
+        $this->db->from('tbl_wall_of_wisdom wow');
+        $this->db->join('tbl_mst_status tms','tms.id=wow.status');   
+        $this->db->where('status',9);    
+        $this->db->order_by('created_on','desc');
+        $query=$this->db->get();
+        $res=$query->result_array();
+        return $res;
+    }
+    public function restore($id){
+        // print_r($id); die;
+        $this->db->where('id', $id);
+        if ($this->db->update('tbl_wall_of_wisdom', ['status'=>'1'])) {
+          //  return true;
+            return "success";
+        } else {
+            return false;
+        } 
+    }
+    public function sendarchive($id){
+        $this->db->where('id', $id);
+        if ($this->db->update('tbl_wall_of_wisdom', ['status'=>'9'])) {
+          //  return true;
+            return "success";
+        } else {
+            return false;
+        } 
+    }
+    public function like($id){
+        $this->db->select('likes');
+        $this->db->from('tbl_wall_of_wisdom');
+        $this->db->where('id',$id);
+        $query=$this->db->get();
+        $res=$query->result_array();
+        // return $res[0]['likes'];
+        $abc=$res[0]['likes'];
+        $pqr=$abc+1;
+        $this->db->where('id', $id);
+        if ($this->db->update('tbl_wall_of_wisdom', ['likes'=>$pqr])) {
+          //  return true;
+            return "success";
+        } else {
+            return false;
+        } 
+        
+
+    }
 }

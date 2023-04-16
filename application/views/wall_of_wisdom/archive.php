@@ -20,8 +20,8 @@
                 <div class="col-12">
                     <div class="card border-top card-body">
                         <div>
-                            <button type="button" class="btn btn-primary btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Add New Post</button>
-                            <a href="<?php echo base_url(); ?>wall_of_wisdom/archive" type="button" class="btn btn-primary btn-sm mr-2" >Archive</a>
+                            <!-- <button type="button" class="btn btn-primary btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Add New Post</button> -->
+                            <a href="<?php echo base_url(); ?>wall_of_wisdom/" type="button" class="btn btn-primary btn-sm mr-2" >Wall of Wisdom</a>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="wow_table" class="hover table-bordered " >
+                    <table id="wow_table" class="hover table-bordered " style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -43,16 +43,14 @@
                                 <!-- <th>Desciption</th> -->
                                 <th>Image</th>
                                 <th>Status</th>
-                                <th>Created On</th>
-                                <th>Likes</th>
-                                <th>Reject Reason</th>
+                                <!-- <th>Reject Reason</th> -->
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($wall_of_wisdom)) {
+                            <?php if (!empty($archive)) {
                                 $i = 1;
-                                foreach ($wall_of_wisdom as $list_wow) { ?>
+                                foreach ($archive as $list_wow) { ?>
                                     <tr>
                                         <td><?php echo $i++ ?></td>
                                         <td><?php echo $list_wow['title'] ?></td>
@@ -64,44 +62,20 @@
                                             } ?>
                                         </td>
                                         <td><?php echo $list_wow['status_name']; ?></td>
-                                        <td><?php echo $list_wow['created_on']; ?></td>
-                                        <td><?php echo $list_wow['likes']; ?></td>
-                                        <td><?php echo $list_wow['reject_reason']; ?></td>
-                                        <td class="d-flex border-bottom-0" style="min-width: 400px;">
+                                        
+                                        <td class="d-flex border-bottom-0" style=" width: 350px;">
                                             <a href="<?php echo base_url().'wall_of_wisdom/detail/'.$list_wow['id']; ?>" >
                                                 <button class="btn btn-primary btn-sm mr-2">View</button>
                                             </a>
                                             <?php 
                                             if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>
-                                            <?php if($list_wow['status'] == 1){ ?>
-                                            <button onclick="sendapproval('<?php echo $list_wow['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white">Send For Approval</button>
-                                            <button class="btn btn-primary btn-sm mr-2" onclick="sendArchive('<?php echo $list_wow['id']; ?>')" data-id ='<?php echo $list_wow['id']; ?>'>Archive</button>
-                                           <?php } ?>
+                                            <!-- <button class="btn btn-primary btn-sm ml-2" onclick="sendArchive('<?php echo $list_wow['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Archive</button> -->
+                                            <button class="btn btn-info btn-sm" onclick="sendUnArchive('<?php echo $list_wow['id']; ?>')" data-id ='<?php echo $list_wow['id']; ?>'>Restore</button> 
+                                            
                                            
-                                            <?php if (!($list_wow['status'] == 5 || $list_wow['status'] == 2)) { ?>
-                                                <button onclick="edit('<?php echo $list_wow['id']; ?>')" class="btn btn-warning btn-sm mr-2 text-white">Edit</button>
-                                                <button onclick="deleteWOW('<?php echo $list_wow['id']; ?>')" class="btn btn-danger btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#delete">Delete</button>
-                                            <?php } } ?>
-
-
-                                           <?php 
                                            
-                                            if (encryptids("D", $_SESSION['admin_type']) == 3) {
-                                                if ($list_wow['status'] == 3 || $list_wow['status'] == 6) {  ?>
-                                                    <button class="btn btn-success btn-sm publish" onclick="sendPublish('<?php echo $list_wow['id']; ?>')" data-id='<?php echo $list_wow['id']; ?>'>Publish</button>
-                                                <?php } else if ($list_wow['status'] == 5) { ?>
-                                                    <button class="btn btn-secondary btn-sm mr-2 unpublish_record" onclick="sendUnPublish('<?php echo $list_wow['id']; ?>')" data-id='<?php echo $list_wow['id']; ?>'>UnPublish</button>
-                                                <?php  }
-                                            }else if(encryptids("D", $_SESSION['admin_type']) == 2){ ?>
-                                                    <?php if($list_wow['status'] == 3){ ?>
-                                                                  
-                                                  <?php  }else if($list_wow['status'] == 2) { ?>
-                                                <button onclick="approve('<?php echo $list_wow['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white">Approve</button>
-                                                <button onclick="reject('<?php echo $list_wow['id']; ?>')" class="btn btn-danger btn-sm mr-2 text-white">Reject</button>
-                                          <?php }  } ?>
+                                             <?php }  ?>                                           
                                         </td>
-
-
                                         <!-- Modal -->
                                     </tr>
 
@@ -120,223 +94,53 @@
                           </div>
     </div>
     </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="exampleModalLabel">New Post</h5>
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?php echo base_url(); ?>wall_of_wisdom/insertWallOfWisdom" name="addpost" id="addpostform" class="was-validated" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Title<sup class="text-danger">*</sup></label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" minlength="5" maxlength="250" placeholder="Enter Title" required>
-                            <span id="err_title" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Description<sup class="text-danger">*</sup></label>
-                            <textarea class="form-control" id="description" name="description" placeholder="Enter Description" required="" minlength="5" maxlength="2000"></textarea>
-                            <span id="err_description" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3 d-flex">
-                            <div class="col-md-8 d-flex">
-                                <div class="col-md-2">
-                            <label for="recipient-name" class="col-form-label">Upload Image:</label>
-                            </div><div class="col-md-10">
-                                        <input type="file" class="form-control col-md-8" id="document1" value="" name="document" accept="image/*" required="" onchange="loadFileThumbnail1(event)">
-                                        <span id="imgError1" class="text-danger">
-                                        
-                                        </span>
-                        </div>
-                                        </div>
-                                        <button type="button" id="preview123456" class="btn btn-primary btn-sm ml-2" data-bs-toggle="modal" data-bs-target="#Previewimg1">
-                                            Preview
-                                        </button>
-                            
-                                        
-                            
-                        </div>
-                        <div class="modal fade" id="Previewimg1" tabindex="-1" aria-labelledby="PreviewimgLabel" aria-hidden="true">
-                                    <div class="modal-dialog" style="max-width:700px;">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Image Preview</h5>
-
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                        </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <img src="" id="outputThumbnail1" width="100%"/>
-                                        </div>
-                                        <div class="modal-footer">
-                                        <!-- <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
-                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button> -->
-                                        </div> 
-                                    </div>
-                                    </div>
-                                </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary save" onclick="return submitButton()">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- --------- edit modal ----------- -->
-    <div class="modal fade" id="editModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="exampleModalLabel">Update Post</h5>
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?php echo base_url(); ?>wall_of_wisdom/editWallOfWisdom" name="updatepost" class="was-validated" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Title<sup class="text-danger">*</sup></label>
-                            <input type="text" class="form-control" id="title1" name="title" minlength="5" maxlength="250" placeholder="Enter Title" required>
-                            <span id="err_title" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Description<sup class="text-danger">*</sup></label>
-                            <textarea class="form-control" id="description1" name="description" minlength="5" maxlength="1000" placeholder="Enter Description" required></textarea>
-                            <span id="err_description" class="text-danger"></span>
-                        </div>
-                        
-                            <!-- <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Upload Image:</label>
-                                <input type="file" class="form-control" id="document1" name="document">
-                                <input type="hidden" id="image1" name="old_doc">
-                                <input type="hidden" id="id1" name="id">
-                                <span id="imgError1" class="text-danger"></span>
-                            </div> -->
-                            
-                                <label class="d-block">Upload Image<sup class="text-danger">*</sup></label>
-                                <div class=""  id="add_file">
-                                <div class="d-flex">
-                                        <div>
-                                            <input type="file" id="document2" name="document" class="form-control" onchange="loadFileThumbnail(event)" >
-                                            <span  class="error_text" id="imgerror3" style="color:red;"></span>
-                                            <input type="hidden" id="image1" name="old_doc">
-                                            <input type="hidden" id="id1" name="id">
-                                            <span class="error_text"><?php echo form_error('banner_img');?></span>
-                                        </div>
-                                        <button type="button" id="preview123456" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#Previewimg">
-                                            Preview
-                                        </button>
-
-                                        <div class="modal fade" id="Previewimg" tabindex="-1" aria-labelledby="PreviewimgLabel" aria-hidden="true">
-                                    <div class="modal-dialog" style="max-width:700px;">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Image Preview</h5>
-
-                                        <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                        </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <img src="" id="outputThumbnail" width="100%"/>
-                                        </div>
-                                        <div class="modal-footer">
-                                        <!-- <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
-                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button> -->
-                                        </div> 
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                
-                                <!-- Modal -->
-                                      
-                                            <!-- Modal -->
-                            </div>
-                        
-                        <div class="active" id="delete_preview">
-                                                                <button class="btn btn-danger btn-sm del_icon">Delete</button>
-                                                                <button type="button" id="preview1" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                    Preview
-                                                                </button>
-                                                                                                                <!-- Modal -->
-                                                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                                    <div class="modal-dialog" style="max-width:700px;">
-                                                                                    <div class="modal-content">
-                                                                                        <div class="modal-header">
-                                                                                        <h5 class="modal-title" id="exampleModalLabel">Image Preview</h5>
-
-                                                                                        <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                                                                                        <span aria-hidden="true">×</span>
-                                                                                        </button>
-                                                                                        </div>
-                                                                                        <div class="modal-body">
-                                                                                        <img src="" id="outputbanner" width="100%"/>
-                                                                                        </div>
-                                                                                        <div class="modal-footer">
-                                                                                        <!-- <button type="button"  onclick="resetbanner()" class="btn btn-secondary" data-bs-dismiss="modal">ReSet</button>
-                                                                                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Save changes</button> -->
-                                                                                        </div> 
-                                                                                    </div>
-                                                                                    </div>
-                                                                                </div>       
-                                                                                            <!-- Modal -->
-                                                            </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="submit" class="btn btn-primary" onclick="return updateButton()">Update</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- End of Main Content -->
     <!-- ----------- Start of reject modal------- -->
-    <div class="modal fade" id="rejectModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="exampleModalLabel">Reject</h5>
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?php echo base_url(); ?>wall_of_wisdom/rejectWallOfWisdom" class="was-validated" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Reason of Rejection<sup class="text-danger">*</sup></label>
-                            <!-- <input type="text" class="form-control" id="reseon" name="reason" required> -->
-                            <textarea class="form-control" id="reseon" name="reason" required></textarea>
-                            <input type="hidden" id="id2" name="id">
-                            <span id="err_title" class="text-danger"></span>
-                        </div>
-                       
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger" >Reject</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
                             
     <!-- ----------- end of reject modal------- -->
-
+    <div class="modal fade" id="archive" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Archive Activity</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Archive ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-primary archive" data-bs-dismiss="modal">Archive</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="restore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Restore </h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to Restore ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-primary restore" data-bs-dismiss="modal">Restore</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -377,162 +181,23 @@
         </div>
     </div>
 
-    <div class="modal fade" id="unpublish" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Unpublish Activity</h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to Unpublish activity?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancle</button>
-                    <button type="button" class="btn btn-primary unpublish" data-bs-dismiss="modal">Unpublish</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="sendforapproval" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Send For Approval Activity</h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to Send For Approval activity?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary sendforapproval" data-bs-dismiss="modal">Send For Approval</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="approve" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Approve Activity</h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to Approve activity?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary approve" data-bs-dismiss="modal">Approve</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="invalidfiletype" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Only jpg,png,jpeg files accepted.</p>
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
-                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="lessSize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>File size shoud be 50KB or more</p>
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
-                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="greaterSize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>File size shoud be less than 250KB </p>
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
-                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="archive" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Archive </h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to Archive ?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary archive" data-bs-dismiss="modal">Archive</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
 
     <script type="text/javascript">
-$('#addpostform').removeClass('was-validated');
-$('.save').on('click',function(){
-    $('#addpostform').addClass('was-validated');
-})
-
-function sendArchive(que_id) {
-            
-                $('#archive').modal('show');
-                $('.archive').on('click', function() {
+        function sendUnArchive(que_id) {
+            console.log(que_id);
+            // var c = confirm("Are you sure to Unpublish By The Mentor details? ");
+            // if (c == true) {     
+                $('#restore').modal('show');
+                $('.restore').on('click', function() {          
                 $.ajax({
                     type: 'POST',
-                    url: '<?php echo base_url(); ?>Wall_of_wisdom/sendarchive',
+                    url: '<?php echo base_url(); ?>Wall_of_wisdom/restore',
                     data: {
                         que_id: que_id,
                     },
-                    success: function(result) {                        
+                    success: function(result) { 
+                        console.log(result);                      
                         location.reload();
                     },
                     error: function(result) {
@@ -542,9 +207,6 @@ function sendArchive(que_id) {
 
             });
         }
-
-
-
 var loadFileThumbnail = function(event) 
     {
        //  $("#Previewimg").show();
@@ -610,14 +272,11 @@ var loadFileThumbnail = function(event)
             } else if ((description.length < 10)) {
                 $("#err_description").text("Please Enter minimum 5 Characters");
                 $("#description").focus();
-                 is_valid = false;
-            } else if ((description.length > 2000)) {
-                is_valid = false;
-                // alert('Description length must be less than 2000 characters ');
-                $("#err_description").text("Maximum 2000 characters allowed");
+                var is_valid = false;
+            } else if ((description.length > 1000)) {
+                $("#err_description").text("Maximum 1000 characters allowed");
                 $("#description").focus();
-                //  is_valid = false;
-                
+                var is_valid = false;
             } else {
                 $("#err_description").text("");
             }
@@ -683,7 +342,7 @@ var loadFileThumbnail = function(event)
                         $("#imgError1").next(".validation").remove(); // remove it
                     }
                 }else{
-                    $("#imgError1").text('This value is required');
+                    $("#imgError1").text('Please select file');
                     $("#document1").focus();
                 }
 
@@ -698,13 +357,7 @@ var loadFileThumbnail = function(event)
             };
     </script>
     <script>
-        $(document).ready(function(){
-            $('#wow_table').DataTable({
-            scrollX:true,
-            responsive:true
-        });
-        })
-        
+        $('#wow_table').DataTable();
         function updateButton() {
            
            var title = $("#title1").val();
@@ -991,9 +644,9 @@ var loadFileThumbnail = function(event)
         }
     </script>
     <script>
-        // $(document).ready(function() {
-        //     $('#wow_table').DataTable();            
-        // });
+        $(document).ready(function() {
+            $('#wow_table').DataTable();            
+        });
 
 
 
@@ -1054,13 +707,4 @@ var loadFileThumbnail = function(event)
                     // $('#addwall').submit();
                 });
     </script>
-    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
-    <!-- <script src="<?php echo base_url().'assets/admin/js/ckeditor.js'; ?>"></script> -->
-    
-<script>
-                        CKEDITOR.replace( 'description' );
-                        CKEDITOR.replace( 'description1' );
-                        </script>
-
-
     </body>
