@@ -59,15 +59,15 @@
                             <div >
                                     <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
                                     <div>
-                                        <p><img src="<?php echo base_url().'uploads/admin/wall_of_wisdom/'.$wall_of_wisdom['image']; ?>"></p>
+                                        <p><img src="<?php echo base_url().'uploads/admin/wall_of_wisdom/'.$wall_of_wisdom['image']; ?>" style="max-width: 590px;"></p>
                                     </div> 
                             </div>
-                            <!-- <div >
-                                    <label class="d-block text-font">Status<sup class="text-danger">*</sup></label>
-                                    <div>
+                            <div class="d-flex">
+                                    <label class="d-block text-font">Likes</label>-<?php echo $wall_of_wisdom['likes']; ?>
+                                    <!-- <div>
                                         <p><?php echo $wall_of_wisdom['status_name']; ?></p>
-                                    </div> 
-                            </div> -->
+                                    </div>  -->
+                            </div>
                             
 
                             

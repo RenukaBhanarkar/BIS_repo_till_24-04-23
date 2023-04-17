@@ -534,5 +534,60 @@ class Admin_model extends CI_Model {
         }
         }
     }
+    public function bannerwosAllData(){
+        $myQuery = "SELECT * FROM  tbl_wos_banner ";
+        $query = $this->db->query($myQuery);
+        $result=$query->result_array();
+        return $result;
+    }
+    public function  wowInsertBanner($data)
+     {
+         if ($this->db->insert('tbl_wos_banner', $data)) {
+             return $this->db->insert_id();
+         } else {
+             return false;
+         }
+     }
+     public function edit_wos_banner($id){
+        $this->db->select('*');
+        $this->db->from('tbl_wos_banner');
+        $this->db->where('id',$id);
+        $query= $this->db->get();       
+        $result=$query->result_array();
+        return json_encode($result[0]);
+     }
+     public function delete_wos_Banner($id){
+        $this->db->where('id', $id);
+         if ($this->db->delete('tbl_wos_banner')) {
+             return true;
+         } else {
+             return false;
+         }
+     }
+
+     public function updatewosBannerImage($data){
+        $this->db->where('id', $data['id']);
+         if ($this->db->update('tbl_wos_banner', $data)) {
+             return true;
+         } else {
+             return false;
+         }
+     }
+     public function edit_photos($id){
+        $this->db->select('*');
+        $this->db->from('tbl_photos');
+        $this->db->where('id',$id);
+        $query= $this->db->get();       
+        $result=$query->result_array();
+        return json_encode($result[0]);
+     }
+     public function updatePhoto($data){
+        $this->db->where('id', $data['id']);
+         if ($this->db->update('tbl_photos', $data)) {
+             return true;
+         } else {
+             return false;
+         }
+     }
 
 }

@@ -168,6 +168,9 @@
                             <p class="Your_Wall_Description_view">
                             <?php echo $wow['description']; ?>
                             </p>
+                            <p>
+                                <b>Likes -</b><?php echo $wow['likes']; ?>
+                            </p>
 
                         </div>
                         

@@ -962,9 +962,10 @@ class Admin extends CI_Controller
     
         public function deletePhotos($que_id){
             // echo $que_id; die;
+            $id=encryptids("D", $que_id);
             try {
                 
-                $id = $this->Admin_model->deletePhotos($que_id);
+                $id = $this->Admin_model->deletePhotos($id);
                 if ($id) {
                     $data['status'] = 1;
                     $data['message'] = 'Deleted successfully.';
@@ -986,6 +987,58 @@ class Admin extends CI_Controller
             }
             redirect(base_url() . "admin/photos", 'refresh');
         }
+        public function edit_photos($id){
+            $data=$this->Admin_model->edit_photos($id);
+            //print_r($data); die;
+            echo $data;
+        }
+
+        public function update_photo(){
+            // print_r($_POST); die;
+             $formdata['id'] = $this->input->post('id');
+             //$formdata['title'] = $this->input->post('title');
+             $formdata['title'] = $this->input->post('banner_caption');  
+           //  $formdata['image'] = $this->input->post('old_doc');   
+     
+            $oldDocument = "";
+            $oldDocument = $this->input->post('old_img');
+            $document = "";
+     
+                 if (!empty($_FILES['bannerimg']['tmp_name'])) {
+                     $document = "banner_image" . time() . '.jpg';
+                     $config['upload_path'] = './uploads';
+                     $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                     $config['max_size']    = '100000';
+                     $config['max_width']  = '3024';
+                     $config['max_height']  = '2024';
+                     $config['file_name'] = $document;
+     
+                     $this->load->library('upload', $config);
+     
+                     if (!$this->upload->do_upload('bannerimg')) {
+                         //$err[]=$this->upload->display_errors();
+                         $data['status'] = 0;
+                         $data['message'] = $this->upload->display_errors();
+                     }
+                     } else {
+                         if (!empty($oldDocument)) {
+                             $document =  $oldDocument;
+                         }
+                     }   
+     
+             if($document){          
+                 $formdata['image']=$document;
+             }
+             // $formdata['status']="1";
+             $id = $this->Admin_model->updatePhoto($formdata);
+             if($id){
+                 $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
+                 redirect(base_url() . "admin/photos", 'refresh');
+             } else {
+                 $this->session->set_flashdata('MSG', ShowAlert("Failed to update record,Please try again", "DD"));
+                 redirect(base_url() . "admin/photos", 'refresh');
+             }
+         }
 
         public function videos()
         {

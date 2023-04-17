@@ -87,7 +87,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example" class="table table-bordered">
+                    <table id="followus" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -238,6 +238,9 @@
 </div>
 <!-- End of Main Content -->
 <script>
+    $(document).ready(function(){
+        $('#followus').DataTable();
+    });
 function deleteFollowUs(que_id) {
     $('#delete').modal('show');
         $('.abcd').on('click', function() {

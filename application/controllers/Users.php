@@ -243,8 +243,13 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer');  
     }
     public function quality_index(){
+        $data = array();
+        $this->load->model('admin/admin_model');
+        $data['banner_data']=$this->admin_model->bannerwosAllData();
+        $data['images']=$this->admin_model->images();
+        $data['videos']=$this->admin_model->videos();
         $this->load->view('users/headers/header');
-        $this->load->view('users/world_of_standards');
+        $this->load->view('users/world_of_standards',$data);
         $this->load->view('users/footers/footer');  
     }
     public function privacy_policy(){

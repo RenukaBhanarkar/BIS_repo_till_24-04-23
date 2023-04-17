@@ -976,4 +976,108 @@ class Subadmin extends CI_Controller
         }
         redirect(base_url() . "subadmin/winner_wall", 'refresh');
     }
+    public function WordOfStandardBanner(){
+        $data['banner_data']=$this->Admin_model->bannerwosAllData();
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/world_of_standard_banner_image_list',$data);
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function addbannerimg()
+    {
+       
+        $banner_img = "bannerimg" . time() . '.jpg';
+        $config['upload_path'] = './uploads/cms/banner';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']    = '10000';
+        $config['max_width']  = '3024';
+        $config['max_height']  = '2024';
+   
+        $config['file_name'] = $banner_img;
+       
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('bannerimg')) 
+        {
+            $data['status'] = 0;
+            $data['message'] = $this->upload->display_errors();
+        }
+        $formdata['caption'] = $this->input->post('banner_caption');
+        $formdata['banner_images'] = $banner_img;
+   
+        $this->Admin_model->wowInsertBanner($formdata);
+        $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
+        redirect(base_url() . "subadmin/WordOfStandardBanner", 'refresh');
+    }
+    public function edit_bannerimage($id){
+        $data=$this->Admin_model->edit_wos_banner($id);
+        //print_r($data); die;
+        echo $data;
+    }
+    public function deleteBanner(){
+        try {            
+            $que_id = $this->input->post('que_id');
+            $id = $this->Admin_model->delete_wos_Banner($que_id);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Deleted successfully.';
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }
+            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));            
+
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "subadmin/WordOfStandardBanner", 'refresh');
+    }
+    public function update_bannnerimage(){
+        // print_r($_POST); die;
+         $formdata['id'] = $this->input->post('id');
+         //$formdata['title'] = $this->input->post('title');
+         $formdata['caption'] = $this->input->post('banner_caption');  
+       //  $formdata['image'] = $this->input->post('old_doc');   
+ 
+        $oldDocument = "";
+        $oldDocument = $this->input->post('old_img');
+        $document = "";
+ 
+             if (!empty($_FILES['bannerimg']['tmp_name'])) {
+                 $document = "banner_image" . time() . '.jpg';
+                 $config['upload_path'] = './uploads/cms/banner';
+                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                 $config['max_size']    = '100000';
+                 $config['max_width']  = '3024';
+                 $config['max_height']  = '2024';
+                 $config['file_name'] = $document;
+ 
+                 $this->load->library('upload', $config);
+ 
+                 if (!$this->upload->do_upload('bannerimg')) {
+                     //$err[]=$this->upload->display_errors();
+                     $data['status'] = 0;
+                     $data['message'] = $this->upload->display_errors();
+                 }
+                 } else {
+                     if (!empty($oldDocument)) {
+                         $document =  $oldDocument;
+                     }
+                 }   
+ 
+         if($document){          
+             $formdata['banner_images']=$document;
+         }
+         // $formdata['status']="1";
+         $id = $this->Admin_model->updatewosBannerImage($formdata);
+         if($id){
+             $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
+             redirect(base_url() . "subadmin/WordOfStandardBanner", 'refresh');
+         } else {
+             $this->session->set_flashdata('MSG', ShowAlert("Failed to update record,Please try again", "DD"));
+             redirect(base_url() . "subadmin/WordOfStandardBanner", 'refresh');
+         }
+     }
 }
