@@ -91,17 +91,17 @@ span.last-date {
         <div class="join_container">
             <?php foreach ($LiveSessions as $key => $value): ?>
                 <div class="view_join_content">
-                    <a href="<?php echo base_url().'users/join_the_classroom_watch_now/'?><?php echo encryptids("E", $value['id'] )?>">
+                    <a href="<?php echo base_url().'users/learning_standerd_sessions_watch_now/'?><?php echo encryptids("E", $value['id'] )?>">
                         <div class="start_content">
                             <img src="<?php echo base_url(); ?><?= $value['thumbnail']?>" alt="" class="join_img">
                         </div>
                     </a>
                     <div class="join_body">
                         <div class="title_join">
-                            <h3><a href="<?php echo base_url().'users/join_the_classroom_watch_now/'?><?php echo encryptids("E", $value['id'] )?>"><?= $value['title']?></a> </h3>
+                            <h3><a href="<?php echo base_url().'users/learning_standerd_sessions_watch_now/'?><?php echo encryptids("E", $value['id'] )?>"><?= $value['title']?></a> </h3>
                             <span class="last-date">Date:<span class="date-time" style="margin-left: 5px;"> 
                             <?= date("d-m-Y", strtotime($value['created_on']));?></span></span>
-                            <a href="<?php echo base_url().'users/join_the_classroom_watch_now/'?><?php echo encryptids("E", $value['id'] )?>"><div class="discuss_caption"><span href="#" title=" Discuss" style="padding:8px;"></span><span class="">Watch Now</span></div></a>
+                            <a href="<?php echo base_url().'users/learning_standerd_sessions_watch_now/'?><?php echo encryptids("E", $value['id'] )?>"><div class="discuss_caption"><span href="#" title=" Discuss" style="padding:8px;"></span><span class="">Watch Now</span></div></a>
                         </div>
                     </div>
                 </div>

@@ -104,8 +104,9 @@ h1 {
                 <div class="video__details">
                     <div class="title-text">
                         <h3> <?= $Conversation['title']?> </h3>
-                        <span>10M Views • <?= time_elapsed_string($Conversation['created_on'])?></span>
-                        <a href="" class="like_button" type="button"><i class="fa fa-heart" style="margin:4px;"></i>like</a>
+                        <span><?= $Conversation['views']?> Views • <?= time_elapsed_string($Conversation['created_on'])?></span>
+                        <span><?= $Conversation['likes']?> likes </span>
+                        <span class="like_button" type="button" onclick="submitLike('<?= $Conversation["id"]?>')"><i class="fa fa-heart" style="margin:4px;"></i>like</span>
                         <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $Conversation['id'] )?>" data-toggle="tooltip" title="Copy Link and Share" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>share</a>
 
                           
@@ -127,7 +128,7 @@ h1 {
                                 <div class="title">
                                     <h3><a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <?= $value['title']?></a></h3>
                                     
-                                    <span>10M Views • <?= time_elapsed_string($value['created_on'])?></span>
+                                    <span><?= $value['views']?> Views • <?= time_elapsed_string($value['created_on'])?></span>
                                 </div>
                             </div>  
                         </div>
@@ -179,8 +180,27 @@ $('.share_button').click(function (e) {
       e.preventDefault();
    }, true);
 
-   document.execCommand('copy');  
-   console.log('copied text : ', copyText);
+   document.execCommand('copy');   
    alert('copied text: ' + copyText); 
  });
+function submitLike(id) 
+{ 
+    console.log(id)
+    $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url(); ?>Users/updateLikes',
+        data: {
+            id: id,
+            status: status,
+        },
+        success: function(result) 
+        { 
+            console.log(result)
+        },
+        error: function(result) {
+            alert("Error,Please try again.");
+        }
+    });
+};
+ 
  </script> 

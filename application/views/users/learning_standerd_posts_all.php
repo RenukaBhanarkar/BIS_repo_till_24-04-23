@@ -24,6 +24,7 @@
     min-height: 150px;
     position: relative;
     padding: 0 0 50px;
+    overflow: hidden;
 }
 .start_content{
     width: 100%;
@@ -34,10 +35,14 @@
     margin-top: 10px;   
 }
 .join_img{
-    object-fit: cover;
+    transition: all ease-in-out 0.4s;
     height: 100%;
     width: 100%;
     border-radius: 5px;
+}
+.join_img:hover {
+    transform: scale(1.1);
+    
 }
 .join_container .title_join h3{
     color: rgb(3, 3, 3);
@@ -61,7 +66,7 @@ span.span_description {
     text-overflow: ellipsis;
 }
 .discuss_caption{
-    background: #b51b00;
+    background: #0052b5;
     text-align: center;
     color: white;
     font-weight: 600;
@@ -79,35 +84,35 @@ span.date-time {
     font-weight: 500;
 }
 span.last-date {
-    font-weight: 600;
+    font-weight: 600; 
 }
 </style>
 <section class="-join_section">
     <div class="join_content">
         <div class="bloginfo">
-            <h3 style="margin-bottom: 14px; /* margin-top: 20px; */ color: #0086b2!important; font-weight: 600; margin-left: 24px;">Live Sessions
-            </h3>
+            <h3 style="margin-bottom: 14px; /* margin-top: 20px; */ color: #0086b2!important; font-weight: 600; margin-left: 24px;">Read Here</h3>
         </div>
         <div class="join_container">
-            <?php foreach ($LiveSessions as $key => $value): ?>
-                <div class="view_join_content">
-                    <a href="<?php echo base_url().'users/join_the_classroom_watch_now/'?><?php echo encryptids("E", $value['id'] )?>">
-                        <div class="start_content">
-                            <img src="<?php echo base_url(); ?><?= $value['thumbnail']?>" alt="" class="join_img">
-                        </div>
-                    </a>
-                    <div class="join_body">
-                        <div class="title_join">
-                            <h3><a href="<?php echo base_url().'users/join_the_classroom_watch_now/'?><?php echo encryptids("E", $value['id'] )?>"><?= $value['title']?></a> </h3>
-                            <span class="last-date">Date:<span class="date-time" style="margin-left: 5px;"> 
-                            <?= date("d-m-Y", strtotime($value['created_on']));?></span></span>
-                            <a href="<?php echo base_url().'users/join_the_classroom_watch_now/'?><?php echo encryptids("E", $value['id'] )?>"><div class="discuss_caption"><span href="#" title=" Discuss" style="padding:8px;"></span><span class="">Watch Now</span></div></a>
-                        </div>
+             <?php foreach ($letestPostView as $key => $value): ?>
+            <div class="view_join_content">
+                <a href="<?php echo base_url().'users/learning_standerd_post_readMore/'?><?php echo encryptids("E", $value['id'] )?>">
+                    <div class="start_content">
+                        <img src="<?php echo base_url(); ?><?= $value['thumbnail']?>" alt="" class="join_img">
+                    </div>
+                </a>
+                <div class="join_body">
+                    <div class="title_join">
+                        <h3><a href="<?php echo base_url().'users/learning_standerd_post_readMore/'?><?php echo encryptids("E", $value['id'] )?>"><?= $value['title']?></a></h3>
+                        <span class="last-date">Date:<span class="date-time" style="margin-left: 5px;"><?= date("d M Y", strtotime($value['created_on']));?></span></span>
+                        <a href="<?php echo base_url().'users/learning_standerd_post_readMore/'?><?php echo encryptids("E", $value['id'] )?>"><div class="discuss_caption"><span href="#" title=" Discuss" style="padding:8px;"></span><span class="">Read More</span></div></a>
+
+                        
                     </div>
                 </div>
-            <?php endforeach ?>
-
-           
+            </div>
+             <?php endforeach ?>
+            
+             
 
         </div>
     </div>

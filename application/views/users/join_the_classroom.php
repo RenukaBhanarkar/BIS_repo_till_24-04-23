@@ -1,4 +1,4 @@
-<style>
+    <style>
     .item {
     height: 100%;
     
@@ -127,108 +127,21 @@ a.view-btn {
 
 </style>
 <section class="background_coming">
-        <div class="container">
-            <h2 class="up_coming">Upcomings Sessions</h2>
-            <div class="coming_content" style="margin-top:32px;">
-                <div class="owl-carousel owl-theme" id="owl-caraousal_1">
-                <div class="item">
-                    <div class="quiz-section">
+    <div class="container">
+        <h2 class="up_coming">Upcomings Sessions</h2>
+        <div class="coming_content" style="margin-top:32px;">
+            <div class="owl-carousel owl-theme" id="owl-caraousal_1">
+                 <?php foreach ($UpcomingsSessions as $key => $value): ?>
+                    <div class="item">
+                        <div class="quiz-section">
                             <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
+                                <img src="<?php echo base_url(); ?><?= $value['thumbnail']?>" class="w-100 border-2">
                             </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
+                            <p class="quiz-text overflow-hidden p-1"><a href=""><?= $value['title']?></a></p>
                         </div>
                     </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                    </div>
-                <div class="item">
-                    <div class="quiz-section">
-                            <div class="quiz-box">
-                                <img src="<?php echo base_url(); ?>assets/images/background_img.webp" class="w-100 border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                        </div>
-                </div>
-            </div>    
+                <?php endforeach ?>
+            </div>
         </div>
     </div>    
 </section>
@@ -237,269 +150,72 @@ a.view-btn {
         <div class="live_session d-flex">
              <div class="col-md-4 col-sm-4 col-lg-4" style="background: linear-gradient(180.83deg, rgb(246 196 79 / 82%) 1.43%, rgba(194, 87, 155, 0.1) 98.57%);">
                 <div class="row">
-                        <div class="live_content">
-                           <div class="live_section_title">
-                                    <h2>Live Sessions</h2>
-                                    <!-- <span>By Prime Minister Narendra Modi</span> -->
+                    <div class="live_content">
+                        <div class="live_section_title">
+                            <h2>Live Sessions</h2>
+                        </div>
+                        <div class="owl-carousel owl-theme" id="owl-caraousal_2" style="padding: 25px 60px 0px 60px;">
+                            <?php foreach ($LiveSessions as $key => $value): ?>
+                            <div class="item">
+                                <div class="quiz-section">
+                                    <div class="quiz-box_live">
+                                        <img src="<?php echo base_url(); ?><?= $value['thumbnail']?>" class="live_img border-2">
+                                    </div>
+                                    <p class="quiz-text overflow-hidden p-1"><a href=""><?= $value['title']?></a></p>
+                                </div>
                             </div>
-                            <div class="owl-carousel owl-theme" id="owl-caraousal_2" style="padding: 25px 60px 0px 60px;">
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1" >Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                            </div>
-                            <a href="join_the_classroom_view" class="view-btn" title="View All">View All</a>
-                            </div>
-                            
+                            <?php endforeach ?>
+                        </div>
+                        <a href="join_the_classroom_view" class="view-btn" title="View All">View All</a>
                     </div>
-
+                </div>
             </div>
             <div class="col-md-4 col-sm-4 col-lg-4">
                 <div class="row">
-                        <div class="live_content">
-                           <div class="live_section_title">
-                                    <h2>Latest Posts</h2>
-                                    <!-- <span>By Prime Minister Narendra Modi</span> -->
-                            </div>
-                            <div class="owl-carousel owl-theme" id="owl-caraousal_3" style="padding: 25px 60px 0px 60px;">
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1" >Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                            </div>
-                            <a href="#" class="view-btn" title="View All" style="margin-right: 16px;">View PDF</a>
-                            <a href="#" class="view-btn" title="View All">View All</a>
-                            </div>
-                            
+                    <div class="live_content">
+                        <div class="live_section_title">
+                            <h2>Latest Posts</h2>
+                        </div>
+                        <div class="owl-carousel owl-theme" id="owl-caraousal_3" style="padding: 25px 60px 0px 60px;">
+                            <?php foreach ($LatestPosts as $key => $value): ?>
+                                <div class="item">
+                                    <div class="quiz-section">
+                                        <div class="quiz-box_live">
+                                            <img src="<?php echo base_url(); ?><?= $value['thumbnail']?>" class="live_img border-2">
+                                        </div>
+                                        <p class="quiz-text overflow-hidden p-1" ><?= $value['title']?></p>
+                                        <a href="<?php echo base_url(); ?><?= $value['doc_pdf']?>" class="view-btn" title="View PDF" style="margin-right: 16px;" target="_blank">View PDF</a>
+                                        <a href="letest_post_view" class="view-btn" title="View All">View All</a>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
                     </div>
-
+                </div>
             </div>
             <div class="col-md-4 col-sm-4 col-lg-4" style="background: linear-gradient(180.83deg, rgb(38 135 214) 1.43%, rgba(194, 87, 155, 0.1) 98.57%);">
                 <div class="row">
-                        <div class="live_content">
-                           <div class="live_section_title">
-                                    <h2>Informative Video</h2>
-                                    <!-- <span>By Prime Minister Narendra Modi</span> -->
-                            </div>
-                            <div class="owl-carousel owl-theme" id="owl-caraousal_4" style="padding: 25px 60px 0px 60px;">
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_3.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1" >Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_3.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_3.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_3.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_3.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_3.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_3.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/img_3.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                                <div class="item"><div class="quiz-section">
-                            <div class="quiz-box_live">
-                                <img src="<?php echo base_url(); ?>assets/images/image_2.jpg" class="live_img border-2">
-                            </div> 
-                            <p class="quiz-text overflow-hidden p-1">Title of the Post Date</p>
-                    </div></div>
-                            </div>
-                            <a href="#" class="view-btn" title="View All">View All</a>
-                            </div>
-                            
+                    <div class="live_content">
+                        <div class="live_section_title">
+                            <h2>Informative Video</h2>
+                        </div>
+                        <div class="owl-carousel owl-theme" id="owl-caraousal_4" style="padding: 25px 60px 0px 60px;">
+                            <?php foreach ($InformativeVideo as $key => $value): ?>
+                                <div class="item">
+                                    <div class="quiz-section">
+                                        <div class="quiz-box_live">
+                                            <img src="<?php echo base_url(); ?><?= $value['thumbnail']?>" class="live_img border-2">
+                                        </div> 
+                                        <p class="quiz-text overflow-hidden p-1" ><?= $value['title']?></p>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
+                        <a href="informative_video_view" class="view-btn" title="View All">View All</a>
                     </div>
-
+                </div>
             </div>
         </div>    
     </div>
 </section> 
-<script>
-    
-</script>   
+

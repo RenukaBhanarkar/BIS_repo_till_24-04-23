@@ -45,6 +45,38 @@ h5{
     display: block;
     text-overflow: ellipsis;
 }
+.select-wrapper {
+    background: url(http://localhost/BIS/BIS_repo/assets/images/plus.png) no-repeat;
+    background-size: cover;
+    display: block;
+    position: relative;
+    width: 33px;
+    height: 26px;
+    padding: 35px;
+    margin-left: 111px;
+    top: 12px;
+}
+.input_box {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 96px;
+    border-radius: 12px;
+}
+#image_src {
+    width: 26px;
+    height: 26px;
+    margin-right: 100px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.box_img {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 201px;
+    border-radius: 12px;
+}
+.img_mentor {
+    padding: 8px;
+    border-radius: 15px;
+}
 </style>
 <div id="privacy-content" class="container">
 <div class="bloginfo">
@@ -136,6 +168,57 @@ h5{
                           <textarea class="form-control input-font" name="description" id="description" required minlength="5" maxlength="2000"></textarea>
                               <span style="color:red;"  id="err_description"></span>
                   </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-3">
+                          <div class="input_box">
+                              <span class="select-wrapper">
+                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                               </span>
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="input_box">
+                              <span class="select-wrapper">
+                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                               </span>
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="input_box">
+                              <span class="select-wrapper">
+                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                               </span>
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="input_box">
+                              <span class="select-wrapper">
+                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                               </span>
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="box_img">
+                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="box_img">
+                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="box_img">
+                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="box_img">
+                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
+                          </div>
+                    </div>
+            </div>
                   <div class="mb-3 col-md-12">
                        <div class="mentor_submit">
                           <button onclick="return submitButton(event)" type="submit" class="btn btn-success btn-sm mr-2">Submit</button>

@@ -3,7 +3,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Join the Class Room</h1>
+            <h1 class="h3 mb-0 text-gray-800">learning Science via Standards</h1>
             <!-- <h1 class="h3 mb-0 text-gray-800"><a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>admin/Manage_session_list'">Back</a></h1> -->
            
         </div>
@@ -16,7 +16,7 @@
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <a href="<?php echo base_url(); ?>Standardsmaking/live_session_list">
+                <a href="<?php echo base_url(); ?>learningscience/lsv_standards_list">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
@@ -31,7 +31,7 @@
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <a href="<?php echo base_url(); ?>Standardsmaking/manage_session_list">
+                <a href="<?php echo base_url(); ?>learningscience/manage_lsv_standards_list">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
@@ -44,7 +44,7 @@
                 </a>
             </div>
             <div class="col-xl-3 col-md-6 mb-4">
-                <a href="<?php echo base_url(); ?>Standardsmaking/publish_list">
+                <a href="<?php echo base_url(); ?>learningscience/publish_lsv_standards_list">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
@@ -57,7 +57,7 @@
                 </a>
             </div>
             <div class="col-xl-3 col-md-6 mb-4">
-                <a href="<?php echo base_url(); ?>Standardsmaking/live_session_archived">
+                <a href="<?php echo base_url(); ?>learningscience/lsv_standards_archived">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
@@ -73,7 +73,7 @@
 
           <?php if (encryptids("D", $_SESSION['admin_type']) == 2) { ?>
             <div class="col-xl-3 col-md-6 mb-4">
-                <a href="<?php echo base_url(); ?>admin/manage_session_list">
+                <a href="<?php echo base_url(); ?>admin/manage_lsv_standards_list">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">

@@ -58,7 +58,7 @@
                                   <td><?= $value['views']?></td>
                                   <td>Send For Approval</td>
                                   <td><?= date("m-d-Y", strtotime($value['updated_on']));?></td>
-                                  <td><a href="live_session_view/<?= encryptids("E",$value['id']);;?>" class="btn btn-primary btn-sm mr-2" title="View">Approva / Reject</a></td>
+                                  <td><a href="lsv_standards_view/<?= encryptids("E",$value['id']);;?>" class="btn btn-primary btn-sm mr-2" title="View">Approva / Reject</a></td>
                               </tr>
                           <?php }?>
                          
@@ -101,7 +101,7 @@
                                   <td><?= $value['views']?></td>
                                   <td>Approved</td>
                                   <td><?= date("m-d-Y", strtotime($value['updated_on']));?></td>
-                                  <td><a href="live_session_view/<?= encryptids("E",$value['id']);;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a></td>
+                                  <td><a href="lsv_standards_view/<?= encryptids("E",$value['id']);;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a></td>
                               </tr>
                           <?php }?>
 
@@ -146,7 +146,7 @@
                                   <td>Rejected</td>
                                   <td><?= $value['reason']?></td>
                                   <td><?= date("m-d-Y", strtotime($value['updated_on']));?></td>
-                                  <td> <a href="live_session_view/<?= encryptids("E",$value['id']);;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a></td>
+                                  <td> <a href="lsv_standards_view/<?= encryptids("E",$value['id']);;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a></td>
                               </tr>
                           <?php }?>
 

@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="card border-top card-body">
                     <div>
-                        <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url(); ?>Standardsmaking/live_session_form'">Create New Post / Session</button>
+                        <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url(); ?>learningscience/lsv_standards_form'">Create New Post / Session</button>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
        <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example" class="hover table-bordered" style="width:100%">
+                    <table id="example" class="table-bordered display nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -40,7 +40,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($liveSessionList as $key => $value) {?>
+                            <?php foreach ($lsvstandardslist as $key => $value) {?>
 
                                 <tr>
                               <td><?= $key + 1;?></td>
@@ -59,11 +59,11 @@
 
                                 <?php $id= encryptids("E", $value['id'] )?>
 
-                                <a href="live_session_view/<?= $id;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
-                                <a href="live_session_edit/<?= $id;?>" class="btn btn-info btn-sm mr-2" title="View">Edit</a> 
-                                  <button onclick="deleteLiveSession(' <?= $value['id']?> ');" data-id='<?php echo $value['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
-                                  <button onclick="updateStatusLiveSession('<?= $value['id']?>',1);" data-id='<?php echo $value['id']; ?>' class="btn btn-info btn-sm mr-2 delete_img">Create</button> 
-                                  <button onclick="updateStatusLiveSession('<?= $value['id']?>',9);" data-id='<?php echo $value['id']; ?>' class="btn btn-secondary btn-sm mr-2 delete_img">Archives</button> 
+                                <a href="lsv_standards_view/<?= $id;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
+                                <a href="lsv_standards_edit/<?= $id;?>" class="btn btn-info btn-sm mr-2" title="View">Edit</a> 
+                                  <button onclick="deleteLsvStandards(' <?= $value['id']?> ');" data-id='<?php echo $value['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
+                                  <button onclick="updateLsvStandards('<?= $value['id']?>',1);" data-id='<?php echo $value['id']; ?>' class="btn btn-info btn-sm mr-2 delete_img">Create</button> 
+                                  <button onclick="updateLsvStandards('<?= $value['id']?>',9);" data-id='<?php echo $value['id']; ?>' class="btn btn-secondary btn-sm mr-2 delete_img">Archives</button> 
                             </td>
                         </tr>
                                 
@@ -126,7 +126,7 @@
                                     <!-- Modal -->
 <script type="text/javascript">
 
-function updateStatusLiveSession(id,status) 
+function updateLsvStandards(id,status) 
     {
         console.log(status)
         if (status==1)  { $(".sms").text('Create'); } 
@@ -136,7 +136,7 @@ function updateStatusLiveSession(id,status)
         {
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url(); ?>Standardsmaking/updateStatusLiveSession',
+                url: '<?php echo base_url(); ?>Learningscience/updateLsvStandards',
                 data: {
                     id: id,
                     status: status,
@@ -151,14 +151,14 @@ function updateStatusLiveSession(id,status)
             });
         });
     }
-     function deleteLiveSession(id) 
+     function deleteLsvStandards(id) 
     {
         $('#delete').modal('show');
         $('.deletecall').on('click', function() 
         {
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url(); ?>Standardsmaking/deleteLiveSession',
+                url: '<?php echo base_url(); ?>Learningscience/deleteLsvStandards',
                 data: {
                     id: id,
                 },

@@ -590,4 +590,19 @@ class Admin_model extends CI_Model {
          }
      }
 
+     public function updateLiveSessiionStatus($id,$formdata)
+    {
+        $this->db->where('id',$id); 
+        $quiz = $this->db->get('tbl_join_the_classroom')->row_array();
+        if ($quiz) 
+        {
+            $this->db->where('id', $id);
+            return $this->db->update('tbl_join_the_classroom', $formdata);
+        }
+        else
+        {
+            return 2;
+        } 
+    }
+
 }

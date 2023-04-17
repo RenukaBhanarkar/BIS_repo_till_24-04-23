@@ -108,10 +108,10 @@ img.news_img {
                         </div>
             </div> 
             <div class="col-md-8"> 
-                <h1>Watch</h1>
+                <h1>Watch Informative Video</h1>
                 <div class="play_video">
                     <video width="100%" height="100%" controls autoplay>
-                        <source src="<?= $WatchNow['session_link']?>">
+                        <source src="<?= base_url();?><?= $WatchNow['video']?>">
                         <source src="movie.ogg" type="video/ogg">
                             Your browser does not support the video tag.
                     </video>
@@ -120,6 +120,11 @@ img.news_img {
                     <div class="title-text">
                         <h3><?= $WatchNow['title']?></h3>
                         <span>Date : <?= date("d M Y", strtotime($WatchNow['created_on']));?></span>
+                    </div> 
+                </div>
+                <div class="video__details">
+                    <div class="title-text">
+                        <p><?= $WatchNow['description']?></p> 
                     </div> 
                 </div>
                 

@@ -148,4 +148,22 @@ $config = array(
 			'rules' => 'required'
 		),
 	),
+
+		'lsv_standards_form' => array(
+		array(
+			'field' => 'title',
+			'label' => 'Title',
+			'rules' => 'required'
+		),
+		array( 
+			'field' => 'description',
+			'label' => 'Description ',
+			'rules' => 'required'
+		),
+		array( 
+			'field' => 'type_of_post',
+			'label' => 'type of post',
+			'rules' => 'required'
+		),
+	),
 );

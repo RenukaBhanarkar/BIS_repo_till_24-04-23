@@ -45,20 +45,20 @@ class Standardsmaking extends CI_Controller
         } 
         else 
         {
-            if (!file_exists('uploads/conversation_form/video')) 
+            if (!file_exists('uploads/Conversation_with_Experts/video')) 
             {
-                mkdir('uploads/conversation_form/video', 0777, true);
+                mkdir('uploads/Conversation_with_Experts/video', 0777, true);
             }
-            if (!file_exists('uploads/conversation_form/video_thumbnail')) 
+            if (!file_exists('uploads/Conversation_with_Experts/video_thumbnail')) 
             {
-                mkdir('uploads/conversation_form/video_thumbnail', 0777, true);
+                mkdir('uploads/Conversation_with_Experts/video_thumbnail', 0777, true);
             }
 
-            $videopath = 'uploads/conversation_form/video/'; 
+            $videopath = 'uploads/Conversation_with_Experts/video/'; 
             $videolocation = $videopath . time() .'video'. $_FILES['video']['name']; 
             move_uploaded_file($_FILES['video']['tmp_name'], $videolocation);
 
-            $thumbnailpath = 'uploads/conversation_form/video_thumbnail/'; 
+            $thumbnailpath = 'uploads/Conversation_with_Experts/video_thumbnail/'; 
             $thumbnaillocation = $thumbnailpath . time() .'video_thumbnail'. $_FILES['video_thumbnail']['name']; 
             move_uploaded_file($_FILES['video_thumbnail']['tmp_name'], $thumbnaillocation);
 
@@ -136,7 +136,7 @@ class Standardsmaking extends CI_Controller
             $video_thumbnailsize=$_FILES['video_thumbnail']['size']; 
             if ($videosize > 0 ) 
             {
-                $videopath = 'uploads/conversation_form/video/'; 
+                $videopath = 'uploads/Conversation_with_Experts/video/'; 
                 $videolocation = $videopath . time() .'video'. $_FILES['video']['name']; 
                 move_uploaded_file($_FILES['video']['tmp_name'], $videolocation);
             }
@@ -146,7 +146,7 @@ class Standardsmaking extends CI_Controller
             }
             if ($video_thumbnailsize > 0 ) 
             {
-                $thumbnailpath = 'uploads/conversation_form/video_thumbnail/'; 
+                $thumbnailpath = 'uploads/Conversation_with_Experts/video_thumbnail/'; 
                 $thumbnaillocation = $thumbnailpath . time() .'video_thumbnail'. $_FILES['video_thumbnail']['name']; 
                 move_uploaded_file($_FILES['video_thumbnail']['tmp_name'], $thumbnaillocation);
             }
@@ -265,7 +265,7 @@ public function publish($id)
          $this->load->view('admin/footers/admin_footer');
     }
     public function live_session_list(){
-        $LiveSessionList = $this->Standards_Making_model->getLiveSessionList();
+        $LiveSessionList = $this->Standards_Making_model->getLiveSession();
         $data = array();
         $data['liveSessionList'] = $LiveSessionList;
 
@@ -282,18 +282,18 @@ public function publish($id)
         } 
         else 
         {
-            if (!file_exists('uploads/live_session_form/video')) { mkdir('uploads/live_session_form/video', 0777, true); }
+            if (!file_exists('uploads/join_the_classroom/video')) { mkdir('uploads/join_the_classroom/video', 0777, true); }
 
-            if (!file_exists('uploads/live_session_form/thumbnail')) { mkdir('uploads/live_session_form/thumbnail', 0777, true); }
+            if (!file_exists('uploads/join_the_classroom/thumbnail')) { mkdir('uploads/join_the_classroom/thumbnail', 0777, true); }
 
-            if (!file_exists('uploads/live_session_form/doc_pdf')) { mkdir('uploads/live_session_form/doc_pdf', 0777, true); }
+            if (!file_exists('uploads/join_the_classroom/doc_pdf')) { mkdir('uploads/join_the_classroom/doc_pdf', 0777, true); }
 
-            if (!file_exists('uploads/live_session_form/image')) { mkdir('uploads/live_session_form/image', 0777, true); }
+            if (!file_exists('uploads/join_the_classroom/image')) { mkdir('uploads/join_the_classroom/image', 0777, true); }
 
             $videosize=$_FILES['video']['size'];  
             if ($videosize > 0 ) 
             {
-                $videopath = 'uploads/live_session_form/video/'; 
+                $videopath = 'uploads/join_the_classroom/video/'; 
                 $videolocation = $videopath . time() .'video'. $_FILES['video']['name']; 
                 move_uploaded_file($_FILES['video']['tmp_name'], $videolocation);
             }
@@ -306,7 +306,7 @@ public function publish($id)
             $thumbnailsize=$_FILES['thumbnail']['size']; 
             if ($thumbnailsize > 0 ) 
             {
-                $thumbnailpath = 'uploads/live_session_form/thumbnail/'; 
+                $thumbnailpath = 'uploads/join_the_classroom/thumbnail/'; 
                 $thumbnaillocation = $thumbnailpath . time() .'thumbnail'. $_FILES['thumbnail']['name']; 
                 move_uploaded_file($_FILES['thumbnail']['tmp_name'], $thumbnaillocation);
             }
@@ -318,7 +318,7 @@ public function publish($id)
              $imagesize=$_FILES['image']['size']; 
             if ($imagesize > 0 ) 
             {
-                $imagepath = 'uploads/live_session_form/image/'; 
+                $imagepath = 'uploads/join_the_classroom/image/'; 
                 $imagelocation = $imagepath . time() .'image'. $_FILES['image']['name']; 
                 move_uploaded_file($_FILES['image']['tmp_name'], $imagelocation);
             }
@@ -331,7 +331,7 @@ public function publish($id)
              $doc_pdfsize=$_FILES['doc_pdf']['size']; 
             if ($doc_pdfsize > 0 ) 
             {
-                $doc_pdfpath = 'uploads/live_session_form/doc_pdf/'; 
+                $doc_pdfpath = 'uploads/join_the_classroom/doc_pdf/'; 
                 $doc_pdflocation = $doc_pdfpath . time() .'doc_pdf'. $_FILES['doc_pdf']['name']; 
                 move_uploaded_file($_FILES['doc_pdf']['tmp_name'], $doc_pdflocation);
             }
@@ -362,7 +362,7 @@ public function publish($id)
                 $this->session->set_flashdata('MSG', ShowAlert("Failed to create new post/ live session, Please try again", "DD"));
                 redirect(base_url() . "Standardsmaking/live_session_form", 'refresh');
             }
-        }
+        } 
         
         $this->load->view('admin/footers/admin_footer');
     }
@@ -407,18 +407,18 @@ public function publish($id)
         } 
         else 
         {
-            if (!file_exists('uploads/live_session_form/video')) { mkdir('uploads/live_session_form/video', 0777, true); }
+            if (!file_exists('uploads/join_the_classroom/video')) { mkdir('uploads/join_the_classroom/video', 0777, true); }
 
-            if (!file_exists('uploads/live_session_form/thumbnail')) { mkdir('uploads/live_session_form/thumbnail', 0777, true); }
+            if (!file_exists('uploads/join_the_classroom/thumbnail')) { mkdir('uploads/join_the_classroom/thumbnail', 0777, true); }
 
-            if (!file_exists('uploads/live_session_form/doc_pdf')) { mkdir('uploads/live_session_form/doc_pdf', 0777, true); }
+            if (!file_exists('uploads/join_the_classroom/doc_pdf')) { mkdir('uploads/join_the_classroom/doc_pdf', 0777, true); }
 
-            if (!file_exists('uploads/live_session_form/image')) { mkdir('uploads/live_session_form/image', 0777, true); }
+            if (!file_exists('uploads/join_the_classroom/image')) { mkdir('uploads/join_the_classroom/image', 0777, true); }
 
             $videosize=$_FILES['video']['size'];  
             if ($videosize > 0 ) 
             {
-                $videopath = 'uploads/live_session_form/video/'; 
+                $videopath = 'uploads/join_the_classroom/video/'; 
                 $videolocation = $videopath . time() .'video'. $_FILES['video']['name']; 
                 move_uploaded_file($_FILES['video']['tmp_name'], $videolocation);
             }
@@ -431,7 +431,7 @@ public function publish($id)
             $thumbnailsize=$_FILES['thumbnail']['size']; 
             if ($thumbnailsize > 0 ) 
             {
-                $thumbnailpath = 'uploads/live_session_form/thumbnail/'; 
+                $thumbnailpath = 'uploads/join_the_classroom/thumbnail/'; 
                 $thumbnaillocation = $thumbnailpath . time() .'thumbnail'. $_FILES['thumbnail']['name']; 
                 move_uploaded_file($_FILES['thumbnail']['tmp_name'], $thumbnaillocation);
             }
@@ -443,7 +443,7 @@ public function publish($id)
              $imagesize=$_FILES['image']['size']; 
             if ($imagesize > 0 ) 
             {
-                $imagepath = 'uploads/live_session_form/image/'; 
+                $imagepath = 'uploads/join_the_classroom/image/'; 
                 $imagelocation = $imagepath . time() .'image'. $_FILES['image']['name']; 
                 move_uploaded_file($_FILES['image']['tmp_name'], $imagelocation);
             }
@@ -456,7 +456,7 @@ public function publish($id)
              $doc_pdfsize=$_FILES['doc_pdf']['size']; 
             if ($doc_pdfsize > 0 ) 
             {
-                $doc_pdfpath = 'uploads/live_session_form/doc_pdf/'; 
+                $doc_pdfpath = 'uploads/join_the_classroom/doc_pdf/'; 
                 $doc_pdflocation = $doc_pdfpath . time() .'doc_pdf'. $_FILES['doc_pdf']['name']; 
                 move_uploaded_file($_FILES['doc_pdf']['tmp_name'], $doc_pdflocation);
             }
@@ -476,6 +476,7 @@ public function publish($id)
             $formdata['video'] = $videolocation;
             $formdata['image'] = $imagelocation;
             $formdata['doc_pdf'] = $doc_pdflocation; 
+            $formdata['status'] = 1; 
             $formdata['updated_on'] = date('Y-m-d h:i:s');
             $id = $this->Standards_Making_model->joinclassroomFormUpdate($formdata,$frmid);
             if ($id)
