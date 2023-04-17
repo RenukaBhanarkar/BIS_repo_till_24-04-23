@@ -65,6 +65,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 .after_login_details ul li a:hover {
     background: #f7f7f7;
 }
+
     </style>
 </head>
 
@@ -208,7 +209,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://www.bis.gov.in/standards-national-action-plan-snap-2022/" style="color: white;">SNAP 2022 - 27</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item guidance_quest">
                                     <a class="nav-link" href="https://www.bis.gov.in/standards-national-action-plan-snap-2022/" style="color: white;">Guidance Quest</a>
                                 </li>
                             </ul>
