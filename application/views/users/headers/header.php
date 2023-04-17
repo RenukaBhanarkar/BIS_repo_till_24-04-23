@@ -208,6 +208,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://www.bis.gov.in/standards-national-action-plan-snap-2022/" style="color: white;">SNAP 2022 - 27</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://www.bis.gov.in/standards-national-action-plan-snap-2022/" style="color: white;">Guidance Quest</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

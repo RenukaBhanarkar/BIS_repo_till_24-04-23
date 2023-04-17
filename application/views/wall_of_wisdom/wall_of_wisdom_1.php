@@ -72,9 +72,7 @@
     background: cornflowerblue;
     color: white;
 }
-.node-status.like_review {
-    margin-left: 187px;
-}
+
 .last-date{
     /* text-overflow: ellipsis;
   white-space: nowrap; */
@@ -128,8 +126,8 @@
                                   <span class="last-date"><?php echo $list['description']; ?> </span>
                               </span>
                           </div>
-                          <div onclick="like('<?php echo $list['id']; ?>')" class="node-status like_review"><span><img src="<?php echo base_url(); ?>/assets/images/thumb-up.jpeg" style="width:18px;"></span>
-                              <div  class="status-open likes" wow-id='<?php echo $list['id']; ?>' style="margin-left:10px;"><?php echo $list['likes']; ?></div>
+                          <div onclick="like('<?php echo $list['id']; ?>')" class="node-status like_review"><span><i onclick="myFunction(this)" class="fa fa-thumbs-up" style="width:18px; font-size: 21px;"></i> </span>
+                              <div  class="status-open likes" wow-id='<?php echo $list['id']; ?>' style="margin-left:10px;" id="<?php echo $list['id']; ?>"><?php echo $list['likes']; ?></div>
                           </div>
                       </div>
                   </div>
@@ -148,7 +146,11 @@
         
     </section>
     <script>
+        function myFunction(x) {
+  x.classList.toggle("fa-thumbs-down");
+}
         function like(que_id){
+            id=$(this).attr('wow-id')
             // console.log(que_id);
             // var c = confirm("Are you sure to Approve activity? ");
             // if (c == true) {
@@ -163,8 +165,9 @@
                         que_id: que_id,
                     },
                     success: function(result) {
-                        // console.log(result);
-                       location.reload();
+                        console.log(result);
+                       //location.reload();
+                     $('.id').html('hello');
                     },
                     error: function(result) {
                         alert("Error,Please try again.");

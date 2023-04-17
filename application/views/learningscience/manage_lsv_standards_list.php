@@ -16,7 +16,7 @@
        <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body ">
-                    <table id="example" class="hover table-bordered table-responsive text-nowrap" style="width:100%">
+                    <table id="example" class="table-bordered display nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>

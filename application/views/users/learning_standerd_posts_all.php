@@ -90,7 +90,7 @@ span.last-date {
 <section class="-join_section">
     <div class="join_content">
         <div class="bloginfo">
-            <h3 style="margin-bottom: 14px; /* margin-top: 20px; */ color: #0086b2!important; font-weight: 600; margin-left: 24px;">Letest Post</h3>
+            <h3 style="margin-bottom: 14px; /* margin-top: 20px; */ color: #0086b2!important; font-weight: 600; margin-left: 24px;">Read Here</h3>
         </div>
         <div class="join_container">
              <?php foreach ($letestPostView as $key => $value): ?>
