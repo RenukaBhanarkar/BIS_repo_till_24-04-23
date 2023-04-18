@@ -391,19 +391,19 @@
                                                     <th>Question Id</th>
                                                     <th>Question Type</th>
                                                     <th>Question Title</th>
-                                                    <th>Question Title in Hindi</th>
+                                                    <th>Hindi Question Title </th>
                                                     <!-- <th>Image</th> -->
                                                     <th>Number of Options</th>
-                                                    <th>Option details</th>
-                                                    <th>Option Details in Hindi</th>
+                                                    <th>English Options </th>
+                                                    <th>Hindi Options</th>
                                                     <th>Correct Option No</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="que_body">
-                                             
+
                                             </tbody>
-                                           <!-- <tbody>
+                                            <!-- <tbody>
                                                 <tr>
                                                     <td>1</td>
                                                     <td>12345</td>
@@ -418,7 +418,7 @@
                                                 </tr>
                                             </tbody>-->
                                         </table>
-                                       
+
                                         <!--<div class="modal fade" id="img_popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" style="max-width: 700px;">
                                                 <div class="modal-content">
@@ -1168,76 +1168,124 @@
                             }
                         }
                         if (no_of_options == 2 || no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
-                            var option1_h = $("#option1_h").val();
-                            var option2_h = $("#option2_h").val();
-                            if (option1_h == "") {
-                                if ($("#option1_h").next(".validation").length == 0) {
-                                    $("#option1_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 1</div>");
+                            ///////////////////
+                            var opt_type_h_1 = $("#opt_type_h_1 :selected").val();
+                            if (opt_type_h_1 == 1) {
+                                var option1_h = $("#option1_h").val();
+                                if (option1_h == "") {
+                                    if ($("#option1_h").next(".validation").length == 0) {
+                                        $("#option1_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter Hindi option 1</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option1_h").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option1_h").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option1_h").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option1_h").next(".validation").remove();
+                                var option1_h_image = $("#option1_h_image").val();
+                                var msg = ImageValidationHindi(option1_h_image, 1);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
                             }
-                            if (option2_h == "") {
-                                if ($("#option2_h").next(".validation").length == 0) {
-                                    $("#option2_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 2</div>");
+                            ////////////////////
+
+                            var opt_type_h_2 = $("#opt_type_h_2 :selected").val();
+                            if (opt_type_h_2 == 1) {
+                                var option2_h = $("#option2_h").val();
+                                if (option2_h == "") {
+                                    if ($("#option2_h").next(".validation").length == 0) {
+                                        $("#option2_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter Hindi option 2</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option2_h").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option2_h").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option2_h").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option2_h").next(".validation").remove();
+                                var option2_h_image = $("#option2_h_image").val();
+                                var msg = ImageValidationHindi(option2_h_image, 2);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
                             }
                         }
                         if (no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
-                            var option3_h = $("#option3_h").val();
 
-                            if (option3_h == "") {
-                                if ($("#option3_h").next(".validation").length == 0) {
-                                    $("#option3_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 3</div>");
+                            var opt_type_h_3 = $("#opt_type_h_3 :selected").val();
+                            if (opt_type_h_3 == 1) {
+                                var option3_h = $("#option3_h").val();
+                                if (option3_h == "") {
+                                    if ($("#option3_h").next(".validation").length == 0) {
+                                        $("#option3_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter Hindi option 3</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option3_h").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option3_h").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option3_h").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option3_h").next(".validation").remove();
+                                var option3_h_image = $("#option3_h_image").val();
+                                var msg = ImageValidationHindi(option3_h_image, 3);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
                             }
+
                         }
                         if (no_of_options == 4 || no_of_options == 5) {
-                            var option4_h = $("#option4_h").val();
-
-                            if (option4_h == "") {
-                                if ($("#option4_h").next(".validation").length == 0) {
-                                    $("#option4_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 4</div>");
+                            var opt_type_h_4 = $("#opt_type_h_4 :selected").val();
+                            if (opt_type_h_4 == 1) {
+                                var option4_h = $("#option4_h").val();
+                                if (option4_h == "") {
+                                    if ($("#option4_h").next(".validation").length == 0) {
+                                        $("#option4_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter Hindi option 4</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option4_h").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option4_h").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option4_h").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option4_h").next(".validation").remove();
+                                var option4_h_image = $("#option4_h_image").val();
+                                var msg = ImageValidationHindi(option4_h_image, 4);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
                             }
+
                         }
                         if (no_of_options == 5) {
-                            var option5_h = $("#option5_h").val();
-                            if (option5_h == "") {
-                                if ($("#option5_h").next(".validation").length == 0) {
-                                    $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
+                            var opt_type_h_5 = $("#opt_type_h_5 :selected").val();
+                            if (opt_type_h_5 == 1) {
+                                var option5_h = $("#option5_h").val();
+                                if (option5_h == "") {
+                                    if ($("#option5_h").next(".validation").length == 0) {
+                                        $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
+                                    }
+                                    if (!focusSet) {
+                                        $("#option5_h").focus();
+                                    }
+                                    allfields = false;
+                                } else {
+                                    $("#option5_h").next(".validation").remove();
                                 }
-                                if (!focusSet) {
-                                    $("#option5_h").focus();
-                                }
-                                allfields = false;
                             } else {
-                                $("#option5_h").next(".validation").remove();
+                                var option5_h_image = $("#option5_h_image").val();
+                                var msg = ImageValidationHindi(option5_h_image, 5);
+                                if (msg > 0) {
+                                    allfields = false;
+                                }
                             }
                         }
-
                     }
                     //var correct_answer =  $('input[name="correct_answer"]:checked').val();
                     // alert($('input[name="correct_answer"]:checked').length);
@@ -1430,19 +1478,16 @@
                         j = 0
                         for (i in data) {
                             j++;
-                            var op1 ="NA";
-                            var op2 ="NA";
-                            var op3 ="NA";
-                            var op4 ="NA";
-                            var op5 ="NA";
-                            var op1_h ="NA";
-                            var op2_h ="NA";
-                            var op3_h ="NA";
-                            var op4_h ="NA";
-                            var op5_h ="NA";
-
-                            
-
+                            var op1 = "NA";
+                            var op2 = "NA";
+                            var op3 = "NA";
+                            var op4 = "NA";
+                            var op5 = "NA";
+                            var op1_h = "NA";
+                            var op2_h = "NA";
+                            var op3_h = "NA";
+                            var op4_h = "NA";
+                            var op5_h = "NA";
                             if (data[i].que_type == 1) {
                                 var type = "Text";
                             } else if (data[i].que_type == 2) {
@@ -1450,135 +1495,163 @@
                             } else {
                                 var type = "Both";
                             }
-                            if (data[i].que == 0 || data[i].que == '') {
-                                var engQue = "";
+                            if (data[i].que_type == 2) {
+                                if (data[i].que == 0 || data[i].que == '') {
+                                    var engQue = "";
+                                } else {
+                                    var engQue = data[i].que;
+                                }
                             } else {
-                                var engQue = data[i].que;
+                                if (data[i].que == 0 || data[i].que == '') {
+                                    var engQue = "NA";
+                                } else {
+                                    var engQue = data[i].que;
+                                }
                             }
-                            if (data[i].que_h == 0 || data[i].que_h == '') {
-                                var hindiQue = "";
+                            if (data[i].que_type == 2) {
+                                if (data[i].que_h == 0 || data[i].que_h == '') {
+                                    var hindiQue = "";
+                                } else {
+                                    var hindiQue = data[i].que_h;
+                                }
                             } else {
-                                var hindiQue = data[i].que_h;
+                                if (data[i].que_h == 0 || data[i].que_h == '') {
+                                    var hindiQue = "NA";
+                                } else {
+                                    var hindiQue = data[i].que_h;
+                                }
+
                             }
-                            if (data[i].image != '') {
-                                var img = data[i].image;
-                                var dynamicImg = '<td>' + engQue + '<br>' + 
-                                    '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
-                                    '/' + img + '"></td>';
+                            if (data[i].language == 1 || data[i].language == 3) {
+
+                                if (data[i].image != '') {
+                                    var img = data[i].image;
+                                    var dynamicImg = '<td>' + engQue + '<br>' +
+                                        '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
+                                        '/' + img + '"></td>';
+                                } else {
+                                    var dynamicImg = '<td>' + engQue + '</td>';
+                                }
                             } else {
-                                var dynamicImg = '<td>' + engQue + '</td>';
+                                var dynamicImg = '<td>--</td>';
                             }
-                            if (data[i].image != '') {
-                                var img = data[i].image;
-                                var dynamicImgHindi= '<td>'  + hindiQue + '<br>' +
-                                    '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
-                                    '/' + img + '"></td>';
+                            if (data[i].language == 2 || data[i].language == 3) {
+
+
+                                if (data[i].image != '') {
+                                    var img = data[i].image;
+                                    var dynamicImgHindi = '<td>' + hindiQue + '<br>' +
+                                        '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
+                                        '/' + img + '"></td>';
+                                } else {
+                                    var dynamicImgHindi = '<td>' + hindiQue + '</td>';
+                                }
                             } else {
-                                var dynamicImgHindi = '<td>'  + hindiQue + '</td>';
+                                var dynamicImgHindi = '<td>--</td>';
                             }
                             /////////////////////////////////////////////// 
                             if (data[i].language == 1) {
-                                if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
 
                                     if (data[i].opt1_e == 0 || data[i].opt1_e == "") {
-                                   
-                                   var op1_img = data[i].option1_image;
-                               var op1 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op1_img + '">';
-                               } else {
-                                   var op1 = data[i].opt1_e;
-                               }
-                               if (data[i].opt2_e == 0 || data[i].opt2_e == "") {
-                                   var op2_img = data[i].option2_image;
-                               var op2 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op2_img + '">';
-                               } else {
-                                   var op2 = data[i].opt2_e;
-                               }
+
+                                        var op1_img = data[i].option1_image;
+                                        var op1 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op1_img + '">';
+                                    } else {
+                                        var op1 = data[i].opt1_e;
+                                    }
+                                    if (data[i].opt2_e == 0 || data[i].opt2_e == "") {
+                                        var op2_img = data[i].option2_image;
+                                        var op2 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op2_img + '">';
+                                    } else {
+                                        var op2 = data[i].opt2_e;
+                                    }
 
                                 }
-                                if ( data[i].no_of_options == 3 || data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                if (data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
                                     if (data[i].opt3_e == 0 || data[i].opt3_e == "") {
-                                    var op3_img = data[i].option3_image;
-                                var op3 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op3_img + '">';
-                                } else {
-                                    var op3 = data[i].opt3_e;
+                                        var op3_img = data[i].option3_image;
+                                        var op3 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op3_img + '">';
+                                    } else {
+                                        var op3 = data[i].opt3_e;
+                                    }
                                 }
-                                }
-                                if (  data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                if (data[i].no_of_options == 4 || data[i].no_of_options == 5) {
                                     if (data[i].opt4_e == 0 || data[i].opt4_e == '') {
-                                    var op4_img = data[i].option4_image;
-                                var op4 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op4_img + '">';
-                                } else {
-                                    var op4 = data[i].opt4_e;
+                                        var op4_img = data[i].option4_image;
+                                        var op4 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op4_img + '">';
+                                    } else {
+                                        var op4 = data[i].opt4_e;
+                                    }
                                 }
-                                }
-                                if (  data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
+                                if (data[i].no_of_options == 4 || data[i].no_of_options == 5) {
                                     if (data[i].opt5_e == 0 || data[i].opt5_e == '') {
-                                    var op5_img = data[i].option5_image;
-                                var op5 =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op5_img + '">';
-                                } else {
-                                    var op5 = data[i].opt5_e;
+                                        var op5_img = data[i].option5_image;
+                                        var op5 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op5_img + '">';
+                                    } else {
+                                        var op5 = data[i].opt5_e;
+                                    }
+
                                 }
-                               
-                                }
-                               
+
 
                             }
                             if (data[i].language == 2) {
-                                if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
-                                    if (data[i].opt1_h == '') {
-                                var op1_h_img = data[i].option1_h_image;
-                                var op1_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op1_h_img + '">';
-                                } else {
-                                    var op1_h = data[i].opt1_h;
+                                if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt1_h == '' || data[i].opt1_h == 0) {
+                                        var op1_h_img = data[i].option1_h_image;
+                                        var op1_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op1_h_img + '">';
+                                    } else {
+                                        var op1_h = data[i].opt1_h;
+                                    }
+                                    if (data[i].opt2_h == '' || data[i].opt2_h == 0) {
+                                        var op2_h_img = data[i].option2_h_image;
+                                        var op2_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op2_h_img + '">';
+                                    } else {
+                                        var op2_h = data[i].opt2_h;
+                                    }
                                 }
-                                if (data[i].opt2_h == '') {
-                                     var op2_h_img = data[i].option2_h_image;
-                                var op2_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op2_h_img + '">';
-                                } else {
-                                    var op2_h= data[i].opt2_h;
+                                if (data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt3_h == '' || data[i].opt3_h == 0) {
+                                        var op3_h_img = data[i].option3_h_image;
+                                        var op3_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op3_h_img + '">';
+                                    } else {
+                                        var op3_h = data[i].opt3_h;
+                                    }
                                 }
+                                if (data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt4_h == '' || data[i].opt4_h == 0) {
+                                        var op4_h_img = data[i].option4_h_image;
+                                        var op4_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op4_h_img + '">';
+                                    } else {
+                                        var op4_h = data[i].opt4_h;
+                                    }
                                 }
-                                if ( data[i].no_of_options == 3 || data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
-                                    if (data[i].opt3_h == '') {
-                                    var op3_h_img = data[i].option3_h_image;
-                                var op3_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op3_h_img + '">';
-                                } else {
-                                    var op3_h = data[i].opt3_h;
+                                if (data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt5_h == '' || data[i].opt5_h == 0) {
+                                        var op5_h_img = data[i].option5_h_image;
+                                        var op5_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op5_h_img + '">';
+                                    } else {
+                                        var op5_h = data[i].opt5_h;
+                                    }
                                 }
-                                }
-                                if ( data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
-                                    if (data[i].opt4_h == '') {
-                                    var op4_h_img = data[i].option4_h_image;
-                                var op4_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op4_h_img + '">';
-                                } else {
-                                    var op4_h = data[i].opt4_h;
-                                }
-                                }
-                                if ( data[i].no_of_options==4 ||data[i].no_of_options == 5 ){
-                                    if (data[i].opt5_h == '') {
-                                    var op5_h_img = data[i].option5_h_image;
-                                var op5_h =  '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +'/' + op5_h_img + '">';
-                                } else {
-                                    var op5_h = data[i].opt5_h;
-                                }
-                                }
-                                
-                            }   
-                                row += '<tr id="row' + data[i].que_id + '">' +
-                                    '<td>' + j + '</td>' +
-                                    '<td>' + data[i].que_id + '</td>' +
-                                    '<td>' + type + '</td>' + dynamicImg + dynamicImgHindi +
-                                   
-                                    '<td>' + data[i].no_of_options + '</td>' +
-                                  
-                                    '<td>' + '1. ' + op1 + '<br>2. ' + op2 + '<br>3. ' + op3 + '<br>4. ' + op4 + '<br>5. ' + op5 + '</td>' +
 
-                                    '<td>' + '1. ' + op1_h + '<br>2. ' + op2_h + '<br>3. ' + op3_h + '<br>4. ' + op4_h + '<br>5. ' + op5_h + '</td>' +
+                            }
+                            row += '<tr id="row' + data[i].que_id + '">' +
+                                '<td>' + j + '</td>' +
+                                '<td>' + data[i].que_id + '</td>' +
+                                '<td>' + type + '</td>' + dynamicImg + dynamicImgHindi +
 
-                                    '<td>' + data[i].corr_opt_e + '</td>' +
-                                    '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
-                                    '</tr>';
-                            
+                                '<td>' + data[i].no_of_options + '</td>' +
+
+                                '<td>' + '1. ' + op1 + '<br>2. ' + op2 + '<br>3. ' + op3 + '<br>4. ' + op4 + '<br>5. ' + op5 + '</td>' +
+
+                                '<td>' + '1. ' + op1_h + '<br>2. ' + op2_h + '<br>3. ' + op3_h + '<br>4. ' + op4_h + '<br>5. ' + op5_h + '</td>' +
+
+                                '<td>' + data[i].corr_opt_e + '</td>' +
+                                '<td > <span class="btn btn-sm btn-danger deletedata"  onclick="deleteQuestion(' + data[i].que_id + ');"data-id =' + data[i].que_id + ' >Delete</span> </td>' +
+                                '</tr>';
+
                         }
                         $("#que_body").html(row);
                     }
