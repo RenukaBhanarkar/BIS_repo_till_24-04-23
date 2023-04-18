@@ -1,3 +1,19 @@
+<style>
+    .img_mentor {
+    padding: 8px;
+    border-radius: 15px;
+    height: 201px;
+}
+.input_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 201px;
+    border-radius: 12px;
+    position: relative;
+}
+</style>
 <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -59,14 +75,14 @@
                             </div>
                             <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
-                                      <p><img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$data['image']; ?>" width="100%"></p>
+                                      <p><img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$data['image']; ?>" width="100%" style="height: 196px;"></p>
                                     
                             </div>
                             <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Document<sup class="text-danger">*</sup></label>
                                     <div>
                                         <a href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$data['document'];?>" target="_blank">
-                                        Download
+                                        <img  src="<?php echo base_url().'assets/admin/img/pdf.png'; ?>" width="25px"/>
                                         </a>
                                     </div> 
                             </div>
@@ -98,6 +114,36 @@
                                     ?>
                             </div> -->
                           </div>
+                          <div class="row" style="padding:10px;">
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                    </div>
+                      <!-- <div class="" style="text-align: end; margin-right: 23px;">
+                            <a class="btn btn-info mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$data['document']; ?>" target="_blank"><img  src="<?php echo base_url().'assets/admin/img/pdf.png'; ?>" width="25px"/></a>
+                            </a>
+                        </div> -->
                           </div>
                           <div class="col-md-12 submit_btn p-3">
                                <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>admin/byTheMentors'">Back</a>
