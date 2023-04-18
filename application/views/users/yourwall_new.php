@@ -42,7 +42,44 @@
         overflow: hidden;
         height: 80px;
     }
-   
+    .select-wrapper {
+    background: url(http://localhost/BIS/BIS_repo//assets/images/plus.png) no-repeat;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    /* padding: 35px; */
+    /* margin-left: 111px; */
+    /* top: 50%; */
+}
+    .input_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 201px;
+    border-radius: 12px;
+    position: relative;
+}
+#image_src2, #image_src3,#image_src4,#image_src5 {
+    width: 78px;
+    height: 49px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    margin-left: 0px;
+    margin-top: 13px !important;
+}
+/* .box_img {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 201px;
+    border-radius: 12px;
+} */
+.img_mentor {
+    padding: 8px;
+    border-radius: 15px;
+    height: 201px;
+} 
   </style>
 
    <section>
@@ -127,13 +164,62 @@
                                 <textarea class="form-control  w-100" rows="8" placeholder="Share Your Description......" name="description" id="description" ></textarea>
                                 
 
-                                <div class="button-group float-end mt-3">
-                                    <button onclick="return submitButton()" type="submit" name="submit" class="btn btn-danger submit">Submit</button>
-                                    
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-2">
+                    <div class="mb-3 col-md-3">
+                          <div class="input_box" >
+                              <div class="select-wrapper" id="img_2">
+                                    <input type="file" class="form-control input-font" name="image2" id="image_src2" required="" accept="image/*" onchange="loadFileThumbnail(event)">
+                              </div>
+                               <span id="display_img_2" style="display:none;">
+                               <img src="" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               </span>
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="input_box">
+                              <span class="select-wrapper" id="img_3">
+                                    <input type="file" class="form-control input-font" name="image3" id="image_src3" required="" accept="image/*" onchange="loadFileThumbnail1(event)">
+                               </span>
+                               <span id="display_img_3" style="display:none;">
+                               <img src="" id="outputThumbnail1" alt="" class="w-100 img_mentor">
+                               </span>
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="input_box">
+                              <span class="select-wrapper" id="img_4">
+                                    <input type="file" class="form-control input-font" name="image4" id="image_src4" required="" accept="image/*" onchange="loadFileThumbnail2(event)">
+                               </span>
+                               <span id="display_img_4" style="display:none;">
+                               <img src="" id="outputThumbnail2" alt="" class="w-100 img_mentor">
+                               </span>
+                          </div>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                          <div class="input_box">
+                              <span class="select-wrapper" id="img_5">
+                                    <input type="file" class="form-control input-font" name="image5" id="image_src5" required="" accept="image/*" onchange="loadFileThumbnail3(event)">
+                               </span>
+                               <span id="display_img_5" style="display:none;">
+                               <img src="" id="outputThumbnail3" alt="" class="w-100 img_mentor">
+                               </span>
+                          </div>
+                    </div>
+                    
+                   
+                   
+            </div>
+            <div class="col-md-12 row">
+            <div class="button-group float-end mt-3" style="text-align: end;">
+                                    <button onclick="return submitButton()" type="submit" name="submit" class="btn btn-danger submit">Submit</button>
+                                    
+                                </div>
+            </div>
+                    
                     
                 </div>
 
@@ -344,7 +430,65 @@
             })
             </script>
         <script>
-           
+         var loadFileThumbnail = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail = document.getElementById('outputThumbnail');
+        
+        outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail.src);
+        }
+        $('#display_img_2').show();
+        $('#img_2').hide();
+    };
+
+    var loadFileThumbnail1 = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail1 = document.getElementById('outputThumbnail1');
+        
+        outputThumbnail1.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail1.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail1.src);
+        }
+        $('#display_img_3').show();
+        $('#img_3').hide();
+    };
+
+    var loadFileThumbnail2 = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail2 = document.getElementById('outputThumbnail2');
+        
+        outputThumbnail2.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail2.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail2.src);
+        }
+        $('#display_img_4').show();
+        $('#img_4').hide();
+    };
+
+    var loadFileThumbnail3 = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail3 = document.getElementById('outputThumbnail3');
+        
+        outputThumbnail3.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail3.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail3.src);
+        }
+        $('#display_img_5').show();
+        $('#img_5').hide();
+    };   
            
     // $('#addwall').submit( 'click',function(e) {
         // $('.submit').on( 'click',function(e) {

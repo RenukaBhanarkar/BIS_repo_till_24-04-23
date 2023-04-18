@@ -95,6 +95,20 @@
     overflow: hidden;
     -webkit-box-orient: vertical;
 }
+.img_mentor {
+    padding: 8px;
+    border-radius: 15px;
+    height: 201px;
+}
+.input_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 201px;
+    border-radius: 12px;
+    position: relative;
+}
 </style>
 <div class="container">
     <div class="your_wall_Outer_Box">
@@ -117,6 +131,32 @@
                             </p>
 
                         </div>
+                        <div class="row" style="padding:10px;">
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                    </div>
                     </div>
 
 

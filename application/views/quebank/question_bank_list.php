@@ -74,7 +74,7 @@
                                         <?php }else{ ?> 
                                         <td>--</td>
                                         <?php } ?>
-                                        <td class="d-flex border-bottom-0" style="width: 403px;">
+                                        <td class="d-flex border-bottom-0">
                                             <a class="btn btn-primary btn-sm mr-2" href="<?php echo base_url(); ?>subadmin/viewQuestionBank?id=<?php echo encryptids('E', $row['que_bank_id']) ?>" title="View">View</a>
                                            
                                             <?php if (encryptids("D", $_SESSION['admin_type']) == 3) { ?>

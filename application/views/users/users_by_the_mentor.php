@@ -46,27 +46,32 @@ h5{
     text-overflow: ellipsis;
 }
 .select-wrapper {
-    background: url('<?php echo base_url(); ?>/assets/images/plus.png') no-repeat;
+    background: url(http://localhost/BIS/BIS_repo//assets/images/plus.png) no-repeat;
     background-size: cover;
     display: block;
-    position: relative;
-    width: 33px;
-    height: 26px;
-    padding: 35px;
-    margin-left: 111px;
-    top: 12px;
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    /* padding: 35px; */
+    /* margin-left: 111px; */
+    /* top: 50%; */
 }
 .input_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     height: 201px;
     border-radius: 12px;
+    position: relative;
 }
-#image_src {
-    width: 26px;
-    height: 26px;
-    margin-right: 100px;
+#image_src2, #image_src3,#image_src4,#image_src5 {
+    width: 78px;
+    height: 49px;
     opacity: 0;
     filter: alpha(opacity=0);
+    margin-left: 0px;
+    margin-top: 13px !important;
 }
 /* .box_img {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -173,9 +178,9 @@ h5{
                 <div class="row">
                     <div class="mb-3 col-md-3">
                           <div class="input_box" >
-                              <span class="select-wrapper" id="img_2">
+                              <div class="select-wrapper" id="img_2">
                                     <input type="file" class="form-control input-font" name="image2" id="image_src2" required="" accept="image/*" onchange="loadFileThumbnail(event)">
-                               </span>
+                              </div>
                                <span id="display_img_2" style="display:none;">
                                <img src="" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                </span>

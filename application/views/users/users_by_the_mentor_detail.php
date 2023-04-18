@@ -134,6 +134,20 @@
     align-items: stretch;
     width: 28%;
 }
+.img_mentor {
+    padding: 8px;
+    border-radius: 15px;
+    height: 201px;
+}
+.input_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 201px;
+    border-radius: 12px;
+    position: relative;
+}
 </style>
 <div class="container">
 <div class="row mt-5">
@@ -174,13 +188,40 @@
                                 By <?php echo $by_the_mentor['user_name']; ?>
                             </button>
                         </div>
-                        <div class="" style="text-align: end; margin-right: 23px;">
-                            <a class="btn btn-primary mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank">
-                                Document<img  src="<?php echo base_url().'uploads/pdf.png'; ?>" width="25px"/></a>
+                        
+                        <div class="row" style="padding:10px;">
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" style="text-align: end; margin-right: 23px;">
+                            <a class="btn btn-info mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank"><img  src="<?php echo base_url().'assets/admin/img/pdf.png'; ?>" width="25px"/></a>
                             </a>
                         </div>
                         
                     </div>
+                    
 
 
 

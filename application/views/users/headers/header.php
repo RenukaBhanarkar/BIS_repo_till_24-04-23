@@ -201,16 +201,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <a class="nav-link" href="<?php echo base_url(); ?>users/contact_us" style="color: white;">Contact Us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="https://www.bis.gov.in/wp-content/uploads/2023/02/Brochure_NBC_10022023.pdf" style="color: white;">NBC</a>
+                                    <a class="nav-link" target="_blank" href="https://www.bis.gov.in/wp-content/uploads/2023/02/Brochure_NBC_10022023.pdf" style="color: white;">NBC</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="https://www.bis.gov.in/wp-content/uploads/2023/03/Brochure_CC_NEC_merged.pdf" style="color: white;">NEC</a>
+                                    <a class="nav-link" target="_blank" href="https://www.bis.gov.in/wp-content/uploads/2023/03/Brochure_CC_NEC_merged.pdf" style="color: white;">NEC</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="https://www.bis.gov.in/standards-national-action-plan-snap-2022/" style="color: white;">SNAP 2022 - 27</a>
+                                    <a class="nav-link" target="_blank" href="https://www.bis.gov.in/standards-national-action-plan-snap-2022/" style="color: white;">SNAP 2022 - 27</a>
                                 </li>
                                 <li class="nav-item guidance_quest">
-                                    <a class="nav-link" href="https://www.bis.gov.in/standards-national-action-plan-snap-2022/" style="color: white;">Guidance Quest</a>
+                                    <a class="nav-link"  target="_blank" href="<?php echo base_url(); ?>users/guidance_quest" style="color: white;">Guidance Quest</a>
                                 </li>
                             </ul>
                         </div>
