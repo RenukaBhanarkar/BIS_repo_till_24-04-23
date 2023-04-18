@@ -494,7 +494,28 @@ class Users extends CI_Controller {
     }
 
     public function add_btm(){
-        // print_r($_FILES); die;
+
+        $path = 'uploads/by_the_mentors/img/'; 
+            // $image = $path . time() .'video'. $_FILES['image']['name']; 
+            // move_uploaded_file($_FILES['image']['tmp_name'], $videolocation);
+
+            // // $thumbnailpath = 'uploads/by_the_mentors/img/'; 
+            // $other_image1 = $path . time() .'video_thumbnail'. $_FILES['image2']['name']; 
+            // move_uploaded_file($_FILES['image2']['tmp_name'], $thumbnaillocation);
+
+            // $formdata['image'] =$image; 
+            // $formdata['other_image1'] = $other_image1;
+
+
+
+            // print_r($formdata); die;
+        // $other_img1=$this->Users_model->upload('image2');
+        // $other_img2=$this->Users_model->upload('image3');
+        // $other_img3=$this->Users_model->upload('image4');
+        // $other_img4=$this->Users_model->upload('image5');
+        // $other_img5=$this->Users_model->upload('image');
+        // // print_r($other_img3); die;
+        // echo $other_img1.$other_img2.$other_img3.$other_img4.$other_img5; die;
         // if(!($_FILES['document']['name'])){
         //     echo "not set";
         // }
@@ -525,64 +546,82 @@ class Users extends CI_Controller {
         $title = $this->input->post('title');
         $description = $this->input->post('description');
 
-        if(isset($_FILES['image'])){
+        if(isset($_FILES['image']['name'])){
            // echo "image";
-                $btm_img = "btm_image" . time() . '.jpg';
-                $config['upload_path'] = './uploads/by_the_mentors/img/';
-                $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                $config['max_size']    = '10000';
-                $config['max_width']  = '3024';
-                $config['max_height']  = '2024';
+                // $btm_img = "btm_image" . time() . '.jpg';
+                // $config['upload_path'] = './uploads/by_the_mentors/img/';
+                // $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                // $config['max_size']    = '10000';
+                // $config['max_width']  = '3024';
+                // $config['max_height']  = '2024';
         
-                $config['file_name'] = $btm_img;
+                // $config['file_name'] = $btm_img;
             
-                $this->load->library('upload', $config);
-                if (!$this->upload->do_upload('image')) 
-                {
-                    $data['status'] = 0;
-                    $data['message'] = $this->upload->display_errors();
-                }
+                // $this->load->library('upload', $config);
+                // if (!$this->upload->do_upload('image')) 
+                // {
+                //     $data['status'] = 0;
+                //     $data['message'] = $this->upload->display_errors();
+                // }
+                // $thumbnail=$this->Users_model->upload('image');
+                // exit;
+                $thumbnail = $path . time() .'btm_image'. $_FILES['image']['name']; 
+                move_uploaded_file($_FILES['image']['tmp_name'], $thumbnail);
+
+        }else{
+            $thumbnail="";
         }
 
         if($_FILES['image2']['name']){
             // echo "image";
-                 $other_img1 = "other_image1" . time() . '.jpg';
-                 $config['upload_path'] = './uploads/by_the_mentors/img/';
-                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                 $config['max_size']    = '10000';
-                 $config['max_width']  = '3024';
-                 $config['max_height']  = '2024';
+                //  $other_img1 = "other_image1" . time() . '.jpg';
+                //  $config1['upload_path'] = './uploads/by_the_mentors/img/';
+                //  $config1['allowed_types'] = 'gif|jpg|png|jpeg';
+                //  $config1['max_size']    = '10000';
+                //  $config1['max_width']  = '3024';
+                //  $config1['max_height']  = '2024';
          
-                 $config['file_name'] = $other_img1;
+                //  $config1['file_name'] = $other_img1;
              
-                 $this->load->library('upload', $config);
-                 if (!$this->upload->do_upload('image2')) 
-                 {
-                     $data['status'] = 0;
-                     $data['message'] = $this->upload->display_errors();
-                 }
+                //  $this->load->library('upload', $config1);
+                //  if (!$this->upload->do_upload('image2')) 
+                //  {
+                //      $data['status'] = 0;
+                //      $data['message'] = $this->upload->display_errors();
+                //     //  die;
+                //  }
+                //  echo $config1['file_name'];
+                // $other_img1=$this->Users_model->upload('image2');
+                $other_img1 = $path . time() .'btm_image'. $_FILES['image2']['name']; 
+                move_uploaded_file($_FILES['image2']['tmp_name'], $other_img1);
+                // exit;
          }else{
             $other_img1="";
          }
          $formdata['other_image1']=$other_img1;
 
+
+
          if($_FILES['image3']['name']){
             // echo "image";
-                 $other_img2 = "other_image2" . time() . '.jpg';
-                 $config['upload_path'] = './uploads/by_the_mentors/img/';
-                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                 $config['max_size']    = '10000';
-                 $config['max_width']  = '3024';
-                 $config['max_height']  = '2024';
+                //  $other_img2 = "other_image2" . time() . '.jpg';
+                //  $config['upload_path'] = './uploads/by_the_mentors/img/';
+                //  $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                //  $config['max_size']    = '10000';
+                //  $config['max_width']  = '3024';
+                //  $config['max_height']  = '2024';
          
-                 $config['file_name'] = $other_img2;
+                //  $config['file_name'] = $other_img2;
              
-                 $this->load->library('upload', $config);
-                 if (!$this->upload->do_upload('image3')) 
-                 {
-                     $data['status'] = 0;
-                     $data['message'] = $this->upload->display_errors();
-                 }
+                //  $this->load->library('upload', $config);
+                //  if (!$this->upload->do_upload('image3')) 
+                //  {
+                //      $data['status'] = 0;
+                //      $data['message'] = $this->upload->display_errors();
+                //  }
+                // $other_img2=$this->Users_model->upload('image3');
+                $other_img2 = $path . time() .'btm_image'. $_FILES['image3']['name']; 
+                move_uploaded_file($_FILES['image3']['tmp_name'], $other_img2);
          }else{
             $other_img2="";
          }
@@ -591,21 +630,25 @@ class Users extends CI_Controller {
 
          if($_FILES['image4']['name']){
             // echo "image";
-                 $other_img3 = "other_image3" . time() . '.jpg';
-                 $config['upload_path'] = './uploads/by_the_mentors/img/';
-                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                 $config['max_size']    = '10000';
-                 $config['max_width']  = '3024';
-                 $config['max_height']  = '2024';
+                //  $other_img3 = "other_image3" . time() . '.jpg';
+                //  $config['upload_path'] = './uploads/by_the_mentors/img/';
+                //  $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                //  $config['max_size']    = '10000';
+                //  $config['max_width']  = '3024';
+                //  $config['max_height']  = '2024';
          
-                 $config['file_name'] = $other_img3;
+                //  $config['file_name'] = $other_img3;
              
-                 $this->load->library('upload', $config);
-                 if (!$this->upload->do_upload('image4')) 
-                 {
-                     $data['status'] = 0;
-                     $data['message'] = $this->upload->display_errors();
-                 }
+                //  $this->load->library('upload', $config);
+                //  if (!$this->upload->do_upload('image4')) 
+                //  {
+                //      $data['status'] = 0;
+                //      $data['message'] = $this->upload->display_errors();
+                //  }
+                // $other_img3=$this->Users_model->upload('image4');
+
+                $other_img3 = $path . time() .'btm_image'. $_FILES['image4']['name']; 
+                move_uploaded_file($_FILES['image4']['tmp_name'], $other_img3);
          }else{
             $other_img3="";
          }
@@ -614,23 +657,27 @@ class Users extends CI_Controller {
          if($_FILES['image5']['name']){
             // echo "image";
             // print_r($_FILES['image5']['name']); die;
-                 $other_img4 = "other_image4" . time() . '.jpg';
-                 $config['upload_path'] = './uploads/by_the_mentors/img/';
-                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                 $config['max_size']    = '10000';
-                 $config['max_width']  = '3024';
-                 $config['max_height']  = '2024';
+                //  $other_img4 = "other_image4" . time() . '.jpg';
+                //  $config['upload_path'] = './uploads/by_the_mentors/img/';
+                //  $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                //  $config['max_size']    = '10000';
+                //  $config['max_width']  = '3024';
+                //  $config['max_height']  = '2024';
          
-                 $config['file_name'] = $other_img4;
+                //  $config['file_name'] = $other_img4;
              
-                 $this->load->library('upload', $config);
-                 if (!$this->upload->do_upload('image5')) 
-                 {
-                     $data['status'] = 0;
-                     $data['message'] = $this->upload->display_errors();
-                 }
+                //  $this->load->library('upload', $config);
+                //  if (!$this->upload->do_upload('image5')) 
+                //  {
+                //      $data['status'] = 0;
+                //      $data['message'] = $this->upload->display_errors();
+                //  }
+                // $formdata['other_image4']=$this->Users_model->upload('image5');
+
+                $other_img4 = $path . time() .'btm_image'. $_FILES['image5']['name']; 
+                move_uploaded_file($_FILES['image5']['tmp_name'], $other_img4);
          }else{
-            $other_img4="";
+            $formdata['other_image4']="";
          }
          $formdata['other_image4']=$other_img4;
 
@@ -668,6 +715,7 @@ class Users extends CI_Controller {
         }else{
             $btm_document="";
         }
+        // print_r($formdata); die;
         
         $this->load->model('admin/by_the_mentor_model');
         $uid=$this->by_the_mentor_model->add_user($formdata1);
@@ -676,7 +724,7 @@ class Users extends CI_Controller {
 
         $formdata['title']=$title;
         $formdata['description']=$description;
-        $formdata['image']=$btm_img;
+        $formdata['image']=$thumbnail;
         $formdata['document']=$btm_document;
         $formdata['status']="1";
         // print_r($formdata); die;
