@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Banner Image List</h1>
+        <h1 class="h3 mb-0 text-gray-800"> World of Standard Banner Image List</h1>
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url().'admin/';?>" >Home</a></li>
@@ -21,7 +21,7 @@
             <div class="card border-top card-body">
                 <div>
                     <button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#newform">Add New Banner</button>
-                    <form id="add_admin" class="was-validated" action="<?php echo base_url(); ?>admin/addbannerimg" method="post" enctype="multipart/form-data">
+                    <form id="add_admin" class="was-validated" action="<?php echo base_url(); ?>subadmin/addbannerimg" method="post" enctype="multipart/form-data">
                         <div class="modal fade " id="newform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
@@ -75,7 +75,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="banner" class="table-bordered">
+                    <table id="banner_image" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -93,7 +93,7 @@
                                     <tr>
                                         <td><?php echo $i++ ?></td>
                                         <td><?php if ($list_banner['banner_images']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/<?php echo $list_banner['banner_images'] ?>" width="50">
+                                                <img src="<?php echo base_url(); ?>uploads/cms/banner/<?php echo $list_banner['banner_images'] ?>" width="50">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -155,7 +155,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form action="<?php echo base_url(); ?>admin/update_bannnerimage" class="was-validated" method="post" enctype="multipart/form-data" >
+            <form action="<?php echo base_url(); ?>subadmin/update_bannnerimage" class="was-validated" method="post" enctype="multipart/form-data" >
                 <div class="row">
                     <div class="mb-2 col-md-4">
                         <label class="d-block text-font">Upload Image<sup class="text-danger">*</sup></label>
@@ -281,8 +281,8 @@
                                     </div> 
                                     <script type="text/javascript">
                                         $(document).ready(function(){
-                                            $('#banner').DataTable();
-                                        });
+                                            $('#banner_image').DataTable();
+                                        })
 var loadFileThumbnail = function(event) 
     {
        //  $("#Previewimg").show();
@@ -309,7 +309,7 @@ var loadFileThumbnail = function(event)
             console.log("jhgjhgjh");
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url(); ?>admin/deleteBanner',
+                url: '<?php echo base_url(); ?>subadmin/deleteBanner',
                 data: {
                     que_id: que_id,
                 },
@@ -337,7 +337,7 @@ var loadFileThumbnail = function(event)
             });
          //  $('#editform').modal('show');
             $.ajax({
-                            url: '<?php echo base_url(); ?>admin/edit_bannerimage/'+que_id,
+                            url: '<?php echo base_url(); ?>subadmin/edit_bannerimage/'+que_id,
                             type:"JSON",
                             method:"get",
                             success: function(result) {
@@ -349,8 +349,8 @@ var loadFileThumbnail = function(event)
                                 
                                
                               var img=res.image;
-                              $('#old_img').attr('href','<?php echo base_url()."uploads/admin/wall_of_wisdom/"; ?>'+img);
-                              $('#outputicon').attr('src','<?php echo base_url(); ?>uploads/'+res.banner_images);
+                              $('#old_img').attr('href','<?php echo base_url()."uploads/cms/banner/"; ?>'+img);
+                              $('#outputicon').attr('src','<?php echo base_url(); ?>uploads/cms/banner/'+res.banner_images);
                             },
                             error: function(result) {
                                 alert("Error,Please try again.");

@@ -46,7 +46,7 @@ h5{
     text-overflow: ellipsis;
 }
 .select-wrapper {
-    background: url(<?php echo base_url(); ?>/assets/images/plus.png) no-repeat;
+    background: url('<?php echo base_url(); ?>/assets/images/plus.png') no-repeat;
     background-size: cover;
     display: block;
     position: relative;
@@ -58,7 +58,7 @@ h5{
 }
 .input_box {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    height: 96px;
+    height: 201px;
     border-radius: 12px;
 }
 #image_src {
@@ -69,14 +69,15 @@ h5{
     margin-left: -39px;
     margin-top: -25px !important;
 }
-.box_img {
+/* .box_img {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     height: 201px;
     border-radius: 12px;
-}
+} */
 .img_mentor {
     padding: 8px;
     border-radius: 15px;
+    height: 201px;
 }
 </style>
 <div id="privacy-content" class="container">
@@ -172,53 +173,48 @@ h5{
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-3">
-                          <div class="input_box">
-                              <span class="select-wrapper">
-                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                          <div class="input_box" >
+                              <span class="select-wrapper" id="img_2">
+                                    <input type="file" class="form-control input-font" name="image2" id="image_src2" required="" accept="image/*" onchange="loadFileThumbnail(event)">
+                               </span>
+                               <span id="display_img_2" style="display:none;">
+                               <img src="" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                </span>
                           </div>
                     </div>
                     <div class="mb-3 col-md-3">
                           <div class="input_box">
-                              <span class="select-wrapper">
-                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                              <span class="select-wrapper" id="img_3">
+                                    <input type="file" class="form-control input-font" name="image3" id="image_src3" required="" accept="image/*" onchange="loadFileThumbnail1(event)">
+                               </span>
+                               <span id="display_img_3" style="display:none;">
+                               <img src="" id="outputThumbnail1" alt="" class="w-100 img_mentor">
                                </span>
                           </div>
                     </div>
                     <div class="mb-3 col-sm-3 col-md-3">
                           <div class="input_box">
-                              <span class="select-wrapper">
-                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                              <span class="select-wrapper" id="img_4">
+                                    <input type="file" class="form-control input-font" name="image4" id="image_src4" required="" accept="image/*" onchange="loadFileThumbnail2(event)">
+                               </span>
+                               <span id="display_img_4" style="display:none;">
+                               <img src="" id="outputThumbnail2" alt="" class="w-100 img_mentor">
                                </span>
                           </div>
                     </div>
                     <div class="mb-3 col-sm-3 col-md-3">
                           <div class="input_box">
-                              <span class="select-wrapper">
-                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                              <span class="select-wrapper" id="img_5">
+                                    <input type="file" class="form-control input-font" name="image5" id="image_src5" required="" accept="image/*" onchange="loadFileThumbnail3(event)">
+                               </span>
+                               <span id="display_img_5" style="display:none;">
+                               <img src="" id="outputThumbnail3" alt="" class="w-100 img_mentor">
                                </span>
                           </div>
                     </div>
-                    <div class="mb-3 col-sm-3 col-md-3">
-                          <div class="box_img">
-                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
-                          </div>
-                    </div>
-                    <div class="mb-3 col-sm-3 col-md-3">
-                          <div class="box_img">
-                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
-                          </div>
-                    </div>
-                    <div class="mb-3 col-sm-3 col-md-3">
-                          <div class="box_img">
-                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
-                          </div>
-                    </div>
-                    <div class="mb-3 col-sm-3 col-md-3">
-                          <div class="box_img">
-                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
-                          </div>
-                    </div>
+                    
+                   
+                   
             </div>
                   <div class="mb-3 col-md-12">
                        <div class="mentor_submit">
@@ -349,8 +345,80 @@ h5{
             </div>
         </div>
     </div>
-  
+  <script>
+    $(document).ready(function(){
+        $('#title').on('change',function(){
+console.log('clicked');
+});
+    });
+  </script>
   <script type="text/javascript"> 
+//   $('#display_img_2').hide();
+
+  var loadFileThumbnail = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail = document.getElementById('outputThumbnail');
+        
+        outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail.src);
+        }
+        $('#display_img_2').show();
+        $('#img_2').hide();
+    };
+
+    var loadFileThumbnail1 = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail1 = document.getElementById('outputThumbnail1');
+        
+        outputThumbnail1.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail1.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail1.src);
+        }
+        $('#display_img_3').show();
+        $('#img_3').hide();
+    };
+
+    var loadFileThumbnail2 = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail2 = document.getElementById('outputThumbnail2');
+        
+        outputThumbnail2.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail2.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail2.src);
+        }
+        $('#display_img_4').show();
+        $('#img_4').hide();
+    };
+
+    var loadFileThumbnail3 = function(event) 
+    {
+       //  $("#Previewimg").show();
+        var outputThumbnail3 = document.getElementById('outputThumbnail3');
+        
+        outputThumbnail3.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail3.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail3.src);
+        }
+        $('#display_img_5').show();
+        $('#img_5').hide();
+    };
+
+
+
+
+
   function sure(){
     $('.sure').modal('show');
 

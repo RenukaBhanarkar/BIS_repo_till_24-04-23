@@ -117,7 +117,7 @@
 
                         </div>
                         <div class="col-sm-6 mt-3">
-                            <div class="file-upload-wrapper" data-text="Select your file">
+                            <div class="file-upload-wrapper" data-text="">
                                 <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" >
                                 <span id="err_image" class="text-danger"></span>
                             </div>
@@ -256,6 +256,7 @@
 
 
                 $('#image').on('change', function(){
+                    $("#title").attr('required',true);
                     $('#addwall').addClass('was-validated');
                     console.log("sdfgsdf");
                     var focusSet = false;

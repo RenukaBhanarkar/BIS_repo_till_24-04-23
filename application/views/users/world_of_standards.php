@@ -45,20 +45,24 @@
     <div class="world_standard_banner">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <?php  foreach($banner_data as $list=>$key){ ?>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?php echo $list; ?>" class="active" <?php if($list==0){ echo 'aria-current="true"';} ?> aria-label="Slide <?php echo $list=$list+1; ?>"></button>
+                        <?php }?>
+                        <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
                     </div>
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
+                                <!-- <div class="carousel-item active">
                                 <img src="<?=base_url();?>assets/images/banner1.jpg" class="d-block w-100 standard_banner_scroll" alt="...">
                                 </div>
                                 <div class="carousel-item">
                                 <img src="<?=base_url();?>assets/images/banner2.jpg" class="d-block w-100 standard_banner_scroll" alt="...">
+                                </div> -->
+                                <?php  foreach($banner_data as $list=>$key){ ?>
+                                <div class="carousel-item <?php if($list==0){echo "active"; } ?>">
+                                <img src="<?=base_url().'uploads/cms/banner/'.$key['banner_images'];?>" class="d-block w-100 standard_banner_scroll"  alt="...">
                                 </div>
-                                <div class="carousel-item">
-                                <img src="<?=base_url();?>assets/images/banner1.jpg" class="d-block w-100 standard_banner_scroll"  alt="...">
-                                </div>
+                                <?php } ?>
                             </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -172,64 +176,47 @@
     <section style="margin-bottom: 38px;">
         <div class="container">
             <div class="row">
-               <div class="col-lg-12 text-center my-2">
+               <div class="col-lg-12 text-center my-2 pt-5">
                    <h4>Images & Gallery</h4>
                </div>
             </div>
             <div class="portfolio-menu mt-2 mb-4">
-               <ul>
-                  <li class="btn btn-outline-dark active" data-filter="*">All</li>
-                  <!-- <li class="btn btn-outline-dark" data-filter=".gts">Girls T-shirt</li>
-                  <li class="btn btn-outline-dark" data-filter=".lap">Laptops</li> -->
-                  <li class="btn btn-outline-dark text" data-filter=".selfie">selfie</li>
+               <ul>                 
+                  <li style="padding: 0px;"><button onclick="gal_images()" class="btn btn-outline-dark active img" id="img">Images</button></li>
+                  <li style="padding: 0px;"><button onclick="abcd()" class="btn btn-outline-dark vdo" id="vdo">Video</button></li>
                </ul>
             </div>
-            <div class="portfolio-item row">
-                <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg" class="fancylight popup-btn" data-fancybox-group="light"> 
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item gts col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/pretty-girl-near-car_1157-16962.jpg" class="fancylight popup-btn" data-fancybox-group="light"> 
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/pretty-girl-near-car_1157-16962.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/blonde-tourist-taking-selfie_23-2147978899.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/blonde-tourist-taking-selfie_23-2147978899.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item gts col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/cute-girls-oin-studio_1157-18211.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/cute-girls-oin-studio_1157-18211.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item gts col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/stylish-pin-up-girls_1157-18451.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/stylish-pin-up-girls_1157-18451.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item gts col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/stylish-pin-up-girl_1157-18940.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/stylish-pin-up-girl_1157-18940.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item lap col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/digital-laptop-working-global-business-concept_53876-23438.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/digital-laptop-working-global-business-concept_53876-23438.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item lap col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-psd/set-digital-devices-screen-mockup_53876-76507.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-psd/set-digital-devices-screen-mockup_53876-76507.jpg" alt="">
-                   </a>
-                </div>
-                
-                
-                
-                
-              </div>
+            
+                <div class="portfolio-item row" id="photo_gallary">
+                  <?php if(!empty($images)){ foreach($images as $list){ ?>
+                      <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
+                          <a href="<?php echo base_url().'uploads/'.$list['image'];?>" class="fancylight popup-btn" data-fancybox-group="light"> 
+                          <img class="img-fluid" src="<?php echo base_url().'uploads/'.$list['image'];?>" style="height:180px; width:280px; padding:20px;"; alt="">
+                          </a>
+                      </div>
+                  <?php } ?>
+                  <?php if(count($images) > 7){ ?>
+                  <div class="view-button">
+                    <a href="<?php echo base_url().'users/photo_gallary' ?>">View All</a>
+                  </div>
+                  <?php } } ?>
+               
+             </div>
+             <div class="portfolio-item row" id="video_gallary" style="display:none;">
+             <?php if(!empty($videos)){ foreach($videos as $list){ ?>
+                      <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
+                          <a href="<?php echo base_url().'uploads/'.$list['video'];?>" class="fancylight popup-btn" data-fancybox-group="light"> 
+                          <video class="img-fluid" src="<?php echo base_url().'uploads/'.$list['video'];?>" style="height:180px; width:280px; padding:20px;"; alt="">
+                          </a>
+                      </div>
+                      <?php if(count($videos) > 7){ ?>
+                      <div class="view-button">
+                      <a href="<?php echo base_url().'users/video_gallary' ?>">View All</a>
+                    </div>
+                    <?php } ?>
+                  <?php } }?>
+             </div>
+              
          </div>
     </section>
     
@@ -241,6 +228,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
 
 <script>
+     $('#photo_gallary').show();
+      function abcd(){         
+              $('.vdo').addClass('active');
+              $('.img').removeClass('active');
+              $('#photo_gallary').hide();
+              $('#video_gallary').show();                                
+        }
+     
+      function gal_images(){        
+              $('.img').addClass('active');
+              $('.vdo').removeClass('active');
+              $('#photo_gallary').show();
+              $('#video_gallary').hide();                                
+      }
     
     $('.portfolio-menu ul li').click(function(){
          	$('.portfolio-menu ul li').removeClass('active');

@@ -242,8 +242,13 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer');  
     }
     public function quality_index(){
+        $data = array();
+        $this->load->model('admin/admin_model');
+        $data['banner_data']=$this->admin_model->bannerwosAllData();
+        $data['images']=$this->admin_model->images();
+        $data['videos']=$this->admin_model->videos();
         $this->load->view('users/headers/header');
-        $this->load->view('users/world_of_standards');
+        $this->load->view('users/world_of_standards',$data);
         $this->load->view('users/footers/footer');  
     }
     public function privacy_policy(){
@@ -489,16 +494,12 @@ class Users extends CI_Controller {
     }
 
     public function add_btm(){
-        // print_r($_FILES);
+        // print_r($_FILES); die;
         // if(!($_FILES['document']['name'])){
         //     echo "not set";
         // }
         // die;
-        $formdata1['user_id']= encryptids("D", $_SESSION['admin_id']);
-        $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
-        $formdata1['user_name']=  encryptids("D", $_SESSION['admin_name']);
-        // $formdata1['admin']=  encryptids("D", $_SESSION['admin']);
-        $formdata1['user_type']=  encryptids("D", $_SESSION['admin_type']);
+        
         // $formdata1['user_post']= encryptids("D", $_SESSION['admin_post']);
         // print_r($formdata); 
         // die;
@@ -508,8 +509,19 @@ class Users extends CI_Controller {
         }else{
             // die;
             $this->session->set_flashdata('MSG', ShowAlert("Please Login", "SS"));
-            redirect(base_url() . "users/byTheMentor", 'refresh');
+            // redirect(base_url() . "users/byTheMentor", 'refresh');
+            redirect(base_url() . "users/login", 'refresh');
+            exit;
         }
+
+        $formdata1['user_id']= encryptids("D", $_SESSION['admin_id']);
+        $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
+        $formdata1['user_name']=  encryptids("D", $_SESSION['admin_name']);
+        // $formdata1['admin']=  encryptids("D", $_SESSION['admin']);
+        $formdata1['user_type']=  encryptids("D", $_SESSION['admin_type']);
+
+
+
         $title = $this->input->post('title');
         $description = $this->input->post('description');
 
@@ -531,6 +543,101 @@ class Users extends CI_Controller {
                     $data['message'] = $this->upload->display_errors();
                 }
         }
+
+        if($_FILES['image2']['name']){
+            // echo "image";
+                 $other_img1 = "other_image1" . time() . '.jpg';
+                 $config['upload_path'] = './uploads/by_the_mentors/img/';
+                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                 $config['max_size']    = '10000';
+                 $config['max_width']  = '3024';
+                 $config['max_height']  = '2024';
+         
+                 $config['file_name'] = $other_img1;
+             
+                 $this->load->library('upload', $config);
+                 if (!$this->upload->do_upload('image2')) 
+                 {
+                     $data['status'] = 0;
+                     $data['message'] = $this->upload->display_errors();
+                 }
+         }else{
+            $other_img1="";
+         }
+         $formdata['other_image1']=$other_img1;
+
+         if($_FILES['image3']['name']){
+            // echo "image";
+                 $other_img2 = "other_image2" . time() . '.jpg';
+                 $config['upload_path'] = './uploads/by_the_mentors/img/';
+                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                 $config['max_size']    = '10000';
+                 $config['max_width']  = '3024';
+                 $config['max_height']  = '2024';
+         
+                 $config['file_name'] = $other_img2;
+             
+                 $this->load->library('upload', $config);
+                 if (!$this->upload->do_upload('image3')) 
+                 {
+                     $data['status'] = 0;
+                     $data['message'] = $this->upload->display_errors();
+                 }
+         }else{
+            $other_img2="";
+         }
+         $formdata['other_image2']=$other_img2;
+
+
+         if($_FILES['image4']['name']){
+            // echo "image";
+                 $other_img3 = "other_image3" . time() . '.jpg';
+                 $config['upload_path'] = './uploads/by_the_mentors/img/';
+                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                 $config['max_size']    = '10000';
+                 $config['max_width']  = '3024';
+                 $config['max_height']  = '2024';
+         
+                 $config['file_name'] = $other_img3;
+             
+                 $this->load->library('upload', $config);
+                 if (!$this->upload->do_upload('image4')) 
+                 {
+                     $data['status'] = 0;
+                     $data['message'] = $this->upload->display_errors();
+                 }
+         }else{
+            $other_img3="";
+         }
+         $formdata['other_image3']=$other_img3;
+
+         if($_FILES['image5']['name']){
+            // echo "image";
+            // print_r($_FILES['image5']['name']); die;
+                 $other_img4 = "other_image4" . time() . '.jpg';
+                 $config['upload_path'] = './uploads/by_the_mentors/img/';
+                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                 $config['max_size']    = '10000';
+                 $config['max_width']  = '3024';
+                 $config['max_height']  = '2024';
+         
+                 $config['file_name'] = $other_img4;
+             
+                 $this->load->library('upload', $config);
+                 if (!$this->upload->do_upload('image5')) 
+                 {
+                     $data['status'] = 0;
+                     $data['message'] = $this->upload->display_errors();
+                 }
+         }else{
+            $other_img4="";
+         }
+         $formdata['other_image4']=$other_img4;
+
+
+
+
+
         if(!($_FILES['document']['name'])==""){
           //  echo "document";
           
