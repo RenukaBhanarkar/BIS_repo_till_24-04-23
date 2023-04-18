@@ -46,7 +46,7 @@ h5{
     text-overflow: ellipsis;
 }
 .select-wrapper {
-    background: url(http://localhost/BIS/BIS_repo/assets/images/plus.png) no-repeat;
+    background: url(<?php echo base_url(); ?>/assets/images/plus.png) no-repeat;
     background-size: cover;
     display: block;
     position: relative;
@@ -62,11 +62,12 @@ h5{
     border-radius: 12px;
 }
 #image_src {
-    width: 26px;
-    height: 26px;
-    margin-right: 100px;
+    width: 78px;
+    height: 49px;
     opacity: 0;
     filter: alpha(opacity=0);
+    margin-left: -39px;
+    margin-top: -25px !important;
 }
 .box_img {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -184,36 +185,36 @@ h5{
                                </span>
                           </div>
                     </div>
-                    <div class="mb-3 col-md-3">
+                    <div class="mb-3 col-sm-3 col-md-3">
                           <div class="input_box">
                               <span class="select-wrapper">
                                     <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
                                </span>
                           </div>
                     </div>
-                    <div class="mb-3 col-md-3">
+                    <div class="mb-3 col-sm-3 col-md-3">
                           <div class="input_box">
                               <span class="select-wrapper">
                                     <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
                                </span>
                           </div>
                     </div>
-                    <div class="mb-3 col-md-3">
+                    <div class="mb-3 col-sm-3 col-md-3">
                           <div class="box_img">
                               <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
                           </div>
                     </div>
-                    <div class="mb-3 col-md-3">
+                    <div class="mb-3 col-sm-3 col-md-3">
                           <div class="box_img">
                               <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
                           </div>
                     </div>
-                    <div class="mb-3 col-md-3">
+                    <div class="mb-3 col-sm-3 col-md-3">
                           <div class="box_img">
                               <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
                           </div>
                     </div>
-                    <div class="mb-3 col-md-3">
+                    <div class="mb-3 col-sm-3 col-md-3">
                           <div class="box_img">
                               <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
                           </div>

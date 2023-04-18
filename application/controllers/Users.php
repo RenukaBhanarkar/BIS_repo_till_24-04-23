@@ -968,7 +968,11 @@ class Users extends CI_Controller {
     }
 
     //  learning standerd Function End for Frontend 
- 
+    public function guidance_quest(){
+       // $this->load->view('users/headers/header');
+        $this->load->view('users/guidance_quest');
+       // $this->load->view('users/footers/footer'); 
+    }
  
 
 

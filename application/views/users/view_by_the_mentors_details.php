@@ -43,27 +43,26 @@
                                 </div> -->
                                
                               </div>
-                          </div>
-                          <div class="col-12 mt-3">
-                            <div >
+                           <div class="row">
+                          
+                           <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Title<sup class="text-danger">*</sup></label>
                                     <div>
                                         <p><?php echo $data['title']; ?></p>
                                     </div> 
                             </div>
-                            <div >
+                            <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Description<sup class="text-danger">*</sup></label>
                                     <div>
                                         <p><?php echo $data['description']; ?></p>
                                     </div> 
                             </div>
-                            <div >
+                            <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
-                                    <div>
-                                        <p><img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$data['image']; ?>" width="500px" height="600px"></p>
-                                    </div> 
+                                      <p><img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$data['image']; ?>" width="100%"></p>
+                                    
                             </div>
-                            <div >
+                            <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Document<sup class="text-danger">*</sup></label>
                                     <div>
                                         <a href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$data['document'];?>" target="_blank">
@@ -71,7 +70,7 @@
                                         </a>
                                     </div> 
                             </div>
-                            <div >
+                            <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Status<sup class="text-danger">*</sup></label>
                                     <div>
                                         <p><?php echo $data['status_name']; ?></p>
@@ -98,6 +97,7 @@
                             exec($xpdf_cmd);
                                     ?>
                             </div> -->
+                          </div>
                           </div>
                           <div class="col-md-12 submit_btn p-3">
                                <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>admin/byTheMentors'">Back</a>
