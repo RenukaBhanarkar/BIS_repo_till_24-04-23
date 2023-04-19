@@ -546,7 +546,7 @@ class Users extends CI_Controller {
         $title = $this->input->post('title');
         $description = $this->input->post('description');
 
-        if(isset($_FILES['image']['name'])){
+        if(!($_FILES['image']['name']=="")){
            // echo "image";
                 // $btm_img = "btm_image" . time() . '.jpg';
                 // $config['upload_path'] = './uploads/by_the_mentors/img/';
@@ -572,7 +572,7 @@ class Users extends CI_Controller {
             $thumbnail="";
         }
 
-        if($_FILES['image2']['name']){
+        if(!($_FILES['image2']['name']=="")){
             // echo "image";
                 //  $other_img1 = "other_image1" . time() . '.jpg';
                 //  $config1['upload_path'] = './uploads/by_the_mentors/img/';
@@ -602,7 +602,7 @@ class Users extends CI_Controller {
 
 
 
-         if($_FILES['image3']['name']){
+         if(!($_FILES['image3']['name']=="")){
             // echo "image";
                 //  $other_img2 = "other_image2" . time() . '.jpg';
                 //  $config['upload_path'] = './uploads/by_the_mentors/img/';
@@ -628,7 +628,7 @@ class Users extends CI_Controller {
          $formdata['other_image2']=$other_img2;
 
 
-         if($_FILES['image4']['name']){
+         if(!($_FILES['image4']['name']=="")){
             // echo "image";
                 //  $other_img3 = "other_image3" . time() . '.jpg';
                 //  $config['upload_path'] = './uploads/by_the_mentors/img/';
@@ -654,7 +654,7 @@ class Users extends CI_Controller {
          }
          $formdata['other_image3']=$other_img3;
 
-         if($_FILES['image5']['name']){
+         if(!($_FILES['image5']['name']=="")){
             // echo "image";
             // print_r($_FILES['image5']['name']); die;
                 //  $other_img4 = "other_image4" . time() . '.jpg';
@@ -677,7 +677,7 @@ class Users extends CI_Controller {
                 $other_img4 = $path . time() .'btm_image'. $_FILES['image5']['name']; 
                 move_uploaded_file($_FILES['image5']['tmp_name'], $other_img4);
          }else{
-            $formdata['other_image4']="";
+            $other_img4="";
          }
          $formdata['other_image4']=$other_img4;
 

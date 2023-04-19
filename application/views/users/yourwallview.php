@@ -132,30 +132,38 @@
 
                         </div>
                         <div class="row" style="padding:10px;">
+                        <?php if(!($published_wall['other_image1'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$published_wall['other_image1']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($published_wall['other_image2'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$published_wall['other_image2']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($published_wall['other_image3'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$published_wall['other_image3']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($published_wall['other_image4'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$published_wall['other_image4']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
                     </div>
 

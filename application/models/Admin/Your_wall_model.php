@@ -127,5 +127,26 @@ class Your_wall_model extends CI_Model {
     public function archive($id){
         $this->db->update('tbl_your_wall',['status'=>'9'],['id'=>$id]);
     }
+    public function add_user($data){
+        // print_r($data);die;
+        $this->db->select('user_id');
+        $this->db->from('tbl_users');
+        $this->db->where('user_id',$data['user_id']);
+        $query=$this->db->get();
+       
+        $result=$query->result_array();
+        // print_r($result[0]['user_id']);die;
+        if(!($data['user_id']==$result[0]['user_id'])){
+        // if(!empty($result)){
+            if ($this->db->insert('tbl_users', $data)) {
+                return $this->db->insert_id();
+            } else {
+                return false;
+            } 
+        }
+        return $data['user_id'];
+        
+
+    }
 
 }

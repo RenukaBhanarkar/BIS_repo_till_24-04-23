@@ -46,7 +46,7 @@ h5{
     text-overflow: ellipsis;
 }
 .select-wrapper {
-    background: url(http://localhost/BIS/BIS_repo//assets/images/plus.png) no-repeat;
+    background: url('<?php echo base_url(); ?>/assets/images/plus.png') no-repeat;
     background-size: cover;
     display: block;
     position: absolute;
@@ -57,21 +57,19 @@ h5{
     /* top: 50%; */
 }
 .input_box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     height: 201px;
     border-radius: 12px;
     position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 #image_src2, #image_src3,#image_src4,#image_src5 {
     width: 78px;
     height: 49px;
     opacity: 0;
     filter: alpha(opacity=0);
-    margin-left: 0px;
-    margin-top: 13px !important;
 }
 /* .box_img {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -96,7 +94,7 @@ h5{
         <div class="col-md-4 mb-4">
             <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>">
                   <div class="card-winners">
-                      <img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$list['image'];?>" class="card-img-top" alt="Discussion Forum">
+                      <img src="<?php echo base_url().$list['image'];?>" class="card-img-top" alt="Discussion Forum">
                       <div class="winner-body p-2">
                           <!-- <div class="node-status"><span>Status : </span>
                               <div class="status-open">Open</div>
@@ -178,9 +176,9 @@ h5{
                 <div class="row">
                     <div class="mb-3 col-md-3">
                           <div class="input_box" >
-                              <div class="select-wrapper" id="img_2">
+                              <span class="select-wrapper" id="img_2">
                                     <input type="file" class="form-control input-font" name="image2" id="image_src2" required="" accept="image/*" onchange="loadFileThumbnail(event)">
-                              </div>
+                               </span>
                                <span id="display_img_2" style="display:none;">
                                <img src="" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                </span>
@@ -351,7 +349,7 @@ h5{
     </div>
   <script>
     $(document).ready(function(){
-        $('#title').on('change',function(){
+        $('#title').change('change',function(){
 console.log('clicked');
 });
     });
