@@ -9,9 +9,9 @@
                             <h4>Accessibility & Help</h4>
                             <ul>
                                 <li><a href="">Feedback</a></li>
-                                <li><a href="sitemap.html">Sitemap</a></li>
                                 <li><a href="#">Help</a></li>
-                                <li><a href="#">Accessibility</a></li>
+                                <li><a href="sitemap.html">Sitemap</a></li>
+                                <!-- <li><a href="#">Accessibility</a></li> -->
                             </ul>
                         </div>
                         <div class="col-sm-4 col-lg-4 footer_text">
@@ -254,6 +254,11 @@ row += '<a href="https://' +data[i].link + '"target="_blank" title="Twitter" cla
 });
  });
 </script>
+<script>
+        function bis_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
 </body>
 
 </html>

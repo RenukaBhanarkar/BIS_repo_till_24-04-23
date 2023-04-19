@@ -87,7 +87,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="followus" class="table table-bordered">
+                    <table id="followus" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>

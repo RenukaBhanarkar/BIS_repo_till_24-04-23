@@ -31,6 +31,7 @@ class Admin extends CI_Controller
         $this->load->view('Admin/login');
         $this->load->view('Users/footers/login_footer');
     }
+    
     public function authUser()
     {
 
@@ -93,6 +94,12 @@ class Admin extends CI_Controller
     {
         $this->load->view('admin/headers/admin_header');
         $this->load->view('admin/user_management');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function feedback()
+    {
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/feedback');
         $this->load->view('admin/footers/admin_footer');
     }
     //ajax call 

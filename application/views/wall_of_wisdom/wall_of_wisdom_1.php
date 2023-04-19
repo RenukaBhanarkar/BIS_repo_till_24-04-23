@@ -127,7 +127,7 @@
                                   <span class="last-date"><?php echo $list['description']; ?> </span>
                               </span>
                           </div>
-                          <div onclick="like('<?php echo $list['id']; ?>')" class="node-status like_review"><span><i onclick="myFunction(this)" class="fa fa-heart" style="width:18px; font-size: 21px; color: red;"></i> </span>
+                          <div onclick="like('<?php echo $list['id']; ?>')" class="node-status like_review"><span><i onclick="myFunction(this)" class="fa fa-heart" style="width:18px; font-size: 21px;"></i><span class="span" style="    margin-left: 10px;font-size: 15px;">Like</span></span>
                               <div  class="status-open likes" wow-id='<?php echo $list['id']; ?>' style="margin-left:10px;" id="<?php echo $list['id']; ?>"><?php echo $list['likes']; ?></div>
                           </div>
                       </div>

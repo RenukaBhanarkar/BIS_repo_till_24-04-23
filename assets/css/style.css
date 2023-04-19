@@ -1538,9 +1538,7 @@ footer .main_footer .f_contact ul li i {
 	font-size: 12px;
 	padding-top: 61px;
 }
-.item {
-	height: 149px;
-}
+
 .card-quality {
 	position: relative;
 	display: flex;
@@ -1717,8 +1715,10 @@ a.ac-register.jquery-once-2-processed:hover {
 	font-weight: 600;
 }
 h5.card-title {
-	padding-top: 10px;
-	font-weight: 600;
+    /* padding-top: 10px; */
+    font-weight: 600;
+    overflow: hidden;
+    height: 26px;
 }
 button.btn_common {
 	background: yellowgreen;
@@ -1765,16 +1765,16 @@ button.btn_common {
     transform: scale(1.2);
 }
 p.card-text {
-    font-size: 18px;
+    font-size: 14px;
 }
 .card-body-new {
 	flex: 1 1 auto;
 	font-weight: 700;
 }
-.card-text {
+/* .card-text {
 	text-align: center;
 	padding-top: 8px;
-}
+} */
 .card-body-new:hover {
 	background: lightseagreen;
 }
@@ -1978,9 +1978,9 @@ p.card-text {
 }
 
 .yourWall_image {
-	height: 331px;
-	margin-bottom: 17px;
-	position: relative;
+    /* height: 331px; */
+    /* margin-bottom: 17px; */
+    position: relative;
 }
 
 .Text-container {
