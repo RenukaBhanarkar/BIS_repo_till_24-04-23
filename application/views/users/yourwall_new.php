@@ -147,13 +147,13 @@
                     </div> -->
                     
                     <div class="row">
-                        <div class="col-sm-6 mt-3">
+                        <div class="col-sm-4 mt-3">
 
                             <input type="text" class="form-control title-height mb-2" name="title" id="title" placeholder="Title" >
                             
 
                         </div>
-                        <div class="mb-2 col-md-6">
+                        <div class="mb-2 col-md-4">
                                 <label class="d-block text-font">Upload Image</label>
                                 <div class="d-flex">
                                     <div>
@@ -181,6 +181,18 @@
                                     </div>
                                 </div>
                                 <!-- Modal -->
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                <label class="d-block text-font">Upload Document</label>
+                                <div class="d-flex">
+                                    <div>
+                                    <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" >
+                                    
+                                   </div>
+                                    
+                                </div>
+                                <span id="err_image" class="text-danger"></span>
+
                             </div>
                         <!-- <div class="col-sm-6 mt-3">
                             <div class="file-upload-wrapper" data-text="">
