@@ -128,12 +128,12 @@ h5{
             <?php } ?>
     <div class="col-sx-12 col-sm-12 col-md-12" style="border-left: 3px solid cadetblue; padding: 0px 25px;">
     <div class="bloginfo">
-                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Post Here...</h3>
+                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" id="mentorForm_show">Post Here...</h3>
             </div>
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
              </div>
-        <div class="static-content">
+        <div class="static-content" id="mentorForm_hide">
            <?php if($this->session->flashdata()){
                 echo $this->session->flashdata('MSG');
             } ?>
@@ -348,6 +348,14 @@ h5{
         </div>
     </div>
   <script>
+    $(document).ready(function(){
+        $("#mentorForm_hide").hide();
+        $("#mentorForm_show").click(function(){
+        $("#mentorForm_hide").show();
+  });
+ 
+});
+
     $(document).ready(function(){
         $('#title').change('change',function(){
 console.log('clicked');

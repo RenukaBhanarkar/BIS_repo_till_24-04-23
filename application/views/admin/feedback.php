@@ -19,42 +19,52 @@
     <!-- Content Row -->
 
     <div class="col-12">
-         <div class="card border-top card-body">
+         <!-- <div class="card border-top card-body">
                 <div>
-                    <button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#newform">Add New Photo</button>
+                    <button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#newform">Add New Feedback</button>
                     <div class="modal fade " id="newform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
-                            <!-- <form action="<?php echo base_url(); ?>admin/add_photos" class="was-validated" method="post" enctype="multipart/form-data" id="add_photo"> -->
+                           <form action="<?php echo base_url(); ?>admin/add_photos" class="was-validated" method="post" enctype="multipart/form-data" id="add_photo"> 
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add Photo</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Feedback</h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
+                                            
                                             <div class="mb-2 col-md-4">
-                                                <label class="d-block text-font">Upload Image<sup class="text-danger">*</sup></label>
-                                                <input type="file" class="form-control input-font" name="image" id="" required="" accept="image/png">
-                                                <span class="error_text">
-                                                    acceps jpg,jpeg and png only
-                                                    <?php //echo form_error('title'); 
-                                                    ?>
-                                                </span>
+                                                <label class="d-block text-font">Name</label>
+                                                <input type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Title"required="">
+                                                
                                             </div>
                                             <div class="mb-2 col-md-4">
-                                                <label class="d-block text-font">Caption</label>
-                                                <input type="text" class="form-control input-font" name="title" id="" required="">
-                                                <span class="error_text">
-                                                    <?php //echo form_error('title'); 
-                                                    ?>
-                                                </span>
+                                                <label class="d-block text-font">Mobile Number</label>
+                                                <input type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Mobile Number" required="">
+                                                
+                                            </div>
+                                            <div class="mb-2 col-md-4">
+                                                <label class="d-block text-font">Email</label>
+                                                <input type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Email" required="">
+                                                
+                                            </div>
+                                            <div class="mb-2 col-md-4">
+                                                <label class="d-block text-font">Subject</label>
+                                                <input type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Subject" required="">
+                                                
+                                            </div>
+                                            <div class="mb-2 col-md-8">
+                                                <label class="d-block text-font">Description</label>
+                                                <textarea type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Description" required=""></textarea>
+                                                
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                             <button class="btn btn-primary save">Submit</button>
+                                            <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-warning" type="button" data-dismiss="modal">Reset</button>
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         <div class="row">
             <div class="col-12 mt-3">
@@ -71,87 +81,36 @@
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
-                                <th>Image</th>
-                                <th>Caption</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                                <th>Action</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($photos)) {
-                                $i = 1;
-                                foreach ($photos as $list_photos) { ?>
-                                    <tr>
-                                        <td><?php echo $i++ ?></td>
-                                        <td><img src="<?php echo base_url() . "uploads/" . $list_photos['image']; ?>" data-toggle="modal" data-target="#viewImage" width="40px"></td>
-                                        <td><?php echo $list_photos['title']; ?></td>
-                                        <?php if (encryptids("D", $_SESSION['admin_type']) == 3) {   ?>
-                                            <td class="d-flex border-bottom-0">
-                                                
-                                                <button data-id='<?php echo encryptids("E", $list_photos['id']); ?>' class="btn btn-danger btn-sm mr-2 delete">Delete</button>
-                                                <button onclick="edit('<?php echo $list_photos['id']; ?>')" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform1">Edit</button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="viewImage" tabindex="-1" role="dialog" aria-labelledby="viewImageLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="viewImageLabel">Image Preview</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <img src="<?php echo base_url() . "uploads/" . $list_photos['image']; ?>" alt="" width="100%">
-                                                            </div>
+                                <tr>
+                                        <td>1</td>
+                                        <td>12345</td>
+                                        <td>Name</td>
+                                        <td>Contact</td>
+                                        <td>anismulani1999@gmail.com</td>
+                                        <td>Subject</td>
+                                        <td>12/02/2023</td>
+                                        <td class="d-flex border-bottom-0">
+                                        
+                                            <button  class="btn btn-primary btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform">View</button>
+                                            <button  class="btn btn-danger btn-sm mr-2">Delete</button>
+                                            <button  class="btn btn-info btn-sm mr-2">Archive</button>
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal fade " id="editform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-xl" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Update Photo
-                                                                </h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="row">
-                                                                    <div class="mb-2 col-md-4">
-                                                                        <label class="d-block text-font">Upload Image<sup class="text-danger">*</sup></label>
-                                                                        <input type="file" class="form-control input-font" name="" id="">
-                                                                        <span class="error_text">
-                                                                            <?php //echo form_error('title'); 
-                                                                            ?>
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="mb-2 col-md-4">
-                                                                        <label class="d-block text-font">Caption</label>
-                                                                        <input type="text" class="form-control input-font" name="" id="">
-                                                                        <span class="error_text">
-                                                                            <?php //echo form_error('title'); 
-                                                                            ?>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                                    <button class="btn btn-primary">Update</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                        <?php } ?>
-
-                                    </tr>
-                            <?php }
-                            } ?>
-
-                        </tbody>
+                                            
+                                        </td>
+                                      
+                                </tr>
+                         </tbody>
                     </table>
                 </div>
             </div>
