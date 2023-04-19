@@ -111,7 +111,7 @@
         <?php foreach($published_wall as $list){ ?>
 
                 <div class="item">
-                    <div class="card" style="width: 20rem;">
+                    <div class="card" style="width: 100%;">
                         <div class="yourWall_image">
                             <img src="<?php echo base_url()."uploads/your_wall/".$list['image']; ?>" class="card-img-top" alt="">
                             <span><i class="fa fa-calendar icons"></i><?php echo date("m-d-Y",strtotime($list['created_on'])); ?></span>

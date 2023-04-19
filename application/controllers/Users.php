@@ -1128,6 +1128,12 @@ class Users extends CI_Controller {
         $this->load->view('users/guidance_quest');
        // $this->load->view('users/footers/footer'); 
     }
+    public function feedback_form()
+    {
+        $this->load->view('users/headers/header');
+        $this->load->view('users/feedback_form');
+        $this->load->view('users/footers/footer'); 
+    }
  
 
 

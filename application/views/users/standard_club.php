@@ -127,18 +127,21 @@
         <div class="container">
             <div class="row">
             <div class="new-content d-flex">
+              <div class="col-md-3 col-lg-3 col-sm-3 m-2">
                   <a href="<?php echo base_url().'wall_of_wisdom/wallOfWisdom' ?>">
-                    <div class="card image-card" style="width: 21rem; z-index: 1000;">                    
+                    <div class="card image-card" style="width:100%; z-index: 1000;">                    
                         <img src="<?=base_url();?>assets/images/wall_1.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
                           <p class="card-text">Wall Of Wisdom</p>
                         </div>                    
                       </div>
-                    </a> 
+                    </a>
+                    </div> 
+                    <div class="col-md-3 col-lg-3 col-sm-3 m-2">
                     <a href="<?php echo base_url().'users/learning_standerd' ?>">
                      
  
-                      <div class="card image-card" style="width: 21rem; z-index: 1000;">
+                      <div class="card image-card" style="width:100%; z-index: 1000;">
  
                         <img src="<?=base_url();?>assets/images/wall_2.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
@@ -146,16 +149,20 @@
                         </div>
                       </div>
                       </a>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-sm-3 m-2">
                       <a href="<?php echo base_url().'users/yourwall' ?>">
-                      <div class="card image-card" style="width: 21rem; z-index: 1000;">                      
+                      <div class="card image-card" style="width:100%; z-index: 1000;">                      
                         <img src="<?=base_url();?>assets/images/wall_3.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
                           <p class="card-text">Your Wall</p>
                         </div>                      
                       </div>
                       </a>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-sm-3 m-2">
                       <a href="<?php echo base_url()."users/byTheMentor" ?>">
-                      <div class="card image-card" style="width: 21rem; z-index: 1000;">
+                      <div class="card image-card" style="width:100%; z-index: 1000;">
                       
                         <img src="<?=base_url();?>assets/images/wall_4.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
@@ -164,6 +171,7 @@
                       
                       </div>
                       </a>
+                      </div>
                       
                  </div>
             </div>

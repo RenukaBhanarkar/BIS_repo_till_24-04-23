@@ -213,8 +213,16 @@ span.last-date {
     </style>
 <div class="container">
         <section id="banner-section">
+            <div class="float-end">
+        <select class="form-control input-font" placeholder="Language">
+                                        <option value="1">Language</option>
+                                    <option value="1">English</option>
+                                    <option value="2">Hindi</option>
+
+                                </select>
+                                </div>
             <div class="row">
-                <div class="col-sm-5">
+            <div class="col-sm-5">
                     <div class="quiz-image shadow">
                         <img src="../../<?= $quizdata['banner_img'];?>" class="image-section" alt="Bis Quiz Images" />
                     </div>
@@ -241,6 +249,14 @@ span.last-date {
                         <div class="d-flex">
                         <p class="time-start-end d-flex" style="margin-bottom:0px; margin-top: 10px;">
                             <span class="start-end-time-title">End Date <span class="quiz-text-date m-2"><?= date("m-d-Y", strtotime($quizdata['end_date']));?></span>
+                            </span>
+                        </p>
+                        <p class="time-start-end d-flex" style="margin-bottom:0px; margin-top: 10px; margin-left: 10px;">
+                            <span class="start-end-time-title">Region<span class="quiz-text-date m-2">12</span>
+                            </span>
+                        </p>
+                        <p class="time-start-end d-flex" style="margin-bottom:0px; margin-top: 10px; margin-left: 10px;">
+                            <span class="start-end-time-title">Branch<span class="quiz-text-date m-2">12</span>
                             </span>
                         </p>
                         </div>
