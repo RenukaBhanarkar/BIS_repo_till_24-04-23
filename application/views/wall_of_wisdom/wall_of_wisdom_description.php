@@ -6,7 +6,11 @@
     margin-bottom: 36px;
 
 }
-
+.yourWall_image {
+    height: 331px;
+    margin-bottom: 17px;
+    position: relative;
+}
 .yourWall_image_view {
     height: 200px;
     margin-bottom: 17px;
