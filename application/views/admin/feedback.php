@@ -21,40 +21,50 @@
     <div class="col-12">
          <div class="card border-top card-body">
                 <div>
-                    <button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#newform">Add New Photo</button>
+                    <button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#newform">Add New Feedback</button>
                     <div class="modal fade " id="newform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
                             <!-- <form action="<?php echo base_url(); ?>admin/add_photos" class="was-validated" method="post" enctype="multipart/form-data" id="add_photo"> -->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add Photo</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Feedback</h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
+                                            
                                             <div class="mb-2 col-md-4">
-                                                <label class="d-block text-font">Upload Image<sup class="text-danger">*</sup></label>
-                                                <input type="file" class="form-control input-font" name="image" id="" required="" accept="image/png">
-                                                <span class="error_text">
-                                                    acceps jpg,jpeg and png only
-                                                    <?php //echo form_error('title'); 
-                                                    ?>
-                                                </span>
+                                                <label class="d-block text-font">Name</label>
+                                                <input type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Title"required="">
+                                                
                                             </div>
                                             <div class="mb-2 col-md-4">
-                                                <label class="d-block text-font">Caption</label>
-                                                <input type="text" class="form-control input-font" name="title" id="" required="">
-                                                <span class="error_text">
-                                                    <?php //echo form_error('title'); 
-                                                    ?>
-                                                </span>
+                                                <label class="d-block text-font">Mobile Number</label>
+                                                <input type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Mobile Number" required="">
+                                                
+                                            </div>
+                                            <div class="mb-2 col-md-4">
+                                                <label class="d-block text-font">Email</label>
+                                                <input type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Email" required="">
+                                                
+                                            </div>
+                                            <div class="mb-2 col-md-4">
+                                                <label class="d-block text-font">Subject</label>
+                                                <input type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Subject" required="">
+                                                
+                                            </div>
+                                            <div class="mb-2 col-md-8">
+                                                <label class="d-block text-font">Description</label>
+                                                <textarea type="text" class="form-control input-font" name="name" id="name" placeholder="Enter Description" required=""></textarea>
+                                                
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                             <button class="btn btn-primary save">Submit</button>
+                                            <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-warning" type="button" data-dismiss="modal">Reset</button>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +100,14 @@
                                         <td>anismulani1999@gmail.com</td>
                                         <td>Subject</td>
                                         <td>12/02/2023</td>
-                                        <td><?php echo $list_photos['title']; ?></td>
+                                        <td class="d-flex border-bottom-0">
+                                        
+                                            <button  class="btn btn-primary btn-sm mr-2 text-white" data-toggle="modal" data-target="#editform">View</button>
+                                            <button  class="btn btn-danger btn-sm mr-2">Delete</button>
+                                            <button  class="btn btn-info btn-sm mr-2">Archive</button>
+
+                                            
+                                        </td>
                                       
                                 </tr>
                          </tbody>
