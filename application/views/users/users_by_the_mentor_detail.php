@@ -6,7 +6,11 @@
     margin-bottom: 36px;
 
 }
-
+.yourWall_image {
+    height: 331px;
+    margin-bottom: 17px;
+    position: relative;
+}
 .yourWall_image_view {
     height: 200px;
     margin-bottom: 17px;
@@ -16,7 +20,7 @@
 .Text-container_view {
     padding: 0px 19px 4px;
     text-align: justify;
-    min-height: 180px;
+    /* min-height: 180px; */
 }
 
 .yourWall_title_view {
