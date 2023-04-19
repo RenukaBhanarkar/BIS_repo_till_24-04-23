@@ -252,7 +252,7 @@ $(document).ready(function(){
                 for (i in data) {
                             
                      
-row += '<a href="https://' +data[i].link + '"target="_blank" title="Twitter" class="jquery-once-4-processed"><img src="<?php echo base_url(); ?>uploads/'+data[i].icon +'"class="social_image">Twitter</a>';            
+row += '<a href="https://' +data[i].link + '"target="_blank" title="Twitter" onclick="follow_pop()" class="jquery-once-4-processed"><img src="<?php echo base_url(); ?>uploads/'+data[i].icon +'"class="social_image">Twitter</a>';            
                 }
                 $(".social-content").html(row);
     },
@@ -265,6 +265,11 @@ row += '<a href="https://' +data[i].link + '"target="_blank" title="Twitter" cla
 </script>
 <script>
         function bis_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
+    <script>
+        function follow_pop(){
             alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
         }
     </script>
