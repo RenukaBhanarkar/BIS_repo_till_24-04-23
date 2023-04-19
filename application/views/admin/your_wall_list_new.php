@@ -25,7 +25,7 @@
 			<div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example_4" class="table-bordered display nowrap" style="width:100%">
+                    <table id="example_1" class="table-bordered display nowrap" style="width:100%">
                         <thead>
                         <tr>
                                 <th>Sr. No.</th>
@@ -84,7 +84,7 @@
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example_1" class="table-bordered display nowrap" style="width:100%">
+                    <table id="example_2" class="table-bordered display nowrap" style="width:100%">
                         <thead>
                         <tr>
                                 <th>Sr. No.</th>
@@ -143,7 +143,7 @@
 			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example_2" class="table-bordered display nowrap" style="width:100%">
+                    <table id="example_3" class="table-bordered display nowrap" style="width:100%">
                         <thead>
                         <tr>
                         <th>Sr. No.</th>
@@ -194,7 +194,7 @@
             <div class="tab-pane fade" id="archive-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="example_3" class="table-bordered display nowrap" style="width:100%">
+                    <table id="example_4" class="table-bordered display nowrap" style="width:100%">
                         <thead>
                         <tr>
                         <th>Sr. No.</th>

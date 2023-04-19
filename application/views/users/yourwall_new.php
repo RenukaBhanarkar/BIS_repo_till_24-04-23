@@ -40,7 +40,7 @@
     #yourwall_description{
         display:block;
         overflow: hidden;
-        height: 80px;
+        height: 84px;
     }
     .select-wrapper {
     background: url(http://localhost/BIS/BIS_repo//assets/images/plus.png) no-repeat;
@@ -111,7 +111,7 @@
         <?php foreach($published_wall as $list){ ?>
 
                 <div class="item">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 20rem;">
                         <div class="yourWall_image">
                             <img src="<?php echo base_url()."uploads/your_wall/".$list['image']; ?>" class="card-img-top" alt="">
                             <span><i class="fa fa-calendar icons"></i><?php echo date("m-d-Y",strtotime($list['created_on'])); ?></span>
@@ -149,18 +149,47 @@
                     <div class="row">
                         <div class="col-sm-6 mt-3">
 
-                            <input type="text" class="form-control title-height mb-4" name="title" id="title" placeholder="Title" >
+                            <input type="text" class="form-control title-height mb-2" name="title" id="title" placeholder="Title" >
                             
 
                         </div>
-                        <div class="col-sm-6 mt-3">
+                        <div class="mb-2 col-md-6">
+                                <label class="d-block text-font">Upload Image</label>
+                                <div class="d-flex">
+                                    <div>
+                                    <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" >
+                                    
+                                   </div>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalFirst">
+                                        Preview
+                                    </button>
+                                </div>
+                                <span id="err_image" class="text-danger"></span>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalFirst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="max-width: 700px;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Uplaod Image</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img id="outputFirst" width="100%" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                            </div>
+                        <!-- <div class="col-sm-6 mt-3">
                             <div class="file-upload-wrapper" data-text="">
                                 <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" >
                                 <span id="err_image" class="text-danger"></span>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-sm-12">
-                            <div class="form-group ">
+                            <div class="form-group" id="yourWall_des">
                                 <textarea class="form-control  w-100" rows="8" placeholder="Share Your Description......" name="description" id="description" ></textarea>
                                 
 
@@ -506,7 +535,7 @@
                     if ($("#image").val() == '') {
                         // alert('please select Image');
                         $("#image").val('');
-                        $("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                      //  $("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
                         $("#err_image").text("This value is required");                
                 is_valid = false;
                 allfields = false;
@@ -540,7 +569,7 @@
                         if ($("#description").next(".validation").length == 0) // only add if not added
                         {
                             $('#description').attr('required',true);
-                            $("#description").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
+                            $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
                         }
                         if (!focusSet) { $("#description").focus(); }
                         allfields = false;
@@ -685,6 +714,11 @@
                 // });
                     }
 </script>
+<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+                        CKEDITOR.replace( 'description' );
+
+</script> 
   
   
