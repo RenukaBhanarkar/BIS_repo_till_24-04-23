@@ -255,7 +255,7 @@ h5{
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -280,7 +280,7 @@ h5{
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size should be 50KB or more</p>
+                    <p>File size should be 20KB or more</p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -300,7 +300,7 @@ h5{
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size should be less than 250KB </p>
+                    <p>File size should be less than 200KB </p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -359,6 +359,22 @@ console.log('clicked');
 
   var loadFileThumbnail = function(event) 
     {
+        var fileSize = $('#image_src2')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src2").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src2').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src2').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src2').val('');
+            $('#invalidfiletype').modal('show');
+        }
        //  $("#Previewimg").show();
         var outputThumbnail = document.getElementById('outputThumbnail');
         
@@ -374,6 +390,24 @@ console.log('clicked');
 
     var loadFileThumbnail1 = function(event) 
     {
+
+        var fileSize = $('#image_src3')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src3").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src3').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src3').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src3').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
        //  $("#Previewimg").show();
         var outputThumbnail1 = document.getElementById('outputThumbnail1');
         
@@ -389,6 +423,24 @@ console.log('clicked');
 
     var loadFileThumbnail2 = function(event) 
     {
+
+        var fileSize = $('#image_src4')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src4").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src4').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src4').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src4').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
        //  $("#Previewimg").show();
         var outputThumbnail2 = document.getElementById('outputThumbnail2');
         
@@ -404,6 +456,25 @@ console.log('clicked');
 
     var loadFileThumbnail3 = function(event) 
     {
+
+        var fileSize = $('#image_src5')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src5").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src5').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src5').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src5').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
+
        //  $("#Previewimg").show();
         var outputThumbnail3 = document.getElementById('outputThumbnail3');
         
@@ -476,7 +547,7 @@ console.log('clicked');
              if ($("#document2").val() != '') {
                    var fileSize = $('#document2')[0].files[0].size;
 
-                   if (fileSize > 256000) {
+                   if (fileSize > 200000) {
                        var is_valid = false;
                        $('#greaterSize').modal('show');
                        $("#document2").val();
@@ -485,13 +556,13 @@ console.log('clicked');
                            var is_valid = false;
                            // alert("Please select file size greater than 500 KB");
                            return false;
-                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 200 KB </div>");
                        }
                        var is_valid = false;
                        if (!focusSet) {
                            $("#document2").focus();
                        }
-                   } else if(fileSize < 51200){
+                   } else if(fileSize < 20000){
                        is_valid = false;
                        $("#document2").val();
                        if ($("#imgerror3").next(".validation").length == 0) 

@@ -327,7 +327,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size shoud be less than 250KB </p>
+                    <p>File size shoud be less than 200KB </p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
@@ -383,7 +383,7 @@
                     //     alert('please select Image');
                     // }
 
-                    if (fileSize > 509600) {
+                    if (fileSize > 204800) {
                          is_valid = false;
                         allfields = false;
                         $("#image").val('');
@@ -404,6 +404,7 @@
                         $("#image").val('');
                         is_valid = false;
                         allfields = false;
+                        $('#lessSize').modal('show');
                         // $('#lessSize').modal('show');
                         // // alert("Please select file size greater than 20 KB");
                         // if ($("#err_image").next(".validation").length == 0) 
@@ -462,6 +463,23 @@
          var loadFileThumbnail = function(event) 
     {
        //  $("#Previewimg").show();
+       var fileSize = $('#image_src2')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src2").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+       console.log(fileSize);
+if(fileSize < 20000){
+    $('#image_src2').val('');
+    $('#lessSize').modal('show');
+}else if(fileSize > 200000){
+    $('#image_src2').val('');
+    $('#greaterSize').modal('show');
+}else if($.inArray(fileNameExt, validExtensions) == -1){
+    $('#image_src2').val('');
+    $('#invalidfiletype').modal('show');
+}
+
         var outputThumbnail = document.getElementById('outputThumbnail');
         
         outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
@@ -476,6 +494,26 @@
 
     var loadFileThumbnail1 = function(event) 
     {
+
+        var fileSize = $('#image_src3')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src3").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src3').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src3').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src3').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
+
+
        //  $("#Previewimg").show();
         var outputThumbnail1 = document.getElementById('outputThumbnail1');
         
@@ -491,6 +529,24 @@
 
     var loadFileThumbnail2 = function(event) 
     {
+        var fileSize = $('#image_src4')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src4").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+                console.log(fileSize);
+            if(fileSize < 20000){
+                $('#image_src4').val('');
+                $('#lessSize').modal('show');
+            }else if(fileSize > 200000){
+                $('#image_src4').val('');
+                $('#greaterSize').modal('show');
+            }else if($.inArray(fileNameExt, validExtensions) == -1){
+                $('#image_src4').val('');
+                $('#invalidfiletype').modal('show');
+            }
+
+
        //  $("#Previewimg").show();
         var outputThumbnail2 = document.getElementById('outputThumbnail2');
         
@@ -506,6 +562,23 @@
 
     var loadFileThumbnail3 = function(event) 
     {
+
+        var fileSize = $('#image_src5')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src5").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src5').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src5').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src5').val('');
+            $('#invalidfiletype').modal('show');
+        }
        //  $("#Previewimg").show();
         var outputThumbnail3 = document.getElementById('outputThumbnail3');
         
@@ -524,19 +597,22 @@
             function submitButton() {
     // event.preventDefault();
            var is_valid = true;
+           var allfields = true;
                     // e.preventDefault();
                     $('#addwall').addClass('was-validated');
                     var focusSet = false;
-                    var allfields = true;
+                    // var allfields = true;
                     var title = $("#title").val();
-                    var description = $("#description").val(); 
+                    // var description = $("#description").val(); 
+                    var description =   CKEDITOR.instances['description'].getData(); 
+                    console.log(description.length);
                     var image = $("#image").val(); 
 
                     if ($("#image").val() == '') {
 
                         if ($("#image").next(".validation").length == 0) // only add if not added
                         {
-                            $("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                            //$("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
                             // $("#imgError1").text('Please upload .jpg / .jpeg/.png image ');
                             // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
                         }
@@ -547,7 +623,7 @@
                 is_valid = false;
                 allfields = false;
                     }else{
-                       
+                        $("#err_image").text("");    
                     }
                    
 
@@ -572,20 +648,31 @@
                         $("#title").next(".validation").remove(); // remove it
                     } 
 
-                    if (description == "" || description== null) {
+                    if (description.length == "" || description.length== null) {
                         if ($("#description").next(".validation").length == 0) // only add if not added
                         {
                             $('#description').attr('required',true);
                             $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
                         }
-                        if (!focusSet) { $("#description").focus(); }
+                        // if (!focusSet) { $("#description").focus(); }
                         allfields = false;
-                    } else {
+                    } else if(description.length < 10 || description.length > 2000) {
+                        allfields = false;
+                        if ($("#description").next(".validation").length == 0) // only add if not added
+                        {
+                            $('#description').attr('required',true);
+                            $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'>10 to 2000 </div>");
+                        }
+                        // if (!focusSet) { $("#description").focus(); }
+                        
                         // is_valid = true;
                         // allfields =true;
-                            $("#description_error").hide();
+                            // $("#description_error").hide();
 
-                    } 
+                    } else{
+                        allfields = true;
+                        $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'></div>");
+                    }
 
                 //     if ($("#image").val() != '') {
                 //     var fileSize = $('#image')[0].files[0].size;
@@ -679,7 +766,7 @@
                             if (result.isConfirmed) {
                                 Swal.fire('Saved!', '', 'success')
                                 // return true;
-                                // $('#addwall').submit();
+                                $('#addwall').submit();
                                 return true
                             } else if (result.isDenied) {
                                 Swal.fire('Changes are not saved', '', 'info')
@@ -720,6 +807,64 @@
                     // $('#addwall').submit();
                 // });
                     }
+</script>
+<script>
+     $('#image_src2').on('change', function(){
+
+                    var focusSet = false;
+                    var is_valid = true;
+                    if ($("#image").val() != '') {
+                    var fileSize = $('#image')[0].files[0].size;
+
+                    if (fileSize > 204800) {
+                         is_valid = false;
+                        allfields = false;
+                        $("#image_src2").val('');
+                     
+                        $('#greaterSize').modal('show');                       
+                        if (!focusSet) {
+                            $("#image").focus();
+                        }
+                        return false;
+                    } else if(fileSize < 20480){
+                        $("#image_src2").val('');
+                        is_valid = false;
+                        allfields = false;
+                        $('#lessSize').modal('show');                       
+                       
+                    }else{                        
+                        $("#err_image").next(".validation").remove(); // remove it
+                        $("#err_image").after("");
+                    }
+                    // check type  start
+                    
+                    var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+                    var fileName = $("#image").val();;
+                    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                    if ($.inArray(fileNameExt, validExtensions) == -1) {
+                        $('#image_src2').val('');
+                        // alert("Invalid file type");
+                        $('#invalidfiletype').modal('show');
+                          is_valid = false;
+                     
+                        allFields = false;
+                      
+                    } else {
+                        // is_valid = true;
+                        $("#imgError1").next(".validation").remove(); // remove it
+                    }
+                    
+                }else{
+                  return true;
+                }
+
+                if(is_valid){
+                    return true;
+                }else{
+                    // alert('is_valid');
+                    return false;
+                }
+            });
 </script>
 <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
