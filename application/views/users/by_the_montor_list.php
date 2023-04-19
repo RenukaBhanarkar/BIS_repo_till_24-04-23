@@ -64,7 +64,7 @@
                                         <td><?php echo $list_btm1['title']; ?></td>                                        
                                         <td><?php echo $list_btm1['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm1['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                                <img src="<?php echo base_url(); ?><?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -131,7 +131,7 @@
                                         <td><?php echo $list_btm['title']; ?></td>                                        
                                         <td><?php echo $list_btm['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                                <img src="<?php echo base_url(); ?><?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -189,7 +189,7 @@
                                         <td><?php echo $list_btm['title']; ?></td>                                        
                                         <td><?php echo $list_btm['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                                <img src="<?php echo base_url(); ?><?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -247,7 +247,7 @@
                                         <td><?php echo $list_btm1['title']; ?></td>                                        
                                         <td><?php echo $list_btm1['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm1['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                                <img src="<?php echo base_url(); ?><?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>

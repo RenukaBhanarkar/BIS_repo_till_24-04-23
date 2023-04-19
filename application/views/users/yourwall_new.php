@@ -43,7 +43,7 @@
         height: 84px;
     }
     .select-wrapper {
-    background: url(http://localhost/BIS/BIS_repo//assets/images/plus.png) no-repeat;
+    background: url('<?php echo base_url(); ?>assets/images/plus.png') no-repeat;
     background-size: cover;
     display: block;
     position: absolute;
@@ -201,7 +201,7 @@
                     <div class="mb-3 col-md-3">
                           <div class="input_box" >
                               <div class="select-wrapper" id="img_2">
-                                    <input type="file" class="form-control input-font" name="image2" id="image_src2" required="" accept="image/*" onchange="loadFileThumbnail(event)">
+                                    <input type="file" class="form-control input-font" name="image2" id="image_src2"  accept="image/*" onchange="loadFileThumbnail(event)">
                               </div>
                                <span id="display_img_2" style="display:none;">
                                <img src="" id="outputThumbnail" alt="" class="w-100 img_mentor">
@@ -211,7 +211,7 @@
                     <div class="mb-3 col-md-3">
                           <div class="input_box">
                               <span class="select-wrapper" id="img_3">
-                                    <input type="file" class="form-control input-font" name="image3" id="image_src3" required="" accept="image/*" onchange="loadFileThumbnail1(event)">
+                                    <input type="file" class="form-control input-font" name="image3" id="image_src3"  accept="image/*" onchange="loadFileThumbnail1(event)">
                                </span>
                                <span id="display_img_3" style="display:none;">
                                <img src="" id="outputThumbnail1" alt="" class="w-100 img_mentor">
@@ -221,7 +221,7 @@
                     <div class="mb-3 col-md-3">
                           <div class="input_box">
                               <span class="select-wrapper" id="img_4">
-                                    <input type="file" class="form-control input-font" name="image4" id="image_src4" required="" accept="image/*" onchange="loadFileThumbnail2(event)">
+                                    <input type="file" class="form-control input-font" name="image4" id="image_src4" accept="image/*" onchange="loadFileThumbnail2(event)">
                                </span>
                                <span id="display_img_4" style="display:none;">
                                <img src="" id="outputThumbnail2" alt="" class="w-100 img_mentor">
@@ -231,7 +231,7 @@
                     <div class="mb-3 col-md-3">
                           <div class="input_box">
                               <span class="select-wrapper" id="img_5">
-                                    <input type="file" class="form-control input-font" name="image5" id="image_src5" required="" accept="image/*" onchange="loadFileThumbnail3(event)">
+                                    <input type="file" class="form-control input-font" name="image5" id="image_src5"  accept="image/*" onchange="loadFileThumbnail3(event)">
                                </span>
                                <span id="display_img_5" style="display:none;">
                                <img src="" id="outputThumbnail3" alt="" class="w-100 img_mentor">
@@ -533,6 +533,13 @@
                     var image = $("#image").val(); 
 
                     if ($("#image").val() == '') {
+
+                        if ($("#image").next(".validation").length == 0) // only add if not added
+                        {
+                            $("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                            // $("#imgError1").text('Please upload .jpg / .jpeg/.png image ');
+                            // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                        }
                         // alert('please select Image');
                         $("#image").val('');
                       //  $("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
@@ -672,7 +679,7 @@
                             if (result.isConfirmed) {
                                 Swal.fire('Saved!', '', 'success')
                                 // return true;
-                                $('#addwall').submit();
+                                // $('#addwall').submit();
                                 return true
                             } else if (result.isDenied) {
                                 Swal.fire('Changes are not saved', '', 'info')
