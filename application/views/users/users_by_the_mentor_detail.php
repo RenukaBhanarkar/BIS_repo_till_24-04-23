@@ -219,19 +219,25 @@
                         </div>
                         <?php } ?>
                         <?php if(!($by_the_mentor['other_image4'])==""){ ?>
+                        
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
                                 <img src="<?php echo base_url().$by_the_mentor['other_image4']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        
                         <?php } ?>
                     </div>
                     <?php if(!($by_the_mentor['document'])==""){ ?>
-                    <div class="" style="text-align: end; margin-right: 23px;">
-                            <a class="btn btn-info mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank"><img  src="<?php echo base_url().'assets/admin/img/pdf.png'; ?>" width="25px"/></a>
+                        
+                        
+                    <div class="" style="margin-left: 17px;">
+                            <a class="btn btn-info mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank"><img  src="<?php echo base_url().'assets/admin/img/pdf.png'; ?>" width="100px"/></a>
                             </a>
                     </div>
+                        
+                        
                     <?php } ?>
                         
                     </div>
