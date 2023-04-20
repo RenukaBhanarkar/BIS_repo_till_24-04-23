@@ -264,7 +264,7 @@ h5{
 
 
         </div>
-    <div class="row mt-5" style="display:none;">
+    <div class="row mt-5">
         <?php foreach($by_the_mentor as $list){ ?>
         <div class="col-md-4 mb-4">
             <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>">

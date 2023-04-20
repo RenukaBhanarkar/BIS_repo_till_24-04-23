@@ -1,3 +1,8 @@
+<style>
+    table.dataTable.nowrap th, table.dataTable.nowrap td {
+    white-space: normal;
+}
+</style>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -42,7 +47,7 @@
               <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="col-12 mt-3">
                    <div class="card border-top card-body">
-                    <table id="example" class="table table-bordered display now" style="width:100%">
+                    <table id="example5" class="table table-bordered display now" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>                               
@@ -451,6 +456,9 @@
           //  responsive: true
         });
         $('#example3').DataTable({
+            scrollx:true
+        });
+        $('#example5').DataTable({
             scrollx:true
         });
         // $('#example').DataTable({
