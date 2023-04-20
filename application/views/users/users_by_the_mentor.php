@@ -522,15 +522,22 @@ h5{
             </div>
         </div>
     </div>
-  <script>
-    $(document).ready(function(){
-        $("#mentorForm_hide").hide();
+    <script src="<?php echo base_url();?>assets/js/jquery-3.5.1.js"></script>
+    <script>
+        
+       $(document).ready(function(){
+        $('#mentorForm_hide').hide();
+   
+    }); 
+</script>
+<script>
         $("#mentorForm_show").click(function(){
-        $("#mentorForm_hide").show();
-  });
- 
-});
-
+        $("#mentorForm_hide").show();
+     });
+    
+</script>
+  <script>
+  
     $(document).ready(function(){
         $('#title').change('change',function(){
 console.log('clicked');
