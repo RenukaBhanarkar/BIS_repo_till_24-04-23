@@ -149,15 +149,15 @@
                     <div class="row">
                         <div class="col-sm-4 mt-3">
 
-                            <input type="text" class="form-control title-height mb-2" name="title" id="title" placeholder="Title" >
-                            
+                            <input type="text" class="form-control title-height mb-2" name="title" id="title_id" placeholder="Title" >
+                            <span id="err_title" class="text-danger"></span>
 
                         </div>
                         <div class="mb-2 col-md-4">
                                 <label class="d-block text-font">Upload Image</label>
                                 <div class="d-flex">
                                     <div>
-                                    <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" onchange="loadFileThumbnail5(event)">
+                                    <input type="file" class="file-control" name="image" id="image_thumb" value="" required accept="image/*" onchange="loadFileThumbnail5(event)" >
                                     
                                    </div>
                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalFirst">
@@ -202,7 +202,8 @@
                         </div> -->
                         <div class="col-sm-12">
                             <div class="form-group" id="yourWall_des">
-                                <textarea class="form-control  w-100" rows="8" placeholder="Share Your Description......" name="description" id="description" ></textarea>
+                                <textarea class="form-control  w-100" rows="8" placeholder="Share Your Description......" name="description" id="description" required minlength="5" maxlength="2000" ></textarea>
+                                <span class="text-danger" id="des_error"></span>
                                 
 
                                 
@@ -256,7 +257,7 @@
             </div>
             <div class="col-md-12 row">
             <div class="button-group float-end mt-3" style="text-align: end;">
-                                    <button onclick="return submitButton()" type="submit" name="submit" class="btn btn-danger submit">Submit</button>
+                                    <button onclick="return submitButton(event)" type="submit"  class="btn btn-danger submit">Submit</button>
                                     
                                 </div>
             </div>
@@ -409,108 +410,70 @@
         </div>
     </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+       
         <script>
-            function submit1(){
-                // event.preventDefault();
-                // return true;
-                 $('#addwall').submit();
-            }
-            $(document).ready(function(){
+$(document).ready(function(){
+$('#addwall').removeClass('was-validated');
 
-                $('#addwall').removeClass('was-validated');
-
-
-                $('#image').on('change', function(){
-                    $("#title").attr('required',true);
-                    $('#addwall').addClass('was-validated');
-                    console.log("sdfgsdf");
+// $('#image_thumb').on('change',function(){
+//     alert('jkgjh');
+// })
+$('#image_thumb').on('change', function(){ 
+                    
                     var focusSet = false;
                     var is_valid = true;
-                    if ($("#image").val() != '') {
-                    var fileSize = $('#image')[0].files[0].size;
-
-                    // if ($("#image").val() != '') {
-                    //     alert('please select Image');
-                    // }
-
+                    if ($("#image_thumb").val() != '') {
+                    var fileSize = $('#image_thumb')[0].files[0].size;
                     if (fileSize > 204800) {
                          is_valid = false;
                         allfields = false;
-                        $("#image").val('');
+                        $("#image_thumb").val('');
                         // alert("Please select file size less than 500 KB");
                         $('#greaterSize').modal('show');
-                        // if ($("#imgError1").next(".validation").length == 0) // only add if not added
-                        // {
-                        //     var is_valid = false;
-                        //     // alert("Please select file size less than 500 KB");
-                        //     $("#err_image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
-                        // }
-                        //  is_valid = false;
+                       
                         if (!focusSet) {
                             $("#image").focus();
                         }
                         return false;
                     } else if(fileSize < 20480){
-                        $("#image").val('');
+                        $("#image_thumb").val('');
                         is_valid = false;
                         allfields = false;
-                        $('#lessSize').modal('show');
-                        // $('#lessSize').modal('show');
-                        // // alert("Please select file size greater than 20 KB");
-                        // if ($("#err_image").next(".validation").length == 0) 
-                        // {
-                        // is_valid = false;
-                        // //    alert("Please select file size greater than 20 KB");
-                        // //    $("#err_image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20KB </div>");
-                        // return false;
-                        // }
-                        // is_valid = false;
+                        $('#lessSize').modal('show');                       
                        
                     }else{
                         
-                        $("#err_image").next(".validation").remove(); // remove it
-                        $("#err_image").after("");
+                        $("#err_image").text(""); // remove it
+                        // $("#err_image").after("");
+
                     }
                     // check type  start
                     
                     var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
-                    var fileName = $("#image").val();;
+                    var fileName = $("#image_thumb").val();;
                     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
                     if ($.inArray(fileNameExt, validExtensions) == -1) {
-                        $('#image').val('');
+                        $('#image_thumb').val('');
                         // alert("Invalid file type");
                         $('#invalidfiletype').modal('show');
-                          is_valid = false;
-                        // if ($("#imgError1").next(".validation").length == 0) // only add if not added
-                        // {
-                        //     // $("#imgError1").text('Please upload .jpg / .jpeg/.png image ');
-                        //     // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
-                        // }
+                   
                         allFields = false;
-                        // if (!focusSet) {
-                        //     $("#image").focus();
-                        // }
+                        $("#err_image").text("This value is required");
+                      
                     } else {
                         // is_valid = true;
-                        $("#imgError1").next(".validation").remove(); // remove it
+                        $("#err_image").text("");
+                        // $("#imgError1").next(".validation").remove(); // remove it
                     }
                     
                 }else{
-                    $("#imgError1").text('This value is required');
-                    $("#image").focus();
+                    $("#err_image").text('This value is required');
+                    $("#image_thumb").focus();
                     return false;
                 }
-                // if(is_valid){
-                //     return true;
-                // }else{
-                //     // alert('is_valid');
-                //     return false;
-                // }
+              
             });
-            })
-            </script>
-        <script>
-
+});
 
 var loadFileThumbnail5 = function(event) 
     {
@@ -664,8 +627,8 @@ if(fileSize < 20000){
            
     // $('#addwall').submit( 'click',function(e) {
         // $('.submit').on( 'click',function(e) {
-            function submitButton() {
-                // event.preventDefault();
+            function submitButton(event) {
+                event.preventDefault();
                 // e.preventDefault();
         //    var is_valid = true;
            var allfields = true;
@@ -673,79 +636,108 @@ if(fileSize < 20000){
                     $('#addwall').addClass('was-validated');
                     var focusSet = false;
                     // var allfields = true;
-                    var title = $("#title").val();
+                    var title = $("#title_id").val();
+                    console.log(title);
                     // var description = $("#description").val(); 
                     var description =   CKEDITOR.instances['description'].getData(); 
                     console.log(description.length);
-                    var image = $("#image").val(); 
+                    // var image = $("#image").val(); 
 
-                    if ($("#image").val() == '') {
+                    if (title == "" || title== null) {
+                        $('#err_title').text("This value is required");
+                        $('#title_id').attr('required',true);
+                        if ($("#title_id").next(".validation").length == 0) // only add if not added
+                        {
+                            $('#title_id').attr('required',true);
+                            // $("#title_id").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
+                        }
+                        if (!focusSet) { $("#title_id").focus(); }
+                        allfields = false;
+                    } else {
+                        // allfields =true;
+                        // is_valid = true;
+                        $('#err_title').text("");
+                        $("#title_id").next(".validation").remove(); // remove it
+                    } 
 
-                        if ($("#image").next(".validation").length == 0) // only add if not added
+                    if ($("#image_thumb").val() == '') {
+                        $('#image_thumb').attr('required',true);
+                        if ($("#image_thumb").next(".validation").length == 0) // only add if not added
                         {
                             //$("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
                             // $("#imgError1").text('Please upload .jpg / .jpeg/.png image ');
                             // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
                         }
                         // alert('please select Image');
-                        $("#image").val('');
+                        $("#image_thumb").val('');
                       //  $("#image").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
                         $("#err_image").text("This value is required");                
-                is_valid = false;
-                allfields = false;
+                        is_valid = false;
+                        allfields = false;
+                        // return false;
                     }else{
                         $("#err_image").text("");    
                     }
                    
 
 
+                   
+                    if ($("#image_thumb").val() != '') {
+                        $("#err_image").text('');
+                    }else{
+                        
+                        $("#err_image").text('This value is required');
+                   $("#image_thumb").focus();
+                   allfields = false;
+                //    return false;
+                    }
 
 
 
 
 
-
-                    if (title == "" || title== null) {
-                        if ($("#title").next(".validation").length == 0) // only add if not added
-                        {
-                            $('#title').attr('required',true);
-                            $("#title").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
-                        }
-                        if (!focusSet) { $("#title").focus(); }
-                        allfields = false;
-                    } else {
-                        // allfields =true;
-                        // is_valid = true;
-                        $("#title").next(".validation").remove(); // remove it
-                    } 
+                    
 
                     if (description.length == "" || description.length== null) {
-                        if ($("#description").next(".validation").length == 0) // only add if not added
-                        {
-                            $('#description').attr('required',true);
-                            $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
-                        }
+                        $("#des_error").text("This value is required");
+                        $('#description').attr('required',true);
+
+                        // if ($("#description").next(".validation").length == 0) // only add if not added
+                        // {
+                        //     $('#description').attr('required',true);
+                        //     $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'>This value is required </div>");
+                        // }
                         // if (!focusSet) { $("#description").focus(); }
                         allfields = false;
                     } else if(description.length < 10 || description.length > 2000) {
                         allfields = false;
+                       
+                        $("#des_error").text("Character length between 10 to 2000");      
                         if ($("#description").next(".validation").length == 0) // only add if not added
                         {
                             $('#description').attr('required',true);
-                            $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'>10 to 2000 </div>");
+                            // $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'>Character length between 10 to 2000 </div>");
                         }
                         // if (!focusSet) { $("#description").focus(); }
                         
                         // is_valid = true;
                         // allfields =true;
                             // $("#description_error").hide();
-
+                        return false;
                     } else{
+                        allfields = true;
+                        $("#des_error").text("");  
                         // allfields = true;
                         $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'></div>");
                     }
 
-                //     if ($("#image").val() != '') {
+                    // if ($("#image_src2").val() != '') {
+                    //     allfields = false;
+                    // }else{
+
+                    // }
+
+                //     if ($("#image_src2").val() != '') {
                 //     var fileSize = $('#image')[0].files[0].size;
                 //     if (fileSize > 509600) {
                 //         var is_valid = false;
@@ -897,7 +889,7 @@ if(fileSize < 20000){
                      
                         $('#greaterSize').modal('show');                       
                         if (!focusSet) {
-                            $("#image").focus();
+                            $("#image_src2").focus();
                         }
                         return false;
                     } else if(fileSize < 20480){
