@@ -1581,10 +1581,8 @@
                                 } else {
                                     var hindiQue = data[i].que_h;
                                 }
-
                             }
                             if (data[i].language == 1 || data[i].language == 3) {
-
                                 if (data[i].image != '') {
                                     var img = data[i].image;
                                     var dynamicImg = '<td>' + engQue + '<br>' +
@@ -1597,8 +1595,6 @@
                                 var dynamicImg = '<td>--</td>';
                             }
                             if (data[i].language == 2 || data[i].language == 3) {
-
-
                                 if (data[i].image != '') {
                                     var img = data[i].image;
                                     var dynamicImgHindi = '<td>' + hindiQue + '<br>' +
@@ -1611,7 +1607,7 @@
                                 var dynamicImgHindi = '<td>--</td>';
                             }
                             /////////////////////////////////////////////// 
-                            if (data[i].language == 1) {
+                            if (data[i].language == 1 || data[i].language == 3) {
                                 if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
 
                                     if (data[i].opt1_e == 0 || data[i].opt1_e == "") {
@@ -1657,7 +1653,7 @@
 
 
                             }
-                            if (data[i].language == 2) {
+                            if (data[i].language == 2 || data[i].language == 3) {
                                 if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
                                     if (data[i].opt1_h == '' || data[i].opt1_h == 0) {
                                         var op1_h_img = data[i].option1_h_image;
