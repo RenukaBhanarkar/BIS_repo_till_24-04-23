@@ -157,7 +157,7 @@
                                 <label class="d-block text-font">Upload Image</label>
                                 <div class="d-flex">
                                     <div>
-                                    <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" >
+                                    <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" onchange="loadFileThumbnail5(event)">
                                     
                                    </div>
                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalFirst">
@@ -175,7 +175,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <img id="outputFirst" width="100%" />
+                                                <img id="outputThumbnail8" width="100%" />
                                             </div>
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@
                                 <label class="d-block text-font">Upload Document</label>
                                 <div class="d-flex">
                                     <div>
-                                    <input type="file" class="file-upload-field" name="image" id="image" value="" accept="image/*" >
+                                    <input type="file" class="file-upload-field" name="document" id="document" value="" accept="pdf/*" >
                                     
                                    </div>
                                     
@@ -355,13 +355,51 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <p>Only jpg,png,jpeg files accepted.</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="greaterSize_pdf" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>File size should be less than 5MB </p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="invalidfiletype_pdf" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Only pdf files accepted.</p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -462,16 +500,36 @@
                     $("#image").focus();
                     return false;
                 }
-                if(is_valid){
-                    return true;
-                }else{
-                    // alert('is_valid');
-                    return false;
-                }
+                // if(is_valid){
+                //     return true;
+                // }else{
+                //     // alert('is_valid');
+                //     return false;
+                // }
             });
             })
             </script>
         <script>
+
+
+var loadFileThumbnail5 = function(event) 
+    {
+        var outputThumbnail8 = document.getElementById('outputThumbnail8');
+        
+        outputThumbnail8.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail8.src);
+        outputThumbnail8.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail8.src);
+        }
+        // $('#display_img_2').show();
+        // $('#img_2').hide();
+    };
+
+
+
+
+
          var loadFileThumbnail = function(event) 
     {
        //  $("#Previewimg").show();
@@ -607,8 +665,9 @@ if(fileSize < 20000){
     // $('#addwall').submit( 'click',function(e) {
         // $('.submit').on( 'click',function(e) {
             function submitButton() {
-    // event.preventDefault();
-           var is_valid = true;
+                // event.preventDefault();
+                // e.preventDefault();
+        //    var is_valid = true;
            var allfields = true;
                     // e.preventDefault();
                     $('#addwall').addClass('was-validated');
@@ -682,7 +741,7 @@ if(fileSize < 20000){
                             // $("#description_error").hide();
 
                     } else{
-                        allfields = true;
+                        // allfields = true;
                         $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'></div>");
                     }
 
@@ -764,7 +823,10 @@ if(fileSize < 20000){
 //                 if(is_valid){
 //                     // return true;
 // alert('not valid');
+
+
                     if (allfields) { 
+                        
                         // $('#addwall').submit();
                         // $('#submit_alert').modal('show');
                         Swal.fire({
@@ -772,14 +834,14 @@ if(fileSize < 20000){
                             showDenyButton: true,
                             showCancelButton: true,
                             confirmButtonText: 'Submit',
-                            denyButtonText: `Cancle`,
+                            denyButtonText: `Close`,
                             }).then((result) => {
                             /* Read more about isConfirmed, isDenied below */
                             if (result.isConfirmed) {
                                 Swal.fire('Saved!', '', 'success')
                                 // return true;
                                 $('#addwall').submit();
-                                return true
+                                // return true
                             } else if (result.isDenied) {
                                 Swal.fire('Changes are not saved', '', 'info')
                             }
@@ -876,6 +938,71 @@ if(fileSize < 20000){
                     // alert('is_valid');
                     return false;
                 }
+            });
+
+
+            $('#document').on('change',function(){
+                if ($("#document").val() != '') {
+                   var fileSize = $('#document')[0].files[0].size;
+
+                   if (fileSize > 5242880) {
+                    //    var is_valid = false;
+                       $('#greaterSize_pdf').modal('show');
+                       $("#document").val();
+                       if ($("#document").next(".validation").length == 0) // only add if not added
+                       {
+                        //    var is_valid = false;
+                           // alert("Please select file size greater than 500 KB");
+                        //    return false;
+                           $("#document").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                       }
+                    //    var is_valid = false;
+                       if (!focusSet) {
+                           $("#document").focus();
+                       }
+                   } else if(fileSize < 1024){
+                    //    is_valid = false;
+                       $("#document").val();
+                       if ($("#document").next(".validation").length == 0) 
+                       {
+                    //    is_valid = false;
+                       $('#lessSize').modal('show');
+                       //    alert("Please select file size greater than 20 KB");
+                       //    $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size greater than 20 KB </div>");
+                    //    return false;
+                       }
+                    //    is_valid = false;
+                       if (!focusSet) {
+                           $("#upload_pdf").focus();
+                       }
+                   }else{
+                       $("#document").next(".validation").remove(); // remove it
+                   }
+                   // check type  start 
+                   var validExtensions = ['pdf']; //array of valid extensions
+                   var fileName = $("#document").val();;
+                   var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   if ($.inArray(fileNameExt, validExtensions) == -1) {
+                       $('#document').val('');
+                       // alert("Invalid file type");
+                       $('#invalidfiletype_pdf').modal('show');
+                    //    var  is_valid = false;
+                       if ($("#document").next(".validation").length == 0) // only add if not added
+                       {
+                           $("#err_document").text('Please upload .pdf');
+                           // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
+                       }
+                    //    allFields = false;
+                       if (!focusSet) {
+                           $("#document").focus();
+                       }
+                   } else {
+                    //    is_valid = true;
+                       $("#imgerror3").next(".validation").remove(); // remove it
+                   }
+               }else{
+                
+               }
             });
 </script>
 <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
