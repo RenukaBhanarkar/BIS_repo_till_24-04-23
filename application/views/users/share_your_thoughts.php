@@ -94,6 +94,17 @@
                   
                        
                 </div>
+                <div class="World_of_standers_inner_Box">
+                    <a href="<?php echo base_url().'users/standard_revised_list' ?>">
+                    <div class="World_of_standers_image_box">
+                        <img src="<?=base_url();?>assets/images/world_stander/revised.png" class="card-img-top" alt="Discussion Forum">
+                       
+                    </div>
+                    <p class="Title_Section_thoughts">Discussion Forum</p>
+                    </a>
+                  
+                       
+                </div>
              </div>
           
             

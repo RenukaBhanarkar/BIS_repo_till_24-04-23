@@ -36,18 +36,29 @@
         <div class="container">
             <div class="row my-5">
                 <div class="World_of_standers_inner_Box  shadow">
-                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/draft/" target="_blank">
+                    <a href="https://login.iec.ch/auth/realms/iecsso/login-actions/authenticate?execution=085b5fbd-01cf-44c4-9e4f-2996983710b6&client_id=comment&tab_id=v6ELwtEU0RI" target="_blank" onclick="iec_pop()">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/New_work_item.png" class="card-img-top" alt="Discussion Forum">
                        
                     </div>
-                    <p class="Title_Section">Preliminary Drafts Standards</p>
+                    <p class="Title_Section">IEC</p>
                     </a>
                   
                        
                 </div>
                 <div class="World_of_standers_inner_Box  shadow">
-                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/draft/wcdraftDepartment" target="_blank">
+                    <a href="https://www.iso.org/advanced-search/x/title/status/U/docNumber/docPartNo/docType/0/langCode/ics/currentStage/true/searchAbstract/true/stage/40.20/stageDateStart/stageDateEnd/committee/sdg" target="_blank" onclick="iso_pop()">
+                    <div class="World_of_standers_image_box">
+                        <img src="<?=base_url();?>assets/images/world_stander/New_work_item.png" class="card-img-top" alt="Discussion Forum">
+                       
+                    </div>
+                    <p class="Title_Section">ISO</p>
+                    </a>
+                  
+                       
+                </div>
+                <div class="World_of_standers_inner_Box  shadow">
+                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/draft/wcdraftDepartment" target="_blank" onclick="wide_pop()">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/Draft1.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -132,6 +143,21 @@
     <script src="<?=base_url();?>assets/js/font_resize.js"></script>
     <script src="<?=base_url();?>assets/js/dark_mode.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
+    <script>
+        function iec_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
+    <script>
+        function iso_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
+    <script>
+        function wide_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
 
 <script>
     

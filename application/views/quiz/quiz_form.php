@@ -411,6 +411,8 @@
                                 <!-- <input type="text" class="form-control input-font" name="Members" id="Members" placeholder="Enter Standard Club Member"> -->
                                 <select id="availability_id" name="availability_id" class="form-control input-font">
                                     <option value="" selected disabled>Select Option</option>
+                                    <option value="">Schools (upto class XII)</option>
+                                    <option value="">Higher Institutions (Colleges & Professional Institutes)</option>
                                     <?php foreach ($getAvailability as $Availability) { ?>
                                         <option value="<?php echo $Availability['id'] ?>"><?php echo $Availability['title'] ?></option>
                                     <?php } ?>

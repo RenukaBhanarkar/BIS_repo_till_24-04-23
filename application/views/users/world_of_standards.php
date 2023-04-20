@@ -103,7 +103,7 @@
                        
                 </div>
                 <div class="World_of_standers_inner_Box  shadow">
-                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/Published_Standards_new/new_standards">
+                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/Published_Standards_new/new_standards" onclick="publish_pop()" target="blank">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/PUBLISHED.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -114,7 +114,7 @@
                        
                 </div>
                 <div class="World_of_standers_inner_Box  shadow">
-                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/review/">
+                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/dgdashboard/review/"  onclick="review_pop()" target="blank">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/REVIEW.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -125,7 +125,7 @@
                        
                 </div>
                 <div class="World_of_standers_inner_Box  shadow">
-                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/standard_review/Standard_review/">
+                    <a href="https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/standard_review/Standard_review/" onclick="standard_pop()" target="blank">
                     <div class="World_of_standers_image_box">
                         <img src="<?=base_url();?>assets/images/world_stander/revised.png" class="card-img-top" alt="Discussion Forum">
                        
@@ -226,7 +226,21 @@
     <script src="<?=base_url();?>assets/js/font_resize.js"></script>
     <script src="<?=base_url();?>assets/js/dark_mode.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
-
+    <script>
+        function publish_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
+    <script>
+        function review_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
+    <script>
+        function standard_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
 <script>
      $('#photo_gallary').show();
       function abcd(){         

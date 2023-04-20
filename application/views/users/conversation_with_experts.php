@@ -245,7 +245,7 @@ h1 {
 
       <!-- Videos Section -->
       <div class="videos ">
-        <h1>Recommended</h1>
+        <h1 style="font-weight: 600; font-size: 26px; color: brown;">In Conversation with Experts</h1>
 
         <div class="videos__container">
           <!-- Single Video starts -->

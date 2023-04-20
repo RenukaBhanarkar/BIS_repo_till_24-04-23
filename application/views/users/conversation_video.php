@@ -151,18 +151,18 @@ button:disabled {
                         <source src="movie.ogg" type="video/ogg">
                             Your browser does not support the video tag.
                     </video>
-                    <div class="buttons">
+                    <!-- <div class="buttons">
                             <button class="playPause">Play video</button>
                             <button class="pip">Enter picture-in-picture mode</button>
-                    </div>
+                    </div> -->
                     </div>
                 <div class="video__details">
                     <div class="title-text">
                         <h3> <?= $Conversation['title']?> </h3>
                         <span><?= $Conversation['views']?> Views • <?= time_elapsed_string($Conversation['created_on'])?></span>
                         <span><?= $Conversation['likes']?> likes </span>
-                        <span class="like_button" type="button" onclick="submitLike('<?= $Conversation["id"]?>')"><i onclick="myFunction(this)" class="fa fa-heart" style="width:18px; font-size: 21px; margin-right: 9px;"></i>like</span>
-                        <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $Conversation['id'] )?>" data-toggle="tooltip" title="Copy Link and Share" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>share</a>
+                        <span class="like_button" type="button" onclick="submitLike('<?= $Conversation["id"]?>')"><i onclick="myFunction(this)" class="fa fa-heart" style="width:18px; font-size: 21px; margin-right: 9px; color:red;"></i>Like</span>
+                        <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $Conversation['id'] )?>" data-toggle="tooltip" title="Copy Link and Share" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>Share</a>
 
                           
                     </div> 
