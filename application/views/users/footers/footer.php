@@ -8,7 +8,7 @@
                         <div class="col-sm-4 col-lg-4 footer_text">
                             <h4>Accessibility & Help</h4>
                             <ul>
-                                <li><a href="">Feedback</a></li>
+                                <li><a href="<?php echo base_url(); ?>users/feedback_form">Feedback</a></li>
                                 <li><a href="#">Help</a></li>
                                 <li><a href="sitemap.html">Sitemap</a></li>
                                 <!-- <li><a href="#">Accessibility</a></li> -->
@@ -105,27 +105,36 @@
 <script>
 
 $('#carouselExampleControls').owlCarousel({
-    loop: true,
-  margin: 30,
-  dots: true,
-  nav: false,
-  responsiveClass: true,
-  autoplay: true,
+        loop: true,
+        margin: 30,
+        dots: true,
+        nav: false,
+        responsiveClass: true,
+        autoplay: true,
         autoPlaySpeed: 1000,
         autoPlayTimeout: 1000,
         autoplayHoverPause: true,
   responsive: {
     0: {
       items: 2,
-      margin: 10,
-      stagePadding: 20,
+    //   margin: 10,
+    //   stagePadding: 20,
     },
     600: {
       items: 3,
-      margin: 20,
-      stagePadding: 50,
+    //   margin: 20,
+    //   stagePadding: 50,
     },
     1000: {
+      items: 4
+    },
+    1200: {
+      items: 4
+    },
+    1400: {
+      items: 4
+    },
+    1600: {
       items: 4
     }
     }
@@ -243,7 +252,7 @@ $(document).ready(function(){
                 for (i in data) {
                             
                      
-row += '<a href="https://' +data[i].link + '"target="_blank" title="Twitter" class="jquery-once-4-processed"><img src="<?php echo base_url(); ?>uploads/'+data[i].icon +'"class="social_image">Twitter</a>';            
+row += '<a href="https://' +data[i].link + '"target="_blank" title="Twitter" onclick="follow_pop()" class="jquery-once-4-processed"><img src="<?php echo base_url(); ?>uploads/'+data[i].icon +'"class="social_image">Twitter</a>';            
                 }
                 $(".social-content").html(row);
     },
@@ -256,6 +265,11 @@ row += '<a href="https://' +data[i].link + '"target="_blank" title="Twitter" cla
 </script>
 <script>
         function bis_pop(){
+            alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
+        }
+    </script>
+    <script>
+        function follow_pop(){
             alert("You are being redirected to an external website. Please note that BIS Website cannot be held responsible for external websites content & privacy policies.");
         }
     </script>

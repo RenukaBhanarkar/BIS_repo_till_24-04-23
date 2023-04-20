@@ -583,4 +583,10 @@ class Quiz extends CI_Controller
         $this->load->view('Quiz/quiz_archive');
         $this->load->view('admin/footers/admin_footer');
     }
+    public function result_declaration_list(){        
+        $this->load->view('admin/headers/admin_header');;
+        $this->load->view('Quiz/result_declaration_list');
+        $this->load->view('admin/footers/admin_footer');
+    }
+
 }

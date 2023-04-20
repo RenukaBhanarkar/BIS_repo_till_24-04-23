@@ -2348,4 +2348,12 @@ textarea {
 	object-fit: fill;
     height: 100%;
 }
+label.d-block.text-font {
+    font-weight: 600;
+}
+.feedback_content {
+    border-left: 3px solid navy;
+    /* padding: 10px; */
+    padding: 0px 0px 22px 23px;
+}
 
