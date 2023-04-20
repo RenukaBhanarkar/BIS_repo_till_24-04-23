@@ -35,13 +35,13 @@
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font"> Name</label>
                                     <div>
-                                        <p><?php // echo $data['name']; ?></p>dummy_name
+                                        <p><?php  echo $data['user_name']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Email Id</label>
                                     <div>
-                                        <p><?php // echo $data['email_id']; ?></p>dummy_email
+                                        <p><?php  echo $data['email']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
@@ -79,6 +79,14 @@
                             </div>
                         </div>
                             <div class="row">
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font">Document<sup class="text-danger">*</sup></label>
+                                                                        <div>
+                                        <a href="<?php echo base_url().$data['document']; ?>" target="_blank">
+                                        <img src="<?php echo base_url(); ?>assets/admin/img/pdf.png" width="25px">
+                                        </a>
+                                    </div> 
+                                                                </div>
                             <div class="col-md-4">
                                     <label class="d-block text-font">Status<sup class="text-danger">*</sup></label>
                                     <div>

@@ -30,12 +30,22 @@ class Your_wall_model extends CI_Model {
     }
     public function get_yourwallData($id){
         
-        //$this->db->select('tyw.*,ta.name,ta.email_id,tms.status_name');
-        $this->db->select('tyw.*,tms.status_name');
-        $this->db->from('tbl_your_wall as tyw');
-       // $this->db->join('tbl_admin ta','ta.id=tyw.user_id');
-        $this->db->join('tbl_mst_status tms','tms.id=tyw.status');
+    //     $this->db->select('tyw.*,ta.name,ta.email_id,tms.status_name');
+    //     // $this->db->select('tyw.*,tms.status_name');
+    //     $this->db->from('tbl_your_wall as tyw');
+    //    // $this->db->join('tbl_admin ta','ta.id=tyw.user_id');
+    //     $this->db->join('tbl_mst_status tms','tms.id=tyw.status');
+    //     $this->db->where('tyw.id',$id);
+    //     $query=$this->db->get();
+    //     $res=$query->result_array();
+    //     return $res[0];
+
+        $this->db->select('tyw.*,tms.status_name,tu.user_name,tu.email');
+        $this->db->from('tbl_your_wall tyw'); 
+        $this->db->join('tbl_mst_status tms','tms.id=tyw.status');      
+        $this->db->join('tbl_users tu','tu.user_id=tyw.user_id'); 
         $this->db->where('tyw.id',$id);
+        // $this->db->order_by('created_on','desc');
         $query=$this->db->get();
         $res=$query->result_array();
         return $res[0];

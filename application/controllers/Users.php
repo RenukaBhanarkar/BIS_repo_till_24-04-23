@@ -426,7 +426,140 @@ class Users extends CI_Controller {
         $this->load->view('users/yourwallview',$data);
         $this->load->view('users/footers/footer');  
     }
+    // public function add_your_wall(){
+    //     $formdata1['user_id']= encryptids("D", $_SESSION['admin_id']);
+    //     $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
+    //     $formdata1['user_name']=  encryptids("D", $_SESSION['admin_name']);
+    //     // $formdata1['admin']=  encryptids("D", $_SESSION['admin']);
+    //     $formdata1['user_type']=  encryptids("D", $_SESSION['admin_type']);
+    //     // $formdata1['user_post']= encryptids("D", $_SESSION['admin_post']);
+    //     // print_r($formdata); 
+    //     // die;
+    //     if(isset($_SESSION['admin_id'])){
+    //         // $formdata['user_id']=$_SESSION['admin_id'];
+    //         $formdata['user_id']= encryptids("D", $_SESSION['admin_id']);
+    //     }else{
+    //         // die;
+    //         $this->session->set_flashdata('MSG', ShowAlert("Please Login", "SS"));
+    //         redirect(base_url() . "users/yourwall", 'refresh');
+    //     }
+    //     // $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+    //     // $formdata['user_id'] = $admin_id;
+    //     // if(!$admin_id){
+    //     //     redirect(base_url() . "users/login", 'refresh');
+    //     // }
+    //     $banner_img = "yourwall" . time() . '.jpg';
+    //     $config['upload_path'] = './uploads/your_wall/';
+    //     $config['allowed_types'] = 'gif|jpg|png|jpeg';
+    //     $config['max_size']    = '10000';
+    //     $config['max_width']  = '3024';
+    //     $config['max_height']  = '2024';
+   
+    //     $config['file_name'] = $banner_img;
+       
+    //     $this->load->library('upload', $config);
+    //     if (!$this->upload->do_upload('image')) 
+    //     {
+    //         $data['status'] = 0;
+    //         $data['message'] = $this->upload->display_errors();
+    //     }
+
+        
+    //     $formdata['title'] = $this->input->post('title');
+    //     $formdata['description'] = $this->input->post('description');
+    //     $formdata['status'] = '1';
+    //     $formdata['image'] = $banner_img;   
+        
+    //     $this->load->model('admin/by_the_mentor_model');
+    //     $uid=$this->by_the_mentor_model->add_user($formdata1);
+
+        
+    //     //print_r($formdata); die;    
+    //     $this->load->model('admin/your_wall_model');
+    //     $id=$this->your_wall_model->addYourWall($formdata);
+    //     if($id){
+    //         $this->session->set_flashdata('MSG', ShowAlert("Response Submitted Successfully", "SS"));
+    //         redirect(base_url() . "users/yourwall", 'refresh');
+    //     }else{
+
+    //     }
+        
+    // }
     public function add_your_wall(){
+        // print_r($_FILES); die;
+        if(isset($_SESSION['admin_id'])){
+            // $formdata['user_id']=$_SESSION['admin_id'];
+            $formdata['user_id']= encryptids("D", $_SESSION['admin_id']);
+        }else{
+            // die;
+            $this->session->set_flashdata('MSG', ShowAlert("Please Login", "SS"));
+            // redirect(base_url() . "users/byTheMentor", 'refresh');
+            redirect(base_url() . "users/login", 'refresh');
+            exit;
+        }
+
+        if(!($_FILES['image2']['name']=="")){
+
+        $path = 'uploads/your_wall/'; 
+        $other_image1 = $path . time() .'ypurwall_image'. $_FILES['image2']['name']; 
+        move_uploaded_file($_FILES['image2']['tmp_name'], $other_image1);
+        }else{
+            $other_image1="";
+        }
+
+
+
+        if(!($_FILES['image3']['name']=="")){
+        $path = 'uploads/your_wall/'; 
+        $other_image2 = $path . time() .'ypurwall_image'. $_FILES['image3']['name']; 
+        move_uploaded_file($_FILES['image3']['tmp_name'], $other_image2);
+        }else{
+            $other_image2=""; 
+        }
+
+        if(!($_FILES['image4']['name']=="")){
+        $path = 'uploads/your_wall/'; 
+        $other_image3 = $path . time() .'ypurwall_image'. $_FILES['image4']['name']; 
+        move_uploaded_file($_FILES['image4']['tmp_name'], $other_image3);
+        }else{
+            $other_image3="";  
+        }
+
+        if(!($_FILES['image5']['name']=="")){
+        $path = 'uploads/your_wall/'; 
+        $other_image4 = $path . time() .'ypurwall_image'. $_FILES['image5']['name']; 
+        move_uploaded_file($_FILES['image5']['tmp_name'], $other_image4);
+        }else{
+            $other_image4="";
+        }
+
+
+
+
+        $formdata['other_image1'] = $other_image1;
+        $formdata['other_image2'] = $other_image2;
+        $formdata['other_image3'] = $other_image3;
+        $formdata['other_image4'] = $other_image4;
+
+        // echo $other_image1.'<br>';
+        // echo $other_image2.'<br>';
+        // echo $other_image3.'<br>';
+        // echo $other_image4.'<br>';
+        // print_r($formdata); die;
+        if(!($_FILES['document']['name'])==""){
+          //  echo "document";
+          
+                
+                $btm_path="uploads/your_wall/";
+                $btm_document = $btm_path."yourwall_document" . time() . '.pdf';
+                // $target_dir = "uploads/your_wall/";
+                move_uploaded_file($_FILES["document"]["tmp_name"],$btm_document);
+               // die;
+        }else{
+            $btm_document="";
+        }
+
+
         $formdata1['user_id']= encryptids("D", $_SESSION['admin_id']);
         $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
         $formdata1['user_name']=  encryptids("D", $_SESSION['admin_name']);
@@ -468,13 +601,14 @@ class Users extends CI_Controller {
         $formdata['title'] = $this->input->post('title');
         $formdata['description'] = $this->input->post('description');
         $formdata['status'] = '1';
-        $formdata['image'] = $banner_img;   
+        $formdata['image'] = $banner_img;  
+        $formdata['document'] = $btm_document;
         
         $this->load->model('admin/by_the_mentor_model');
         $uid=$this->by_the_mentor_model->add_user($formdata1);
 
         
-        //print_r($formdata); die;    
+        // print_r($formdata); die;    
         $this->load->model('admin/your_wall_model');
         $id=$this->your_wall_model->addYourWall($formdata);
         if($id){
