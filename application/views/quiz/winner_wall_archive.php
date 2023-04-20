@@ -15,16 +15,7 @@
        
        
         <!-- Content Row -->
-        <div class="row">
-            <div class="col-12">
-                 <div class="card border-top card-body">
-                    <div>
-                           <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url();?>subadmin/winner_wall_form'">Create New Winner Wall</button> 
-                           <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url();?>subadmin/winner_wall_archive'">Archive</button> 
-                    </div>
-                 </div>   
-            </div>     
-        </div>
+       
         <div class="row">
             <div class="col-12 mt-3">
             <div class="card border-top card-body">

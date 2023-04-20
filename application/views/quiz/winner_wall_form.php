@@ -23,7 +23,7 @@
             <div class="col-12 mt-3">
             <div class="card border-top">
                <div class="card-body"> 
-                <div class="row">
+             <div class="row">
                 <div class="mb-2 col-md-4">
                         <label class="d-block text-font">Name of Competition<sup class="text-danger">*</sup></label>
                         <!-- <input type="text" class="form-control input-font" name="competition" id="competition" placeholder="Enter Name of Competition" required> -->
@@ -43,6 +43,13 @@
                         <span class="error_text"><?php echo form_error('title');?></span>
                         
                     </div>
+                </div>
+                <div class="row mt-2">
+                                <div class="prizes-section">
+                                    <h4 class="m-2">Add Winners</h4>
+                                </div>
+                 </div>
+                 <div class="row">
                     <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Select Prize<sup class="text-danger">*</sup></label>
                                     <select class="form-control input-font" id="prize" name="prize" aria-label="Default select example" required>
@@ -73,11 +80,34 @@
                         
                     </div>
                     <div class="mb-2 col-md-4">
-                        <label class="d-block text-font">Photo<sup class="text-danger">*</sup></label>
-                        <input type="file" class="form-control-file input-font" name="photo" id="photo">
-                        <span class="error_text"><?php echo form_error('photo');?></span>
-                        
-                    </div>
+                                <label class="d-block text-font">Photo</label>
+                                <div class="d-flex">
+                                    <div>
+                                        <input type="file" id="fprize_img" accept="image/jpeg,image/png,image/jpg" onchange="loadFileFirst(event)" name="fprize_img" class="form-control-file">
+                                        <span class="error_text"><?php echo form_error('fprize_img'); ?></span>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalFirst">
+                                        Preview
+                                    </button>
+                                </div>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalFirst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="max-width: 700px;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Photo Preview</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img id="outputFirst" width="100%" />
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                            </div>
                     <div class="mb-2 col-md-4">
                         <label class="d-block text-font">Location<sup class="text-danger">*</sup></label>
                         <input type="text" class="form-control input-font" name="location" id="location" placeholder="Enter Location"  required>
@@ -85,6 +115,40 @@
                         
                     </div>
                 </div>
+                <div class="col-md-12 submit_btn p-3" style="text-align: center;">
+                       <button  class="btn btn-success btn-sm text-white" data-bs-toggle="modal" data-bs-target="#submitForm">Add</button>
+               </div>
+                <div class="row">
+                    <div class="col-12 mt-3">
+                       <table id="example" class="table-bordered display nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Sr. No.</th>
+                                    <th>Prize</th>
+                                    <th>Name</th>
+                                    <th>Email id</th>
+                                    <th>Photo</th>
+                                    <th>Location</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                        <td>1</td>
+                                        <td>First Prize</td>
+                                        <td>Winner Name</td>
+                                        <td>abc@gmail.com</td>
+                                        <td><img src="" alt="" class="" width="60px;"></td>
+                                        <td>Pune Maharashtra</td>
+                                        <td class="d-flex border-bottom-0">
+                                            <button onclick="submit()" class="btn btn-danger btn-sm mr-2">Delete</button>
+                                            
+                                        </td>
+                               </tr>
+                 </table>
+               
+          </div>
+        </div>
                 <div class="col-md-12 submit_btn p-3">
                        <button  class="btn btn-success btn-sm text-white" data-bs-toggle="modal" data-bs-target="#submitForm">Submit</button>
                        <a class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#cancelForm">Cancel</a> 

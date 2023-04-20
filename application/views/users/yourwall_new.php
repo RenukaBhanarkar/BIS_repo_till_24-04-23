@@ -90,7 +90,7 @@
                 <div class="bloginfo">
                     <h3 style="margin-bottom: 5px; color: #0086b2!important;font-weight: 600;">Your Wall</h3>
                 </div>
-                <div class="heading-underline" style="width: 324px;">
+                <div class="heading-underline" style="width: 113px;">
                     <div class="left_1"></div><div class="right"></div>
                  </div>
              </div> 
@@ -136,17 +136,24 @@
       </div>          
    </section>
    <div class="container">
+                       <div class="bloginfo">
+                            <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" class="YourWallForm" id="your_wall_show">Post Here...</h3>
+                        </div>
+                        <div class="heading-underline" style="width: 200px;">
+                            <div class="left"></div><div class="right"></div>
+                        </div>
    <?php if($this->session->flashdata()){
                 echo $this->session->flashdata('MSG');
             } ?>
                         <form action="<?php echo base_url(); ?>users/add_your_wall" method="post" name="addwall" id="addwall" class="was-validated" enctype="multipart/form-data">
-                <h2 class="YourWallForm">Your Wall </h2>
+                        
+                <!-- <h2 class="YourWallForm" id="your_wall_show">Your Wall</h2> -->
                 <div class="bg-light p-3">
                     <!-- <div class="Comment_image">
                         <img src="../assets/images/user_image.png">
                     </div> -->
                     
-                    <div class="row">
+                    <div class="row" id="your_wall_hide">
                         <div class="col-sm-4 mt-3">
 
                             <input type="text" class="form-control title-height mb-2" name="title" id="title_id" placeholder="Title" minlength="5" maxlength="200">
@@ -392,7 +399,19 @@
         </div>
     </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-       
+        <script>
+        
+        $(document).ready(function(){
+         $('#your_wall_hide').hide();
+    
+     }); 
+ </script>
+ <script>
+         $("#your_wall_show").click(function(){
+         $("#your_wall_hide").show();
+      });
+     
+ </script>      
         <script>
 $(document).ready(function(){
 $('#addwall').removeClass('was-validated');

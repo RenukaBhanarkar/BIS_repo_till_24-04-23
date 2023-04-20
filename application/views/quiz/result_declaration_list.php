@@ -19,50 +19,42 @@
         <div class="row">
             <div class="col-12 mt-3">
             <div class="card border-top card-body">
-                <table id="example" class="hover table-bordered" style="width:100%">
+                <table id="example" class="table-bordered display nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th><input class="form-control-input" type="checkbox" value="" id="flexCheckDefault"></th>
+                            
                             <th>Sr. No.</th>
-                            <th>Name</th>
-                            <th>Email ID</th>
-                            <th>Contact No.</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Score</th>
-                            <th>Prize</th>
+                            <th>Name of Quiz</th>
+                            <th>Quiz ID</th>
+                            <th>Quiz Date</th>
+                            <th>Total Marks</th>
+                            <th>Total Submission</th>
+                            <th>Total Winners</th>
+                            <th>Declared on</th>
+                            <th>Action</th>
+                            
                             
                         </tr>
                     </thead>
                     <tbody>
                       
-
-                         <?php if(!empty($UsersDetails)){
-                            $i=1;
-                            foreach($UsersDetails as $users)
-                            {?>
-                                <tr>
-                                <td><input class="form-control-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                                 <td><?= $i++?></td>
-                                 <td><?= $users['user_name']?></td>
-                                 <td><?= $users['email']?></td>
-                                 <td><?= $users['user_mobile']?></td> 
-                                 <td><?= date("d-m-Y", strtotime($users['created_on']));?></td> 
-                                 <td><?= $users['start_time']?></td> 
-                                 <td><?= $users['score']?></td>
+                            <tr>
+                                
+                                 <td>1</td>
+                                 <td>Independace Quiz</td>
+                                 <td>12345</td>
+                                 <td>12/03/2023</td> 
+                                 <td>100</td> 
+                                 <td>100</td> 
+                                 <td>23</td>
+                                 <td>12/03/2023</td>
                                  <td>
-                                    <select id="prize" name="prize" class="form-control input-font" value="prize">
-                                        <option value="1">First Prize</option>
-                                        <option value="1">Second Prize</option>
-                                        <option value="1">Third Prize</option>
-                                        <option value="1">Fourth Prize</option>
-                                        <option value="1">Consolation Prize</option>
-                                    </select>
+                                 <button onclick="location.href='<?php echo base_url();?>subadmin/result_declaration_view'" class="btn btn-primary btn-sm mr-2">View</button>
                                  </td>
                                   
-                                 </tr>
+                            </tr>
 
-                             <?php } } ?>
+                             
                         
                         
                            
