@@ -81,6 +81,59 @@ h5{
     border-radius: 15px;
     height: 201px;
 }
+.img {
+    border-radius: 8px;
+    overflow: hidden;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    transition: all ease-in-out 0.6s;
+}
+.img-fluid:hover {
+    transform: scale(1.2);
+}
+.details {
+    padding: 50px 30px;
+    margin: -100px 30px 0 30px;
+    transition: all ease-in-out 0.3s;
+    background: white;
+    position: relative;
+    /* background: rgba(var(--color-white-rgb), 0.9); */
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 0 25px rgba(var(--color-black-rgb), 0.1);
+}
+.icon {
+    margin: 0;
+    width: 72px;
+    height: 72px;
+    background: #0ea2bd;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--color-white);
+    font-size: 28px;
+    transition: ease-in-out 0.3s;
+    position: absolute;
+    top: -36px;
+    left: calc(50% - 36px);
+    border: 6px solid white;
+}
+.service-item:hover .details .icon {
+    background: white;
+    border: 2px solid #0ea2bd;
+}
+.title_mentor{
+    overflow: hidden;
+    height: 30px;
+}
+.des_mentor{
+    overflow: hidden;
+    height: 94px;
+}
 </style>
 <div id="privacy-content" class="container">
 <div class="bloginfo">
@@ -89,7 +142,129 @@ h5{
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
              </div>
-    <div class="row mt-5">
+             <div class="row">
+
+          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <!-- <i class="bi bi-activity"></i> -->
+                  <i class="fa fa-trophy"></i>
+                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3 class="title_mentor">Eosle Commodi</h3>
+                </a>
+                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <!-- <i class="bi bi-activity"></i> -->
+                  <i class="fa fa-trophy"></i>
+                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3 class="title_mentor">Eosle Commodi</h3>
+                </a>
+                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+
+          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <!-- <i class="bi bi-activity"></i> -->
+                  <i class="fa fa-trophy"></i>
+                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3 class="title_mentor">Eosle Commodi</h3>
+                </a>
+                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+
+          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <!-- <i class="bi bi-activity"></i> -->
+                  <i class="fa fa-trophy"></i>
+                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3 class="title_mentor">Eosle Commodi</h3>
+                </a>
+                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+
+          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <!-- <i class="bi bi-activity"></i> -->
+                  <i class="fa fa-trophy"></i>
+                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3 class="title_mentor">Eosle Commodi</h3>
+                </a>
+                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+
+          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <!-- <i class="bi bi-activity"></i> -->
+                  <i class="fa fa-trophy"></i>
+                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3 class="title_mentor">Eosle Commodi</h3>
+                </a>
+                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+
+        </div>
+    <div class="row mt-5" style="display:none;">
         <?php foreach($by_the_mentor as $list){ ?>
         <div class="col-md-4 mb-4">
             <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>">
