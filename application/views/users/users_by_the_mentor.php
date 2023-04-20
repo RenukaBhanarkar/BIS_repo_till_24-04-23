@@ -46,36 +46,40 @@ h5{
     text-overflow: ellipsis;
 }
 .select-wrapper {
-    background: url(http://localhost/BIS/BIS_repo/assets/images/plus.png) no-repeat;
+    background: url('<?php echo base_url(); ?>/assets/images/plus.png') no-repeat;
     background-size: cover;
     display: block;
-    position: relative;
-    width: 33px;
-    height: 26px;
-    padding: 35px;
-    margin-left: 111px;
-    top: 12px;
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    /* padding: 35px; */
+    /* margin-left: 111px; */
+    /* top: 50%; */
 }
 .input_box {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    height: 96px;
+    height: 201px;
     border-radius: 12px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
-#image_src {
-    width: 26px;
-    height: 26px;
-    margin-right: 100px;
+#image_src2, #image_src3,#image_src4,#image_src5 {
+    width: 78px;
+    height: 49px;
     opacity: 0;
     filter: alpha(opacity=0);
 }
-.box_img {
+/* .box_img {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     height: 201px;
     border-radius: 12px;
-}
+} */
 .img_mentor {
     padding: 8px;
     border-radius: 15px;
+    height: 201px;
 }
 </style>
 <div id="privacy-content" class="container">
@@ -90,7 +94,7 @@ h5{
         <div class="col-md-4 mb-4">
             <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>">
                   <div class="card-winners">
-                      <img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$list['image'];?>" class="card-img-top" alt="Discussion Forum">
+                      <img src="<?php echo base_url().$list['image'];?>" class="card-img-top" alt="Discussion Forum">
                       <div class="winner-body p-2">
                           <!-- <div class="node-status"><span>Status : </span>
                               <div class="status-open">Open</div>
@@ -124,12 +128,12 @@ h5{
             <?php } ?>
     <div class="col-sx-12 col-sm-12 col-md-12" style="border-left: 3px solid cadetblue; padding: 0px 25px;">
     <div class="bloginfo">
-                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Post Here...</h3>
+                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" id="mentorForm_show">Post Here...</h3>
             </div>
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
              </div>
-        <div class="static-content">
+        <div class="static-content" id="mentorForm_hide">
            <?php if($this->session->flashdata()){
                 echo $this->session->flashdata('MSG');
             } ?>
@@ -171,53 +175,48 @@ h5{
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-3">
-                          <div class="input_box">
-                              <span class="select-wrapper">
-                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                          <div class="input_box" >
+                              <span class="select-wrapper" id="img_2">
+                                    <input type="file" class="form-control input-font" name="image2" id="image_src2" required="" accept="image/*" onchange="loadFileThumbnail(event)">
+                               </span>
+                               <span id="display_img_2" style="display:none;">
+                               <img src="" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                </span>
                           </div>
                     </div>
                     <div class="mb-3 col-md-3">
                           <div class="input_box">
-                              <span class="select-wrapper">
-                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                              <span class="select-wrapper" id="img_3">
+                                    <input type="file" class="form-control input-font" name="image3" id="image_src3" required="" accept="image/*" onchange="loadFileThumbnail1(event)">
+                               </span>
+                               <span id="display_img_3" style="display:none;">
+                               <img src="" id="outputThumbnail1" alt="" class="w-100 img_mentor">
                                </span>
                           </div>
                     </div>
                     <div class="mb-3 col-md-3">
                           <div class="input_box">
-                              <span class="select-wrapper">
-                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                              <span class="select-wrapper" id="img_4">
+                                    <input type="file" class="form-control input-font" name="image4" id="image_src4" required="" accept="image/*" onchange="loadFileThumbnail2(event)">
+                               </span>
+                               <span id="display_img_4" style="display:none;">
+                               <img src="" id="outputThumbnail2" alt="" class="w-100 img_mentor">
                                </span>
                           </div>
                     </div>
                     <div class="mb-3 col-md-3">
                           <div class="input_box">
-                              <span class="select-wrapper">
-                                    <input type="file" class="form-control input-font" name="image" id="image_src" required="" accept="image/*">
+                              <span class="select-wrapper" id="img_5">
+                                    <input type="file" class="form-control input-font" name="image5" id="image_src5" required="" accept="image/*" onchange="loadFileThumbnail3(event)">
+                               </span>
+                               <span id="display_img_5" style="display:none;">
+                               <img src="" id="outputThumbnail3" alt="" class="w-100 img_mentor">
                                </span>
                           </div>
                     </div>
-                    <div class="mb-3 col-md-3">
-                          <div class="box_img">
-                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
-                          </div>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                          <div class="box_img">
-                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
-                          </div>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                          <div class="box_img">
-                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
-                          </div>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                          <div class="box_img">
-                              <img src="http://localhost/BIS/BIS_repo/assets/images/img_3.jpg" alt="" class="w-100 img_mentor">
-                          </div>
-                    </div>
+                    
+                   
+                   
             </div>
                   <div class="mb-3 col-md-12">
                        <div class="mentor_submit">
@@ -256,7 +255,7 @@ h5{
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -281,7 +280,7 @@ h5{
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size should be 50KB or more</p>
+                    <p>File size should be 20KB or more</p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -301,7 +300,7 @@ h5{
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size should be less than 250KB </p>
+                    <p>File size should be less than 200KB </p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -348,8 +347,159 @@ h5{
             </div>
         </div>
     </div>
-  
+  <script>
+    $(document).ready(function(){
+        $("#mentorForm_hide").hide();
+        $("#mentorForm_show").click(function(){
+        $("#mentorForm_hide").show();
+  });
+ 
+});
+
+    $(document).ready(function(){
+        $('#title').change('change',function(){
+console.log('clicked');
+});
+    });
+  </script>
   <script type="text/javascript"> 
+//   $('#display_img_2').hide();
+
+  var loadFileThumbnail = function(event) 
+    {
+        var fileSize = $('#image_src2')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src2").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src2').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src2').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src2').val('');
+            $('#invalidfiletype').modal('show');
+        }
+       //  $("#Previewimg").show();
+        var outputThumbnail = document.getElementById('outputThumbnail');
+        
+        outputThumbnail.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail.src);
+        }
+        $('#display_img_2').show();
+        $('#img_2').hide();
+    };
+
+    var loadFileThumbnail1 = function(event) 
+    {
+
+        var fileSize = $('#image_src3')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src3").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src3').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src3').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src3').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
+       //  $("#Previewimg").show();
+        var outputThumbnail1 = document.getElementById('outputThumbnail1');
+        
+        outputThumbnail1.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail1.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail1.src);
+        }
+        $('#display_img_3').show();
+        $('#img_3').hide();
+    };
+
+    var loadFileThumbnail2 = function(event) 
+    {
+
+        var fileSize = $('#image_src4')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src4").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src4').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src4').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src4').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
+       //  $("#Previewimg").show();
+        var outputThumbnail2 = document.getElementById('outputThumbnail2');
+        
+        outputThumbnail2.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail2.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail2.src);
+        }
+        $('#display_img_4').show();
+        $('#img_4').hide();
+    };
+
+    var loadFileThumbnail3 = function(event) 
+    {
+
+        var fileSize = $('#image_src5')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src5").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src5').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src5').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src5').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
+
+       //  $("#Previewimg").show();
+        var outputThumbnail3 = document.getElementById('outputThumbnail3');
+        
+        outputThumbnail3.src = URL.createObjectURL(event.target.files[0]);
+        console.log(outputThumbnail.src);
+        outputThumbnail3.onload = function()
+        {
+            URL.revokeObjectURL(outputThumbnail3.src);
+        }
+        $('#display_img_5').show();
+        $('#img_5').hide();
+    };
+
+
+
+
+
   function sure(){
     $('.sure').modal('show');
 
@@ -405,7 +555,7 @@ h5{
              if ($("#document2").val() != '') {
                    var fileSize = $('#document2')[0].files[0].size;
 
-                   if (fileSize > 256000) {
+                   if (fileSize > 200000) {
                        var is_valid = false;
                        $('#greaterSize').modal('show');
                        $("#document2").val();
@@ -414,13 +564,13 @@ h5{
                            var is_valid = false;
                            // alert("Please select file size greater than 500 KB");
                            return false;
-                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 200 KB </div>");
                        }
                        var is_valid = false;
                        if (!focusSet) {
                            $("#document2").focus();
                        }
-                   } else if(fileSize < 51200){
+                   } else if(fileSize < 20000){
                        is_valid = false;
                        $("#document2").val();
                        if ($("#imgerror3").next(".validation").length == 0) 

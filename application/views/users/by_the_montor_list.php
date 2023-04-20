@@ -42,7 +42,7 @@
               <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="col-12 mt-3">
                    <div class="card border-top card-body">
-                    <table id="example10" class="table table-bordered" style="width:100%">
+                    <table id="example" class="table table-bordered display now" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>                               
@@ -64,7 +64,7 @@
                                         <td><?php echo $list_btm1['title']; ?></td>                                        
                                         <td><?php echo $list_btm1['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm1['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                                <img src="<?php echo base_url(); ?><?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -105,7 +105,7 @@
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="col-12 mt-3">
                    <div class="card border-top card-body">
-                    <table id="example1" class=" table-bordered display nowrap" style="width:100%;" >
+                    <table id="example1" class="table-bordered display nowrap" style="width:100%;" >
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -131,7 +131,7 @@
                                         <td><?php echo $list_btm['title']; ?></td>                                        
                                         <td><?php echo $list_btm['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                                <img src="<?php echo base_url(); ?><?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -189,7 +189,7 @@
                                         <td><?php echo $list_btm['title']; ?></td>                                        
                                         <td><?php echo $list_btm['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                                <img src="<?php echo base_url(); ?><?php echo $list_btm['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -209,6 +209,7 @@
                                                 <button class="btn btn-primary btn-sm ml-2" onclick="sendArchive('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Archive</button>
                                           
                                                 <!-- <button class="btn btn-primary btn-sm" onclick="sendUnPublish('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>UnPublish</button> -->
+                                                
                                  <?php } ?>
                                         
                                             <!-- Modal -->
@@ -225,7 +226,7 @@
             <div class="tab-pane fade show" id="nav-archive" role="tabpanel" aria-labelledby="nav-archive-tab">
                 <div class="col-12 mt-3">
                    <div class="card border-top card-body">
-                    <table id="example" class="table table-bordered" style="width:100%">
+                    <table id="example3" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -247,7 +248,7 @@
                                         <td><?php echo $list_btm1['title']; ?></td>                                        
                                         <td><?php echo $list_btm1['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm1['image']) { ?>
-                                                <img src="<?php echo base_url(); ?>uploads/by_the_mentors/img/<?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                                <img src="<?php echo base_url(); ?><?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -441,15 +442,15 @@
         // $('.delete_img').on('click',function(){
         //     $('#delete').modal('show');
         // })
-        $('#example10').DataTable({
-            scrollx:true,
-            responsive: true
-        });
         $('#example1').DataTable({
             scrollx:true,
-            responsive: true
+           // responsive: true
         });
         $('#example2').DataTable({
+            scrollx:true,
+          //  responsive: true
+        });
+        $('#example3').DataTable({
             scrollx:true
         });
         // $('#example').DataTable({

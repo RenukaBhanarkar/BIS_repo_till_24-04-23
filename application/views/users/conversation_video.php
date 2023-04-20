@@ -7,7 +7,7 @@ h1 {
     color: rgb(3, 3, 3);
 }
 .video_content {
-    padding: 39px 136px;
+    padding: 39px 55px;
 } 
 .video__details {
     display: flex;
@@ -56,7 +56,7 @@ h1 {
     padding: 5px;
 }
 .recent_img{
-    width: 41%;
+    width: 57%;
     border-radius: 5px;
 }
 .description_text {
@@ -86,6 +86,56 @@ h1 {
     border-radius: 10px;
     font-weight: 700;
     font-size: 14px;
+}
+button {
+ width: 100%;
+}
+
+button {
+ position: relative;
+ padding: 0.375rem 0.75rem;
+ color: #eee;
+ background-color: #009ade;
+ border: 0;
+ line-height: 1.5;
+ border-radius: 0.25rem;
+ outline: none;
+}
+
+button:first-child {
+ margin-bottom: 0.5rem;
+}
+
+button:not(:disabled):hover,
+button:not(:disabled):active {
+ cursor: pointer;
+ background-color: #0079cd;
+ color: #fff;
+}
+
+button:not(:disabled):active {
+ transform: scale(0.95, 0.95);
+}
+
+button:disabled {
+ opacity: 0.75;
+}
+
+.buttons {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ width: 100%;
+ margin-top: 1rem;
+}
+
+@media only screen and (min-width: 370px) {
+ button {
+  width: initial;
+ }
+ button:first-child {
+  margin: 0 1rem 0 0;
+ }
 }   
 </style>    
 <section>
@@ -95,18 +145,23 @@ h1 {
             <div class="col-md-8">
                 <h1><?= $Conversation['title']?></h1>
                 <div class="play_video">
-                    <video width="100%" height="100%" controls autoplay>
+                <p class="error"></p>
+                    <video loop width="100%" height="100%" controls autoplay>
                         <source src="<?php echo base_url(); ?><?= $Conversation['video']?>">
                         <source src="movie.ogg" type="video/ogg">
                             Your browser does not support the video tag.
                     </video>
-                </div> 
+                    <div class="buttons">
+                            <button class="playPause">Play video</button>
+                            <button class="pip">Enter picture-in-picture mode</button>
+                    </div>
+                    </div>
                 <div class="video__details">
                     <div class="title-text">
                         <h3> <?= $Conversation['title']?> </h3>
                         <span><?= $Conversation['views']?> Views • <?= time_elapsed_string($Conversation['created_on'])?></span>
                         <span><?= $Conversation['likes']?> likes </span>
-                        <span class="like_button" type="button" onclick="submitLike('<?= $Conversation["id"]?>')"><i class="fa fa-heart" style="margin:4px;"></i>like</span>
+                        <span class="like_button" type="button" onclick="submitLike('<?= $Conversation["id"]?>')"><i onclick="myFunction(this)" class="fa fa-heart" style="width:18px; font-size: 21px; margin-right: 9px;"></i>like</span>
                         <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $Conversation['id'] )?>" data-toggle="tooltip" title="Copy Link and Share" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>share</a>
 
                           
@@ -118,12 +173,14 @@ h1 {
             </div>
 
 
+
              <div class="col-md-4">
                 <h1>Recent Search</h1> 
                 <?php foreach ($getRecentSearch as $key => $value) {?>
                     <div class="video_recent">
-                        <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <img src="<?= base_url()?><?= $value['video_thumbnail']?>" alt="" class="recent_img"/>
-                        </a>
+                        <!-- <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>">  -->
+                        <img src="<?= base_url()?><?= $value['video_thumbnail']?>" alt="" class="recent_img"/> 
+                         <!-- </a>  -->
                             <div class="video__details">
                                 <div class="title">
                                     <h3><a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <?= $value['title']?></a></h3>
@@ -171,6 +228,65 @@ function time_elapsed_string($datetime, $full = false) {
 
 ?>
 <script>
+    const error = document.querySelector(".error");
+const video = document.querySelector("video");
+const playPause = document.querySelector(".playPause");
+const pip = document.querySelector(".pip");
+
+video.addEventListener("pause", e => {
+ playPause.innerText = "Play video";
+});
+
+video.addEventListener("play", e => {
+ playPause.innerText = "Pause video";
+});
+
+video.addEventListener("leavepictureinpicture", e => {
+ pip.innerText = "Enter picture-in-picture mode";
+});
+
+video.addEventListener("enterpictureinpicture", e => {
+ pip.innerText = "Leave picture-in-picture mode";
+});
+
+pip.addEventListener("click", async e => {
+ pip.disabled = true;
+ try {
+  if (!document.pictureInPictureEnabled) {
+   return (error.innerText =
+    "Picture-in-picture is not supported in your browser");
+  }
+  if (video !== document.pictureInPictureElement) {
+   await video.requestPictureInPicture();
+   return video.play();
+  }
+  await document.exitPictureInPicture();
+ } catch (err) {
+  error.innerText = "Error, try again!";
+ } finally {
+  pip.disabled = false;
+ }
+});
+
+playPause.addEventListener("click", async e => {
+ playPause.disabled = true;
+ try {
+  if (video.paused) {
+   video.play();
+   return (playPause.innerText = "Pause video");
+  }
+  video.pause();
+  playPause.innerText = "Play video";
+ } catch (err) {
+  error.innerText = "Error, try again!";
+ } finally {
+  playPause.disabled = false;
+ }
+});
+
+     function myFunction(x) {
+  x.classList.toggle("fa-heart-o");
+}
 $('.share_button').click(function (e) {
    e.preventDefault();
    var copyText = $(this).attr('href');

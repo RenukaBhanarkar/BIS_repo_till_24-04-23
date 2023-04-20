@@ -1,3 +1,19 @@
+<style>
+    .img_mentor {
+    padding: 8px;
+    border-radius: 15px;
+    height: 201px;
+}
+.input_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 201px;
+    border-radius: 12px;
+    position: relative;
+}
+</style>
 <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -10,22 +26,22 @@
                         <div class="card border-top">
                            <div class="card-body"> 
                                 <div class="row">
-                               <div class="mb-2 col-md-4">
+                               <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Yourwall ID</label>
                                     <div>
                                         <p><?php  echo $data['id']; ?></p>
                                     </div>    
-                                </div>
+                                </div> -->
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font"> Name</label>
                                     <div>
-                                        <p><?php // echo $data['name']; ?></p>dummy_name
+                                        <p><?php  echo $data['user_name']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Email Id</label>
                                     <div>
-                                        <p><?php // echo $data['email_id']; ?></p>dummy_email
+                                        <p><?php  echo $data['email']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
@@ -34,35 +50,44 @@
                                         <p>Not Available</p>
                                     </div>    
                                 </div>
-                                <div class="mb-2 col-md-4">
+                                <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Date and Time</label>
                                     <div>
                                         <p><?php echo $data['created_on']; ?></p>
                                     </div>    
-                                </div>
+                                </div> -->
                                
                               </div>
-                          </div>
-                          <div class="col-12 mt-3">
-                            <div >
+                          
+                          <div class="row">
+                            <div class="col-md-12">
                                     <label class="d-block text-font">Title<sup class="text-danger">*</sup></label>
                                     <div>
                                         <p><?php echo $data['title']; ?></p>
                                     </div> 
                             </div>
-                            <div >
+                            <div class="col-md-12">
                                     <label class="d-block text-font">Description<sup class="text-danger">*</sup></label>
                                     <div>
                                         <p><?php echo $data['description']; ?></p>
                                     </div> 
                             </div>
-                            <div >
+                            <div class="col-md-4">
                                     <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
-                                    <div>
-                                        <p><img src="<?php echo base_url().'uploads/your_wall/'.$data['image']; ?>"></p>
-                                    </div> 
+                                   <p><img src="<?php echo base_url().'uploads/your_wall/'.$data['image']; ?>" style="height: 196px;"></p>
+                                     
                             </div>
-                            <div >
+                        </div>
+                            <div class="row">
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font">Document<sup class="text-danger">*</sup></label>
+                                                                        <div>
+                                        <a href="<?php echo base_url().$data['document']; ?>" target="_blank">
+                                        <img src="<?php echo base_url(); ?>assets/admin/img/pdf.png" width="25px">
+                                        </a>
+                                    </div> 
+                                                                </div>
+                            <div class="col-md-4">
                                     <label class="d-block text-font">Status<sup class="text-danger">*</sup></label>
                                     <div>
                                         <p><?php echo $data['status_name']; ?></p>
@@ -70,7 +95,7 @@
                             </div>
                             
 
-                            <div >
+                            <!-- <div class="col-md-4">
                                     <label class="d-block text-font">Action<sup class="text-danger">*</sup></label>
                                     <div>
                                         <p><?php if($data['status_name']=='Created'){  ?>
@@ -83,8 +108,42 @@
                                             
                                         </p>
                                     </div> 
-                            </div>
+                            </div> -->
                           </div>
+                          <div class="row" style="padding:10px;">
+                          <?php if(!($data['other_image1'])==""){ ?>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().$data['other_image1']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <?php if(!($data['other_image2'])==""){ ?>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().$data['other_image2']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <?php if(!($data['other_image3'])==""){ ?>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().$data['other_image3']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <?php if(!($data['other_image4'])==""){ ?>
+                        <div class="mb-3 col-md-3">
+                            <div class="input_box" >
+                                <img src="<?php echo base_url().$data['other_image4']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                               
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
                           <div class="col-md-12 submit_btn p-3">
                                <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>admin/your_wall_list'">Back</a>
                           </div>  

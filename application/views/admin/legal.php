@@ -35,7 +35,7 @@
                 <div class="card border-top card-body">
                     <form action="javascript:;" class="was-validated" method="post" id="updateform" >
                     <div class="form-group">
-                    <table id="example" class="table table-bordered">
+                    <table id="example" class="table table-bordered display nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th class="text-center"> </th>

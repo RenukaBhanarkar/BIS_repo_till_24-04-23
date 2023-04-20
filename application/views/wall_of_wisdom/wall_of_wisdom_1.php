@@ -1,3 +1,4 @@
+
 <style>
         .inner_gallery_box {
             border-radius: 5px;
@@ -126,7 +127,7 @@
                                   <span class="last-date"><?php echo $list['description']; ?> </span>
                               </span>
                           </div>
-                          <div onclick="like('<?php echo $list['id']; ?>')" class="node-status like_review"><span><i onclick="myFunction(this)" class="fa fa-thumbs-up" style="width:18px; font-size: 21px;"></i> </span>
+                          <div onclick="like('<?php echo $list['id']; ?>')" class="node-status like_review"><span><i onclick="myFunction(this)" class="fa fa-heart" style="width:18px; font-size: 21px;"></i><span class="span" style="    margin-left: 10px;font-size: 15px;">Like</span></span>
                               <div  class="status-open likes" wow-id='<?php echo $list['id']; ?>' style="margin-left:10px;" id="<?php echo $list['id']; ?>"><?php echo $list['likes']; ?></div>
                           </div>
                       </div>
@@ -146,8 +147,10 @@
         
     </section>
     <script>
+
         function myFunction(x) {
-  x.classList.toggle("fa-thumbs-down");
+        
+  x.classList.toggle("fa-heart-o");
 }
         function like(que_id){
             id=$(this).attr('wow-id')
