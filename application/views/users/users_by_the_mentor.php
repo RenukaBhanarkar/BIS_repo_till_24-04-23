@@ -705,7 +705,7 @@ console.log('clicked');
                  $("#link1").focus();
                  is_valid = false;
              } else if (description.length < 10 ) {
-                 $("#err_description").text("Description suould be 5 to 2000 characters");
+                 $("#err_description").text("Description should be 10 to 2000 characters");
                  $("#description").focus();
                  is_valid = false;
              } else if (description.length > 2000 ){
@@ -714,7 +714,7 @@ console.log('clicked');
                 // alert("character length excedded")
                 Swal.fire('Description suould lessthan 2000 characters')
                 
-                $("#err_description").text("Description suould be 5 to 2000 characters");
+                $("#err_description").text("Description should be 5 to 2000 characters");
                  $("#description").focus();
                 is_valid = false;
                   return false;
@@ -904,9 +904,9 @@ console.log('clicked');
                 Swal.fire({
                             title: 'Do you want to Submit?',
                             showDenyButton: true,
-                            showCancelButton: true,
+                            showCancelButton: false,
                             confirmButtonText: 'Submit',
-                            denyButtonText: `Cancle`,
+                            denyButtonText: `Cancel`,
                             }).then((result) => {
                             /* Read more about isConfirmed, isDenied below */
                             if (result.isConfirmed) {

@@ -40,7 +40,7 @@ class Your_wall_model extends CI_Model {
     //     $res=$query->result_array();
     //     return $res[0];
 
-        $this->db->select('tyw.*,tms.status_name,tu.user_name,tu.email');
+        $this->db->select('tyw.*,tms.status_name,tu.user_name,tu.email,tu.user_mobile');
         $this->db->from('tbl_your_wall tyw'); 
         $this->db->join('tbl_mst_status tms','tms.id=tyw.status');      
         $this->db->join('tbl_users tu','tu.user_id=tyw.user_id'); 

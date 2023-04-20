@@ -1516,7 +1516,8 @@ class Admin extends CI_Controller
         // print_r($data); die;
     //    print_r($data['bythementors']); die;
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('users/by_the_montor_list',$data);
+       // $this->load->view('users/by_the_montor_list',$data);
+        $this->load->view('users/btm_list_new',$data);
         $this->load->view('admin/footers/admin_footer');
     }
     public function rejectbtTheMentor(){

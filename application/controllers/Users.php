@@ -620,6 +620,13 @@ class Users extends CI_Controller {
         
     }
     public function byTheMentor(){
+      //  print_r($_SESSION); die;
+        // $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
+        // $formdata1['name']= encryptids("D", $_SESSION['admin_name']);
+        // $formdata1['admin']= encryptids("D", $_SESSION['admin']);
+        // $formdata1['admin_id']= encryptids("D", $_SESSION['admin_id']);
+        // $formdata1['admin_type']= encryptids("D", $_SESSION['admin_type']);
+        //  print_r($formdata1); die;
         $this->load->model('Admin/by_the_mentor_model');
         $data['by_the_mentor']=$this->by_the_mentor_model->getThreeBTM();
         $this->load->view('users/headers/header');
@@ -628,7 +635,9 @@ class Users extends CI_Controller {
     }
 
     public function add_btm(){
-
+    //    print_r($_SESSION); die;
+    //     $formdata1= encryptids("D", $_SESSION['admin']);
+    //     print_r($formdata1); die;
         $path = 'uploads/by_the_mentors/img/'; 
             // $image = $path . time() .'video'. $_FILES['image']['name']; 
             // move_uploaded_file($_FILES['image']['tmp_name'], $videolocation);
@@ -660,7 +669,15 @@ class Users extends CI_Controller {
         // die;
         if(isset($_SESSION['admin_id'])){
             // $formdata['user_id']=$_SESSION['admin_id'];
-            $formdata['user_id']= encryptids("D", $_SESSION['admin_id']);
+            $type= encryptids("D", $_SESSION['admin_type']);
+            if($type==3){
+                $formdata['user_id']= encryptids("D", $_SESSION['admin_id']);
+            }else{
+                $this->session->set_flashdata('MSG', ShowAlert("Sorry! Only mentors can posts here", "SS"));
+                redirect(base_url() . "users/byTheMentor", 'refresh');
+                exit;
+            }
+            
         }else{
             // die;
             $this->session->set_flashdata('MSG', ShowAlert("Please Login", "SS"));
