@@ -122,11 +122,32 @@
             </div>    
         </div>
     </section>
+    <section id="cta" class="cta">
+      <div class="container aos-init aos-animate" data-aos="zoom-out">
+
+        <div class="row g-5">
+
+          <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
+            <h3>Standard Writting</h3>
+            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <a class="cta-btn align-self-start" href="#">View All</a>
+          </div>
+
+          <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
+            <div class="img">
+              <img src="<?=base_url();?>assets/images/standard.avif" alt="" class="img-standard">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
     
     <section style="background-color: #e3effb94;">
         <div class="container">
             <div class="row">
-            <div class="new-content d-flex">
+            <div class="new-content d-flex" style="margin-left: -37px;">
               <div class="col-md-3 col-lg-3 col-sm-3 m-2">
                   <a href="<?php echo base_url().'wall_of_wisdom/wallOfWisdom' ?>">
                     <div class="card image-card" style="width:100%; z-index: 1000;">                    
