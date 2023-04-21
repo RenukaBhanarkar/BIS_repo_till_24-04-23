@@ -120,7 +120,8 @@
                             <h5 class="card-title"><?php echo $list['title']; ?></h5>
                             <div class="card-text" id="yourwall_description"><?php echo $list['description']; ?></div>
                                 <div class="button_container">
-                                    <a href="<?php echo base_url().'users/yourwallview/'.$list['id']; ?>" class="btn btn_viewAll">View</a>
+                                <span>Posted By..<b><?php echo $list['user_name']; ?></b></span>
+                                    <a href="<?php echo base_url().'users/yourwallview/'.$list['id']; ?>" class="btn btn_viewAll" style="margin-left:46px;">View</a>
                                 </div>
                         </div>
                     </div>
@@ -137,7 +138,13 @@
    </section>
    <div class="container">
                        <div class="bloginfo">
+                        <?php if(isset($_SESSION['admin_id'])){ ?>
                             <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" class="YourWallForm" id="your_wall_show">Post Here...</h3>
+                            <?php }else{?>
+                                <a href="<?php echo base_url().'users/login'; ?>">
+                                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" class="YourWallForm" >Post Here...</h3>
+                                </a>
+                            <?php } ?>
                         </div>
                         <div class="heading-underline" style="width: 200px;">
                             <div class="left"></div><div class="right"></div>
