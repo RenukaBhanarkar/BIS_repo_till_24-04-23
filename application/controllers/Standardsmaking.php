@@ -67,7 +67,7 @@ class Standardsmaking extends CI_Controller
             $formdata['description'] = $this->input->post('description'); 
             $formdata['video_thumbnail'] =$thumbnaillocation; 
             $formdata['video'] = $videolocation;
-            $formdata['created_on'] = date('Y-m-d'); 
+            $formdata['created_on'] = date('Y-m-d h:i:s'); 
             $id = $this->Standards_Making_model->conversationForm($formdata);
             if ($id)
             {
@@ -106,6 +106,7 @@ class Standardsmaking extends CI_Controller
 
     public function conversation_view($id)
     {
+        $id = encryptids("D", $id);
         
         $data=array();
         $conversation = $this->Standards_Making_model->conversationView($id);
@@ -120,6 +121,7 @@ class Standardsmaking extends CI_Controller
      public function conversation_edit($id)
     {
         $data=array();
+        $id = encryptids("D", $id);
         $conversation = $this->Standards_Making_model->getConversation($id);
         $conversationdata=array();
         $data['conversationdata']=$conversation;  
@@ -156,6 +158,7 @@ class Standardsmaking extends CI_Controller
             }
             $formdata = array(); 
             $formdata['title'] = $this->input->post('title');
+            $id = $this->input->post('id');
             $formdata['description'] = $this->input->post('description'); 
             $formdata['video_thumbnail'] =$thumbnaillocation; 
             $formdata['video'] = $videolocation;
@@ -176,88 +179,50 @@ class Standardsmaking extends CI_Controller
        
         $this->load->view('admin/footers/admin_footer');
     }
-
-    public function conversation_delete($id)
-    {
-        $id = $this->Standards_Making_model->deleteConversation($id);
-        if ($id)
-        {
-            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));
-            redirect(base_url() . "Standardsmaking/conversation_list", 'refresh');
+ 
+public function deleteConversation(){
+        try {   
+                 
+            $id = $this->input->post('id');
+            $id = $this->Standards_Making_model->deleteConversation($id);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Deleted successfully.';
+                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }
+            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));            
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
         }
-        else
-        {
-            $this->session->set_flashdata('MSG', ShowAlert("Failed to Delete,Please try again", "DD"));
-            redirect(base_url() . "Standardsmaking/conversation_list", 'refresh');
-        } 
+        redirect(base_url() . "Standardsmaking/manage_session_list", 'refresh');
     }
 
-public function publish($id)
+public function updateStatusConversation()
     {
-        $formdata=array();
-        $formdata['status']=5;
+        $id = $this->input->post('id');
+        $formdata['status'] = $this->input->post('status'); 
+        $formdata['updated_on'] = date('Y-m-d h:i:s'); 
         $id = $this->Standards_Making_model->ChangeStatusConversation($id,$formdata);
         if ($id)
         {
-            $this->session->set_flashdata('MSG', ShowAlert("Publish Successfully", "SS"));
+            $this->session->set_flashdata('MSG', ShowAlert("Updated Successfully", "SS"));
             redirect(base_url() . "Standardsmaking/conversation_list", 'refresh');
         }
         else
         {
-            $this->session->set_flashdata('MSG', ShowAlert("Failed to Publish,Please try again", "DD"));
+            $this->session->set_flashdata('MSG', ShowAlert("Failed to Updated,Please try again", "DD"));
             redirect(base_url() . "Standardsmaking/conversation_list", 'refresh');
         } 
     }
-    public function unpublish($id)
-    {
-        $formdata=array();
-        $formdata['status']=6;
-        $id = $this->Standards_Making_model->ChangeStatusConversation($id,$formdata);
-        if ($id)
-        {
-            $this->session->set_flashdata('MSG', ShowAlert("UnPublish Successfully", "SS"));
-            redirect(base_url() . "Standardsmaking/conversation_list", 'refresh');
-        }
-        else
-        {
-            $this->session->set_flashdata('MSG', ShowAlert("Failed to UnPublish,Please try again", "DD"));
-            redirect(base_url() . "Standardsmaking/conversation_list", 'refresh');
-        } 
-    }
-
-    public function restore($id)
-    {
-        $formdata=array();
-        $formdata['status']=1;
-        $id = $this->Standards_Making_model->ChangeStatusConversation($id,$formdata);
-        if ($id)
-        {
-            $this->session->set_flashdata('MSG', ShowAlert("Restore  Successfully", "SS"));
-            redirect(base_url() . "Standardsmaking/conversation_Archives", 'refresh');
-        }
-        else
-        {
-            $this->session->set_flashdata('MSG', ShowAlert("Failed to Restore,Please try again", "DD"));
-            redirect(base_url() . "Standardsmaking/conversation_Archives", 'refresh');
-        } 
-    }
-
-    public function archives($id)
-    {
-        $formdata=array();
-        $formdata['status']=9;
-        $id = $this->Standards_Making_model->ChangeStatusConversation($id,$formdata);
-        if ($id)
-        {
-            $this->session->set_flashdata('MSG', ShowAlert("Archives  Successfully", "SS"));
-            redirect(base_url() . "Standardsmaking/conversation_list", 'refresh');
-        }
-        else
-        {
-            $this->session->set_flashdata('MSG', ShowAlert("Failed to Archives,Please try again", "DD"));
-            redirect(base_url() . "Standardsmaking/conversation_list", 'refresh');
-        } 
-    }
+    
 
     public function join_the_classroom_dashboard(){
         $this->load->view('admin/headers/admin_header');
@@ -414,9 +379,9 @@ public function publish($id)
             if (!file_exists('uploads/join_the_classroom/doc_pdf')) { mkdir('uploads/join_the_classroom/doc_pdf', 0777, true); }
 
             if (!file_exists('uploads/join_the_classroom/image')) { mkdir('uploads/join_the_classroom/image', 0777, true); }
-
-            $videosize=$_FILES['video']['size'];  
-            if ($videosize > 0 ) 
+ 
+            $lastvideo=$this->input->post('lastvideo');   
+            if (empty($lastvideo)) 
             {
                 $videopath = 'uploads/join_the_classroom/video/'; 
                 $videolocation = $videopath . time() .'video'. $_FILES['video']['name']; 
@@ -424,12 +389,10 @@ public function publish($id)
             }
             else
             {
-                $videolocation=$this->input->post('lastvideo');
-                // $videolocation=$this->input->post('lastvideo');
-            }
-
-            $thumbnailsize=$_FILES['thumbnail']['size']; 
-            if ($thumbnailsize > 0 ) 
+                $videolocation=$lastvideo; 
+            } 
+            $lastthumbnail=this->input->post('lastthumbnail'); 
+            if (empty($lastthumbnail) ) 
             {
                 $thumbnailpath = 'uploads/join_the_classroom/thumbnail/'; 
                 $thumbnaillocation = $thumbnailpath . time() .'thumbnail'. $_FILES['thumbnail']['name']; 
@@ -437,11 +400,10 @@ public function publish($id)
             }
             else
             {
-                $thumbnaillocation=$this->input->post('lastthumbnail'); 
-                // $videolocation=$this->input->post('lastvideo');
+                $thumbnaillocation=$lastthumbnail;  
             }
-             $imagesize=$_FILES['image']['size']; 
-            if ($imagesize > 0 ) 
+             $lastimage=$this->input->post('lastimage'); 
+            if (empty($lastimage)) 
             {
                 $imagepath = 'uploads/join_the_classroom/image/'; 
                 $imagelocation = $imagepath . time() .'image'. $_FILES['image']['name']; 
@@ -449,12 +411,11 @@ public function publish($id)
             }
             else
             {
-                $imagelocation=$this->input->post('lastimage'); 
-                // $videolocation=$this->input->post('lastvideo');
+                $imagelocation=$lastimage;  
             }
 
-             $doc_pdfsize=$_FILES['doc_pdf']['size']; 
-            if ($doc_pdfsize > 0 ) 
+             $lastdoc_pdf=$this->input->post('lastdoc_pdf'); 
+            if (empty($lastdoc_pdf)) 
             {
                 $doc_pdfpath = 'uploads/join_the_classroom/doc_pdf/'; 
                 $doc_pdflocation = $doc_pdfpath . time() .'doc_pdf'. $_FILES['doc_pdf']['name']; 
@@ -462,8 +423,7 @@ public function publish($id)
             }
             else
             {
-                $doc_pdflocation=$this->input->post('lastdoc_pdf');
-                // $videolocation=$this->input->post('lastvideo');
+                $doc_pdflocation=$lastdoc_pdf; 
             } 
 
             $formdata = array(); 
@@ -482,12 +442,12 @@ public function publish($id)
             if ($id)
             {
                 $this->session->set_flashdata('MSG', ShowAlert("Record Updated Successfully", "SS"));
-                redirect(base_url() . "Standardsmaking/live_session_list", 'refresh');
+                redirect(base_url() . "Standardsmaking/manage_session_list", 'refresh');
             }
             else
             {
                 $this->session->set_flashdata('MSG', ShowAlert("Failed to create new post/ live session, Please try again", "DD"));
-                redirect(base_url() . "Standardsmaking/live_session_form", 'refresh');
+                redirect(base_url() . "Standardsmaking/live_session_edit", 'refresh');
             }
         }
 
@@ -510,6 +470,82 @@ public function publish($id)
                  
             $id = $this->input->post('id');
             $id = $this->Standards_Making_model->deleteLiveSession($id);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Deleted successfully.';
+                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }
+            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));            
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "Standardsmaking/manage_session_list", 'refresh');
+    }
+
+    public function deleteData(){
+        try {   
+                 
+            $id = $this->input->post('id');
+            $val = $this->input->post('val');
+            if ($val==1) 
+            {
+                $formdata['image']='';
+            }
+            if ($val==2) 
+            {
+                $formdata['video']='';
+            }
+            $id = $this->Standards_Making_model->deleteData($id,$formdata);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Deleted successfully.';
+                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }
+            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));            
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "Standardsmaking/manage_session_list", 'refresh');
+    }
+
+    public function deleteLiveSessionFile(){
+        try {   
+                 
+            $id = $this->input->post('id');
+            $val = $this->input->post('val');
+            if ($val==1) 
+            {
+                $formdata['image']='';
+            }
+            if ($val==2) 
+            {
+                $formdata['thumbnail']='';
+            }
+            if ($val==3) 
+            {
+                $formdata['doc_pdf']='';
+            }
+            if ($val==4) 
+            {
+                $formdata['video']='';
+            }
+            $id = $this->Standards_Making_model->deleteLiveSessionFile($id,$formdata);
             if ($id) {
                 $data['status'] = 1;
                 $data['message'] = 'Deleted successfully.';

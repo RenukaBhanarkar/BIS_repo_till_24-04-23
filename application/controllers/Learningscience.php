@@ -199,8 +199,8 @@ class Learningscience extends CI_Controller
 
             if (!file_exists('uploads/learning_Science/image')) { mkdir('uploads/learning_Science/image', 0777, true); }
 
-            $videosize=$_FILES['video']['size'];  
-            if ($videosize > 0 ) 
+            $lastvideo=$this->input->post('lastvideo');
+            if (empty($lastvideo)) 
             {
                 $videopath = 'uploads/learning_Science/video/'; 
                 $videolocation = $videopath . time() .'video'. $_FILES['video']['name']; 
@@ -208,12 +208,11 @@ class Learningscience extends CI_Controller
             }
             else
             {
-                $videolocation=$this->input->post('lastvideo');
-                // $videolocation=$this->input->post('lastvideo');
+                $videolocation=$lastvideo;
             }
 
-            $thumbnailsize=$_FILES['thumbnail']['size']; 
-            if ($thumbnailsize > 0 ) 
+            $lastthumbnail=$this->input->post('lastthumbnail');
+            if (empty($lastthumbnail)) 
             {
                 $thumbnailpath = 'uploads/learning_Science/thumbnail/'; 
                 $thumbnaillocation = $thumbnailpath . time() .'thumbnail'. $_FILES['thumbnail']['name']; 
@@ -221,24 +220,23 @@ class Learningscience extends CI_Controller
             }
             else
             {
-                $thumbnaillocation=$this->input->post('lastthumbnail'); 
+                $thumbnaillocation=$lastthumbnail; 
                 // $videolocation=$this->input->post('lastvideo');
             }
-             $imagesize=$_FILES['image']['size']; 
-            if ($imagesize > 0 ) 
-            {
+            $imagelast=$this->input->post('lastimage'); 
+            if(empty($imagelast)){
                 $imagepath = 'uploads/learning_Science/image/'; 
                 $imagelocation = $imagepath . time() .'image'. $_FILES['image']['name']; 
                 move_uploaded_file($_FILES['image']['tmp_name'], $imagelocation);
             }
             else
             {
-                $imagelocation=$this->input->post('lastimage'); 
-                // $videolocation=$this->input->post('lastvideo');
+                $imagelocation=$imagelast;  
             }
 
-             $doc_pdfsize=$_FILES['doc_pdf']['size']; 
-            if ($doc_pdfsize > 0 ) 
+            $lastdoc_pdf=$this->input->post('lastdoc_pdf'); 
+
+            if (empty($lastdoc_pdf)) 
             {
                 $doc_pdfpath = 'uploads/learning_Science/doc_pdf/'; 
                 $doc_pdflocation = $doc_pdfpath . time() .'doc_pdf'. $_FILES['doc_pdf']['name']; 
@@ -246,7 +244,7 @@ class Learningscience extends CI_Controller
             }
             else
             {
-                $doc_pdflocation=$this->input->post('lastdoc_pdf');
+                $doc_pdflocation=$lastdoc_pdf;
                 // $videolocation=$this->input->post('lastvideo');
             } 
 
@@ -260,7 +258,7 @@ class Learningscience extends CI_Controller
             $formdata['video'] = $videolocation;
             $formdata['image'] = $imagelocation;
             $formdata['doc_pdf'] = $doc_pdflocation; 
-            $formdata['status'] = 0; 
+            $formdata['status'] = 1; 
             $formdata['updated_on'] = date('Y-m-d h:i:s');
             $id = $this->Learningscience_model->updateLsvStandards($formdata,$frmid);
             if ($id)
@@ -333,5 +331,48 @@ class Learningscience extends CI_Controller
         }
         redirect(base_url() . "learningscience/manage_session_list", 'refresh');
     }
+
+    public function deleteLvsFile(){
+        try {   
+                 
+            $id = $this->input->post('id');
+            $val = $this->input->post('val');
+            if ($val==1) 
+            {
+                $formdata['image']='';
+            }
+            if ($val==2) 
+            {
+                $formdata['thumbnail']='';
+            }
+            if ($val==3) 
+            {
+                $formdata['doc_pdf']='';
+            }
+            if ($val==4) 
+            {
+                $formdata['video']='';
+            }
+            $id = $this->Learningscience_model->deleteLvsFile($id,$formdata);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Deleted successfully.';
+                
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';               
+            }
+            $this->session->set_flashdata('MSG', ShowAlert("Record Deleted Successfully", "SS"));            
+            
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
+        redirect(base_url() . "learningscience/lsv_standards_edit", 'refresh');
+    }
+
      
 }
