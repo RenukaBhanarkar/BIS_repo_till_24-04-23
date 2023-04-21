@@ -6,7 +6,11 @@
     margin-bottom: 36px;
 
 }
-
+.yourWall_image {
+    height: 331px;
+    margin-bottom: 17px;
+    position: relative;
+}
 .yourWall_image_view {
     height: 200px;
     margin-bottom: 17px;
@@ -16,7 +20,7 @@
 .Text-container_view {
     padding: 0px 19px 4px;
     text-align: justify;
-    min-height: 180px;
+    /* min-height: 180px; */
 }
 
 .yourWall_title_view {
@@ -170,7 +174,7 @@
                     
                     <div class="your_wall_main_card_view">
                         <div class="yourWall_image">
-                            <img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$by_the_mentor['image']; ?>" alt="not found" class="w-100 h-100">
+                            <img src="<?php echo base_url().$by_the_mentor['image']; ?>" alt="not found" class="w-100 h-100">
                             <span><i class="fa fa-calendar icons"></i><?php echo date("m-d-Y",strtotime($by_the_mentor['created_on'])); ?></span>
                         </div>
                         <div class="Text-container_view ">
@@ -190,35 +194,51 @@
                         </div>
                         
                         <div class="row" style="padding:10px;">
+                        <?php if(!($by_the_mentor['other_image1'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$by_the_mentor['other_image1']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($by_the_mentor['other_image2'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$by_the_mentor['other_image2']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($by_the_mentor['other_image3'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$by_the_mentor['other_image3']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($by_the_mentor['other_image4'])==""){ ?>
+                        
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$by_the_mentor['other_image4']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        
+                        <?php } ?>
                     </div>
-                    <div class="" style="text-align: end; margin-right: 23px;">
-                            <a class="btn btn-info mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank"><img  src="<?php echo base_url().'assets/admin/img/pdf.png'; ?>" width="25px"/></a>
+                    <?php if(!($by_the_mentor['document'])==""){ ?>
+                        
+                        
+                    <div class="" style="margin-left: 17px;">
+                            <a class="btn btn-info mb-4 mr-4"  href="<?php echo base_url().'uploads/by_the_mentors/doc/'.$by_the_mentor['document']; ?>" target="_blank"><img  src="<?php echo base_url().'assets/admin/img/pdf.png'; ?>" width="100px"/></a>
                             </a>
-                        </div>
+                    </div>
+                        
+                        
+                    <?php } ?>
                         
                     </div>
                     

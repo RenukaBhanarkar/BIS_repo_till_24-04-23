@@ -46,7 +46,7 @@ h5{
     text-overflow: ellipsis;
 }
 .select-wrapper {
-    background: url(http://localhost/BIS/BIS_repo//assets/images/plus.png) no-repeat;
+    background: url('<?php echo base_url(); ?>/assets/images/plus.png') no-repeat;
     background-size: cover;
     display: block;
     position: absolute;
@@ -57,21 +57,19 @@ h5{
     /* top: 50%; */
 }
 .input_box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     height: 201px;
     border-radius: 12px;
     position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 #image_src2, #image_src3,#image_src4,#image_src5 {
     width: 78px;
     height: 49px;
     opacity: 0;
     filter: alpha(opacity=0);
-    margin-left: 0px;
-    margin-top: 13px !important;
 }
 /* .box_img {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -83,6 +81,60 @@ h5{
     border-radius: 15px;
     height: 201px;
 }
+.img {
+    border-radius: 8px;
+    overflow: hidden;
+}
+.img-fluid {
+    width: 100%;
+    /* height: auto; */
+    transition: all ease-in-out 0.6s;
+    height: 261px;
+}
+.img-fluid:hover {
+    transform: scale(1.2);
+}
+.details {
+    padding: 50px 30px;
+    margin: -100px 30px 0 30px;
+    transition: all ease-in-out 0.3s;
+    background: white;
+    position: relative;
+    /* background: rgba(var(--color-white-rgb), 0.9); */
+    text-align: justify;
+    border-radius: 8px;
+    box-shadow: 0px 0 25px rgba(var(--color-black-rgb), 0.1);
+}
+.icon {
+    margin: 0;
+    width: 72px;
+    height: 72px;
+    background: #0ea2bd;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--color-white);
+    font-size: 28px;
+    transition: ease-in-out 0.3s;
+    position: absolute;
+    top: -36px;
+    left: calc(50% - 36px);
+    border: 6px solid white;
+}
+.service-item:hover .details .icon {
+    background: white;
+    border: 2px solid #0ea2bd;
+}
+.title_mentor{
+    overflow: hidden;
+    height: 30px;
+}
+.des_mentor{
+    overflow: hidden;
+    height: 94px;
+}
 </style>
 <div id="privacy-content" class="container">
 <div class="bloginfo">
@@ -91,38 +143,49 @@ h5{
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
              </div>
-    <div class="row mt-5">
-        <?php foreach($by_the_mentor as $list){ ?>
-        <div class="col-md-4 mb-4">
-            <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>">
-                  <div class="card-winners">
-                      <img src="<?php echo base_url().'uploads/by_the_mentors/img/'.$list['image'];?>" class="card-img-top" alt="Discussion Forum">
-                      <div class="winner-body p-2">
-                          <!-- <div class="node-status"><span>Status : </span>
-                              <div class="status-open">Open</div>
-                          </div> -->
-                          <div class="title">
-                              <p style="font-weight:600;"><?php echo $list['title'];?></p>
-                          </div>
-                          <div class="card-body" id="last-date">
-                              <!-- <span class="time_left"> -->
-                                  <?php echo $list['description'];?>
-                              <!-- </span> -->
-                          </div>
-                          <hr>  
-                          <div class="">
-                            <!-- <p><?php print_r($list);?></p> -->
-                            <span>Posted By..<?php echo $list['user_name']; ?></b></span>
-                          </div>
-                          
-                      </div>
-                  </div>
-                  </a>
+             <div class="row">
+
+         
+
+         
+
+
+          
+
+
+          
+
+
+          
+
+          <?php foreach($by_the_mentor as $list){ ?>
+          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="<?php echo base_url().$list['image'];?>" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <!-- <i class="bi bi-activity"></i> -->
+                  <!-- <i class="fa fa-trophy"></i> -->
+                 <img src="<?php echo base_url();?>/assets/images/mentoring.png" alt="" class="" style="width: 36px;"> 
+                </div>
+                <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>" class="stretched-link">
+                  <h3 class="title_mentor"><?php echo $list['title'];?></h3>
+                </a>
+                <div class="des_mentor"><?php echo $list['description'];?></div>
+                <div class="">Posted By..<b><?php echo $list['user_name']; ?></b></div>
+              </div>
+              
             </div>
-            <?php } ?>
-                
-                
-    </div>
+          </div><!-- End Service Item -->
+          <?php } ?>
+
+
+        </div>
+    
+
+    
     <?php if((count($by_the_mentor) > 5)){ ?>
     <div class="view-button">
                 <a href="<?php echo base_url(); ?>users/all_by_the_mentors">View All</a>
@@ -130,12 +193,19 @@ h5{
             <?php } ?>
     <div class="col-sx-12 col-sm-12 col-md-12" style="border-left: 3px solid cadetblue; padding: 0px 25px;">
     <div class="bloginfo">
-                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Post Here...</h3>
+    <?php if(isset($_SESSION['admin_id'])){ ?>
+                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" id="mentorForm_show">Post Here...</h3>
+                <?php }else{?>
+                    <a href="<?php echo base_url().'users/login'; ?>">
+                    <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Post Here...</h3>
+                
+                </a>
+                <?php } ?>
             </div>
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
              </div>
-        <div class="static-content">
+        <div class="static-content" id="mentorForm_hide">
            <?php if($this->session->flashdata()){
                 echo $this->session->flashdata('MSG');
             } ?>
@@ -178,9 +248,9 @@ h5{
                 <div class="row">
                     <div class="mb-3 col-md-3">
                           <div class="input_box" >
-                              <div class="select-wrapper" id="img_2">
+                              <span class="select-wrapper" id="img_2">
                                     <input type="file" class="form-control input-font" name="image2" id="image_src2" required="" accept="image/*" onchange="loadFileThumbnail(event)">
-                              </div>
+                               </span>
                                <span id="display_img_2" style="display:none;">
                                <img src="" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                </span>
@@ -257,7 +327,7 @@ h5{
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Error</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -282,7 +352,7 @@ h5{
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size should be 50KB or more</p>
+                    <p>File size should be 20KB or more</p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -302,7 +372,7 @@ h5{
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size should be less than 250KB </p>
+                    <p>File size should be less than 200KB </p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -349,9 +419,24 @@ h5{
             </div>
         </div>
     </div>
+    <script src="<?php echo base_url();?>assets/js/jquery-3.5.1.js"></script>
+    <script>
+        
+       $(document).ready(function(){
+        $('#mentorForm_hide').hide();
+   
+    }); 
+</script>
+<script>
+        $("#mentorForm_show").click(function(){
+        $("#mentorForm_hide").show();
+     });
+    
+</script>
   <script>
+  
     $(document).ready(function(){
-        $('#title').on('change',function(){
+        $('#title').change('change',function(){
 console.log('clicked');
 });
     });
@@ -361,6 +446,22 @@ console.log('clicked');
 
   var loadFileThumbnail = function(event) 
     {
+        var fileSize = $('#image_src2')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src2").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src2').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src2').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src2').val('');
+            $('#invalidfiletype').modal('show');
+        }
        //  $("#Previewimg").show();
         var outputThumbnail = document.getElementById('outputThumbnail');
         
@@ -376,6 +477,24 @@ console.log('clicked');
 
     var loadFileThumbnail1 = function(event) 
     {
+
+        var fileSize = $('#image_src3')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src3").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src3').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src3').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src3').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
        //  $("#Previewimg").show();
         var outputThumbnail1 = document.getElementById('outputThumbnail1');
         
@@ -391,6 +510,24 @@ console.log('clicked');
 
     var loadFileThumbnail2 = function(event) 
     {
+
+        var fileSize = $('#image_src4')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src4").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src4').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src4').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src4').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
        //  $("#Previewimg").show();
         var outputThumbnail2 = document.getElementById('outputThumbnail2');
         
@@ -406,6 +543,25 @@ console.log('clicked');
 
     var loadFileThumbnail3 = function(event) 
     {
+
+        var fileSize = $('#image_src5')[0].files[0].size;
+       var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+        var fileName = $("#image_src5").val();;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                   
+            console.log(fileSize);
+        if(fileSize < 20000){
+            $('#image_src5').val('');
+            $('#lessSize').modal('show');
+        }else if(fileSize > 200000){
+            $('#image_src5').val('');
+            $('#greaterSize').modal('show');
+        }else if($.inArray(fileNameExt, validExtensions) == -1){
+            $('#image_src5').val('');
+            $('#invalidfiletype').modal('show');
+        }
+
+
        //  $("#Previewimg").show();
         var outputThumbnail3 = document.getElementById('outputThumbnail3');
         
@@ -453,7 +609,7 @@ console.log('clicked');
                  $("#link1").focus();
                  is_valid = false;
              } else if (description.length < 10 ) {
-                 $("#err_description").text("Description suould be 5 to 2000 characters");
+                 $("#err_description").text("Description should be 10 to 2000 characters");
                  $("#description").focus();
                  is_valid = false;
              } else if (description.length > 2000 ){
@@ -462,7 +618,7 @@ console.log('clicked');
                 // alert("character length excedded")
                 Swal.fire('Description suould lessthan 2000 characters')
                 
-                $("#err_description").text("Description suould be 5 to 2000 characters");
+                $("#err_description").text("Description should be 5 to 2000 characters");
                  $("#description").focus();
                 is_valid = false;
                   return false;
@@ -478,7 +634,7 @@ console.log('clicked');
              if ($("#document2").val() != '') {
                    var fileSize = $('#document2')[0].files[0].size;
 
-                   if (fileSize > 256000) {
+                   if (fileSize > 200000) {
                        var is_valid = false;
                        $('#greaterSize').modal('show');
                        $("#document2").val();
@@ -487,13 +643,13 @@ console.log('clicked');
                            var is_valid = false;
                            // alert("Please select file size greater than 500 KB");
                            return false;
-                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 200 KB </div>");
                        }
                        var is_valid = false;
                        if (!focusSet) {
                            $("#document2").focus();
                        }
-                   } else if(fileSize < 51200){
+                   } else if(fileSize < 20000){
                        is_valid = false;
                        $("#document2").val();
                        if ($("#imgerror3").next(".validation").length == 0) 
@@ -652,9 +808,9 @@ console.log('clicked');
                 Swal.fire({
                             title: 'Do you want to Submit?',
                             showDenyButton: true,
-                            showCancelButton: true,
+                            showCancelButton: false,
                             confirmButtonText: 'Submit',
-                            denyButtonText: `Cancle`,
+                            denyButtonText: `Cancel`,
                             }).then((result) => {
                             /* Read more about isConfirmed, isDenied below */
                             if (result.isConfirmed) {

@@ -31,6 +31,7 @@ class Admin extends CI_Controller
         $this->load->view('Admin/login');
         $this->load->view('Users/footers/login_footer');
     }
+    
     public function authUser()
     {
 
@@ -93,6 +94,18 @@ class Admin extends CI_Controller
     {
         $this->load->view('admin/headers/admin_header');
         $this->load->view('admin/user_management');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function feedback()
+    {
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/feedback');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function feedback_view()
+    {
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('admin/feedback_view');
         $this->load->view('admin/footers/admin_footer');
     }
     //ajax call 
@@ -1503,7 +1516,8 @@ class Admin extends CI_Controller
         // print_r($data); die;
     //    print_r($data['bythementors']); die;
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('users/by_the_montor_list',$data);
+       // $this->load->view('users/by_the_montor_list',$data);
+        $this->load->view('users/btm_list_new',$data);
         $this->load->view('admin/footers/admin_footer');
     }
     public function rejectbtTheMentor(){

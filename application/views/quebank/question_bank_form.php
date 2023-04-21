@@ -153,165 +153,226 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row" id="options_blk" style="display:none;">
-                                <div class="col-md-4" id="opt_blk_eng">
+                            <div class="row" style="" id="options_blk" style="display:none;">
+                                <div class="col-md-5 col-sm-5 col-lg-5 col-xl-5" id="opt_blk_eng">
 
                                     <div class="row mt-3" id="opt1_blk">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 1</label>
-                                            <select class="form-control input-font" id="opt_type_1" name="opt_type_1" aria-label="Default select example" style="width:103px;">
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-                                            </select>
-                                            <div class="form-check" style="padding-left:0px;" id="option1_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option1" id="option1" style="width: 180px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 1</label>
                                             </div>
+                                            <div class="col-3">
+                                                <select class="form-control input-font" id="opt_type_1" name="opt_type_1" aria-label="Default select example">
+                                                    <option value="1">Text</option>
+                                                    <option value="2">Image</option>
+                                                </select></div>
+                                                <div class="col-6">
+                                                <div class="form-check" style="padding-left:0px;" id="option1_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option1" id="option1">
+                                                </div>
+                                            
+                                            
                                             <div class="form-check" style="padding-left:0px;" id="option1_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option1_image" id="option1_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option1_image" id="option1_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 2</label>
-                                            <select class="form-control input-font" id="opt_type_2" name="opt_type_2" aria-label="Default select example" style="width:103px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 2</label>
+                                            </div>
+                                            <div class="col-3">
+                                            <select class="form-control input-font" id="opt_type_2" name="opt_type_2" aria-label="Default select example">
 
                                                 <option value="1">Text</option>
                                                 <option value="2">Image</option>
 
                                             </select>
+                                            </div>
+                                            <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option2_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option2" id="option2" style="width: 180px;">
+                                                <input class="form-control input-font" type="text" name="option2" id="option2">
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option2_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option2_image" id="option2_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option2_image" id="option2_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 3</label>
-                                            <select class="form-control input-font" id="opt_type_3" name="opt_type_3" aria-label="Default select example" style="width:103px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 3</label>
+                                            </div>
+                                            <div class="col-3">
+                                            <select class="form-control input-font" id="opt_type_3" name="opt_type_3" aria-label="Default select example">
 
                                                 <option value="1">Text</option>
                                                 <option value="2">Image</option>
 
                                             </select>
+                                            </div>
+                                            <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option3_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option3" id="option3" style="width: 180px;">
+                                                <input class="form-control input-font" type="text" name="option3" id="option3">
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option3_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option3_image" id="option3_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option3_image" id="option3_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 4</label>
-                                            <select class="form-control input-font" id="opt_type_4" name="opt_type_4" aria-label="Default select example" style="width:103px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 4</label>
+                                            </div>
+                                            <div class="col-3">
+                                            <select class="form-control input-font" id="opt_type_4" name="opt_type_4" aria-label="Default select example">
 
                                                 <option value="1">Text</option>
                                                 <option value="2">Image</option>
 
                                             </select>
+                                            </div>
+                                            <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option4_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option4" id="option4" style="width: 180px;">
+                                                <input class="form-control input-font" type="text" name="option4" id="option4">
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option4_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option4_image" id="option4_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option4_image" id="option4_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt5_blk">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 5</label>
-                                            <select class="form-control input-font" id="opt_type_5" name="opt_type_5" aria-label="Default select example" style="width:103px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 5</label>
+                                            </div>
+                                            <div class="col-3">
+                                            <select class="form-control input-font" id="opt_type_5" name="opt_type_5" aria-label="Default select example">
                                                 <option value="1">Text</option>
                                                 <option value="2">Image</option>
                                             </select>
+                                            </div>
+                                            <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option5_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option5" id="option5" style="width: 180px;">
+                                                <input class="form-control input-font" type="text" name="option5" id="option5">
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option5_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option5_image" id="option5_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option5_image" id="option5_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4" id="opt_blk_hin">
+                                <div class="col-md-5 col-sm-5 col-lg-5 col-xl-5" id="opt_blk_hin">
                                     <div class="row mt-3" id="opt1_blk_h">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 1 in Hindi</label>
-                                            <select class="form-control input-font" id="opt_type_h_1" name="opt_type_h_1" aria-label="Default select example" style="width:103px;">
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-                                            </select>
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 1 in Hindi</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <select class="form-control input-font" id="opt_type_h_1" name="opt_type_h_1" aria-label="Default select example">
+                                                    <option value="1">Text</option>
+                                                    <option value="2">Image</option>
+                                                </select>
+                                                </div>
+                                                <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option1_h_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option1_h" id="option1_h" required>
+                                                <input class="form-control input-font" type="text" name="option1_h" id="option1_h" required>
 
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option1_h_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option1_h_image" id="option1_h_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option1_h_image" id="option1_h_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk_h">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 2 in Hindi</label>
-                                            <select class="form-control input-font" id="opt_type_h_2" name="opt_type_h_2" aria-label="Default select example" style="width:103px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 2 in Hindi</label>
+                                            </div>
+                                            <div class="col-3">
+                                            <select class="form-control input-font" id="opt_type_h_2" name="opt_type_h_2" aria-label="Default select example">
                                                 <option value="1">Text</option>
                                                 <option value="2">Image</option>
                                             </select>
+                                            </div>
+                                            <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option2_h_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option2_h" id="option2_h" required>
+                                                <input class="form-control input-font" type="text" name="option2_h" id="option2_h" required>
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option2_h_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option2_h_image" id="option2_h_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option2_h_image" id="option2_h_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk_h">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 3 in Hindi</label>
-                                            <select class="form-control input-font" id="opt_type_h_3" name="opt_type_h_3" aria-label="Default select example" style="width:103px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 3 in Hindi</label>
+                                            </div>
+                                            <div class="col-3">
+                                            <select class="form-control input-font" id="opt_type_h_3" name="opt_type_h_3" aria-label="Default select example">
                                                 <option value="1">Text</option>
                                                 <option value="2">Image</option>
                                             </select>
+                                            </div>
+                                            <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option3_h_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option3_h" id="option3_h" required>
+                                                <input class="form-control input-font" type="text" name="option3_h" id="option3_h" required>
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option3_h_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option3_h_image" id="option3_h_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option3_h_image" id="option3_h_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk_h">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 4 in Hindi</label>
-                                            <select class="form-control input-font" id="opt_type_h_4" name="opt_type_h_4" aria-label="Default select example" style="width:103px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 4 in Hindi</label>
+                                            </div>
+                                            <div class="col-3">
+                                            <select class="form-control input-font" id="opt_type_h_4" name="opt_type_h_4" aria-label="Default select example">
                                                 <option value="1">Text</option>
                                                 <option value="2">Image</option>
                                             </select>
+                                            </div>
+                                            <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option4_h_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option4_h" id="option4_h">
+                                                <input class="form-control input-font" type="text" name="option4_h" id="option4_h">
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option4_h_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option4_h_image" id="option4_h_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option4_h_image" id="option4_h_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt5_blk_h">
-                                        <div class="mb-2 col-md-12 d-flex">
-                                            <label class="d-block text-font mr-3">Option 5 in Hindi</label>
-                                            <select class="form-control input-font" id="opt_type_h_5" name="opt_type_h_5" aria-label="Default select example" style="width:103px;">
+                                        <div class="mb-2  d-flex">
+                                            <div class="col-3">
+                                            <label class="d-block text-font">Option 5 in Hindi</label>
+                                            </div>
+                                            <div class="col-3">
+                                            <select class="form-control input-font" id="opt_type_h_5" name="opt_type_h_5" aria-label="Default select example">
                                                 <option value="1">Text</option>
                                                 <option value="2">Image</option>
                                             </select>
+                                            </div>
+                                            <div class="col-6">
                                             <div class="form-check" style="padding-left:0px;" id="option5_h_text_blk">
-                                                <input class="form-control input-font ml-3" type="text" name="option5_h" id="option5_h" required>
+                                                <input class="form-control input-font" type="text" name="option5_h" id="option5_h" required>
                                             </div>
                                             <div class="form-check" style="padding-left:0px;" id="option5_h_image_blk">
-                                                <input class="form-control-file input-font ml-3" type="file" name="option5_h_image" id="option5_h_image" style="width: 180px;">
+                                                <input class="form-control-file input-font" type="file" name="option5_h_image" id="option5_h_image">
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -319,11 +380,11 @@
 
                                 </div>
 
-                                <div class="col-md-4" id="corr_opt_blk">
+                                <div class="col-md-2 col-sm-2 col-lg-2 " id="corr_opt_blk">
                                     <label class="d-block text-font mr-3">Correct Option</label>
                                     <div id="cor_opt">
                                         <div class="row mt-3">
-                                            <div class="mb-2 col-md-4 d-flex">
+                                            <div class="mb-2 col-4 ">
 
                                                 <input class="form-control-radio input-font ml-3" type="radio" name="correct_answer" id="r1" value="1" style="margin-top: -7px;">
 
@@ -362,7 +423,7 @@
 
                             </div>
                             <div class="row">
-                                <div class=col-md-12>
+                                <div class="col-md-12">
                                     <div id="imgErrorNew1"></div>
                                     <div id="imgErrorNew2"></div>
                                     <div id="imgErrorNew3"></div>
@@ -1520,10 +1581,8 @@
                                 } else {
                                     var hindiQue = data[i].que_h;
                                 }
-
                             }
                             if (data[i].language == 1 || data[i].language == 3) {
-
                                 if (data[i].image != '') {
                                     var img = data[i].image;
                                     var dynamicImg = '<td>' + engQue + '<br>' +
@@ -1536,8 +1595,6 @@
                                 var dynamicImg = '<td>--</td>';
                             }
                             if (data[i].language == 2 || data[i].language == 3) {
-
-
                                 if (data[i].image != '') {
                                     var img = data[i].image;
                                     var dynamicImgHindi = '<td>' + hindiQue + '<br>' +
@@ -1550,7 +1607,7 @@
                                 var dynamicImgHindi = '<td>--</td>';
                             }
                             /////////////////////////////////////////////// 
-                            if (data[i].language == 1) {
+                            if (data[i].language == 1 || data[i].language == 3) {
                                 if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
 
                                     if (data[i].opt1_e == 0 || data[i].opt1_e == "") {
@@ -1596,7 +1653,7 @@
 
 
                             }
-                            if (data[i].language == 2) {
+                            if (data[i].language == 2 || data[i].language == 3) {
                                 if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
                                     if (data[i].opt1_h == '' || data[i].opt1_h == 0) {
                                         var op1_h_img = data[i].option1_h_image;

@@ -1,41 +1,34 @@
-<style>
-    table.dataTable.nowrap th, table.dataTable.nowrap td {
-    white-space: normal;
-}
-</style>
-<!-- Begin Page Content -->
-<div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">By The Mentors</h1>
-        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-            <ol class="breadcrumb">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">By The Mentor</h1>
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo base_url().'Admin/Dashboard'; ?>">Home</a></li>
                 <li class="breadcrumb-item " aria-current="page"><a href="<?php echo base_url().'admin/exchange_forum'; ?>">Exchange forum</a></li>
                 <li class="breadcrumb-item " aria-current="page"><a href="<?php echo base_url().'admin/byTheMentors/'; ?>">By The Mentors</a></li>
-            </ol>
-        </nav>
-    </div>
-    <!-- Content Row -->
-   
-        <div class="row" style="padding:10px;">
-        <div class="card p-3 shadow" style="width: -webkit-fill-available;">
-                <nav>
-                    <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">New Requests</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Approve Requests</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Rejected Requests</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-archive" type="button" role="tab" aria-controls="nav-archive" aria-selected="false">Archive Requests</button>
-                    </div>
-                </nav>
-            <div class="tab-content p-3 border bg-light" id="nav-tabContent">
-              <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="col-12 mt-3">
-                   <div class="card border-top card-body">
-                    <table id="example5" class="table dataTable table-bordered display now" style="width:100%">
+                </ol>
+            </nav>
+        </div>
+<div class="row" style="padding: 10px;">
+	<div class="card p-3 shadow">
+		<nav>
+			<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">New Requests</button>
+				<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Approve Requests</button>
+				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Rejected Requests</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#archive-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Archive Requests</button>
+			</div>
+		</nav>
+		<div class="tab-content p-3 border bg-light" id="nav-tabContent" style="padding: 0px !important; width: -webkit-fill-available;">
+			<div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="col-12 mt-3">
+                <div class="card border-top card-body">
+                    <table id="example" class="table-bordered display nowrap" style="width:100%">
                         <thead>
-                            <tr>
+                        <tr>
                                 <th>Sr. No.</th>
                                 <th>Name</th> 
                                 <th>Email</th>                              
@@ -48,18 +41,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($created)) {
+                        <?php if (!empty($created)) {
                                 $i = 1;
                                 foreach ($created as $list_btm1) { ?>
-
-                                    <tr>
+                        <tr>
                                         <td><?php echo $i++ ?></td> 
                                         <td><?php echo $list_btm1['user_name']; ?></td>  
                                         <td><?php echo $list_btm1['email']; ?></td>                                     
                                         <td><?php echo $list_btm1['title']; ?></td>                                        
                                         <td><?php echo $list_btm1['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm1['image']) { ?>
-                                                <img src="<?php echo base_url(); ?><?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
+                                            <img src="<?php echo base_url(); ?><?php echo $list_btm1['image'] ?>" data-toggle="modal" data-target="#viewImage" width="40px">
                                             <?php } else {
                                                 echo "No Uploaded";
                                             } ?>
@@ -69,7 +61,6 @@
                                             <?php } ?>
                                         </td>
                                         <td><?php echo $list_btm1['status_name']; ?> </td>
-
                                         <td class="d-flex border-bottom-0">
                                             <!-- <button onClick="" class="btn btn-info btn-sm mr-2 text-white" data-toggle="modal"
                                         data-target="#editform"><i class="fa fa-edit" aria-hidden="true"></i></button> -->
@@ -87,22 +78,21 @@
                                          <?php } ?>
                                         <?php } ?>
                                             <!-- Modal -->
-                                        </td>   
-                                    </tr>
+                                        </td>                             
+                            </tr>
                             <?php }
                             } ?>
-
                         </tbody>
                     </table>
                 </div>
             </div>
-            </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="col-12 mt-3">
-                   <div class="card border-top card-body">
-                    <table id="example1" class="table-bordered display nowrap" style="width:100%;" >
+			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="col-12 mt-3">
+                <div class="card border-top card-body">
+                    <table id="example_1" class="table-bordered display nowrap" style="width:100%">
                         <thead>
-                            <tr>
+                        <tr>
                                 <th>Sr. No.</th>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -115,12 +105,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($approved)) {
+                        <?php if (!empty($approved)) {
                                 $i = 1;
                                 foreach ($approved as $list_btm) { ?> 
-
-                                    <tr>
-                                        <td><?php echo $i++ ?></td>
+                            <tr>
+                            <td><?php echo $i++ ?></td>
                                         <td><?php echo $list_btm['user_name']; ?></td>
                                         <td><?php echo $list_btm['email']; ?></td>        
                                         <td><?php echo $list_btm['title']; ?></td>                                        
@@ -148,22 +137,21 @@
                                          <?php } }?>
                                         
                                             <!-- Modal -->
-                                        </td>      
-                                    </tr>
+                                        </td>
+                            </tr>
                             <?php }
                             } ?>
-
                         </tbody>
                     </table>
                 </div>
             </div>
-            </div>
-            <div class="tab-pane fade show" id="nav-contact" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="col-12 mt-3">
-                   <div class="card border-top card-body">
-                    <table id="example2" class="table table-bordered" style="width:100%">
+			</div>
+			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="col-12 mt-3">
+                <div class="card border-top card-body">
+                    <table id="example_2" class="table-bordered display nowrap" style="width:100%">
                         <thead>
-                            <tr>
+                        <tr>
                                 <th>Sr. No.</th>
                                 <th>Title</th>
                                 <th>Created On</th>
@@ -175,12 +163,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($rejected)) {
+                        <?php if (!empty($rejected)) {
                                 $i = 1;
                                 foreach ($rejected as $list_btm) { ?>
-
-                                    <tr>
-                                        <td><?php echo $i++ ?></td>
+                        <tr>
+                        <td><?php echo $i++ ?></td>
                                         <td><?php echo $list_btm['title']; ?></td>                                        
                                         <td><?php echo $list_btm['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm['image']) { ?>
@@ -204,26 +191,24 @@
                                                 <button class="btn btn-primary btn-sm ml-2" onclick="sendArchive('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>Archive</button>
                                           
                                                 <!-- <button class="btn btn-primary btn-sm" onclick="sendUnPublish('<?php echo $list_btm['id']; ?>')" data-id ='<?php echo $list_btm['id']; ?>'>UnPublish</button> -->
-                                        </td>   
-                                 <?php } ?>
-                                        
-                                            <!-- Modal -->
-                                            
-                                    </tr>
-                            <?php }
+                                                <?php } ?>
+                                            </td>
+                             
+                        </tr>
+                        <?php }
                             } ?>
 
                         </tbody>
                     </table>
                 </div>
             </div>
-            </div>
-            <div class="tab-pane fade show" id="nav-archive" role="tabpanel" aria-labelledby="nav-archive-tab">
-                <div class="col-12 mt-3">
-                   <div class="card border-top card-body">
-                    <table id="example3" class="table table-bordered" style="width:100%">
+			</div>
+            <div class="tab-pane fade" id="archive-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="col-12 mt-3">
+                <div class="card border-top card-body">
+                    <table id="example_3" class="table-bordered display nowrap" style="width:100%">
                         <thead>
-                            <tr>
+                        <tr>
                                 <th>Sr. No.</th>
                                 <th>Title</th>
                                 <th>Created On</th>
@@ -234,12 +219,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($archive)) {
+                        <?php if (!empty($archive)) {
                                 $i = 1;
                                 foreach ($archive as $list_btm1) { ?>
-
-                                    <tr>
-                                        <td><?php echo $i++ ?></td>
+                        <tr>
+                        <td><?php echo $i++ ?></td>
                                         <td><?php echo $list_btm1['title']; ?></td>                                        
                                         <td><?php echo $list_btm1['created_on']; ?></td>                                        
                                         <td><?php if ($list_btm1['image']) { ?>
@@ -263,25 +247,26 @@
                                             <!-- Modal -->
                                             <?php } ?>
                                         </td>
-                                    </tr>
+                            </tr>
                             <?php }
                             } ?>
-
                         </tbody>
                     </table>
                 </div>
             </div>
-            </div>
-          </div>
-        </div>
-        </div>
-    <!-- </div> -->
-    <!-- /.container-fluid -->
-    <div class="col-md-12 submit_btn p-3">
+			</div>
+		</div>
+	</div>
+</div>
+        <!-- Content Row -->
+        <div class="col-md-12 submit_btn p-3">
                                <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url().'admin/exchange_forum' ?>'">Back</a>
                           </div>
-</div>
-<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    </div>
+    
+    <!-- End of Main Content -->
+ </body>
+ <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -432,31 +417,44 @@
             </div>
         </div>
     </div>
-<!-- End of Main Content -->
+
+                                  <!-- Modal -->
+                                    
+                                    <!-- Modal -->
+                                      <!-- Modal -->
+                                      
+                                    <!-- Modal -->
+                                      <!-- Modal -->
+                                      
+                                    <!-- Modal -->
+                                      <!-- Modal -->
+                                      
+                                    <!-- Modal -->
 <script>
-    $(document).ready(function(){
-        // $('.delete_img').on('click',function(){
-        //     $('#delete').modal('show');
-        // })
-        $('#example1').DataTable({
-            scrollx:true,
-           // responsive: true
-        });
-        $('#example2').DataTable({
-            scrollx:true,
-          //  responsive: true
-        });
-        $('#example3').DataTable({
-            scrollx:true
-        });
-        $('#example5').DataTable({
-            scrollx:true
-        });
-        // $('#example').DataTable({
-        //     scrollx:true
-        // });
-    })
-    function reject(que_id){
+    // $(document).ready(function () {
+    // $('#example_1').DataTable();
+    // $('#example_2').DataTable();
+    // $('#example_3').DataTable();
+    // scrollX: true,
+
+    // });
+$(document).ready(function () {
+    $('#example_1').DataTable({
+        scrollX: true,
+    });
+});
+$(document).ready(function () {
+    $('#example_2').DataTable({
+        scrollX: true,
+    });
+});
+$(document).ready(function () {
+    $('#example_3').DataTable({
+        scrollX: true,
+    });
+});
+
+function reject(que_id){
             $('#rejectModal1').modal('show');
             $('#id2').val(que_id);
         }
@@ -555,36 +553,9 @@
 
             });
         }
-        
-        // function sendReject(que_id) {
-        //     // var c = confirm("Are you sure to Publish By The Mentor details? ");
-        //     // if (c == true) {
-        //         // const $loader = $('.igr-ajax-loader');
-        //         //$loader.show();
-        //         // $('#rejectModal1').modal('show');
-        //         $('.archive').on('click', function() {
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: '<?php echo base_url(); ?>admin/sendReject',
-        //             data: {
-        //                 que_id: que_id,
-        //             },
-        //             success: function(result) {
-        //                 // $('#row' + que_id).css({
-        //                 //     'display': 'none'
-        //                 // });
-        //                 // alert('success' 'refresh');
-        //                 location.reload();
-        //             },
-        //             error: function(result) {
-        //                 alert("Error,Please try again.");
-        //             }
-        //         });
 
-        //     });
-        // }
 
-    function sendPublish(que_id) {
+        function sendPublish(que_id) {
             // var c = confirm("Are you sure to Publish By The Mentor details? ");
             // if (c == true) {
                 // const $loader = $('.igr-ajax-loader');
@@ -632,4 +603,10 @@
 
             });
         }
-</script>
+
+
+
+
+
+
+</script>                                    

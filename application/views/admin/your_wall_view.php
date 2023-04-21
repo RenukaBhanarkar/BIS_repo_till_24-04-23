@@ -35,19 +35,19 @@
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font"> Name</label>
                                     <div>
-                                        <p><?php // echo $data['name']; ?></p>dummy_name
+                                        <p><?php  echo $data['user_name']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Email Id</label>
                                     <div>
-                                        <p><?php // echo $data['email_id']; ?></p>dummy_email
+                                        <p><?php  echo $data['email']; ?></p>
                                     </div>    
                                 </div>
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Contact</label>
                                     <div>
-                                        <p>Not Available</p>
+                                        <p><?php  echo $data['user_mobile']; ?></p>
                                     </div>    
                                 </div>
                                 <!-- <div class="mb-2 col-md-4">
@@ -79,12 +79,20 @@
                             </div>
                         </div>
                             <div class="row">
-                            <div class="col-md-4">
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font">Document<sup class="text-danger">*</sup></label>
+                                                                        <div>
+                                        <a href="<?php echo base_url().$data['document']; ?>" target="_blank">
+                                        <img src="<?php echo base_url(); ?>assets/admin/img/pdf.png" width="25px">
+                                        </a>
+                                    </div> 
+                                                                </div>
+                            <!-- <div class="col-md-4">
                                     <label class="d-block text-font">Status<sup class="text-danger">*</sup></label>
                                     <div>
-                                        <p><?php echo $data['status_name']; ?></p>
+                                        <p><?php //echo $data['status_name']; ?></p>
                                     </div> 
-                            </div>
+                            </div> -->
                             
 
                             <!-- <div class="col-md-4">
@@ -103,30 +111,38 @@
                             </div> -->
                           </div>
                           <div class="row" style="padding:10px;">
+                          <?php if(!($data['other_image1'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$data['other_image1']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($data['other_image2'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$data['other_image2']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($data['other_image3'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$data['other_image3']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($data['other_image4'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$data['other_image4']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
                           <div class="col-md-12 submit_btn p-3">
                                <a class="btn btn-primary btn-sm text-white" onclick="location.href='<?php echo base_url();?>admin/your_wall_list'">Back</a>

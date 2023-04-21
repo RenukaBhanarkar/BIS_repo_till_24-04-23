@@ -45,8 +45,9 @@
                                                 <th>Sr.No.</th>
                                                 <th>Ques Id</th>
                                                 <th>Ques Type</th>
-                                                <th>Ques Title</th>
+                                                <th>Ques Title Eng</th>
                                                 <th>Ques Title Hindi</th>
+                                                <th>Image Ques</th>
                                                 <th>Number of Options</th>
                                                 <th>English Options </th>
                                                 <th>Hindi Options</th>
@@ -57,7 +58,9 @@
                                         <tbody>
                                             <?php
                                             $i = 1;
-                                            foreach ($row['queList'] as $r) { ?>
+                                            foreach ($row['queList'] as $r) { 
+                                            //echo json_encode($r['opt1_e']);exit();
+                                            ?>
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $r['que_id']; ?></td>
@@ -72,58 +75,136 @@
                                                     <td>
                                                         <?php if ($r['language'] == 1  || $r['language'] == 3) {
                                                             echo $r['que'];
-                                                        } else {
-                                                            echo "--";
-                                                        }
-                                                        ?>
-                                                        <?php if ($r['que_type'] == 2 || $r['que_type'] == 3) { ?>
-                                                            <br>
-                                                            <img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid<?php echo $r['que_bank_id']; ?>/<?php echo $r['image']; ?>">
-                                                        <?php } ?>
+                                                        }else { echo "--";}  ?>
                                                     </td>
 
-                                                    <td> <?php if ($r['language'] == 2 || $r['language'] == 3) {
+                                                    <td> 
+                                                        <?php if ($r['language'] == 2 || $r['language'] == 3) {
                                                                 echo $r['que_h'];
-                                                            } else {
-                                                                echo '--';
-                                                            }
-                                                            ?></td>
+                                                        } else { echo "--";} ?>
+                                                    </td>
+                                                    <td>
+                                                    <?php if ($r['que_type'] == 2 || $r['que_type'] == 3) { ?>
+                                                            <br>
+                                                            <img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid<?php echo $r['que_bank_id']; ?>/<?php echo $r['image']; ?>">
+                                                        <?php } else { echo "--";} ?>
+                                                    </td>
 
                                                     <td><?php echo $r['no_of_options']; ?></td>
 
 
                                                     <?php
-                                                    $opt1_e = $opt2_e = $opt3_e = $opt4_e = $opt5_e = "NA";
-                                                    $opt1_h = $opt2_h = $opt3_h = $opt4_h = $opt5_h = "NA";
-                                                    if ($r['opt1_e'] != "") {
-                                                        $opt1_e = $r['opt1_e'];
+                                                    // $opt1_e = $opt2_e = $opt3_e = $opt4_e = $opt5_e = "NA";
+                                                    // $opt1_h = $opt2_h = $opt3_h = $opt4_h = $opt5_h = "NA";
+                                                    if ($r['option1_image'] != "") {                                                       
+                                                        $op1_img = $r['option1_image'];
+                                                        $opt1_e = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op1_img.'>';
+                                                    }else{
+                                                        if($r['opt1_e']!=""){
+                                                            $opt1_e = $r['opt1_e'];
+                                                        }else{
+                                                            $opt1_e = "NA";
+                                                        }
+                                                       
                                                     }
-                                                    if ($r['opt2_e'] != "") {
-                                                        $opt2_e = $r['opt2_e'];
+                                                    if ($r['option2_image'] != "") {
+                                                        $op2_img = $r['option2_image'];
+                                                        $opt2_e = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op2_img.'>';
+                                                    }else{
+                                                        if($r['opt2_e']!=""){
+                                                            $opt2_e = $r['opt2_e'];
+                                                        }else{
+                                                            $opt2_e = "NA";
+                                                        }
+                                                      
                                                     }
-                                                    if ($r['opt3_e'] != "") {
-                                                        $opt3_e = $r['opt3_e'];
+                                                    if ($r['option3_image'] != "") {
+                                                        $op3_img = $r['option3_image'];
+                                                        $opt3_e = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op3_img.'>';
+                                                    }else{
+                                                        if($r['opt3_e']!=""){
+                                                            $opt3_e = $r['opt3_e'];
+                                                        }else{
+                                                            $opt3_e = "NA";
+                                                        }
+                                                      
                                                     }
-                                                    if ($r['opt4_e'] != "") {
-                                                        $opt4_e = $r['opt4_e'];
+                                                    if ($r['option4_image'] != "") {
+                                                        $op4_img = $r['option4_image'];
+                                                        $opt4_e = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op4_img.'>';
+                                                    }else{
+                                                       
+                                                        if($r['opt4_e']!=""){
+                                                            $opt4_e = $r['opt4_e'];
+                                                        }else{
+                                                            $opt4_e = "NA";
+                                                        }
                                                     }
-                                                    if ($r['opt5_e'] != "") {
-                                                        $opt5_e = $r['opt5_e'];
+                                                    if ($r['option5_image'] != "") {
+                                                        $op5_img = $r['option5_image'];
+                                                        $opt5_e = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op5_img.'>';
+                                                    }else{
+                                                       
+                                                        if($r['opt5_e']!=""){
+                                                            $opt5_e = $r['opt5_e'];
+                                                        }else{
+                                                            $opt5_e = "NA";
+                                                        }
                                                     }
-                                                    if ($r['opt1_h'] != "") {
-                                                        $opt1_h = $r['opt1_h'];
+                                                    if ($r['option1_h_image'] != "") {
+                                                        $op1_h_img = $r['option1_h_image'];
+                                                        $opt1_h = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op1_h_img.'>';
+                                                    }else{
+                                                       
+                                                        if($r['opt1_h']!=""){
+                                                            $opt1_h = $r['opt1_h'];
+                                                        }else{
+                                                            $opt1_h = "NA";
+                                                        }
                                                     }
-                                                    if ($r['opt2_h'] != "") {
-                                                        $opt2_h = $r['opt2_h'];
+                                                    if ($r['option2_h_image'] != "") {
+                                                        $op2_h_img = $r['option2_h_image'];
+                                                        $opt2_h = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op2_h_img.'>';
+                                                    }else{
+                                                      
+                                                        if($r['opt2_h']!=""){
+                                                            $opt2_h = $r['opt2_h'];
+                                                        }else{
+                                                            $opt2_h = "NA";
+                                                        }
                                                     }
-                                                    if ($r['opt3_h'] != "") {
-                                                        $opt3_h = $r['opt3_h'];
+                                                    if ($r['option3_h_image'] != "") {
+                                                        $op3_h_img = $r['option3_h_image'];
+                                                        $opt3_h = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op3_h_img.'>';
+                                                    }else{
+                                                       
+                                                        if($r['opt3_h']!=""){
+                                                            $opt3_h = $r['opt3_h'];
+                                                        }else{
+                                                            $opt3_h = "NA";
+                                                        }
                                                     }
-                                                    if ($r['opt4_h'] != "") {
-                                                        $opt4_h = $r['opt4_h'];
+                                                    if ($r['option4_h_image'] != "") {
+                                                        $op4_h_img = $r['option4_h_image'];
+                                                        $opt4_h = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op4_h_img.'>';
+                                                    }else{
+                                                        
+                                                        if($r['opt4_e']!=""){
+                                                            $opt4_e = $r['opt4_e'];
+                                                        }else{
+                                                            $opt4_e = "NA";
+                                                        }
                                                     }
-                                                    if ($r['opt5_h'] != "") {
-                                                        $opt5_h = $r['opt5_h'];
+                                                    if ($r['option5_h_image'] != "") {
+                                                        $op5_h_img = $r['option5_h_image'];
+                                                        $opt5_h = '<img width="100" src='.base_url().'uploads/que_img/bankid'. $r['que_bank_id']. '/' .$op5_h_img.'>';
+                                                    }else{
+                                                       
+                                                        if($r['opt5_h']!=""){
+                                                            $opt5_h = $r['opt5_h'];
+                                                        }else{
+                                                            $opt5_h = "NA";
+                                                        }
                                                     }
 
                                                     ?>

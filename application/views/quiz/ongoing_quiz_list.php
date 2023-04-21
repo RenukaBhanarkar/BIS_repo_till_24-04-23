@@ -49,7 +49,7 @@
                                  <td><?= $quiz['total_mark']?></td>  
                                     <td class="d-flex border-bottom-0">
                                     <button onClick="location.href='ongoing_quiz_view'" class="btn btn-primary btn-sm mr-2">View</button>
-                                    <button onClick="location.href='closed_quiz_submission'" class="btn btn-warning btn-sm mr-2">View submission</i></button>
+                                    <button onClick="location.href='closed_quiz_submission/<?= $quiz['quiz_id']?>'" class="btn btn-warning btn-sm mr-2">View submission</i></button>
                                  </td>
                                   
                              

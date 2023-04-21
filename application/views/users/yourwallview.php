@@ -12,11 +12,16 @@
     margin-bottom: 17px;
     position: relative;
 }
+.yourWall_image {
+    height: 331px;
+    margin-bottom: 17px;
+    position: relative;
+}
 
 .Text-container_view {
     padding: 0px 19px 4px;
     text-align: justify;
-    min-height: 180px;
+    /* min-height: 180px; */
 }
 
 .yourWall_title_view {
@@ -122,7 +127,7 @@
                         <div class="yourWall_image"> 
 
                             <img src="<?php echo base_url().'uploads/your_wall/'.$published_wall['image'] ?>" alt="not found" class="w-100 h-100">
-                            <span><i class="fa fa-calendar icons"><?php echo date("m-d-Y",strtotime($published_wall['created_on'])); ?></i></span>
+                            <span><i class="fa fa-calendar icons"></i><?php echo date("m-d-Y",strtotime($published_wall['created_on'])); ?></span>
                         </div>
                         <div class="Text-container_view ">
                             
@@ -131,31 +136,55 @@
                             </p>
 
                         </div>
+                        <div class="" style="text-align: end; margin-right: 23px;">
+                            <button class="btn btn-primary mb-4 mr-4">
+                                By <?php echo $published_wall['user_name']; ?>
+                            </button>
+                        </div>
                         <div class="row" style="padding:10px;">
+                        <?php if(!($published_wall['other_image1'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$published_wall['other_image1']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($published_wall['other_image2'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$published_wall['other_image2']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($published_wall['other_image3'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$published_wall['other_image3']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+                        <?php if(!($published_wall['other_image4'])==""){ ?>
                         <div class="mb-3 col-md-3">
                             <div class="input_box" >
-                                <img src="<?php echo base_url().'assets/images/img_1.jpg'; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
+                                <img src="<?php echo base_url().$published_wall['other_image4']; ?>" id="outputThumbnail" alt="" class="w-100 img_mentor">
                                
                             </div>
                         </div>
+                        <?php } ?>
+
+                        <?php if(!($published_wall['document'])==""){ ?>
+                        
+                        
+                        <div class="" style="margin-left: 17px;">
+                                <a class="btn btn-info mb-4 mr-4"  href="<?php echo base_url().$published_wall['document']; ?>" target="_blank"><img  src="<?php echo base_url().'assets/admin/img/pdf.png'; ?>" width="100px"/></a>
+                                </a>
+                        </div>
+                            
+                            
+                        <?php } ?>
                     </div>
                     </div>
 

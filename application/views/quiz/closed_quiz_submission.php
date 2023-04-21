@@ -30,6 +30,7 @@
                             <th>Date</th>
                             <th>Time</th>
                             <th>Score</th>
+                            <th>Prize</th>
                             
                         </tr>
                     </thead>
@@ -49,6 +50,15 @@
                                  <td><?= date("d-m-Y", strtotime($users['created_on']));?></td> 
                                  <td><?= $users['start_time']?></td> 
                                  <td><?= $users['score']?></td>
+                                 <td>
+                                    <select id="prize" name="prize" class="form-control input-font" value="prize">
+                                        <option value="1">First Prize</option>
+                                        <option value="1">Second Prize</option>
+                                        <option value="1">Third Prize</option>
+                                        <option value="1">Fourth Prize</option>
+                                        <option value="1">Consolation Prize</option>
+                                    </select>
+                                 </td>
                                   
                                  </tr>
 
@@ -60,6 +70,11 @@
                 </table>
             </div>    
           </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-3" style="text-align: end;">
+            <button onClick="location.href='#'" class="btn btn-success btn-sm mr-2">Declared Result</button>
+            </div>
         </div>
        </div>
     <!-- /.container-fluid -->

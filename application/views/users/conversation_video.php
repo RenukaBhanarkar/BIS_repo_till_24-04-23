@@ -7,7 +7,7 @@ h1 {
     color: rgb(3, 3, 3);
 }
 .video_content {
-    padding: 39px 136px;
+    padding: 39px 55px;
 } 
 .video__details {
     display: flex;
@@ -56,7 +56,7 @@ h1 {
     padding: 5px;
 }
 .recent_img{
-    width: 41%;
+    width: 57%;
     border-radius: 5px;
 }
 .description_text {
@@ -151,18 +151,18 @@ button:disabled {
                         <source src="movie.ogg" type="video/ogg">
                             Your browser does not support the video tag.
                     </video>
-                    <div class="buttons">
+                    <!-- <div class="buttons">
                             <button class="playPause">Play video</button>
                             <button class="pip">Enter picture-in-picture mode</button>
-                    </div>
+                    </div> -->
                     </div>
                 <div class="video__details">
                     <div class="title-text">
                         <h3> <?= $Conversation['title']?> </h3>
                         <span><?= $Conversation['views']?> Views • <?= time_elapsed_string($Conversation['created_on'])?></span>
                         <span><?= $Conversation['likes']?> likes </span>
-                        <span class="like_button" type="button" onclick="submitLike('<?= $Conversation["id"]?>')"><i onclick="myFunction(this)" class="fa fa-thumbs-up" style="width:18px; font-size: 21px; margin-right: 9px;"></i>like</span>
-                        <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $Conversation['id'] )?>" data-toggle="tooltip" title="Copy Link and Share" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>share</a>
+                        <span class="like_button" type="button" onclick="submitLike('<?= $Conversation["id"]?>')"><i onclick="myFunction(this)" class="fa fa-heart" style="width:18px; font-size: 21px; margin-right: 9px; color:red;"></i>Like</span>
+                        <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $Conversation['id'] )?>" data-toggle="tooltip" title="Copy Link and Share" class="share_button" type="button"><i class="fa fa-share" style="margin:4px;"></i>Share</a>
 
                           
                     </div> 
@@ -178,8 +178,9 @@ button:disabled {
                 <h1>Recent Search</h1> 
                 <?php foreach ($getRecentSearch as $key => $value) {?>
                     <div class="video_recent">
-                        <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <img src="<?= base_url()?><?= $value['video_thumbnail']?>" alt="" class="recent_img"/>
-                        </a>
+                        <!-- <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>">  -->
+                        <img src="<?= base_url()?><?= $value['video_thumbnail']?>" alt="" class="recent_img"/> 
+                         <!-- </a>  -->
                             <div class="video__details">
                                 <div class="title">
                                     <h3><a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <?= $value['title']?></a></h3>
@@ -285,7 +286,7 @@ playPause.addEventListener("click", async e => {
 });
 
      function myFunction(x) {
-  x.classList.toggle("fa-thumbs-down");
+  x.classList.toggle("fa-heart-o");
 }
 $('.share_button').click(function (e) {
    e.preventDefault();
