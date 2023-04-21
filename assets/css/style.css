@@ -2356,4 +2356,76 @@ label.d-block.text-font {
     /* padding: 10px; */
     padding: 0px 0px 22px 23px;
 }
-
+.cta {
+    padding: 0;
+    margin-bottom: 60px;
+}
+.cta .container {
+    padding: 80px;
+    background: #dcdcdcb8;
+    border-radius: 15px;
+	opacity: 1;
+    transform: translateZ(0) scale(1);
+}
+.cta .content h3 {
+    color:#485664;
+    font-size: 48px;
+    font-weight: 700;
+}
+.cta .content p {
+    color: #485664;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: revert;
+}
+.cta .content .cta-btn {
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-block;
+    padding: 12px 40px;
+    border-radius: 5px;
+    transition: 0.5s;
+    margin-top: 10px;
+    background: brown;
+}
+.align-self-start {
+    align-self: flex-start!important;
+}
+.align-items-center {
+    align-items: center!important;
+}
+.cta .img {
+    position: relative;
+}
+.cta .img img {
+    position: relative;
+    z-index: 3;
+    border-radius: 15px;
+}
+.img-standard {
+    max-width: 100%;
+    height: auto;
+}
+.justify-content-center {
+    justify-content: center!important;
+}
+.cta .img:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: white;
+    border-radius: 15px;
+    transform: rotate(6deg);
+}
+.cta .img:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:white;
+    border-radius: 15px;
+    transform: rotate(12deg);
+}
+.cta .content .cta-btn:hover {
+    background: #a71616;
+}
