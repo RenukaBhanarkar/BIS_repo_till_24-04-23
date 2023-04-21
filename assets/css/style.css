@@ -2429,3 +2429,51 @@ label.d-block.text-font {
 .cta .content .cta-btn:hover {
     background: #a71616;
 }
+.section-header {
+    text-align: center;
+    padding-bottom: 40px;
+}
+.section-header h2 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #485664;
+}
+.section-header p {
+    max-width: 80%;
+	margin: 0 auto;
+}
+.about .about-img {
+    position: relative;
+    margin: 60px 0 0 60px;
+}
+.about .about-img:before {
+	background: url('http://localhost/BIS/BIS_repo/assets/images/about-bg.png') no-repeat;
+    position: absolute;
+    inset: -60px 0 0 -60px;
+    z-index: -1;
+    content: "";
+    /* background: url('<?php echo base_url(); ?>/assets/images/plus.png') top left; */
+    background-repeat: no-repeat;
+}
+.about .nav-pills {
+    border-bottom: 1px solid #0ea2bd;
+}
+.about .nav-link.active {
+    color: #0ea2bd;
+    background: none;
+    border-bottom: 3px solid #0ea2bd;
+}
+.about .nav-link {
+    background: none;
+    font-size: 18px;
+    font-weight: 400;
+    color: #485664;
+    padding: 12px 0;
+    margin-bottom: -2px;
+    border-radius: 0;
+    font-family: var(--font-secondary);
+}
+.about .nav-pills li+li {
+    margin-left: 40px;
+}
