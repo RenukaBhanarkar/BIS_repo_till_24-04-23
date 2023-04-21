@@ -86,7 +86,7 @@ h5{
     overflow: hidden;
 }
 .img-fluid {
-    max-width: 100%;
+    width: 100%;
     /* height: auto; */
     transition: all ease-in-out 0.6s;
     height: 261px;
@@ -167,8 +167,8 @@ h5{
               <div class="details position-relative">
                 <div class="icon">
                   <!-- <i class="bi bi-activity"></i> -->
-                  <i class="fa fa-trophy"></i>
-                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
+                  <!-- <i class="fa fa-trophy"></i> -->
+                 <img src="<?php echo base_url();?>/assets/images/mentoring.png" alt="" class="" style="width: 36px;"> 
                 </div>
                 <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>" class="stretched-link">
                   <h3 class="title_mentor"><?php echo $list['title'];?></h3>

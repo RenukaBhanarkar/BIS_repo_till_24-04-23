@@ -147,7 +147,7 @@
     <section style="background-color: #e3effb94;">
         <div class="container">
             <div class="row">
-            <div class="new-content d-flex">
+            <div class="new-content d-flex" style="margin-left: -37px;">
               <div class="col-md-3 col-lg-3 col-sm-3 m-2">
                   <a href="<?php echo base_url().'wall_of_wisdom/wallOfWisdom' ?>">
                     <div class="card image-card" style="width:100%; z-index: 1000;">                    
