@@ -82,62 +82,61 @@
             </div>
             <div class="portfolio-menu mt-2 mb-4">
                <ul>
-                  <li class="btn btn-outline-dark active" data-filter="*">Image</li>
+               <li style="padding: 0px;"><button onclick="gal_images()" class="btn btn-outline-dark active img" id="img">Images</button></li>
                   <!-- <li class="btn btn-outline-dark" data-filter=".gts">Girls T-shirt</li>
                   <li class="btn btn-outline-dark" data-filter=".lap">Laptops</li> -->
-                  <li class="btn btn-outline-dark text" data-filter=".selfie">Video</li>
+                  <li style="padding: 0px;"><button onclick="abcd()" class="btn btn-outline-dark vdo" id="vdo">Video</button></li>
                </ul>
             </div>
-            <div class="portfolio-item row">
-                <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg" class="fancylight popup-btn" data-fancybox-group="light"> 
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item gts col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/pretty-girl-near-car_1157-16962.jpg" class="fancylight popup-btn" data-fancybox-group="light"> 
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/pretty-girl-near-car_1157-16962.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/blonde-tourist-taking-selfie_23-2147978899.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/blonde-tourist-taking-selfie_23-2147978899.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item gts col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/cute-girls-oin-studio_1157-18211.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/cute-girls-oin-studio_1157-18211.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item gts col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/stylish-pin-up-girls_1157-18451.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/stylish-pin-up-girls_1157-18451.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item gts col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/stylish-pin-up-girl_1157-18940.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/stylish-pin-up-girl_1157-18940.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item lap col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-photo/digital-laptop-working-global-business-concept_53876-23438.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-photo/digital-laptop-working-global-business-concept_53876-23438.jpg" alt="">
-                   </a>
-                </div>
-                <div class="item lap col-lg-3 col-md-4 col-6 col-sm">
-                   <a href="https://image.freepik.com/free-psd/set-digital-devices-screen-mockup_53876-76507.jpg" class="fancylight popup-btn" data-fancybox-group="light">
-                   <img class="img-fluid" src="https://image.freepik.com/free-psd/set-digital-devices-screen-mockup_53876-76507.jpg" alt="">
-                   </a>
-                </div>
-                
-                
-                
-                
-              </div>
+            <div class="portfolio-item row" id="photo_gallary">
+                  <?php if(!empty($images)){ foreach($images as $list){ ?>
+                      <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
+                          <a href="<?php echo base_url().'uploads/'.$list['image'];?>" class="fancylight popup-btn" data-fancybox-group="light"> 
+                          <img class="img-fluid" src="<?php echo base_url().'uploads/'.$list['image'];?>" style="height:180px; width:280px; padding:20px;"; alt="">
+                          </a>
+                      </div>
+                  <?php } ?>
+                  <?php if(count($images) > 7){ ?>
+                  <div class="view-button">
+                    <a href="<?php echo base_url().'users/photo_gallary' ?>">View All</a>
+                  </div>
+                  <?php } } ?>
+               <!-- <a class="content-right" href="">view More...</a> -->
+             </div>
+             <div class="portfolio-item row" id="video_gallary" style="display:none;">
+             <?php if(!empty($videos)){ foreach($videos as $list){ ?>
+                      <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
+                          <a href="<?php echo base_url().'uploads/'.$list['video'];?>" class="fancylight popup-btn" data-fancybox-group="light"> 
+                          <video class="img-fluid" src="<?php echo base_url().'uploads/'.$list['video'];?>" style="height:180px; width:280px; padding:20px;"; alt="">
+                          </a>
+                      </div>
+                      <?php if(count($videos) > 7){ ?>
+                      <div class="view-button">
+                      <a href="<?php echo base_url().'users/video_gallary' ?>">View All</a>
+                    </div>
+                    <?php } ?>
+                  <?php } }?>
+             </div>
          </div>
     </section>
+    <script>
     
-    <script src="<?=base_url();?>assets/js/bootstrap.bundle.js"></script>
+       $('#photo_gallary').show();
+      function abcd(){         
+              $('.vdo').addClass('active');
+              $('.img').removeClass('active');
+              $('#photo_gallary').hide();
+              $('#video_gallary').show();                                
+        }
+     
+      function gal_images(){        
+              $('.img').addClass('active');
+              $('.vdo').removeClass('active');
+              $('#photo_gallary').show();
+              $('#video_gallary').hide();                                
+      }
+    </script>
+    <script src="<?=base_url();?>assets/js/bootstrap.bundle.js"></scrip>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="<?=base_url();?>assets/js/owl.carousel.min.js"></script>
     <script src="<?=base_url();?>assets/js/font_resize.js"></script>

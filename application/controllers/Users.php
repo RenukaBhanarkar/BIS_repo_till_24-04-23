@@ -259,8 +259,12 @@ class Users extends CI_Controller {
     }
     
     public function important_draft(){
+        $this->load->model('admin/admin_model');
+        $data['banner_data']=$this->admin_model->bannerAllData();
+        $data['images']=$this->admin_model->images();
+        $data['videos']=$this->admin_model->videos();
         $this->load->view('users/headers/header');
-        $this->load->view('users/important_draft');
+        $this->load->view('users/important_draft',$data);
         $this->load->view('users/footers/footer'); 
     }
     public function important_draft_list(){
