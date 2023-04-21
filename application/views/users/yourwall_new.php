@@ -120,7 +120,8 @@
                             <h5 class="card-title"><?php echo $list['title']; ?></h5>
                             <div class="card-text" id="yourwall_description"><?php echo $list['description']; ?></div>
                                 <div class="button_container">
-                                    <a href="<?php echo base_url().'users/yourwallview/'.$list['id']; ?>" class="btn btn_viewAll">View</a>
+                                <span>Posted By..<b><?php echo $list['user_name']; ?></b></span>
+                                    <a href="<?php echo base_url().'users/yourwallview/'.$list['id']; ?>" class="btn btn_viewAll" style="margin-left:46px;">View</a>
                                 </div>
                         </div>
                     </div>
@@ -137,7 +138,13 @@
    </section>
    <div class="container">
                        <div class="bloginfo">
+                        <?php if(isset($_SESSION['admin_id'])){ ?>
                             <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" class="YourWallForm" id="your_wall_show">Post Here...</h3>
+                            <?php }else{?>
+                                <a href="<?php echo base_url().'users/login'; ?>">
+                                <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" class="YourWallForm" >Post Here...</h3>
+                                </a>
+                            <?php } ?>
                         </div>
                         <div class="heading-underline" style="width: 200px;">
                             <div class="left"></div><div class="right"></div>
@@ -156,7 +163,7 @@
                     <div class="row" id="your_wall_hide">
                         <div class="col-sm-4 mt-3">
 
-                            <input type="text" class="form-control title-height mb-2" name="title" id="title_id" placeholder="Title" >
+                            <input type="text" class="form-control title-height mb-2" name="title" id="title_id" placeholder="Title" minlength="5" maxlength="200">
                             <span id="err_title" class="text-danger"></span>
 
                         </div>
@@ -279,25 +286,7 @@
             </ul>
         </div>
 
-        <!-- <div class="modal fade" id="invalidfiletype" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Only jpg,png,jpeg files accepted.</p>
-                </div>
-                <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> 
-                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
+       
     <div class="modal fade" id="submit_alert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -327,7 +316,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size shoud be 20KB or more</p>
+                    <p>File size should be 20KB or more</p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
@@ -347,7 +336,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size shoud be less than 200KB </p>
+                    <p>File size should be less than 200KB </p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
@@ -456,9 +445,10 @@ $('#image_thumb').on('change', function(){
                         return false;
                     } else if(fileSize < 20480){
                         $("#image_thumb").val('');
+                        $('#lessSize').modal('show');
                         is_valid = false;
                         allfields = false;
-                        $('#lessSize').modal('show');                       
+                                               
                        
                     }else{
                         
@@ -672,6 +662,11 @@ if(fileSize < 20000){
                         }
                         if (!focusSet) { $("#title_id").focus(); }
                         allfields = false;
+                    } else if(title.length < 5 || title.length >200){
+                        $('#err_title').text("Only 5 to 200 Characters allowed");
+                        $('#title_id').attr('required',true);
+                        if (!focusSet) { $("#title_id").focus(); }
+                        allfields = false;
                     } else {
                         // allfields =true;
                         // is_valid = true;
@@ -708,6 +703,7 @@ if(fileSize < 20000){
                         $("#err_image").text('This value is required');
                    $("#image_thumb").focus();
                    allfields = false;
+                   $("#image_thumb").val('');
                 //    return false;
                     }
 
@@ -731,7 +727,7 @@ if(fileSize < 20000){
                     } else if(description.length < 10 || description.length > 2000) {
                         allfields = false;
                        
-                        $("#des_error").text("Character length between 10 to 2000");      
+                        $("#des_error").text("Only 10 to 2000 characters allowed");      
                         if ($("#description").next(".validation").length == 0) // only add if not added
                         {
                             $('#description').attr('required',true);
@@ -744,7 +740,7 @@ if(fileSize < 20000){
                             // $("#description_error").hide();
                         return false;
                     } else{
-                        allfields = true;
+                        // allfields = true;
                         $("#des_error").text("");  
                         // allfields = true;
                         $("#yourWall_des").after("<div class='validation' style='color:red;margin-bottom:15px;'></div>");
@@ -843,9 +839,9 @@ if(fileSize < 20000){
                         Swal.fire({
                             title: 'Do you want to Submit?',
                             showDenyButton: true,
-                            showCancelButton: true,
+                            showCancelButton: false,
                             confirmButtonText: 'Submit',
-                            denyButtonText: `Close`,
+                            denyButtonText: `Cancel`,
                             }).then((result) => {
                             /* Read more about isConfirmed, isDenied below */
                             if (result.isConfirmed) {
@@ -898,8 +894,8 @@ if(fileSize < 20000){
 
                     var focusSet = false;
                     var is_valid = true;
-                    if ($("#image").val() != '') {
-                    var fileSize = $('#image')[0].files[0].size;
+                    if ($("#image_src2").val() != '') {
+                    var fileSize = $('#image_src2')[0].files[0].size;
 
                     if (fileSize > 204800) {
                          is_valid = false;

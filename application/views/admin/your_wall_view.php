@@ -47,7 +47,7 @@
                                 <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Contact</label>
                                     <div>
-                                        <p>Not Available</p>
+                                        <p><?php  echo $data['user_mobile']; ?></p>
                                     </div>    
                                 </div>
                                 <!-- <div class="mb-2 col-md-4">
@@ -87,12 +87,12 @@
                                         </a>
                                     </div> 
                                                                 </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                     <label class="d-block text-font">Status<sup class="text-danger">*</sup></label>
                                     <div>
-                                        <p><?php echo $data['status_name']; ?></p>
+                                        <p><?php //echo $data['status_name']; ?></p>
                                     </div> 
-                            </div>
+                            </div> -->
                             
 
                             <!-- <div class="col-md-4">

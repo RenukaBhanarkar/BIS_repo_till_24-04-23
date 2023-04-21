@@ -2027,7 +2027,7 @@ p.card-text {
 	padding-top: 10px;
 	border-top: 1px dashed #dfdfdf;
 	padding: 7px 0px;
-	text-align: right;
+	/* text-align: right; */
 }
 
 .Your_Wall_Description_view_all {

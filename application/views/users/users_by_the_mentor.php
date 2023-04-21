@@ -87,8 +87,9 @@ h5{
 }
 .img-fluid {
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
     transition: all ease-in-out 0.6s;
+    height: 261px;
 }
 .img-fluid:hover {
     transform: scale(1.2);
@@ -100,7 +101,7 @@ h5{
     background: white;
     position: relative;
     /* background: rgba(var(--color-white-rgb), 0.9); */
-    text-align: center;
+    text-align: justify;
     border-radius: 8px;
     box-shadow: 0px 0 25px rgba(var(--color-black-rgb), 0.1);
 }
@@ -144,10 +145,24 @@ h5{
              </div>
              <div class="row">
 
+         
+
+         
+
+
+          
+
+
+          
+
+
+          
+
+          <?php foreach($by_the_mentor as $list){ ?>
           <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
             <div class="service-item">
               <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
+                <img src="<?php echo base_url().$list['image'];?>" class="img-fluid" alt="">
               </div>
               <div class="details position-relative">
                 <div class="icon">
@@ -155,147 +170,22 @@ h5{
                   <i class="fa fa-trophy"></i>
                   <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
                 </div>
-                <a href="#" class="stretched-link">
-                  <h3 class="title_mentor">Eosle Commodi</h3>
+                <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>" class="stretched-link">
+                  <h3 class="title_mentor"><?php echo $list['title'];?></h3>
                 </a>
-                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
+                <div class="des_mentor"><?php echo $list['description'];?></div>
+                <div class="">Posted By..<b><?php echo $list['user_name']; ?></b></div>
               </div>
+              
             </div>
           </div><!-- End Service Item -->
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <!-- <i class="bi bi-activity"></i> -->
-                  <i class="fa fa-trophy"></i>
-                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3 class="title_mentor">Eosle Commodi</h3>
-                </a>
-                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <!-- <i class="bi bi-activity"></i> -->
-                  <i class="fa fa-trophy"></i>
-                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3 class="title_mentor">Eosle Commodi</h3>
-                </a>
-                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <!-- <i class="bi bi-activity"></i> -->
-                  <i class="fa fa-trophy"></i>
-                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3 class="title_mentor">Eosle Commodi</h3>
-                </a>
-                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <!-- <i class="bi bi-activity"></i> -->
-                  <i class="fa fa-trophy"></i>
-                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3 class="title_mentor">Eosle Commodi</h3>
-                </a>
-                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <!-- <i class="bi bi-activity"></i> -->
-                  <i class="fa fa-trophy"></i>
-                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3 class="title_mentor">Eosle Commodi</h3>
-                </a>
-                <div class="des_mentor">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</div>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
+          <?php } ?>
 
 
         </div>
-    <div class="row mt-5">
-        <?php foreach($by_the_mentor as $list){ ?>
-        <div class="col-md-4 mb-4">
-            <a href="<?php echo base_url().'users/by_the_mentor_detail/'.$list['id']; ?>">
-                  <div class="card-winners">
-                      <img src="<?php echo base_url().$list['image'];?>" class="card-img-top" alt="Discussion Forum">
-                      <div class="winner-body p-2">
-                          <!-- <div class="node-status"><span>Status : </span>
-                              <div class="status-open">Open</div>
-                          </div> -->
-                          <div class="title">
-                              <p style="font-weight:600;"><?php echo $list['title'];?></p>
-                          </div>
-                          <div class="card-body" id="last-date">
-                              <!-- <span class="time_left"> -->
-                                  <?php echo $list['description'];?>
-                              <!-- </span> -->
-                          </div>
-                          <hr>  
-                          <div class="">
-                            <!-- <p><?php print_r($list);?></p> -->
-                            <span>Posted By..<?php echo $list['user_name']; ?></b></span>
-                          </div>
-                          
-                      </div>
-                  </div>
-                  </a>
-            </div>
-            <?php } ?>
-                
-                
-    </div>
+    
+
+    
     <?php if((count($by_the_mentor) > 5)){ ?>
     <div class="view-button">
                 <a href="<?php echo base_url(); ?>users/all_by_the_mentors">View All</a>
@@ -303,7 +193,14 @@ h5{
             <?php } ?>
     <div class="col-sx-12 col-sm-12 col-md-12" style="border-left: 3px solid cadetblue; padding: 0px 25px;">
     <div class="bloginfo">
+    <?php if(isset($_SESSION['admin_id'])){ ?>
                 <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;" id="mentorForm_show">Post Here...</h3>
+                <?php }else{?>
+                    <a href="<?php echo base_url().'users/login'; ?>">
+                    <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Post Here...</h3>
+                
+                </a>
+                <?php } ?>
             </div>
             <div class="heading-underline" style="width: 200px;">
                 <div class="left"></div><div class="right"></div>
@@ -712,7 +609,7 @@ console.log('clicked');
                  $("#link1").focus();
                  is_valid = false;
              } else if (description.length < 10 ) {
-                 $("#err_description").text("Description suould be 5 to 2000 characters");
+                 $("#err_description").text("Description should be 10 to 2000 characters");
                  $("#description").focus();
                  is_valid = false;
              } else if (description.length > 2000 ){
@@ -721,7 +618,7 @@ console.log('clicked');
                 // alert("character length excedded")
                 Swal.fire('Description suould lessthan 2000 characters')
                 
-                $("#err_description").text("Description suould be 5 to 2000 characters");
+                $("#err_description").text("Description should be 5 to 2000 characters");
                  $("#description").focus();
                 is_valid = false;
                   return false;
@@ -911,9 +808,9 @@ console.log('clicked');
                 Swal.fire({
                             title: 'Do you want to Submit?',
                             showDenyButton: true,
-                            showCancelButton: true,
+                            showCancelButton: false,
                             confirmButtonText: 'Submit',
-                            denyButtonText: `Cancle`,
+                            denyButtonText: `Cancel`,
                             }).then((result) => {
                             /* Read more about isConfirmed, isDenied below */
                             if (result.isConfirmed) {
