@@ -119,7 +119,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $list['title']; ?></h5>
                             <div class="card-text" id="yourwall_description"><?php echo $list['description']; ?></div>
-                                <div class="button_container">
+                                <div class="button_container" style="margin-top: 8px;">
                                 <span>Posted By..<b><?php echo $list['user_name']; ?></b></span>
                                     <a href="<?php echo base_url().'users/yourwallview/'.$list['id']; ?>" class="btn btn_viewAll" style="margin-left:46px;">View</a>
                                 </div>

@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top card-body">
-                    <table id="wow_table" class="hover table-bordered " >
+                    <table id="wow_table" class="table-bordered">
                         <thead>
                             <tr>
                                 <th>Sr. No.</th>
@@ -143,19 +143,21 @@
                             <span id="err_description" class="text-danger"></span>
                         </div>
                         <div class="mb-3 d-flex">
-                            <div class="col-md-8 d-flex">
-                                <div class="col-md-2">
+                            <div class="col-md-8">
+                                
                             <label for="recipient-name" class="col-form-label">Upload Image:</label>
-                            </div><div class="col-md-10">
+                            <div class="d-flex">
                                         <input type="file" class="form-control col-md-8" id="document1" value="" name="document" accept="image/*" required="" onchange="loadFileThumbnail1(event)">
-                                        <span id="imgError1" class="text-danger">
-                                        
-                                        </span>
-                        </div>
-                                        </div>
                                         <button type="button" id="preview123456" class="btn btn-primary btn-sm ml-2" data-bs-toggle="modal" data-bs-target="#Previewimg1">
                                             Preview
                                         </button>
+                                        
+                        </div>
+                        <span id="imgError1" class="text-danger">
+                                        
+                                        </span>
+                                        </div>
+                                        
                             
                                         
                             
