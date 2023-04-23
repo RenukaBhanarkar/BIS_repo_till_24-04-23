@@ -55,7 +55,8 @@
                                 foreach ($wall_of_wisdom as $list_wow) { ?>
                                     <tr>
                                         <td><?php echo $i++ ?></td>
-                                        <td><?php echo $list_wow['title'] ?></td>
+                                        <!-- <td><?php echo $list_wow['title'] ?></td> -->
+                                        <td><?php echo substr_replace($list_wow['title'],"...",100); ?></td>
                                         <!-- <td><?php echo $list_wow['description'] ?></td> -->
                                         <td><?php if ($list_wow['image']) { ?>
                                                 <img src="<?php echo base_url(); ?>uploads/admin/wall_of_wisdom/<?php echo $list_wow['image'] ?>" width="50px" style="text-align:center;">
@@ -208,12 +209,12 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Title<sup class="text-danger">*</sup></label>
                             <input type="text" class="form-control" id="title1" name="title" minlength="5" maxlength="250" placeholder="Enter Title" required>
-                            <span id="err_title" class="text-danger"></span>
+                            <span id="err_title1" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Description<sup class="text-danger">*</sup></label>
                             <textarea class="form-control" id="description1" name="description" minlength="5" maxlength="1000" placeholder="Enter Description" required></textarea>
-                            <span id="err_description" class="text-danger"></span>
+                            <span id="err_description1" class="text-danger"></span>
                         </div>
                         
                             <!-- <div class="mb-3">
@@ -230,7 +231,7 @@
                                         <div>
                                             <input type="file" id="document2" name="document" class="form-control" onchange="loadFileThumbnail(event)" >
                                             <span  class="error_text" id="imgerror3" style="color:red;"></span>
-                                            <input type="hidden" id="image1" name="old_doc">
+                                            <input type="hidden" id="image1" name="old_doc" value="">
                                             <input type="hidden" id="id1" name="id">
                                             <span class="error_text"><?php echo form_error('banner_img');?></span>
                                         </div>
@@ -297,7 +298,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="submit" class="btn btn-primary" onclick="return updateButton()">Update</button>
+                    <button onclick="return updateButton()" type="submit" name="submit" class="btn btn-primary" >Update</button>
                     </form>
                 </div>
             </div>
@@ -468,7 +469,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size shoud be 50KB or more</p>
+                    <p>File size should be 20KB or more</p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
@@ -488,7 +489,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>File size shoud be less than 250KB </p>
+                    <p>File size shoud be less than 200KB </p>
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
@@ -629,24 +630,26 @@ var loadFileThumbnail = function(event)
         if ($("#document1").val() != '') {
                     var fileSize = $('#document1')[0].files[0].size;
 
-                    if (fileSize > 256000) {
+                    if (fileSize > 204800) {
                         var is_valid = false;
                         $('#greaterSize').modal('show');
-                        $("#document1").val();
+                        $("#document1").val('');
+                        $("#imgError1").text('This value is required');
                         if ($("#imgError1").next(".validation").length == 0) // only add if not added
                         {
+                            // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>File size should be less than 200 KB </div>");
                             var is_valid = false;
                             // alert("Please select file size greater than 500 KB");
                             return false;
-                            $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                            
                         }
                         var is_valid = false;
                         if (!focusSet) {
                             $("#document1").focus();
                         }
-                    } else if(fileSize < 51200){
+                    } else if(fileSize < 20480){
                         is_valid = false;
-                        $("#document1").val();
+                        $("#document1").val('');
                         if ($("#imgError1").next(".validation").length == 0) 
                         {
                         is_valid = false;
@@ -681,10 +684,11 @@ var loadFileThumbnail = function(event)
                             $("#document1").focus();
                         }
                     } else {
-                        is_valid = true;
+                        // is_valid = true;
                         $("#imgError1").next(".validation").remove(); // remove it
                     }
                 }else{
+                    is_valid = false;
                     $("#imgError1").text('This value is required');
                     $("#document1").focus();
                 }
@@ -708,6 +712,7 @@ var loadFileThumbnail = function(event)
         })
         
         function updateButton() {
+            // event.preventDefault();
            
            var title = $("#title1").val();
            // var description = $("#description").val();
@@ -718,34 +723,34 @@ var loadFileThumbnail = function(event)
            //var lowerCaseLetters = /[a-z]/g;
 
            if (title == "") {
-               $("#err_title").text("This value is required");
+               $("#err_title1").text("This value is required");
                $("#u_email").focus();
                var  is_valid = false;
            } else if (!(title.length > 4)) {
-               $("#err_title").text("Please Enter minimum 5 Characters");
+               $("#err_title1").text("Please Enter minimum 5 Characters");
                $("#u_title").focus();
                var is_valid = false;
-           }else if (title.length > 250) {
-               $("#err_title").text("Maximum 250 characters allowed");
+           }else if (title.length > 200) {
+               $("#err_title1").text("Maximum 200 characters allowed");
                $("#u_title").focus();
                var is_valid = false;
            } else {
-               $("#err_title").text("");
+               $("#err_title1").text("");
            }
            if (description == "") {
-               $("#err_description").text("This value is required");
+               $("#err_description1").text("This value is required");
                $("#description").focus();
                var is_valid = false;
            } else if ((description.length < 10)) {
-               $("#err_description").text("Please Enter minimum 5 Characters");
+               $("#err_description1").text("Please Enter minimum 5 Characters");
                $("#description").focus();
                var is_valid = false;
-           } else if ((description.length > 1000)) {
-               $("#err_description").text("Maximum 1000 characters allowed");
+           } else if ((description.length > 2000)) {
+               $("#err_description1").text("Maximum 2000 characters allowed");
                $("#description").focus();
                var is_valid = false;
            } else {
-               $("#err_description").text("");
+               $("#err_description1").text("");
            }
            
 
@@ -753,24 +758,24 @@ var loadFileThumbnail = function(event)
        if ($("#document2").val() != '') {
                    var fileSize = $('#document2')[0].files[0].size;
 
-                   if (fileSize > 256000) {
+                   if (fileSize > 204800) {
                        var is_valid = false;
                        $('#greaterSize').modal('show');
-                       $("#document2").val();
+                       $("#document2").val('');
                        if ($("#imgerror3").next(".validation").length == 0) // only add if not added
                        {
                            var is_valid = false;
                            // alert("Please select file size greater than 500 KB");
                            return false;
-                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 500 KB </div>");
+                           $("#imgerror3").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select file size less than 200 KB </div>");
                        }
                        var is_valid = false;
-                       if (!focusSet) {
-                           $("#document2").focus();
-                       }
+                    //    if (!focusSet) {
+                    //        $("#document2").focus();
+                    //    }
                    } else if(fileSize < 51200){
                        is_valid = false;
-                       $("#document2").val();
+                       $("#document2").val('');
                        if ($("#imgerror3").next(".validation").length == 0) 
                        {
                        is_valid = false;
@@ -780,9 +785,9 @@ var loadFileThumbnail = function(event)
                        return false;
                        }
                        is_valid = false;
-                       if (!focusSet) {
-                           $("#document2").focus();
-                       }
+                    //    if (!focusSet) {
+                    //        $("#document2").focus();
+                    //    }
                    }else{
                        $("#imgerror3").next(".validation").remove(); // remove it
                    }
@@ -801,14 +806,15 @@ var loadFileThumbnail = function(event)
                            // $("#imgError1").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please upload .jpg / .jpeg/.png image </div>");
                        }
                        allFields = false;
-                       if (!focusSet) {
-                           $("#document2").focus();
-                       }
+                    //    if (!focusSet) {
+                    //        $("#document2").focus();
+                    //    }
                    } else {
-                       is_valid = true;
+                    //    is_valid = true;
                        $("#imgerror3").next(".validation").remove(); // remove it
                    }
                }else{
+                // is_valid = false;
                    $("#imgerror3").text('Please select file');
                    $("#document2").focus();
                }
@@ -818,6 +824,23 @@ var loadFileThumbnail = function(event)
 
                if (is_valid) {
                return true;
+            // Swal.fire({
+            //                 title: 'Do you want to Submit?',
+            //                 showDenyButton: true,
+            //                 showCancelButton: false,
+            //                 confirmButtonText: 'Submit',
+            //                 denyButtonText: `Cancel`,
+            //                 }).then((result) => {
+            //                 /* Read more about isConfirmed, isDenied below */
+            //                 if (result.isConfirmed) {
+            //                     Swal.fire('Saved!', '', 'success')
+            //                     // return true;
+            //                     // $('#updatepost').submit();
+            //                     // return true;
+            //                 } else if (result.isDenied) {
+            //                     Swal.fire('Changes are not saved', '', 'info')
+            //                 }
+            //                 })
            } else {
                return false;
            }
@@ -828,10 +851,14 @@ var loadFileThumbnail = function(event)
 
         // }
         function edit(que_id){
+            // $('#editModal1').reset('value');
+            $("#editModal1 input").val("");
             $('#editModal1').modal('show');
+            $('#document2').attr('required',false);
+            
             $('#delete_preview').show();
                     $('#add_file').hide();
-                    // $('#icon_file').attr('required',false);
+                    // $('#icon_file').removeAttr('required','true');
                     // $('#outputicon').attr('src',)
             $('.del_icon').on('click',function(){
                                 $('#delete_preview').hide();
@@ -840,7 +867,7 @@ var loadFileThumbnail = function(event)
                                 $('#document2').attr('required',true);
 
                                 // $('#document2').attr('required');
-                                return false;
+                                // return false;
                                 
                                 // $('#icon_file').add('attr','required');
                                 // $('#document2').attr('required',true);
@@ -1056,6 +1083,7 @@ var loadFileThumbnail = function(event)
                     // $('#addwall').submit();
                 });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
     <!-- <script src="<?php echo base_url().'assets/admin/js/ckeditor.js'; ?>"></script> -->
     

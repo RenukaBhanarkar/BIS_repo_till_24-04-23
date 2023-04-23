@@ -51,13 +51,25 @@ class Wall_of_wisdom_model extends CI_Model {
             return false;
         } 
     }
-    public function all_wallofwisdom(){
-        $this->db->select('*');
-        $this->db->from('tbl_wall_of_wisdom');        
-        $this->db->where('status','5');
-        //$this->db->order_by('');
+    public function all_wallofwisdom($uid){
+        // $this->db->select('*');
+        // $this->db->from('tbl_wall_of_wisdom');        
+        // $this->db->where('status','5');
+        // //$this->db->order_by('');
+        // $this->db->limit(6);
+        // $this->db->order_by('created_on','desc');
+        // $query=$this->db->get();
+        // $res=$query->result_array();
+        // return $res;
+
+        $this->db->select('wow.*,like.card_id,like.user_id,like.card_status');
+        $this->db->from('tbl_wall_of_wisdom wow');
+        $this->db->join('tbl_wall_of_wisdom_likes like','like.card_id=wow.id','left');
+        // $this->db->where("like.user_id=$uid");
+        // $this->db->where("wow.user_id=$uid");
+        $this->db->where('wow.status','5');  
         $this->db->limit(6);
-        $this->db->order_by('created_on','desc');
+        $this->db->order_by('wow.created_on','desc');
         $query=$this->db->get();
         $res=$query->result_array();
         return $res;
@@ -175,5 +187,54 @@ class Wall_of_wisdom_model extends CI_Model {
         } 
         
 
+    }
+    public function liked($data){
+        $this->db->select('likes');
+        $this->db->from('tbl_wall_of_wisdom');
+        $this->db->where('id',$data['card_id']);
+        $query=$this->db->get();
+        $res=$query->result_array();
+        // return $res[0]['likes'];
+        $abc=$res[0]['likes'];
+        $pqr=$abc+1;
+        $this->db->where('id', $data['card_id']);
+        if ($this->db->update('tbl_wall_of_wisdom', ['likes'=>$pqr])) {
+          //  return true;
+          if ($this->db->insert('tbl_wall_of_wisdom_likes', $data)) {
+
+            // return $this->db->insert_id();
+            //return "success";
+        } else {
+            return false;
+        }
+            return "success";
+        } else {
+            return false;
+        }
+        
+    }
+    public function unliked($data){
+        $this->db->select('likes');
+        $this->db->from('tbl_wall_of_wisdom');
+        $this->db->where('id',$data['card_id']);
+        $query=$this->db->get();
+        $res=$query->result_array();
+        // return $res[0]['likes'];
+        $abc=$res[0]['likes'];
+        $pqr=$abc-1;
+        $this->db->where('id', $data['card_id']);
+        if ($this->db->update('tbl_wall_of_wisdom', ['likes'=>$pqr])) {
+          //  return true;
+            // return "success";
+            $this->db->where($data);
+        $this->db->delete('tbl_wall_of_wisdom_likes');
+        return "success";
+        } else {
+            return false;
+        } 
+
+        // $this->db->where($data);
+        // $this->db->delete('tbl_wall_of_wisdom_likes');
+        // return "success";
     }
 }

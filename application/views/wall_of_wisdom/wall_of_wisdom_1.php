@@ -107,7 +107,7 @@
                 </div>
              </div> 
         </div>
-        <div class="row">
+        <div class="row" id="wow_card">
         <?php foreach($wow as $list){ ?>
             
             <div class="col-md-4 mb-4">
@@ -120,16 +120,18 @@
                               <div class="status-open">Open</div>
                           </div> -->
                           <div class="title">
-                              <p><?php echo $list['title']; ?></p>
+                              <p><?php echo substr_replace($list['title'],"...",150); ?></p>
                           </div>
                           <div class="field-item even">
                               <span class="time_left">
-                                  <span class="last-date"><?php echo $list['description']; ?> </span>
+                                  <span class="last-date"><?php echo substr_replace($list['description'],"...",150);  ?> </span>
                               </span>
                           </div>
-                          <div onclick="like('<?php echo $list['id']; ?>')" class="node-status like_review"><span><i onclick="myFunction(this)" class="fa fa-heart" style="width:18px; font-size: 21px; color:red;"></i><span class="span" style="    margin-left: 10px;font-size: 15px;">Like</span></span>
+                          
+                          <div id="abcd" u-id="<?php if(!isset($_SESSION['admin_id'])){ echo "0"; }else{ echo $_SESSION['admin_id']; } ?>" c-id="<?php echo $list['id']; ?>" ct="<?php echo $list['card_status']; ?>" class="node-status like_review"><span><i onclick="myFunction(this)" class="<?php if($list['card_status']=='1'){ echo "fa fa-heart"; }else{ echo "fa fa-heart fa-heart-o"; } ?>" style="width:18px; font-size: 21px; color:red;"></i><span class="span" style="    margin-left: 10px;font-size: 15px;">Like</span></span>
                               <div  class="status-open likes" wow-id='<?php echo $list['id']; ?>' style="margin-left:10px;" id="<?php echo $list['id']; ?>"><?php echo $list['likes']; ?></div>
                           </div>
+                          
                       </div>
                   </div>
                   <!-- </a> -->
@@ -146,37 +148,96 @@
             
         
     </section>
+    <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
     <script>
-
-        function myFunction(x) {
+        $(document).ready(function(){
+            $('#wow_card').delegate('#abcd','click',function(){
+    uid=$(this).attr('u-id')
+    cid=$(this).attr('c-id')
+    cardstatus=$(this).attr('ct');
+    console.log(uid);
+    
+    if(uid=="0"){
+        alert("Login First to like");
+      //  location.reload();
+        return false;
         
-  x.classList.toggle("fa-heart-o");
-}
-        function like(que_id){
-            id=$(this).attr('wow-id')
-            // console.log(que_id);
-            // var c = confirm("Are you sure to Approve activity? ");
-            // if (c == true) {
-                // $('#approve').modal('show');
-                // $('.approve').on('click', function() {
-                // const $loader = $('.igr-ajax-loader');
-                //$loader.show();
-                $.ajax({
+    }
+
+    if(cardstatus){
+        $.ajax({
                     type: 'POST',
-                    url: '<?php echo base_url(); ?>Wall_of_wisdom/like',
+                    url: '<?php echo base_url(); ?>Wall_of_wisdom/unlikes',
                     data: {
-                        que_id: que_id,
+                       cid: cid,
+                       uid: uid,
                     },
                     success: function(result) {
                         console.log(result);
-                       //location.reload();
+                       location.reload();
+                     //$('.id').html('hello');
+                    },
+                    error: function(result) {
+                        alert("Error,Please try again.");
+                    }
+                });
+    }else{
+
+                console.log(cid);
+            $.ajax({
+                    type: 'POST',
+                    url: '<?php echo base_url(); ?>Wall_of_wisdom/likes',
+                    data: {
+                       cid: cid,
+                       uid: uid,
+                    },
+                    success: function(result) {
+                        console.log(result);
+                       location.reload();
                      $('.id').html('hello');
                     },
                     error: function(result) {
                         alert("Error,Please try again.");
                     }
                 });
+            }
 
-            // })
-        }
+});
+        });
+
+//         function myFunction(x) {
+        
+//   x.classList.toggle("fa-heart-o");
+// }
+        // function like(que_id){
+        //     id=$(this).attr('wow-id')
+        //     uid=$(this).attr('u-id')
+        //     console.log(uid);
+        //     // var c = confirm("Are you sure to Approve activity? ");
+        //     // if (c == true) {
+        //         // $('#approve').modal('show');
+        //         // $('.approve').on('click', function() {
+        //         // const $loader = $('.igr-ajax-loader');
+        //         //$loader.show();
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: '<?php echo base_url(); ?>Wall_of_wisdom/like',
+        //             data: {
+        //                 que_id: que_id,
+        //             },
+        //             success: function(result) {
+        //                 console.log(result);
+        //                //location.reload();
+        //              $('.id').html('hello');
+        //             },
+        //             error: function(result) {
+        //                 alert("Error,Please try again.");
+        //             }
+        //         });
+
+        //     // })
+        // }
     </script>
