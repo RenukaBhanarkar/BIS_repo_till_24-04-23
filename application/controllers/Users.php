@@ -312,9 +312,41 @@ class Users extends CI_Controller {
         $this->load->view('users/standard_revised_view');
         $this->load->view('users/footers/footer'); 
     }
-    public function new_work_list(){
+    public function new_work_list()
+    {
         $this->load->view('users/headers/header');
-        $this->load->view('users/new_work_list');
+        $curl_req1 = curl_init(); 
+        curl_setopt_array($curl_req1, array(
+            CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_SSL_VERIFYPEER => false, 
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ),
+        ));
+        $responseNew = curl_exec($curl_req1);
+        $responseNew = json_decode($responseNew, true); 
+        $newCount =count($responseNew['nwip_data']);
+        $arr=array();
+        $getAll= $this->Users_model->ItemProposalCount();
+        $arr['getAll']=$getAll;
+        $insertedCount = count($getAll); 
+        if ($newCount > $insertedCount ) 
+        {
+            foreach($responseNew['nwip_data'] as $data)
+                { 
+                    $this->Users_model->insertItemProposal($data);
+                }
+        }
+        $this->load->view('users/headers/header');
+        $this->load->view('users/new_work_list',$arr);
         $this->load->view('users/footers/footer'); 
     }
     public function new_work_view(){
@@ -1106,25 +1138,26 @@ class Users extends CI_Controller {
     // item proposal function Start for frontend
     public function item_proposal_list(){
         $this->load->view('users/headers/header');
-        $curl_req1 = curl_init(); 
-        curl_setopt_array($curl_req1, array(
-            CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_SSL_VERIFYPEER => false, 
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/json',
-                'Accept: application/json'
-            ),
-        ));
-        $responseNew = curl_exec($curl_req1);
-        $responseNew = json_decode($responseNew, true); 
-        $newCount =count($responseNew['nwip_data']);
+        // $curl_req1 = curl_init(); 
+        // curl_setopt_array($curl_req1, array(
+        //     CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_SSL_VERIFYPEER => false, 
+        //     CURLOPT_HTTPHEADER => array(
+        //         'Content-Type: application/json',
+        //         'Accept: application/json'
+        //     ),
+        // ));
+        // $responseNew = curl_exec($curl_req1);
+        // $responseNew = json_decode($responseNew, true); 
+        // $newCount =count($responseNew['nwip_data']);
+        $newCount =1;
         $arr=array();
         $getAll= $this->Users_model->ItemProposalCount();
         $arr['getAll']=$getAll;

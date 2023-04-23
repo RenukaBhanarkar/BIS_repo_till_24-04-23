@@ -30,6 +30,7 @@ class Standards_Making_model extends CI_Model {
     public function updateConversation($id,$formdata)
     {
         $this->db->where('id', $id);
+         
         return $this->db->update('tbl_inconversation_with_expert', $formdata);
     }
     public function deleteConversation($id)
@@ -77,9 +78,18 @@ class Standards_Making_model extends CI_Model {
         $this->db->where('id', $id);
         return $this->db->update('tbl_join_the_classroom', $formdata);
     }
-     public function deleteLiveSession($id){
+     public function deleteConvesationFile($id,$formdata){
         $this->db->where('id', $id);
-         if ($this->db->delete('tbl_join_the_classroom')) {
+         if ($this->db->update('tbl_inconversation_with_expert',$formdata)) {
+             return true;
+         } else {
+             return false;
+         }
+    }
+    
+    public function deleteLiveSessionFile($id,$formdata){
+        $this->db->where('id', $id);
+         if ($this->db->update('tbl_join_the_classroom',$formdata)) {
              return true;
          } else {
              return false;
@@ -133,6 +143,11 @@ class Standards_Making_model extends CI_Model {
     public function getPublishedRequest()
     { 
         $this->db->where('status ',5);  
+        return $this->db->get('tbl_join_the_classroom')->result_array();
+    }
+    public function getArchiveRequest()
+    { 
+        $this->db->where('status ',9);  
         return $this->db->get('tbl_join_the_classroom')->result_array();
     }
      

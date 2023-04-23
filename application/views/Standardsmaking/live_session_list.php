@@ -17,7 +17,7 @@
                     <div>
                         <button type="button" class="btn btn-primary btn-sm mr-2" onclick="location.href='<?php echo base_url(); ?>Standardsmaking/live_session_form'">Create New Post / Session</button>
                     </div>
-                </div>
+                </div> 
             </div>
         </div> 
         <?php

@@ -198,6 +198,7 @@ button:disabled {
 <?php
 
 function time_elapsed_string($datetime, $full = false) {
+    // echo $datetime;
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);

@@ -20,6 +20,10 @@
 
 				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Rejected Requests</button>
 
+                 <button class="nav-link" id="nav-published-tab" data-bs-toggle="tab" data-bs-target="#nav-published" type="button" role="tab" aria-controls="nav-published" aria-selected="false">Published Requests</button>
+
+                 <button class="nav-link" id="nav-archived-tab" data-bs-toggle="tab" data-bs-target="#nav-archived" type="button" role="tab" aria-controls="nav-archived" aria-selected="false">Archived Requests</button>
+
                 
 			</div>
 		</nav>
@@ -155,10 +159,109 @@
                 </div>
             </div>
 			</div>
+<!-- start -->
+            <div class="tab-pane fade" id="nav-published" role="tabpanel" aria-labelledby="nav-published-tab">
+            <div class="col-12 mt-3">
+                <div class="card border-top card-body table-responsive text-nowrap">
+                    <table id="example_3" class="hover table-bordered" style="width:100%">
+                        <thead>
+                        <tr>
+                                <th>Sr. No.</th>
+                                <th>Title</th>
+                                <th>Type of Post</th>
+                                <th>Created on</th>
+                                <th>Likes</th>
+                                <th>Views/Joined</th>
+                                <th>Status</th>
+                                <th>Reason of Rejection</th>
+                                <th>Last Updated</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($PublishedRequest as $key => $value) {?>
+                                <tr>
+                                    <td><?= $key+1?></td>
+                                    <td><?= $value['title']?></td>
+                                    <td>
+                                    <?php 
+                                        if ($value['type_of_post']==1) {  $data='Text Upload'; }
+                                        if ($value['type_of_post']==2) { $data='Video Upload'; }
+                                        if ($value['type_of_post']==3) { $data='Live session link'; }
+                                        ?> <?= $data?>
+                                    </td> 
+                                  <td><?= date("m-d-Y", strtotime($value['created_on']));?></td>
+                                  <td><?= $value['likes']?></td>
+                                  <td><?= $value['views']?></td>
+                                  <td>Rejected</td>
+                                  <td><?= $value['reason']?></td>
+                                  <td><?= date("m-d-Y", strtotime($value['updated_on']));?></td>
+                                  <td> <a href="live_session_view/<?= encryptids("E",$value['id']);;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a></td>
+                              </tr>
+                          <?php }?>
 
-             
-		</div>
-	</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+
+          <!-- end -->
+
+
+
+
+
+          <!-- start -->
+            <div class="tab-pane fade" id="nav-archived" role="tabpanel" aria-labelledby="nav-archived-tab">
+            <div class="col-12 mt-3">
+                <div class="card border-top card-body table-responsive text-nowrap">
+                    <table id="example_4" class="hover table-bordered" style="width:100%">
+                        <thead>
+                        <tr>
+                                <th>Sr. No.</th>
+                                <th>Title</th>
+                                <th>Type of Post</th>
+                                <th>Created on</th>
+                                <th>Likes</th>
+                                <th>Views/Joined</th>
+                                <th>Status</th>
+                                <th>Reason of Rejection</th>
+                                <th>Last Updated</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($ArchiveRequest as $key => $value) {?>
+                                <tr>
+                                    <td><?= $key+1?></td>
+                                    <td><?= $value['title']?></td>
+                                    <td>
+                                    <?php 
+                                        if ($value['type_of_post']==1) {  $data='Text Upload'; }
+                                        if ($value['type_of_post']==2) { $data='Video Upload'; }
+                                        if ($value['type_of_post']==3) { $data='Live session link'; }
+                                        ?> <?= $data?>
+                                    </td> 
+                                  <td><?= date("m-d-Y", strtotime($value['created_on']));?></td>
+                                  <td><?= $value['likes']?></td>
+                                  <td><?= $value['views']?></td>
+                                  <td>Rejected</td>
+                                  <td><?= $value['reason']?></td>
+                                  <td><?= date("m-d-Y", strtotime($value['updated_on']));?></td>
+                                  <td> <a href="live_session_view/<?= encryptids("E",$value['id']);;?>" class="btn btn-primary btn-sm mr-2" title="View">View</a></td>
+                              </tr>
+                          <?php }?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+
+          <!-- end -->
+        </div>
+    </div>
 </div>
         <!-- Content Row -->
        
@@ -171,6 +274,8 @@
     $(document).ready(function () {
     $('#example_1').DataTable();
     $('#example_2').DataTable();
+    $('#example_3').DataTable();
+    $('#example_4').DataTable();
 
     });
 </script>                                    

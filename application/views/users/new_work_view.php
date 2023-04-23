@@ -16,7 +16,7 @@
     <!-- Begin Page Content -->
     <div class="container">
         <!-- Content Row -->
-      
+      <?php print_r($getAll)?>
         <div class="row mt-5">
            <div class="bloginfo">
                 <h3 style="margin-bottom: 0px;margin-top:20px;color: #0086b2!important;font-weight: 600;">Important Draft Standards View</h3>

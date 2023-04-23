@@ -8,10 +8,11 @@
 
         <form name="lsv_standards_form" id="lsv_standards_form" action="<?php echo base_url().'learningscience/lsv_standards_form'?>" method="post"enctype="multipart/form-data">
       <!-- Content Row -->
+        <!-- Content Row -->
         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-top">
-                    <div class="card-body">
+                    <div class="card-body"> 
                         <div id="english_div">
                         <div class="row">
                                 <div class="mb-2 col-md-4">
@@ -27,13 +28,13 @@
                         <div class="row">
                                 <div class="mb-2 col-md-8">
                                     <label class="d-block text-font">Title<sup class="text-danger">*</sup></label>
-                                    <input type="text" class="form-control input-font" name="title" id="title" placeholder="Enter Title">
+                                    <input type="text" class="form-control input-font" name="title" id="title" placeholder="Enter Title" maxlength="200">
                                 </div>
                         </div>
                         <div class="row">
                              <div class="mb-2 col-md-12">
                                 <label class="d-block text-font" text-font>Description<sup class="text-danger">*</sup></label>
-                                <textarea class="form-control input-font" placeholder="Enter Description" name="description" id="description"></textarea>
+                                <textarea class="form-control input-font" placeholder="Enter Description" name="description" id="description" maxlength="2000"></textarea>
                                 
                             </div>
                         </div>
@@ -188,7 +189,7 @@
                     </div>
                     </div>
                     <div class="col-md-12 submit_btn p-3">
-                                 <a class="btn btn-success btn-sm text-white" data-toggle="modal" data-target="#submitForm">Submit</a>
+                                 <a class="btn btn-success btn-sm text-white" data-toggle="modal" data-target="#" id="btnsubmitdata">Submit</a>
                                  <a class="btn btn-danger btn-sm text-white" data-toggle="modal" data-target="#cancelForm">Cancel</a>
                     </div> 
                    <!-- Modal -->
@@ -237,6 +238,7 @@
         <script>
             $(document).ready(function () 
             {
+                CKEDITOR.replace('description');
                 $("#text_image").hide();
                 $("#pdf_upload").hide();
                 $("#link_session").hide();
@@ -313,7 +315,7 @@ var loadFileThumbnail = function(event)
         </script>
 
         <script type="text/javascript">
-    $('#lsv_standards_form').submit(function(e) { 
+    $('#btnsubmitdata').click(function(e) { 
                     e.preventDefault();
                     var focusSet = false;
                     var allfields = true;
@@ -392,15 +394,8 @@ var loadFileThumbnail = function(event)
                         $("#session_link").next(".validation").remove(); // remove it
                     }
                 }
-// type_of_post--3 end
-                    
 
-
-
-
-
-
-                    var title = $("#title").val(); 
+                var title = $("#title").val(); 
                     if (title == "" || title== null) {
                         if ($("#title").next(".validation").length == 0) // only add if not added
                         {
@@ -411,8 +406,8 @@ var loadFileThumbnail = function(event)
                     } else {
                         $("#title").next(".validation").remove(); // remove it
                     } 
-
-                    var description = $("#description").val();  
+ 
+                   var description = CKEDITOR.instances['description'].getData(); 
                     if (description == "" || description== null) {
                         if ($("#description").next(".validation").length == 0) // only add if not added
                         {
@@ -456,7 +451,7 @@ var loadFileThumbnail = function(event)
                     {
                         $("#image").next(".validation").remove(); // remove it
                     }
-                    var validExtensions = ['Jpeg','jpg','png']; //array of valid extensions
+                    var validExtensions = ['jpeg','jpg','png']; //array of valid extensions
                     var fileName = $("#image").val();;
                     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
                     $("#image").next(".validation").remove();
@@ -498,7 +493,7 @@ var loadFileThumbnail = function(event)
                     {
                         $("#thumbnail").next(".validation").remove(); // remove it
                     }
-                    var validExtensions = ['Jpeg','jpg','png']; //array of valid extensions
+                    var validExtensions = ['jpeg','jpg','png']; //array of valid extensions
                     var fileName = $("#thumbnail").val();;
                     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
                     $("#thumbnail").next(".validation").remove();
@@ -591,6 +586,7 @@ var loadFileThumbnail = function(event)
                      
                     console.log(allfields)
                     if (allfields) { 
+                         $("#submitForm").show();
                         $('#lsv_standards_form').submit();
                     } else {
                         $('#closeform').trigger('click');
