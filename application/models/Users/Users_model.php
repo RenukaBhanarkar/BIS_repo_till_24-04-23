@@ -103,12 +103,14 @@
             $this->db->select('tbl_quiz_details.*,
             tbl_mst_language.title as language,
             tbl_mst_quiz_availability.title as availability,
-            tbl_mst_quiz_level.title as level
+            tbl_mst_quiz_level.title as level,
+            tbl_mst_regions.uvc_region_title as region
             ');
             $this->db->where('tbl_quiz_details.id', $id);
             $this->db->join('tbl_mst_language', 'tbl_mst_language.id = tbl_quiz_details.language_id');
             $this->db->join('tbl_mst_quiz_availability', 'tbl_mst_quiz_availability.id = tbl_quiz_details.availability_id');
             $this->db->join('tbl_mst_quiz_level', 'tbl_mst_quiz_level.id = tbl_quiz_details.quiz_level_id');
+            $this->db->join('tbl_mst_regions', 'tbl_mst_regions.pki_region_id = tbl_quiz_details.region_id','left');
             return $this->db->get('tbl_quiz_details')->row_array();
         }
 
@@ -141,12 +143,17 @@
 
     public function insertQuziSubmission($formdata)
     { 
-        $this->db->insert('tbl_mst_quzi_submission_details',$formdata); 
+        $this->db->insert('tbl_quiz_submission_details',$formdata); 
         return $insert_id = $this->db->insert_id();
     } 
     public function getCorrectAns($quiz_id,$user_id)
     {  
          $query = $this->db->query("SELECT * FROM tbl_user_quiz WHERE selected_op=corr_opt AND user_id='$user_id' AND quiz_id='$quiz_id'");
+        return $query->num_rows();
+    }
+    public function getWrongAns($quiz_id,$user_id)
+    {  
+         $query = $this->db->query("SELECT * FROM tbl_user_quiz WHERE selected_op!=corr_opt AND user_id='$user_id' AND quiz_id='$quiz_id'");
         return $query->num_rows();
     }
 
@@ -161,15 +168,10 @@
          return $quiz = $this->db->get('tbl_quiz_details')->row_array(); 
     }
 
-    public function getWrongAns($quiz_id,$user_id)
-    {  
-         $query = $this->db->query("SELECT * FROM tbl_user_quiz WHERE selected_op!=corr_opt AND user_id='$user_id' AND quiz_id='$quiz_id'");
-        return $query->num_rows();
-    }
-
+    
     public function checkUserAvailable($quiz_id,$user_id)
     {  
-         $query = $this->db->query("SELECT * FROM tbl_mst_quzi_submission_details WHERE user_id='$user_id' AND quiz_id='$quiz_id'");
+         $query = $this->db->query("SELECT * FROM tbl_quiz_submission_details WHERE user_id='$user_id' AND quiz_id='$quiz_id'");
         return $query->num_rows();
     }
 
@@ -180,6 +182,30 @@
         $this->db->where('tbl_quiz_details.status',5); 
         $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_quiz_details.status'); 
         return $this->db->get('tbl_quiz_details')->result_array();  
+    }
+
+    public function getStdClubQuize($user_region_id,$user_branch_id)
+    {   
+        $t=time();
+
+        $current_time = (date("H:i:s",$t));
+        $this->db->select('quiz.*,st.status_name'); 
+        $this->db->from('tbl_quiz_details quiz');
+        $this->db->join('tbl_mst_status st','st.id = quiz.status'); 
+        $this->db->where('(date(now()) BETWEEN quiz.start_date AND quiz.end_date)'); 
+        // $this->db->where('('.$current_time.' BETWEEN quiz.start_time AND quiz.end_time)'); 
+        $this->db->where('quiz.start_time <=' ,$current_time); 
+        $this->db->where('quiz.end_time >=' ,$current_time); 
+        $this->db->where('quiz.status',5); 
+      
+        //$this->db->where_in('quiz.branch_id',array($user_branch_id,0));
+        $this->db->where_in('quiz.region_id',array($user_region_id,0));
+        $rs = array();
+        $query=$this->db->get();
+        if($query->num_rows() > 0){
+            $rs = $query->result_array();
+        }
+        return $rs;  
     }
     public function contact_us(){
         $this->db->select('*');

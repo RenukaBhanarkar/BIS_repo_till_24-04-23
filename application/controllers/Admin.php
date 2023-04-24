@@ -13,14 +13,14 @@ class Admin extends CI_Controller
         $this->load->model('Admin/Your_wall_model');
         $this->load->model('Standards_Making/Standards_Making_model');
         $this->load->model('Learningscience/Learningscience_model');
-         
+        date_default_timezone_set("Asia/Calcutta");
     }
     public function index()
     {
         if ($this->Admin_model->checkAdminLogin()) {
             redirect(base_url() . "Admin/dashboard", 'refresh');
         } else {
-            redirect(base_url() . "Admin/login", 'refresh');
+            redirect(base_url() . "Users/login", 'refresh');
         }
         return true;
     }
@@ -28,7 +28,7 @@ class Admin extends CI_Controller
     public function login()
     {
         $this->load->view('Users/headers/login_header');
-        $this->load->view('Admin/login');
+        $this->load->view('Users/login');
         $this->load->view('Users/footers/login_footer');
     }
     
@@ -39,7 +39,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|trim|max_length[30]');
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('MSG', ShowAlert(validation_errors(), "DD"));
-            redirect(base_url() . "Admin/login", 'refresh');
+            redirect(base_url() . "Users/login", 'refresh');
             return false;
         } else {
 
@@ -49,7 +49,7 @@ class Admin extends CI_Controller
             //echo json_encode( $user ); exit();
             if (empty($user)) {
                 $this->session->set_flashdata('MSG', ShowAlert("Invalid username or password.", "DD"));
-                redirect(base_url() . "Admin/login", 'refresh');
+                redirect(base_url() . "Users/login", 'refresh');
                 return true;
             }
             // if(!password_verify($u_pass, $user_res[0]->user_password))
@@ -76,7 +76,7 @@ class Admin extends CI_Controller
                 }  else{
 
                     $this->session->set_flashdata('MSG',  ShowAlert("Invalid username or password.", "DD"));
-                    redirect(base_url() . "Admin/login", 'refresh');
+                    redirect(base_url() . "Users/login", 'refresh');
                     return true;
                 }
             }
@@ -1287,12 +1287,12 @@ class Admin extends CI_Controller
         $quiz_id = $this->Admin_model->updateQuizStatus($id,$formdata);
         if ($quiz_id==1) 
         {
-            $this->session->set_flashdata('MSG', ShowAlert("Quiz Send for Approve", "SS"));
+            $this->session->set_flashdata('MSG', ShowAlert("Quiz approved successfully.", "SS"));
                 redirect(base_url() . "Quiz/quiz_list", 'refresh');
         }
         else 
         {
-            $this->session->set_flashdata('MSG', ShowAlert("Failed to Send for Approve admin,Please try again", "DD"));
+            $this->session->set_flashdata('MSG', ShowAlert("Failed to approve by admin,Please try again", "DD"));
             redirect(base_url() . "Quiz/quiz_list", 'refresh');
         }
     }  

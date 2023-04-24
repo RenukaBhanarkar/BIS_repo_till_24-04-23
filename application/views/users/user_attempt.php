@@ -40,10 +40,10 @@
 
 
     <section id="quizEnd">
-        <div class="">
+        <div class="col-md-12">
             <div class="Quiz_section ">
-                <div class="quiz-left-side-main shadow">
-                    <h3 class="quiz_title_heading">You are refresh the Screen OR Already attempt This quiz.. You Can not porceed   </h3>
+                <div class="quiz-left-side-main shadow" style="width:100%">
+                    <h3 class="quiz_title_heading">Either you have refreshed the screen OR already attempted this quiz.You Can not proceed futher.   </h3>
                 </div>
             </div>
         </div> 

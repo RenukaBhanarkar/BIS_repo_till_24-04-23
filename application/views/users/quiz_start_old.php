@@ -500,7 +500,7 @@
 
                         </div>
                     </form>
-                    <div class="thank_you_box" id="thankYou">
+                    <!-- <div class="thank_you_box" id="thankYou">
 
                         <img src="<?php echo base_url();?>assets/images/certificate.png" alt="">
                         <div class="text_box">
@@ -508,7 +508,7 @@
                             <p>For Participating In The Quiz </p>
                             <p class="Certificate-link"><a href="#">Click here</a> to download the Certificate</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -677,10 +677,10 @@
         }
         $('#submit_button').click(function() {
 
-            $('#qustions-tab').hide();
-            $('#thankYou').show();
-            $('#submit_button').hide();
-            $('#right-bar-ans-none').hide();
+            // $('#qustions-tab').hide();
+            // $('#thankYou').show();
+            // $('#submit_button').hide();
+            // $('#right-bar-ans-none').hide();
 
         });
 

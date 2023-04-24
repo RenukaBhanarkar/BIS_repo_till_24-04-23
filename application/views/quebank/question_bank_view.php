@@ -190,9 +190,9 @@
                                                     }else{
                                                         
                                                         if($r['opt4_e']!=""){
-                                                            $opt4_e = $r['opt4_e'];
+                                                            $opt4_h = $r['opt4_e'];
                                                         }else{
-                                                            $opt4_e = "NA";
+                                                            $opt4_h = "NA";
                                                         }
                                                     }
                                                     if ($r['option5_h_image'] != "") {
