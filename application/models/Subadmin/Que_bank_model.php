@@ -49,9 +49,10 @@ class Que_bank_model extends CI_Model {
         return $rs;
     }
     public function getAllQueBankForApproval(){      
-        $query = $this->db->select('qb.*,s.status_name')
+        $query = $this->db->select('qb.*,s.status_name,quiz.title as quiz_title')
             ->from('tbl_que_bank qb')
             ->join('tbl_mst_status s', 'qb.status = s.id', 'left')
+            ->join('tbl_quiz_details quiz', 'quiz.que_bank_id = qb.que_bank_id', 'left')
             ->where_in('qb.status', array(2,3,4,5,6))
             ->get();
         // $this->db->select('*');
@@ -131,7 +132,14 @@ class Que_bank_model extends CI_Model {
         }
         return $rs;
     }
-    
+    public function updateQueBankbyQuizid($que_bank_id,$data){
+        $this->db->where('que_bank_id', $que_bank_id);
+		if($this->db->update('tbl_que_bank', $data)){
+			return true;
+		}else{
+			return false;
+		}
+    }
     /*
     public function getAllSubAdmin(){      
         $this->db->select('*');

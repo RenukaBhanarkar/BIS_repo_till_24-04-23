@@ -8,6 +8,7 @@ class Wall_of_wisdom extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Admin/Wall_of_wisdom_model', 'wow');
+        date_default_timezone_set("Asia/Calcutta");
     }
 
     public function index(){

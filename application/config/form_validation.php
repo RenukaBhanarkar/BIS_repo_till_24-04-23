@@ -76,36 +76,8 @@ $config = array(
 			'label' => 'Prize Details',
 			'rules' => 'required'
 		),
-		array(
-			'field' => 'sprize',
-			'label' => 'Number of Prizes',
-			'rules' => 'required'
-		),
-		array(
-			'field' => 'sdetails',
-			'label' => 'Prize Details',
-			'rules' => 'required'
-		),
-		array(
-			'field' => 'tprize',
-			'label' => 'Number of Prizes',
-			'rules' => 'required'
-		),
-		array(
-			'field' => 'tdetails',
-			'label' => 'Prize Details',
-			'rules' => 'required'
-		),
-		array(
-			'field' => 'cprize',
-			'label' => 'Number of Prizes',
-			'rules' => 'required'
-		),
-		array(
-			'field' => 'cdetails',
-			'label' => 'Prize Details',
-			'rules' => 'required'
-		),
+		
+		
 		array(
 			'field' => 'availability_id',
 			'label' => 'Available for',

@@ -433,6 +433,29 @@ class Admin_model extends CI_Model {
         $this->db->join('tbl_mst_status','tbl_mst_status.id = tbl_quiz_details.status');  
          return $this->db->get('tbl_quiz_details')->result_array(); 
     }
+
+    public function onGoingQuizNew(){
+        $t=time();
+
+        $current_time = (date("H:i:s",$t));
+        $this->db->select('quiz.*,st.status_name,que.no_of_ques'); 
+        $this->db->from('tbl_quiz_details quiz');
+        $this->db->join('tbl_mst_status st','st.id = quiz.status'); 
+        $this->db->join('tbl_que_bank que','que.que_bank_id = quiz.que_bank_id'); 
+        $this->db->where('(date(now()) BETWEEN quiz.start_date AND quiz.end_date)'); 
+        // $this->db->where('('.$current_time.' BETWEEN quiz.start_time AND quiz.end_time)'); 
+        $this->db->where('quiz.start_time <=' ,$current_time); 
+        $this->db->where('quiz.end_time >=' ,$current_time); 
+        $this->db->where('quiz.status',5); 
+      
+        
+        $rs = array();
+        $query=$this->db->get();
+        if($query->num_rows() > 0){
+            $rs = $query->result_array();
+        }
+        return $rs;  
+    }
     public function images(){
         $this->db->select('*');
         $this->db->from('tbl_photos');

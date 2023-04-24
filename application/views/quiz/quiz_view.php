@@ -24,6 +24,25 @@
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
+                            <label class="d-block text-font">Hindi Title</label>
+                            <div>
+                                <p><?= $quizdata['title_hindi']; ?></p>
+                            </div>
+                        </div>
+                        <div class="mb-2 col-md-12">
+                            <label class="d-block text-font">Description</label>
+                            <div>
+                                <p><?= $quizdata['description']; ?></p>
+                            </div>
+                        </div>
+                        <div class="mb-2 col-md-12">
+                            <label class="d-block text-font">Terms and Conditions</label>
+                            <div>
+                                <p><?= $quizdata['terms_conditions']; ?></p>
+                            </div>
+                        </div>
+
+                        <div class="mb-2 col-md-4">
                             <label class="d-block text-font">Quiz Start Date</label>
                             <div>
                                 
@@ -58,7 +77,7 @@
                         <div class="mb-2 col-md-4">
                             <label class="d-block text-font">Total Question in QB<sup class="text-danger">*</sup></label>
                             <div>
-                                <p><?= $quizdata['qbquestion']; ?></p>
+                                <p><?= $quizdata['no_of_ques']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
@@ -80,15 +99,24 @@
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
+                            <label class="d-block text-font">Switching Type<sup class="text-danger">*</sup></label>
+                            <div>
+                                <?php if ($quizdata['switching_type'] == 1){
+                                    echo "Random"; }else {echo "Serially";}?>
+                                
+                            </div>
+                        </div>
+                        <div class="mb-2 col-md-4">
                             <label class="d-block text-font">Upload Quiz Banner<sup class="text-danger">*</sup></label>
                             <div>
                                 <p><img src="../../<?= $quizdata['banner_img']; ?>" style="width:200px;"></p>
                             </div>
                         </div>
                     </div>
+                    <?php if (!empty ($firstprize) ){ ?> 
                     <div class="row mt-2">
                         <div class="col-md-4 prizes-section">
-                            <h4 class="m-2">First Prize</h4>
+                            <h4 class="m-2">1<sup>st</sup> Prize</h4>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -107,10 +135,17 @@
                         <div class="mb-2 col-md-4">
                             <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
                             <div>
-                                <p><img src="../../<?= $firstprize['prize_img']; ?>" style="width:200px;"></p>
+                            <?php if($firstprize['prize_img']== '') { 
+                                echo "NA";
+                             } else { ?>
+                                  <p><img src="../../<?= $firstprize['prize_img']; ?>" style="width:200px;"></p>
+                            <?php  } ?>
+                              
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
+                    <?php if (!empty ($secondprize) ){ ?> 
                     <div class="row mt-2">
                         <div class="col-md-4 prizes-section">
                             <h4 class="m-2">2<sup>nd</sup>Prizes</h4>
@@ -132,10 +167,17 @@
                         <div class="mb-2 col-md-4">
                             <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
                             <div>
-                                <p><img src="../../<?= $secondprize['prize_img']; ?>" style="width:200px;"></p>
+                            <?php if($secondprize['prize_img']== '') { 
+                                echo "NA";
+                             } else { ?>
+                                  <p><img src="../../<?= $secondprize['prize_img']; ?>" style="width:200px;"></p>
+                            <?php  } ?>
+                              
                             </div>
                         </div>
                     </div>
+                    <?php }  else { echo "Second Prizes not available"; } ?>
+                    <?php if (!empty ($thirdprize) ){ ?> 
                     <div class="row mt-2">
                         <div class="col-md-4 prizes-section">
                             <h4 class="m-2">3<sup>nd</sup>Prizes</h4>
@@ -157,10 +199,17 @@
                         <div class="mb-2 col-md-4">
                             <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
                             <div>
-                                <p><img src="../../<?= $thirdprize['prize_img']; ?>" style="width:200px;"></p>
+                            <?php if($thirdprize['prize_img']== '') { 
+                                echo "NA";
+                             } else { ?>
+                                  <p><img src="../../<?= $fourthprize['prize_img']; ?>" style="width:200px;"></p>
+                            <?php  } ?>
+                              
                             </div>
                         </div>
                     </div>
+                    <?php }  else { echo "Third Prizes not available"; } ?>
+                    <?php if (!empty ($fourthprize) ){ ?> 
                     <div class="row mt-2">
                         <div class="col-md-4 prizes-section">
                             <h4 class="m-2">Consolation Prizes</h4>
@@ -179,15 +228,26 @@
                                 <p><?= $fourthprize['prize_details']; ?></p>
                             </div>
                         </div>
+                        <div class="mb-2 col-md-4">
+                            <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
+                            <div>
+                            <?php if($fourthprize['prize_img']== '') { 
+                                echo "NA";
+                             } else { ?>
+                                  <p><img src="../../<?= $fourthprize['prize_img']; ?>" style="width:200px;"></p>
+                            <?php  } ?>
+                              
+                            </div>
+                        </div>
                     </div>
+                    <?php } else { echo "Consolation Prizes not available"; } ?>
                     <div class="row mt-2">
                         <div class="col-md-4 prizes-section">
                             <h4 class="m-2">Available for</h4>
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Select Option<sup class="text-danger">*</sup></label>
+                        <div class="mb-2 col-md-4">                           
                             <div>
                                 <p><?= $quizdata['availability']; ?></p>
                             </div>
@@ -222,21 +282,24 @@
                         <div class="mb-2 col-md-12">
                             <table id="example" class="hover table-bordered" style="width:100%">
                                 <thead>
-                                    <tr>
-                                        <th>Question No.</th>
-                                        <th>Question</th>
-                                        <th>Option 1</th>
-                                        <th>Option 1 in Hindi</th>
-                                        <th>Option 2</th>
-                                        <th>Option 2 in Hindi</th>
-                                        <th>Option 3</th>
-                                        <th>Option 2 in Hindi</th>
-                                        <th>Option 4</th>
-                                        <th>Option 4 in Hindi</th>
-                                        <th>Option 5</th>
-                                        <th>Correct</th>
+                                <tr>
+                                            <th>Question No.</th>
+                                            <th>Type</th>
+                                            <th>Question</th>
+                                            <th>Question in Hindi</th>
+                                            <th>Eng Option 1</th>
+                                            <th>Hindi Option 1</th>
+                                            <th>Eng Option 2</th>
+                                            <th>Hindi Option 2</th>
+                                            <th>Eng Option 3</th>
+                                            <th>Hindi Option 3</th>
+                                            <th>Eng Option 4</th>
+                                            <th>Hindi Option 4</th>
+                                            <th>Eng Option 5</th>
+                                            <th>Hindi Option 5</th>
+                                            <th>Correct Option</th>
 
-                                    </tr>
+                                        </tr>
                                 </thead>
                                 <tbody id="que_body">
                                 </tbody>
@@ -348,15 +411,178 @@
                 j = 0
                 for (i in data) {
                     j++;
+                    var op1 = "NA";
+                            var op2 = "NA";
+                            var op3 = "NA";
+                            var op4 = "NA";
+                            var op5 = "NA";
+                            var op1_h = "NA";
+                            var op2_h = "NA";
+                            var op3_h = "NA";
+                            var op4_h = "NA";
+                            var op5_h = "NA";
+                            if (data[i].que_type == 1) {
+                                var type = "Text";
+                            } else if (data[i].que_type == 2) {
+                                var type = "Image";
+                            } else {
+                                var type = "Both";
+                            }
+                            if (data[i].que_type == 2) {
+                                if (data[i].que == 0 || data[i].que == '') {
+                                    var engQue = "";
+                                } else {
+                                    var engQue = data[i].que;
+                                }
+                            } else {
+                                if (data[i].que == 0 || data[i].que == '') {
+                                    var engQue = "NA";
+                                } else {
+                                    var engQue = data[i].que;
+                                }
+                            }
+                            if (data[i].que_type == 2) {
+                                if (data[i].que_h == 0 || data[i].que_h == '') {
+                                    var hindiQue = "";
+                                } else {
+                                    var hindiQue = data[i].que_h;
+                                }
+                            } else {
+                                if (data[i].que_h == 0 || data[i].que_h == '') {
+                                    var hindiQue = "NA";
+                                } else {
+                                    var hindiQue = data[i].que_h;
+                                }
+                            }
+                            if (data[i].language == 1 || data[i].language == 3) {
+                                if (data[i].image != '') {
+                                    var img = data[i].image;
+                                    var dynamicImg = '<td>' + engQue + '<br>' +
+                                        '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
+                                        '/' + img + '"></td>';
+                                } else {
+                                    var dynamicImg = '<td>' + engQue + '</td>';
+                                }
+                            } else {
+                                var dynamicImg = '<td>--</td>';
+                            }
+                            if (data[i].language == 2 || data[i].language == 3) {
+                                if (data[i].image != '') {
+                                    var img = data[i].image;
+                                    var dynamicImgHindi = '<td>' + hindiQue + '<br>' +
+                                        '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id +
+                                        '/' + img + '"></td>';
+                                } else {
+                                    var dynamicImgHindi = '<td>' + hindiQue + '</td>';
+                                }
+                            } else {
+                                var dynamicImgHindi = '<td>--</td>';
+                            }
+                            /////////////////////////////////////////////// 
+                            if (data[i].language == 1 || data[i].language == 3) {
+                                if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+
+                                    if (data[i].opt1_e == 0 || data[i].opt1_e == "") {
+
+                                        var op1_img = data[i].option1_image;
+                                        var op1 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op1_img + '">';
+                                    } else {
+                                        var op1 = data[i].opt1_e;
+                                    }
+                                    if (data[i].opt2_e == 0 || data[i].opt2_e == "") {
+                                        var op2_img = data[i].option2_image;
+                                        var op2 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op2_img + '">';
+                                    } else {
+                                        var op2 = data[i].opt2_e;
+                                    }
+
+                                }
+                                if (data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt3_e == 0 || data[i].opt3_e == "") {
+                                        var op3_img = data[i].option3_image;
+                                        var op3 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op3_img + '">';
+                                    } else {
+                                        var op3 = data[i].opt3_e;
+                                    }
+                                }
+                                if (data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt4_e == 0 || data[i].opt4_e == '') {
+                                        var op4_img = data[i].option4_image;
+                                        var op4 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op4_img + '">';
+                                    } else {
+                                        var op4 = data[i].opt4_e;
+                                    }
+                                }
+                                if ( data[i].no_of_options == 5) {
+                                    if (data[i].opt5_e == 0 || data[i].opt5_e == '') {
+                                        var op5_img = data[i].option5_image;
+                                        var op5 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op5_img + '">';
+                                    } else {
+                                        var op5 = data[i].opt5_e;
+                                    }
+
+                                }
+
+
+                            }
+                            if (data[i].language == 2 || data[i].language == 3) {
+                                if (data[i].no_of_options == 2 || data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt1_h == '' || data[i].opt1_h == 0) {
+                                        var op1_h_img = data[i].option1_h_image;
+                                        var op1_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op1_h_img + '">';
+                                    } else {
+                                        var op1_h = data[i].opt1_h;
+                                    }
+                                    if (data[i].opt2_h == '' || data[i].opt2_h == 0) {
+                                        var op2_h_img = data[i].option2_h_image;
+                                        var op2_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op2_h_img + '">';
+                                    } else {
+                                        var op2_h = data[i].opt2_h;
+                                    }
+                                }
+                                if (data[i].no_of_options == 3 || data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt3_h == '' || data[i].opt3_h == 0) {
+                                        var op3_h_img = data[i].option3_h_image;
+                                        var op3_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op3_h_img + '">';
+                                    } else {
+                                        var op3_h = data[i].opt3_h;
+                                    }
+                                }
+                                if (data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                    if (data[i].opt4_h == '' || data[i].opt4_h == 0) {
+                                        var op4_h_img = data[i].option4_h_image;
+                                        var op4_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op4_h_img + '">';
+                                    } else {
+                                        var op4_h = data[i].opt4_h;
+                                    }
+                                }
+                                if (data[i].no_of_options == 5) {
+                                    if (data[i].opt5_h == '' || data[i].opt5_h == 0) {
+                                        var op5_h_img = data[i].option5_h_image;
+                                        var op5_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op5_h_img + '">';
+                                    } else {
+                                        var op5_h = data[i].opt5_h;
+                                    }
+                                }
+
+                            }
 
                     row += '<tr id="row' + data[i].que_id + '">' +
                         '<td>' + j + '</td>' +
-                        '<td>' + data[i].que + '</td>' +
-                        '<td>' + data[i].opt1_e + '</td>' +
-                        '<td>' + data[i].opt2_e + '</td>' +
-                        '<td>' + data[i].opt3_e + '</td>' +
-                        '<td>' + data[i].opt4_e + '</td>' +
-                        '<td>' + data[i].opt5_e + '</td>' +
+                        '<td>' + type+ '</td>' +
+                          dynamicImg +
+                          dynamicImgHindi + 
+                       
+                        '<td>' + op1 + '</td>' +
+                        '<td>' + op1_h + '</td>' +
+                        '<td>' + op2 + '</td>' +
+                        '<td>' + op2_h + '</td>' +
+                        '<td>' + op3 + '</td>' +
+                        '<td>' + op3_h + '</td>' +
+                        '<td>' + op4+ '</td>' +
+                        '<td>' + op4_h + '</td>' +
+                        '<td>' + op5 + '</td>' +
+                        '<td>' + op5_h + '</td>' +
                         '<td>' + data[i].corr_opt_e + '</td></tr>';
                 }
 

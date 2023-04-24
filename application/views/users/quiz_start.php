@@ -1,10 +1,10 @@
 <!doctype html>
-    <?php  
-    date_default_timezone_set("Asia/Calcutta");
-      $quiz_start_time=$_SESSION['quiz_start_time']=date('h:i:s'); 
-    ?>
+<?php
+date_default_timezone_set("Asia/Calcutta");
+$quiz_start_time = $_SESSION['quiz_start_time'] = date('h:i:s');
+?>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,92 +15,254 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
     <!-- Bootstrap CSS -->
     <title>Bureau of Indian standard | Quiz Start</title>
-    <link href="<?= base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="<?= base_url();?>" rel="stylesheet">
+    <link href="<?= base_url(); ?>" rel="stylesheet">
     <!-- CSS File -->
-    <link href="<?= base_url();?>assets/css/style.css" rel="stylesheet" />
-    <link href="<?= base_url();?>assets/css/style.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="<?= base_url();?>assets/images/bis_logo.png" type="image/x-icon">
-    <link href="<?= base_url();?>assets/css/quiz_start.css" rel="stylesheet" />
-    
+    <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="<?= base_url(); ?>assets/images/bis_logo.png" type="image/x-icon">
+    <link href="<?= base_url(); ?>assets/css/quiz_start.css" rel="stylesheet" />
+
 </head>
 <style>
     h3.quiz_title_heading {
-    margin-left: 12px;
-    padding: 14px 0px 0px 0px;
-    font-weight: 600;
-    color: crimson;
-}
+        margin-left: 12px;
+        padding: 14px 0px 0px 0px;
+        font-weight: 600;
+        color: crimson;
+    }
 </style>
+
 <body>
+   
     <section>
         <div class="">
             <div class="Quiz_section ">
                 <div class="quiz-left-side-main shadow">
-                    <h3 class="quiz_title_heading"><?= $quizdata['title']?></h3>
-                    <form id="regForm" action="<?= base_url().'Users/quiz_submit'?>" method="post"enctype="multipart/form-data">
+                    <h3 class="quiz_title_heading"><?= $quizdata['title'] ?></h3>
+                    <form id="regForm" action="<?= base_url() . 'Users/quiz_submit' ?>" method="post" enctype="multipart/form-data">
+                    <?php $setLang =$_SESSION["quiz_lang_id"]; ;?>
                         <div class="inner-section " id="qustions-tab">
-                            <input type="hidden"value="<?= $quiz_start_time; ?>" name="start_time"> 
-                            <input type="hidden"value="1" name="user_id"> 
-                            <input type="hidden"value="<?= $quizdata['id']?>" name="quiz_id"> 
+                           <?php  echo  $user_id; ?>
+                            <input type="hidden" value="<?= $quiz_start_time; ?>" name="start_time">
+                            <input type="hidden" value="<?= $user_id; ?>" name="user_id">
+                            <input type="hidden" value="<?= $quizdata['id'] ?>" name="quiz_id">
 
-                            
-                            <?php  $i=1;?> 
-                            <h3>Question <?= $i;?> to <?=count($que_details);?></h3>
-                            <?php  
+
+                            <?php $i = 1; ?>
+                            <h3>Question <?= $i; ?> to <?= count($que_details); ?></h3>
+                            <?php
                             $k = 1;
-                            foreach ($que_details as $key => $details) {?>
-
-
+                            foreach ($que_details as $key => $details) { 
+                               
+                                ?>
                                 <div class="tab">
-                                <div class="quiz-ans-section">
-                                    <p class="qustion-ans"> <?= $i++ ." . ".  $details['que']?> </p>
-                                    <div class="quiz-option">
-                                        <input type="hidden"value="<?= $details['que_id']?>" name="que_id[]">
-                                        <input type="hidden"value="<?= $details['corr_opt_e']?>" name="corr_opt[]">
-                                        <ul>
-                                            <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?= $k ;?>" value="1" > <?= $details['opt1_e']?>
-                                            </li>
-                                            <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?=  $k ;?>"value="2">  <?= $details['opt2_e']?>
-                                            </li>
+                                    <div class="quiz-ans-section">
+                                    <?php if ($quizdata['language_id'] == 1 || $setLang == 1) { ?>
+                                        <p class="qustion-ans"> <?= $i++ . " . " .  $details['que'] ?> </p>        
+                                        <?php } else{ ?> 
+                                         <p class="qustion-ans"> <?= $i++ . " . " .  $details['que_h'] ?> </p>
+                                         <?php }   ?>
+                                         <?php if ($details['que_type'] == 2 || $details['que_type'] == 3) { ?>
+                                                           
+                                                            <img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid<?php echo $details['que_bank_id']; ?>/<?php echo $details['image']; ?>">
+                                                        <?php }  ?>
+                                        <div class="quiz-option">
+                                            <input type="hidden" value="<?= $details['que_id'] ?>" name="que_id[]">
+                                            <input type="hidden" value="<?= $details['corr_opt_e'] ?>" name="corr_opt[]">
+                                            <?php
+                                            if ($details['option1_image'] != "") {
+                                                $op1_img = $details['option1_image'];
+                                                $opt1_e = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op1_img . '>';
+                                            } else {
+                                                if ($details['opt1_e'] != "") {
+                                                    $opt1_e = $details['opt1_e'];
+                                                } else {
+                                                    $opt1_e = "";
+                                                }
+                                            }
+                                            if ($details['option2_image'] != "") {
+                                                $op2_img = $details['option2_image'];
+                                                $opt2_e = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op2_img . '>';
+                                            } else {
+                                                if ($details['opt2_e'] != "") {
+                                                    $opt2_e = $details['opt2_e'];
+                                                } else {
+                                                    $opt2_e = "";
+                                                }
+                                            }
+                                            if ($details['option3_image'] != "") {
+                                                $op3_img = $details['option3_image'];
+                                                $opt3_e = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op3_img . '>';
+                                            } else {
+                                                if ($details['opt3_e'] != "") {
+                                                    $opt3_e = $details['opt3_e'];
+                                                } else {
+                                                    $opt3_e = "";
+                                                }
+                                            }
+                                            if ($details['option4_image'] != "") {
+                                                $op4_img = $details['option4_image'];
+                                                $opt4_e = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op4_img . '>';
+                                            } else {
 
-                                            <?php if(!empty($details['opt3_e']))
-                                            {?>
-                                                <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?=  $k ;?>"value="3"><?= $details['opt3_e']?></li>
-                                            <?php } ?>
+                                                if ($details['opt4_e'] != "") {
+                                                    $opt4_e = $details['opt4_e'];
+                                                } else {
+                                                    $opt4_e = "";
+                                                }
+                                            }
+                                            if ($details['option5_image'] != "") {
+                                                $op5_img = $details['option5_image'];
+                                                $opt5_e = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op5_img . '>';
+                                            } else {
 
-                                            <?php if(!empty($details['opt4_e']))
-                                            {?>
-                                                <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?=  $k ;?>"value="4"><?= $details['opt4_e']?></li>
-                                            <?php } ?>
+                                                if ($details['opt5_e'] != "") {
+                                                    $opt5_e = $details['opt5_e'];
+                                                } else {
+                                                    $opt5_e = "";
+                                                }
+                                            }
+                                            if ($details['option1_h_image'] != "") {
+                                                $op1_h_img = $details['option1_h_image'];
+                                                $opt1_h = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op1_h_img . '>';
+                                            } else {
 
-                                            <?php if(!empty($details['opt5_e']))
-                                            {?>
-                                                <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id']?>" name="option<?= $details['que_id']?><?=  $k ;?>"value="5" onclick="data();"><?= $details['opt5_e']?></li>
-                                            <?php } ?>
+                                                if ($details['opt1_h'] != "") {
+                                                    $opt1_h = $details['opt1_h'];
+                                                } else {
+                                                    $opt1_h = "";
+                                                }
+                                            }
+                                            if ($details['option2_h_image'] != "") {
+                                                $op2_h_img = $details['option2_h_image'];
+                                                $opt2_h = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op2_h_img . '>';
+                                            } else {
+
+                                                if ($details['opt2_h'] != "") {
+                                                    $opt2_h = $details['opt2_h'];
+                                                } else {
+                                                    $opt2_h = "";
+                                                }
+                                            }
+                                            if ($details['option3_h_image'] != "") {
+                                                $op3_h_img = $details['option3_h_image'];
+                                                $opt3_h = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op3_h_img . '>';
+                                            } else {
+
+                                                if ($details['opt3_h'] != "") {
+                                                    $opt3_h = $details['opt3_h'];
+                                                } else {
+                                                    $opt3_h = "";
+                                                }
+                                            }
+                                            if ($details['option4_h_image'] != "") {
+                                                $op4_h_img = $details['option4_h_image'];
+                                                $opt4_h = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op4_h_img . '>';
+                                            } else {
+
+                                                if ($details['opt4_e'] != "") {
+                                                    $opt4_h = $details['opt4_e'];
+                                                } else {
+                                                    $opt4_h = "";
+                                                }
+                                            }
+                                            if ($details['option5_h_image'] != "") {
+                                                $op5_h_img = $details['option5_h_image'];
+                                                $opt5_h = '<img width="100" src=' . base_url() . 'uploads/que_img/bankid' . $details['que_bank_id'] . '/' . $op5_h_img . '>';
+                                            } else {
+
+                                                if ($details['opt5_h'] != "") {
+                                                    $opt5_h = $details['opt5_h'];
+                                                } else {
+                                                    $opt5_h = "";
+                                                }
+                                            }
+                                            ?>
+                                            <ul>
+                                                <?php if (
+                                                    $details['no_of_options'] == 2 || $details['no_of_options'] == 3 ||
+                                                    $details['no_of_options'] == 4  ||  $details['no_of_options'] == 5
+                                                ) { ?>
+                                                    <?php if ($quizdata['language_id'] == 1 || $setLang == 1) { ?>
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="1">
+                                                            <?= $opt1_e ?>
+                                                        </li>
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="2">
+                                                            <?= $opt2_e  ?>
+                                                        </li>
+                                                    <?php } else { ?>
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="1">
+                                                            <?= $opt1_h ?>
+                                                        </li>
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="2">
+                                                            <?= $opt2_h  ?>
+                                                        </li>
+                                                    <?php } ?>
+                                                <?php } ?>
+
+                                                <?php if ($details['no_of_options'] == 3 || $details['no_of_options'] == 4  ||  $details['no_of_options'] == 5) { ?>
+                                                    <?php if ($quizdata['language_id'] == 1 || $setLang == 1) { ?>
+
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="3">
+                                                            <?= $opt3_e ?></li>
 
 
-                                            
-                                        </ul>
+                                                    <?php } else { ?>
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="3">
+                                                            <?= $opt3_h ?></li>
+
+                                                    <?php } ?>
+                                                <?php } ?>
+
+                                                <?php if ($details['no_of_options'] == 4  ||  $details['no_of_options'] == 5) { ?>
+                                                    <?php if ($quizdata['language_id'] == 1 || $setLang == 1) { ?>
+
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="4"><?= $opt4_e  ?></li>
+                                                    <?php } else { ?>
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="4"><?= $opt4_h ?></li>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                                <?php if ($details['no_of_options'] == 5) { ?>
+                                                    <?php if ($quizdata['language_id'] == 1 || $setLang == 1) { ?>
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="5"> <?= $opt5_e  ?> </li>
+                                                    <?php } else { ?>
+                                                        <li> <input type="radio" class="quiz-radio-btn op<?= $details['que_id'] ?>" name="option<?= $details['que_id'] ?><?= $k; ?>" value="5"> <?= $opt5_h  ?> </li>
+                                                    <?php } ?>
+
+                                                <?php } ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <?php $k++; } ?>
+                            <?php $k++;
+                            } ?>
 
-
-                         
-                             
                             <div class="d-flex float-end my-4">
-                            <button type="button" id="review" class="btn btn-primary" style="margin-right: 838px;">Mark For Review</button>
+                                <button type="button" id="review" class="btn btn-primary" style="margin-right: 838px;" id="markForReview" data-queid="<?= $details['que_id'] ?>" data-userid="<?= $user_id; ?>" data-quizid="<?= $quizdata['id']; ?>">Mark For Review</button>
+
                                 <button type="button" id="prevBtn" class="btn btn-primary startQuiz me-2" onclick="nextPrev(-1)">Previous</button>
+
                                 <button type="button" id="nextBtn" class="btn btn-success startQuiz me-2" onclick="nextPrev(1)"><span>Next</span></button>
+
+                                <!-- <?php //if($quizdata['switching_type']== 1){
+                                        ?>
+                                    <button type="button" id="nextBtn"   class="btn btn-success startQuiz me-2" onclick="nextPrev(1)"><span>Next</span></button>
+                                <?php //}else { 
+                                ?>
+                                    <input type = "hidden" id="checkQue" value="1"/>
+                                    <button type="button" id="nextBtn"   data-queid="<?= $quizdata['switching_type'] ?>" class="btn btn-success startQuiz me-2" ><span>Next</span></button>
+                                   
+                                <?php // } 
+                                ?> -->
+
                             </div>
 
                         </div>
-                     
+
                 </div>
                 <div class="quiz-right-side-main shadow-1">
                     <div class="quiz-left-side ">
@@ -118,25 +280,26 @@
                         </div>
                         <div Id="right-bar-ans-none">
 
-                            <h6 class="quiz-title mb-4"><?= $quizdata['title']?></h2>
+                            <h6 class="quiz-title mb-4"><?= $quizdata['title'] ?></h2>
                                 <ul id="afterSubmitHide">
                                     <!-- <li class="ans-green">1</li>
                                     <li class="ans-red">2</li>
                                     <li class="ans-blue">3</li>
                                     <li class="ans-blue">4</li> -->
-                                    <?php  
-                                    foreach ($que_details as $key => $details) {$key++;?>
-                                        <li id="counter<?= $details['que_id']?>" class="ans-red"><?= $key;?></li>
-                                        <?php } ?>
-                                    </ul>
+                                    <?php
+                                    foreach ($que_details as $key => $details) {
+                                        $key++; ?>
+                                        <li id="counter<?= $details['que_id'] ?>" class="ans-red"><?= $key; ?></li>
+                                    <?php } ?>
+                                </ul>
 
                         </div>
                         <div class="as-color">
                             <ol>
                                 <li><span class="Quiz-circle green"></span>Answered </li>
-                                <li><span class="Quiz-circle red"></span>Not Answered </li> 
+                                <li><span class="Quiz-circle red"></span>Not Answered </li>
                                 <li><span class="Quiz-circle gray"></span>Not Visited</li>
-                                <li><span class="Quiz-circle blue"></span>Mark for Review</li> 
+                                <li><span class="Quiz-circle blue"></span>Mark for Review</li>
                             </ol>
                         </div>
                         <!-- <input type="" name="Submit" class="btn btn-info btn-sm"> -->
@@ -147,15 +310,15 @@
             </div>
         </div>
         </form>
-    </section> 
- 
+    </section>
 
-    <script src="<?= base_url();?>assets/js/bootstrap.bundle.js"></script>
+
+    <script src="<?= base_url(); ?>assets/js/bootstrap.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="<?= base_url();?>assets/js/owl.carousel.min.js"></script>
-    <script src="<?= base_url();?>assets/js/font_resize.js"></script>
-    <script src="<?= base_url();?>assets/js/tab.js"></script>
-    <script src="<?= base_url();?>assets/js/dark_mode.js"></script> 
+    <script src="<?= base_url(); ?>assets/js/owl.carousel.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/font_resize.js"></script>
+    <script src="<?= base_url(); ?>assets/js/tab.js"></script>
+    <script src="<?= base_url(); ?>assets/js/dark_mode.js"></script>
     <script>
     </script>
     <script>
@@ -243,95 +406,80 @@
             $('#right-bar-ans-none').hide();
 
         });
-
     </script>
     <script>
         $('.login_details').hide()
-jQuery('.show').on('click',function(){
-  jQuery('.login_details').toggle();
-});
-</script> 
-
-
-
-<script>
-    var timer2 = "<?= $quizdata['duration']?>:01";
-var interval = setInterval(function() {
-
-
-  var timer = timer2.split(':');
-  //by parsing integer, I avoid all extra string processing
-  var minutes = parseInt(timer[0], 10);
-  var seconds = parseInt(timer[1], 10);
-  --seconds;
-  minutes = (seconds < 0) ? --minutes : minutes;
-  if (minutes < 0) clearInterval(interval);
-  seconds = (seconds < 0) ? 59 : seconds;
-  seconds = (seconds < 10) ? '0' + seconds : seconds;
-  //minutes = (minutes < 10) ?  minutes : minutes;
-  $('.countdown').html(minutes + ':' + seconds);
-  timer2 = minutes + ':' + seconds; 
-  if (timer2=='0:00') 
-  {
-    $('#regForm').submit();
-  }
-}, 1000);
-
-   
-
-
-$(function() {
-    <?php 
-    foreach ($que_details as $key => $details) {?>
-    $("input[class$='op<?= $details['que_id']?>']").change(function() {
-       $("#counter<?= $details['que_id']?>").removeClass('ans-red').addClass('ans-green'); 
-    });
-<?php } ?>
-
-});
-
-
-
-    </script>
-    
-  <script>
-    $(document).ready(function () 
-    { 
-        var quiz_id="<?= $quizdata['id']?>"
-        var user_id="1"
-        checkUserAttempt(quiz_id,user_id); 
-
-
-    });
-
-    function checkUserAttempt(quiz_id,user_id) 
-    {
-        $.ajax(
-        {
-            type: 'POST',
-            url: '<?php echo base_url(); ?>users/checkUserAttempt',
-            data:
-            {
-                quiz_id: quiz_id,
-                user_id: user_id,
-            },
-            success: function(result) 
-            {
-                var res = JSON.parse(result);
-                console.log(res.userAttempt);
-                if (res.userAttempt==2) 
-                { 
-                     window.location.href = "<?php echo base_url(); ?>users/user_attempt";
-                }
-
-            },
-            error: function(result) 
-            {
-                alert("Error,Please try again.");
-            }
+        jQuery('.show').on('click', function() {
+            jQuery('.login_details').toggle();
         });
-    }
- </script>
+    </script>
+
+
+
+    <script>
+        var timer2 = "<?= $quizdata['duration'] ?>:01";
+        var interval = setInterval(function() {
+
+
+            var timer = timer2.split(':');
+            //by parsing integer, I avoid all extra string processing
+            var minutes = parseInt(timer[0], 10);
+            var seconds = parseInt(timer[1], 10);
+            --seconds;
+            minutes = (seconds < 0) ? --minutes : minutes;
+            if (minutes < 0) clearInterval(interval);
+            seconds = (seconds < 0) ? 59 : seconds;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+            //minutes = (minutes < 10) ?  minutes : minutes;
+            $('.countdown').html(minutes + ':' + seconds);
+            timer2 = minutes + ':' + seconds;
+            if (timer2 == '0:00') {
+                $('#regForm').submit();
+            }
+        }, 1000);
+
+
+
+
+        $(function() {
+            <?php
+            foreach ($que_details as $key => $details) { ?>
+                $("input[class$='op<?= $details['que_id'] ?>']").change(function() {
+                    $("#counter<?= $details['que_id'] ?>").removeClass('ans-red').addClass('ans-green');
+                });
+            <?php } ?>
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var quiz_id = "<?= $quizdata['id']; ?>";
+            var user_id = "<?= $user_id; ?>"
+            checkUserAttempt(quiz_id, user_id);
+        });
+
+        function checkUserAttempt(quiz_id, user_id) {
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url(); ?>users/checkUserAttempt',
+                data: {
+                    quiz_id: quiz_id,
+                    user_id: user_id,
+                },
+                success: function(result) {
+                    var res = JSON.parse(result);
+                    //console.log(res.userAttempt);
+                    if (res.userAttempt == 2) {
+                        window.location.href = "<?php echo base_url(); ?>users/user_attempt";
+                    }
+                },
+                error: function(result) {
+                    alert("Error,Please try again.");
+                }
+            });
+        }
+    </script>
 
 </body>
 

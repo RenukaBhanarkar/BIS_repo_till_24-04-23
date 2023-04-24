@@ -10,13 +10,14 @@ class Subadmin extends CI_Controller
         $this->load->model('Admin/Admin_model');
         $this->load->model('Subadmin/Que_bank_model');
         $this->load->model('Subadmin/Questions_model');
+        date_default_timezone_set("Asia/Calcutta");
     }
     public function index()
     {
         if ($this->Admin_model->checkAdminLogin()) {
             redirect(base_url() . "Admin/dashboard", 'refresh');
         } else {
-            redirect(base_url() . "Admin/login", 'refresh');
+            redirect(base_url() . "Users/login", 'refresh');
         }
         return true;
     }
@@ -423,11 +424,17 @@ class Subadmin extends CI_Controller
             if (!empty($_FILES['option1_image']['tmp_name'])) {
                 $option1_image = $this->uploadImageEng($que_bank_id,1,$foldername);
             }
+            if (!empty($_FILES['option1_h_image']['tmp_name'])) {
+                $option1_h_image = $this->uploadImageHindi($que_bank_id,1,$foldername);
+            }
         }
         $opt_type_2 = clearText($this->input->post('opt_type_2'));
         if($opt_type_2 == 2){
             if (!empty($_FILES['option2_image']['tmp_name'])) {
                 $option2_image = $this->uploadImageEng($que_bank_id,2,$foldername);
+            }
+            if (!empty($_FILES['option2_h_image']['tmp_name'])) {
+                $option2_h_image = $this->uploadImageHindi($que_bank_id,2,$foldername);
             }
         }
         $opt_type_3 = clearText($this->input->post('opt_type_3'));
@@ -435,11 +442,17 @@ class Subadmin extends CI_Controller
             if (!empty($_FILES['option3_image']['tmp_name'])) {
                 $option3_image = $this->uploadImageEng($que_bank_id,3,$foldername);
             }
+            if (!empty($_FILES['option3_h_image']['tmp_name'])) {
+                $option3_h_image = $this->uploadImageHindi($que_bank_id,3,$foldername);
+            }
         }
         $opt_type_4 = clearText($this->input->post('opt_type_4'));
         if($opt_type_4 == 2){
             if (!empty($_FILES['option4_image']['tmp_name'])) {
                 $option4_image = $this->uploadImageEng($que_bank_id,4,$foldername);
+            }
+            if (!empty($_FILES['option4_h_image']['tmp_name'])) {
+                $option4_h_image = $this->uploadImageHindi($que_bank_id,4,$foldername);
             }
         }
         $opt_type_5 = clearText($this->input->post('opt_type_5'));
@@ -447,41 +460,10 @@ class Subadmin extends CI_Controller
             if (!empty($_FILES['option5_image']['tmp_name'])) {
                 $option5_image = $this->uploadImageEng($que_bank_id,5,$foldername);
             }
-        }
-        //hindi 
-        $opt_type_h_1 = clearText($this->input->post('opt_type_h_1'));
-        if($opt_type_h_1 == 2){
-            if (!empty($_FILES['option1_h_image']['tmp_name'])) {
-                $option1_h_image = $this->uploadImageHindi($que_bank_id,1,$foldername);
-            }
-        }
-        $opt_type_h_2 = clearText($this->input->post('opt_type_h_2'));
-        if($opt_type_h_2 == 2){
-            if (!empty($_FILES['option2_h_image']['tmp_name'])) {
-                $option2_h_image = $this->uploadImageHindi($que_bank_id,2,$foldername);
-            }
-        }
-
-        $opt_type_h_3 = clearText($this->input->post('opt_type_h_3'));
-        if($opt_type_h_3 == 2){
-            if (!empty($_FILES['option3_h_image']['tmp_name'])) {
-                $option3_h_image = $this->uploadImageHindi($que_bank_id,3,$foldername);
-            }
-        }
-
-        $opt_type_h_4 = clearText($this->input->post('opt_type_h_4'));
-        if($opt_type_h_4 == 2){
-            if (!empty($_FILES['option4_h_image']['tmp_name'])) {
-                $option4_h_image = $this->uploadImageHindi($que_bank_id,4,$foldername);
-            }
-        }
-
-        $opt_type_h_5 = clearText($this->input->post('opt_type_h_5'));
-        if($opt_type_h_5 == 2){
             if (!empty($_FILES['option5_h_image']['tmp_name'])) {
                 $option5_h_image = $this->uploadImageHindi($que_bank_id,5,$foldername);
             }
-        }
+        }    
 
 
         $corr_opt_e = clearText($this->input->post('correct_answer'));
@@ -763,6 +745,16 @@ class Subadmin extends CI_Controller
                     'opt5_h' => $row['opt5_h'],
                     'created_by' => $admin_id,
                     'corr_opt_e' => $row['corr_opt_e'],
+                    'option1_image'=>$row['option1_image'],
+                    'option2_image'=>$row['option2_image'],
+                    'option3_image'=>$row['option3_image'],
+                    'option4_image'=>$row['option4_image'],
+                    'option5_image'=>$row['option5_image'],
+                    'option1_h_image' =>$row['option1_h_image'],
+                    'option2_h_image' => $row['option2_h_image'],
+                    'option3_h_image' => $row['option3_h_image'],
+                    'option4_h_image' =>$row['option4_h_image'],
+                    'option5_h_image' =>$row['option5_h_image'],
                     //'language' =>$language
                     //'created_on' => GetCurrentDateTime('Y-m-d h:i:s')
                 );

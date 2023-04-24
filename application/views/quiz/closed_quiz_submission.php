@@ -7,12 +7,10 @@
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Library</li>
+                  <li class="breadcrumb-item active" aria-current="page">Quiz submission</li>
                 </ol>
-              </nav>
-           
-        </div>
-       
+              </nav>           
+        </div>      
        
         <!-- Content Row -->
         
@@ -22,7 +20,7 @@
                 <table id="example" class="hover table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th><input class="form-control-input" type="checkbox" value="" id="flexCheckDefault"></th>
+                            <!-- <th><input class="form-control-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
                             <th>Sr. No.</th>
                             <th>Name</th>
                             <th>Email ID</th>
@@ -30,7 +28,7 @@
                             <th>Date</th>
                             <th>Time</th>
                             <th>Score</th>
-                            <th>Prize</th>
+                            <th>Action</th>
                             
                         </tr>
                     </thead>
@@ -42,7 +40,7 @@
                             foreach($UsersDetails as $users)
                             {?>
                                 <tr>
-                                <td><input class="form-control-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                                <!-- <td><input class="form-control-input" type="checkbox" value="" id="flexCheckDefault"></td> -->
                                  <td><?= $i++?></td>
                                  <td><?= $users['user_name']?></td>
                                  <td><?= $users['email']?></td>
@@ -50,15 +48,7 @@
                                  <td><?= date("d-m-Y", strtotime($users['created_on']));?></td> 
                                  <td><?= $users['start_time']?></td> 
                                  <td><?= $users['score']?></td>
-                                 <td>
-                                    <select id="prize" name="prize" class="form-control input-font" value="prize">
-                                        <option value="1">First Prize</option>
-                                        <option value="1">Second Prize</option>
-                                        <option value="1">Third Prize</option>
-                                        <option value="1">Fourth Prize</option>
-                                        <option value="1">Consolation Prize</option>
-                                    </select>
-                                 </td>
+                                <td>Answer Key</td>
                                   
                                  </tr>
 

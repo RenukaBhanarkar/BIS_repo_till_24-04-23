@@ -8,8 +8,16 @@ class Quiz extends CI_Controller
         parent::__construct();
         $this->load->model('Admin/Admin_model');
         $this->load->model('Quiz/Quiz_model');
-       
+        $this->load->model('Subadmin/Que_bank_model');
+        // if ($this->Admin_model->checkAdminLogin()) {
+        //     redirect(base_url() . "Admin/dashboard", 'refresh');
+        // } else {
+        //     redirect(base_url() . "Users/login", 'refresh');
+        // }
+        date_default_timezone_set("Asia/Calcutta");
     }
+   
+  
     public function index()
     {
         $this->load->view('admin/headers/admin_header');
@@ -30,7 +38,7 @@ class Quiz extends CI_Controller
     }
     public function ongoing_quiz_list()
     {
-        $allquize = $this->Admin_model->onGoingQuiz();
+        $allquize = $this->Admin_model->onGoingQuizNew();
         $data = array();
         $data['allquize'] = $allquize;
         $this->load->view('admin/headers/admin_header');;
@@ -50,7 +58,7 @@ class Quiz extends CI_Controller
     }
     public function closed_quiz_list()
     {
-        $ClosedQuiz = $this->Quiz_model->getAllClosedQuize();
+        $ClosedQuiz = $this->Quiz_model->getAllClosedQuizeNew();
         $data = array();
         $data['ClosedQuiz'] = $ClosedQuiz; 
          
@@ -59,13 +67,8 @@ class Quiz extends CI_Controller
         $this->load->view('Quiz/closed_quiz_list',$data);
         $this->load->view('admin/footers/admin_footer');
     }
-    public function closed_quiz_view()
-    {
-
-        $this->load->view('admin/headers/admin_header');
-        $this->load->view('Quiz/closed_quiz_view');
-        $this->load->view('admin/footers/admin_footer');
-    }
+   
+    
     public function editquiz($id)
     {
        $this->load->view('admin/headers/admin_header');
@@ -73,12 +76,18 @@ class Quiz extends CI_Controller
         $quizlavel = $this->Quiz_model->getQuizLevel();
         $getAvailability = $this->Quiz_model->getAvailability();
         $getQuizLanguage = $this->Quiz_model->getQuizLanguage(); 
-        $getAllQb = $this->Quiz_model->getAllQb(); 
+        //$getAllQb = $this->Quiz_model->getAllQb(); 
+      
             
         //quize Data 
+        $getAllRegions = array();
         $data=array();
         $quiz = $this->Quiz_model->getQuiz($id);
-        $quizdata=array();
+        if($quiz['quiz_level_id'] != 1){
+            $region_id = $quiz['region_id'];
+            $getAllRegions = $this->Quiz_model->getAllRegions($region_id); 
+        }
+       
         $data['quizdata']=$quiz; 
         //End Quize Data
 
@@ -108,7 +117,7 @@ class Quiz extends CI_Controller
         $data['quizlavel']=$quizlavel;
         $data['getAvailability']=$getAvailability;
         $data['getQuizLanguage']=$getQuizLanguage;
-        $data['getAllQb']=$getAllQb;
+        $data['getAllRegions']=$getAllRegions;
          
         if ($this->form_validation->run('quiz_form_validation_rule') == FALSE) 
         {
@@ -163,6 +172,7 @@ class Quiz extends CI_Controller
                              
             $formdata = array(); 
             $formdata['title'] = $this->input->post('title');
+            $formdata['title_hindi'] = $this->input->post('title_hindi');
             $formdata['description'] = $this->input->post('description');
             $formdata['terms_conditions'] = $this->input->post('terms_conditions');
             $formdata['duration'] = $this->input->post('duration');
@@ -173,12 +183,24 @@ class Quiz extends CI_Controller
             $formdata['end_date'] = $this->input->post('end_date');
             $formdata['end_time'] = $this->input->post('end_time');
             $formdata['quiz_level_id'] = $this->input->post('quiz_level_id');
+            if($this->input->post('quiz_level_id')!= 1){
+                $formdata['region_id'] = $this->input->post('region_id');
+            }  else{
+                $formdata['region_id'] = 0;
+            }       
+            $formdata['switching_type'] = $this->input->post('switching_type');
+           
             $formdata['banner_img'] = $banner_imglocation;
             $formdata['language_id'] = $this->input->post('language_id');
             $formdata['availability_id'] = $this->input->post('availability_id');
-            $formdata['que_bank_id'] = $this->input->post('que_bank_id');
+          
             $formdata['qbquestion'] = $this->input->post('qbquestion');
             $formdata['status'] = 1;
+            $que_bank_id = $this->input->post('que_bank_id');
+            $formdata['que_bank_id']  = $que_bank_id;
+
+            $old_que_bank_id= $this->input->post('old_que_bank_id');
+            
 
             $encAdminId = $this->session->userdata('admin_id');
             $modify_by = encryptids("D", $encAdminId);
@@ -186,7 +208,17 @@ class Quiz extends CI_Controller
             $formdata['modify_on'] = date('Y-m-d : h:i:s');
 
             $quiz_id = $this->Quiz_model->updateQuiz($id,$formdata);
-
+            if($old_que_bank_id != $que_bank_id){
+                $dbArray = array(
+                    'quiz_linked_id' => $id
+                );
+               
+                $this->Que_bank_model->updateQueBankbyQuizid($que_bank_id,$dbArray);
+                $dbArray = array(
+                    'quiz_linked_id' => 0
+                );
+                $this->Que_bank_model->updateQueBankbyQuizid($old_que_bank_id,$dbArray);
+            }    
             if ($quiz_id) 
             { 
                 $fprize_id = 1;
@@ -254,19 +286,39 @@ class Quiz extends CI_Controller
     echo  json_encode($data);
     exit();
    }
+   //Ajax
+   public function fetchQueBankForQuiz(){
+    $total_question = $this->input->post('total_question');
+    $language_id = $this->input->post('language_id');
+
+    $details = array();
+    $details = $this->Quiz_model->fetchQueBankForQuiz($total_question,$language_id);
+    if (empty($details)) {
+        $data['status'] = 0;
+        $data['message'] = 'Failed to get details , Please try again.';
+        $data['queBanks'] = $details;
+    } else {
+        $data['status'] = 1;
+        $data['message'] = 'Details Available.';
+        $data['queBanks'] = $details;
+    }
+    echo  json_encode($data);
+    exit();
+   }
+   
     public function quiz_reg()
     {
          
         $quizlavel = $this->Quiz_model->getQuizLevel();
         $getAvailability = $this->Quiz_model->getAvailability();
         $getQuizLanguage = $this->Quiz_model->getQuizLanguage();
-        $getAllQb = $this->Quiz_model->getAllQb();
+       // $getAllQb = $this->Quiz_model->getAllQb();
        
         $formdataall=array();
         $formdataall['quizlavel']=$quizlavel;
         $formdataall['getAvailability']=$getAvailability;
         $formdataall['getQuizLanguage']=$getQuizLanguage;
-        $formdataall['getAllQb']=$getAllQb;
+       // $formdataall['getAllQb']=$getAllQb;
        
 
         $this->load->view('admin/headers/admin_header'); 
@@ -284,15 +336,15 @@ class Quiz extends CI_Controller
             if (!empty($_FILES['fprize_img']['tmp_name'])) {
             $fprize_imglocation = $prizepath . time() .'prize_img'. $_FILES['fprize_img']['name']; 
             move_uploaded_file($_FILES['fprize_img']['tmp_name'], $fprize_imglocation); }
-
+            $sprize_imglocation ="";
             if (!empty($_FILES['sprize_img']['tmp_name'])) {
             $sprize_imglocation = $prizepath . time()  .'prize_img'.$_FILES['sprize_img']['name']; 
             move_uploaded_file($_FILES['sprize_img']['tmp_name'], $sprize_imglocation);}
-
+            $tprize_imglocation ="";
             if (!empty($_FILES['tprize_img']['tmp_name'])) {
             $tprize_imglocation = $prizepath . time() .'prize_img'. $_FILES['tprize_img']['name']; 
             move_uploaded_file($_FILES['tprize_img']['tmp_name'], $tprize_imglocation);}
-
+            $cprize_imglocation = "";
             if (!empty($_FILES['cprize_img']['tmp_name'])) {
                 $cprize_imglocation = $prizepath . time() .'prize_img'. $_FILES['cprize_img']['name']; 
                 move_uploaded_file($_FILES['cprize_img']['tmp_name'], $cprize_imglocation);}
@@ -316,35 +368,47 @@ class Quiz extends CI_Controller
             $formdata['quiz_level_id'] = $this->input->post('quiz_level_id');
             if($this->input->post('quiz_level_id')!= 1){
                 $formdata['region_id'] = $this->input->post('region_id');
+            }else{
+                $formdata['region_id'] = 0;
             }
          
             $formdata['switching_type'] = $this->input->post('switching_type');
             $formdata['banner_img'] = $banner_imglocation;
             $formdata['language_id'] = $this->input->post('language_id');
             $formdata['availability_id'] = $this->input->post('availability_id');
-            $formdata['que_bank_id'] = $this->input->post('que_bank_id');
-            $formdata['que_bank_id'] = $this->input->post('que_bank_id');
-            $formdata['qbquestion'] = $this->input->post('qbquestion');
+            $que_bank_id = $this->input->post('que_bank_id');
+            $formdata['que_bank_id']  = $que_bank_id;
+            
 
             $formdata['created_by'] = $created_by;
             $formdata['status'] = 1;
 
             $quiz_id = $this->Quiz_model->insertQuiz($formdata);
-
+            $dbArray = array(
+                'quiz_linked_id' => $quiz_id
+            );
+            $this->Que_bank_model->updateQueBankbyQuizid($que_bank_id,$dbArray);
+           
             if ($quiz_id) {
-
+                $formdata1 = array();
+                $formdata2 = array();
+                $formdata3 = array();
+                $formdata4 = array();
+                if($this->input->post('fprize')!= ""){
                 $formdata1['quiz_id'] = $quiz_id;
                 $formdata1['prize_id'] = 1;
                 $formdata1['no_of_prize'] = $this->input->post('fprize');
                 $formdata1['prize_details'] = $this->input->post('fdetails');
                 $formdata1['prize_img'] = $fprize_imglocation;
-
+                $this->Quiz_model->insertPrize($formdata1);
+                }
                 if($this->input->post('sprize')!= ""){
                     $formdata2['quiz_id'] = $quiz_id;
                     $formdata2['prize_id'] = 2;
                     $formdata2['no_of_prize'] = $this->input->post('sprize');
                     $formdata2['prize_details'] = $this->input->post('sdetails');
                     $formdata2['prize_img'] = $sprize_imglocation; 
+                    $this->Quiz_model->insertPrize($formdata2);
                 }
               
                 if($this->input->post('tprize')!= ""){
@@ -353,6 +417,7 @@ class Quiz extends CI_Controller
                 $formdata3['no_of_prize'] = $this->input->post('tprize');
                 $formdata3['prize_details'] = $this->input->post('tdetails');
                 $formdata3['prize_img'] =$tprize_imglocation; 
+                $this->Quiz_model->insertPrize($formdata3);
                 }
 
                 if($this->input->post('cprize')!= ""){
@@ -361,12 +426,13 @@ class Quiz extends CI_Controller
                 $formdata4['no_of_prize'] = $this->input->post('cprize');
                 $formdata4['prize_details'] = $this->input->post('cdetails');
                 $formdata4['prize_img'] = $cprize_imglocation;
+                $this->Quiz_model->insertPrize($formdata4);
                 }
 
-                $this->Quiz_model->insertPrize($formdata1);
-                $this->Quiz_model->insertPrize($formdata2);
-                $this->Quiz_model->insertPrize($formdata3);
-                $this->Quiz_model->insertPrize($formdata4);
+               
+               
+             
+              
 
                 $this->session->set_flashdata('MSG', ShowAlert("Record Inserted Successfully", "SS"));
                 redirect(base_url() . "quiz/quiz_list", 'refresh');
@@ -404,6 +470,7 @@ class Quiz extends CI_Controller
          
         $data=array();
         $quiz = $this->Quiz_model->viewQuiz($id);
+       // echo json_encode($quiz);exit();
         $quizdata=array();
         $data['quizdata']=$quiz; 
         //End Quize Data
@@ -445,8 +512,7 @@ class Quiz extends CI_Controller
 
     public function sendApprove($id)
     {
-      
-       
+            
         $encAdminId = $this->session->userdata('admin_id');
         $modify_by = encryptids("D", $encAdminId);
 
@@ -457,8 +523,8 @@ class Quiz extends CI_Controller
         $quiz_id = $this->Quiz_model->sendToApprove($id,$formdata);
         if ($quiz_id==1) 
         {
-            $this->session->set_flashdata('MSG', ShowAlert("Quiz Send for Approve", "SS"));
-            redirect(base_url() . "quiz/quiz_list", 'refresh');
+            $this->session->set_flashdata('MSG', ShowAlert("Quiz Sent for Approval", "SS"));
+            redirect(base_url() . "quiz/manage_quiz_list", 'refresh');
         }
         else 
         {
@@ -556,10 +622,7 @@ class Quiz extends CI_Controller
         $this->load->view('Quiz/manage_quiz_view',$data);
         $this->load->view('admin/footers/admin_footer');
     }
-   
- 
-   
-   
+    
     
     public function closed_quiz_submission($id)
     {
@@ -573,20 +636,59 @@ class Quiz extends CI_Controller
         $this->load->view('admin/footers/admin_footer');
     }
 
+    public function result_declaration_list($quiz_id){
+        $users = $this->Quiz_model->resultDeclarationList($quiz_id); 
+        $data['UsersDetails']=$users; 
+      
+        $this->load->view('admin/headers/admin_header');;
+        $this->load->view('Quiz/result_declaration_list',$data);
+        $this->load->view('admin/footers/admin_footer');
+    }
+
     public function random_strings($length_of_string)
     {
         $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
         return substr(str_shuffle($str_result), 0, $length_of_string );
     }
-    public function quiz_archive(){        
+    public function quiz_archive(){       
+        $data = array();
+        $data['allRecords'] = $this->Quiz_model->getListOfArchiveQuiz();
         $this->load->view('admin/headers/admin_header');;
-        $this->load->view('Quiz/quiz_archive');
+        $this->load->view('Quiz/quiz_archive',$data);
         $this->load->view('admin/footers/admin_footer');
     }
-    public function result_declaration_list(){        
-        $this->load->view('admin/headers/admin_header');;
-        $this->load->view('Quiz/result_declaration_list');
-        $this->load->view('admin/footers/admin_footer');
+   
+    //ajax
+    public function changeStatus()
+    {
+        try {
+            $quiz_id = $this->input->post('id');
+            $status = $this->input->post('status');
+          
+
+            $data = array(
+                'status' => $status,               
+                'modify_on' => GetCurrentDateTime('Y-m-d h:i:s'),
+                'modify_by' => encryptids("D", $_SESSION['admin_type']),
+            );
+
+            $id = $this->Quiz_model->updateData($quiz_id, $data);
+            if ($id) {
+                $data['status'] = 1;
+                $data['message'] = 'Quiz Status updated successfully.';
+            } else {
+                $data['status'] = 0;
+                $data['message'] = 'Failed to delete, Please try again.';
+            }
+            echo  json_encode($data);
+            return true;
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+            return true;
+        }
     }
 
 }

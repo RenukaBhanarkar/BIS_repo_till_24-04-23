@@ -25,7 +25,9 @@
 </head>
 
 <body> 
-            <div class="Quiz_section">
+    <div class="row">
+<div class=" col-md-offset-2 col-md-8"style="margin-left: 20%"> 
+<div class="Quiz_section">
                 <div class="quiz-left-side-main shadow">
                 	<div class="thank_you_box" id="thankYou">
                 		<img src="assets/images/certificate.png" alt="">
@@ -37,6 +39,8 @@
                     </div>
                 </div>
             </div>  
+            </div>  
+            </div> 
     <script src="assets/js/bootstrap.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
