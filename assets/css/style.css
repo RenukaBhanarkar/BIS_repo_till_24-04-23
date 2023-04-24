@@ -2027,7 +2027,7 @@ p.card-text {
 	padding-top: 10px;
 	border-top: 1px dashed #dfdfdf;
 	padding: 7px 0px;
-	text-align: right;
+	/* text-align: right; */
 }
 
 .Your_Wall_Description_view_all {
@@ -2356,4 +2356,124 @@ label.d-block.text-font {
     /* padding: 10px; */
     padding: 0px 0px 22px 23px;
 }
-
+.cta {
+    padding: 0;
+    margin-bottom: 60px;
+}
+.cta .container {
+    padding: 80px;
+    background: #dcdcdcb8;
+    border-radius: 15px;
+	opacity: 1;
+    transform: translateZ(0) scale(1);
+}
+.cta .content h3 {
+    color:#485664;
+    font-size: 48px;
+    font-weight: 700;
+}
+.cta .content p {
+    color: #485664;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: revert;
+}
+.cta .content .cta-btn {
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-block;
+    padding: 12px 40px;
+    border-radius: 5px;
+    transition: 0.5s;
+    margin-top: 10px;
+    background: brown;
+}
+.align-self-start {
+    align-self: flex-start!important;
+}
+.align-items-center {
+    align-items: center!important;
+}
+.cta .img {
+    position: relative;
+}
+.cta .img img {
+    position: relative;
+    z-index: 3;
+    border-radius: 15px;
+}
+.img-standard {
+    max-width: 100%;
+    height: auto;
+}
+.justify-content-center {
+    justify-content: center!important;
+}
+.cta .img:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: white;
+    border-radius: 15px;
+    transform: rotate(6deg);
+}
+.cta .img:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:white;
+    border-radius: 15px;
+    transform: rotate(12deg);
+}
+.cta .content .cta-btn:hover {
+    background: #a71616;
+}
+.section-header {
+    text-align: center;
+    padding-bottom: 40px;
+}
+.section-header h2 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #485664;
+}
+.section-header p {
+    max-width: 80%;
+	margin: 0 auto;
+}
+.about .about-img {
+    position: relative;
+    margin: 60px 0 0 60px;
+}
+.about .about-img:before {
+	background: url('http://localhost/BIS/BIS_repo/assets/images/about-bg.png') no-repeat;
+    position: absolute;
+    inset: -60px 0 0 -60px;
+    z-index: -1;
+    content: "";
+    /* background: url('<?php echo base_url(); ?>/assets/images/plus.png') top left; */
+    background-repeat: no-repeat;
+}
+.about .nav-pills {
+    border-bottom: 1px solid #0ea2bd;
+}
+.about .nav-link.active {
+    color: #0ea2bd;
+    background: none;
+    border-bottom: 3px solid #0ea2bd;
+}
+.about .nav-link {
+    background: none;
+    font-size: 18px;
+    font-weight: 400;
+    color: #485664;
+    padding: 12px 0;
+    margin-bottom: -2px;
+    border-radius: 0;
+    font-family: var(--font-secondary);
+}
+.about .nav-pills li+li {
+    margin-left: 40px;
+}

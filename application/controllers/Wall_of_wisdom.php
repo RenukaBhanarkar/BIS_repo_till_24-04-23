@@ -148,8 +148,21 @@ class Wall_of_wisdom extends CI_Controller
     //      $this->load->view('users/footers/footer');
     //  }
     public function wallOfWisdom(){
+       // print_r($_SESSION); die;
+        if(isset($_SESSION['admin_id'])){
+            $uid=encryptids("D",$_SESSION['admin_id']);
+        }else{
+            $uid="";
+        }
+        // $uid=encryptids("D",$_SESSION['admin_id']);
         // $this->load->model('Admin/Wall_of_wisdom_model wow'); 
-         $data['wow']=$this->wow->all_wallofwisdom();
+        if($uid==""){
+            $uid="";
+        }else{
+            $data['wow']=$this->wow->all_wallofwisdom($uid); 
+        }
+         $data['wow']=$this->wow->all_wallofwisdom($uid);
+        //  print_r($data); die;
          $this->load->view('users/headers/header');
          $this->load->view('wall_of_wisdom/wall_of_wisdom_1',$data);
          $this->load->view('users/footers/footer');
@@ -338,6 +351,34 @@ class Wall_of_wisdom extends CI_Controller
         // if($id=="success"){
         //     return true;
         // }
+     }
+     public function likes(){
+        $uid=$this->input->post('uid');
+        $user_id=encryptids("D", $uid);
+        $data['user_id'] =  $user_id;
+        $data['card_id'] = $this->input->post('cid');
+        $data['card_status'] = "1";
+        // print_r($data);
+        $id = $this->wow->liked($data);
+        if($id){
+            echo "success";
+        }else{
+            echo "failed";
+        }
+     }
+     public function unlikes(){
+        $uid=$this->input->post('uid');
+        $user_id=encryptids("D", $uid);
+        $data['user_id'] =  $user_id;
+        $data['card_id'] = $this->input->post('cid');
+        $data['card_status'] = "1";
+        // print_r($data);
+        $id = $this->wow->unliked($data);
+        if($id=="success"){
+            echo "success";
+        }else{
+            echo "failed";
+        }
      }
  
 

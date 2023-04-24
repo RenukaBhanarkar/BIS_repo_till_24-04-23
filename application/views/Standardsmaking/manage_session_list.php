@@ -84,9 +84,8 @@
                                  <?php if ($value['status']!=2 && $value['status']!=5 ) 
                                  {?>
                                      <button onclick="deleteLiveSession(' <?= $value['id']?> ');" data-id='<?php echo $value['id']; ?>' class="btn btn-danger btn-sm mr-2 delete_img">Delete</button>
-                                     <button onclick="updateStatusLiveSession('<?= $value['id']?>',9);" data-id='<?php echo $value['id']; ?>' class="btn btn-secondary btn-sm mr-2 delete_img">Archives</button> 
-                                      
-                                 <?php } ?>
+                                   <?php } ?>
+                                   <button onclick="updateStatusLiveSession('<?= $value['id']?>',9);" data-id='<?php echo $value['id']; ?>' class="btn btn-secondary btn-sm mr-2 delete_img">Archives</button> 
 
                                   
                                  

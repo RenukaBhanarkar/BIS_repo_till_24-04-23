@@ -910,6 +910,16 @@ class Subadmin extends CI_Controller
         $this->load->view('quiz/winner_wall_form', $data);
         $this->load->view('admin/footers/admin_footer');
     }
+    public function winner_wall_archive(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('quiz/winner_wall_archive');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function result_declaration_view(){
+        $this->load->view('admin/headers/admin_header');
+        $this->load->view('quiz/result_declaration_view');
+        $this->load->view('admin/footers/admin_footer');
+    }
     public function insertWinner(){
        // print_r($_POST);
         $formdata['competiton_name'] = clearText($this->input->post('competition'));

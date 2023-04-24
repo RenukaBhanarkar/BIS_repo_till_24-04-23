@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
   .services {
     padding: 60px 0;
     overflow: hidden;
@@ -59,149 +59,25 @@
     font-size: 55px;
     color: brown;
 }
-</style>
-<section id="services" class="services">
-      <div class="container aos-init aos-animate" data-aos="fade-up">
+</style> -->
 
-        <div class="section-header">
-          <h2>Winners Wall</h2>
-          <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p>
-        </div>
-
-        <div class="row gy-5">
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <!-- <i class="bi bi-activity"></i> -->
-                  <i class="fa fa-trophy"></i>
-                  <!-- <img src="<?php echo base_url();?>/assets/images/prize_2.avif" alt="" class=""> -->
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Nesciunt Mete</h3>
-                </a>
-                <p>Provide dgdt ergtrgtrg ergtrtgtrfgtrgh ertergtrtgregt rgergergter ertgergtergtergtergtergt trertertgergtertge tretergtergtergte ertergtergter erterugtergtertgte reergtergterter ergtergtergtergt tergtergtergter tertgergtert ergterte</p>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="300">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_2.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                <i class="fa fa-trophy"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Eosle Commodi</h3>
-                </a>
-                <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="400">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_3.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                <i class="fa fa-trophy"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Ledo Markt</h3>
-                </a>
-                <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="500">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                <i class="fa fa-trophy"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Asperiores Commodit</h3>
-                </a>
-                <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-                <a href="#" class="stretched-link"></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="600">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_2.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                <i class="fa fa-trophy"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Velit Doloremque</h3>
-                </a>
-                <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-                <a href="#" class="stretched-link"></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="700">
-            <div class="service-item">
-              <div class="img">
-                <img src="<?php echo base_url();?>/assets/images/w_3.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                <i class="fa fa-trophy"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Dolori Architecto</h3>
-                </a>
-                <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-                <a href="#" class="stretched-link"></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-        </div>
-
-      </div>
-    </section>
-<!-- <style>
+ <style>
   .winner-content .card{
     width: calc(100%/2);
     margin: 0 0.5em;
 
   }
 
-  </style>
+</style>
 
    <section>
+    <div class="">
+      <img src="<?php echo base_url();?>/assets/images/winner_new.jpeg" alt="" class="" style="width: 100%; height: 309px;">
+    </div>
         <div class="container">
         <div class="row my-4">
             <div class="col-md-8">
-            <div class="static-content">
-                <div class="bloginfo">
-                    <h3 style="margin-bottom: 5px; color: #0086b2!important;font-weight: 600;">Winners of the Post Maker</h3>
-                </div>
-                <div class="heading-underline" style="width: 324px;">
-                    <div class="left"></div><div class="right"></div>
-                 </div>
-             </div> 
+             
              </div>
              <div class="col-md-4">
                 <div class="input-group search_icon">
@@ -212,7 +88,26 @@
                         </button>
                     </span>
                 </div>
-             </div>    
+             </div>
+             <div class="col-md-9">
+            <div class="static-content">
+                <div class="bloginfo">
+                    <h3 style="margin-bottom: 5px; color: #0086b2!important;font-weight: 600;">Winners of the Post Maker</h3>
+                </div>
+                <div class="heading-underline" style="width: 324px;">
+                    <div class="left"></div><div class="right"></div>
+                 </div>
+             </div>   
+           </div>
+           <div class="col-md-3" style="padding-top: 10px;">
+           <div class="static-content">
+                <div class="bloginfo">
+                    <h3 style="margin-bottom: 5px; color: #0086b2!important;font-weight: 600;">Held On :<span style="font-size: 19px;">12/03/2023</span></h3>
+                </div>
+                <div class="heading-underline" style="width: 100px;">
+                    <div class="left"></div><div class="right"></div>
+                 </div>
+             </div>
            </div>
             <div class="winner-content">
                 <div id="carouselExampleControls_1" class="carousel slide" data-bs-ride="carousel">

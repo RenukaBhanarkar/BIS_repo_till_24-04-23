@@ -61,6 +61,11 @@
             </div>    
           </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 mt-3" style="text-align: end;">
+            <button onClick="location.href='#'" class="btn btn-success btn-sm mr-2">Declared Result</button>
+            </div>
+        </div>
        </div>
     <!-- /.container-fluid -->
 

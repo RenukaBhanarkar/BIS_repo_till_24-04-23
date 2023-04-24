@@ -182,7 +182,7 @@ section.background_coming {
             <div class="col-lg-6 col-md-6 " style="background: linear-gradient(180.83deg, rgb(229 186 0 / 73%) 1.43%, rgba(194, 87, 155, 0.1) 98.57%);">
                 <div class="live_content" style="padding: 47px;">
                     <div class="live_section_title">
-                        <h2 style="font-weight: 600;">Informative Vedios</h2>
+                        <h2 style="font-weight: 600;">Informative Videos</h2>
                     </div>
                     <div class="owl-carousel owl-theme" id="owl-caraousal_3" style="padding: 25px 60px 0px 60px;">
                         <?php foreach ($InformativeVideo as $key => $value) {?>

@@ -96,7 +96,7 @@
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center d-flex">
-                            <h5 class="font-weight-bold text-info mb-1">Result Declaration</h5>
+                            <h5 class="font-weight-bold text-info mb-1">Result Declared</h5>
                             
                         </div>
                     </div>

@@ -130,11 +130,32 @@
             
         </div>
     </section>
+    <section id="cta" class="cta">
+      <div class="container aos-init aos-animate" data-aos="zoom-out">
+
+        <div class="row g-5">
+
+          <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
+            <h3>Standard Writting</h3>
+            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <a class="cta-btn align-self-start" href="#">View All</a>
+          </div>
+
+          <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
+            <div class="img">
+              <img src="<?=base_url();?>assets/images/standard.avif" alt="" class="img-standard">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
     
     <section style="background-color: #e3effb94;">
         <div class="container">
             <div class="row">
-            <div class="new-content d-flex">
+            <div class="new-content d-flex" style="margin-left: -37px;">
               <div class="col-md-3 col-lg-3 col-sm-3 m-2">
                   <a href="<?php echo base_url().'wall_of_wisdom/wallOfWisdom' ?>">
                     <div class="card image-card" style="width:100%; z-index: 1000;">                    
@@ -185,7 +206,116 @@
             </div>
         </div>    
 
-    </section> 
+    </section>
+    <section id="about" class="about" style="padding: 60px 0; overflow: hidden;">
+      <div class="container aos-init aos-animate" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>News And Events</h2>
+          <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
+        </div>
+
+        <div class="row g-4 g-lg-5 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-5">
+            <div class="about-img">
+              <img src="<?=base_url();?>assets/images/wall_4.jpg" class="img-fluid" alt="" style="width:100%;">
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            
+
+            <!-- Tabs -->
+            <ul class="nav nav-pills mb-3" role="tablist">
+              <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1" aria-selected="true" role="tab">News</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab2" aria-selected="false" role="tab" tabindex="-1">Events</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab3" aria-selected="false" role="tab" tabindex="-1">Creative Tast</a></li>
+            </ul><!-- End Tabs -->
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+
+              <div class="tab-pane fade active show" id="tab1" role="tabpanel">
+
+                <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
+                </div>
+                <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi dolorum non eveniet magni quaerat nemo et.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Incidunt non veritatis illum ea ut nisi</h4>
+                </div>
+                <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo tempora. Quia et perferendis.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
+                </div>
+                <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
+
+              </div><!-- End Tab 1 Content -->
+
+              <div class="tab-pane fade" id="tab2" role="tabpanel">
+
+                <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
+                </div>
+                <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi dolorum non eveniet magni quaerat nemo et.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Incidunt non veritatis illum ea ut nisi</h4>
+                </div>
+                <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo tempora. Quia et perferendis.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
+                </div>
+                <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
+
+              </div><!-- End Tab 2 Content -->
+
+              <div class="tab-pane fade" id="tab3" role="tabpanel">
+
+                <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
+                </div>
+                <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi dolorum non eveniet magni quaerat nemo et.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Incidunt non veritatis illum ea ut nisi</h4>
+                </div>
+                <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo tempora. Quia et perferendis.</p>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
+                </div>
+                <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
+
+              </div><!-- End Tab 3 Content -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
     <section style="margin-bottom: 38px;">
         <div class="container">
             <div class="row">

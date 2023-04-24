@@ -324,12 +324,15 @@ class Users extends CI_Controller
         $this->load->view('users/privacy_policy', $data);
         $this->load->view('users/footers/footer');
     }
-
-    public function important_draft()
-    {
+    
+    public function important_draft(){
+        $this->load->model('admin/admin_model');
+        $data['banner_data']=$this->admin_model->bannerAllData();
+        $data['images']=$this->admin_model->images();
+        $data['videos']=$this->admin_model->videos();
         $this->load->view('users/headers/header');
-        $this->load->view('users/important_draft');
-        $this->load->view('users/footers/footer');
+        $this->load->view('users/important_draft',$data);
+        $this->load->view('users/footers/footer'); 
     }
     public function important_draft_list()
     {
@@ -337,8 +340,12 @@ class Users extends CI_Controller
         $this->load->view('users/important_draft_list');
         $this->load->view('users/footers/footer');
     }
-    public function important_draft_view()
-    {
+    public function discussion_list(){
+        $this->load->view('users/headers/header');
+        $this->load->view('users/discussion_list');
+        $this->load->view('users/footers/footer'); 
+    }
+    public function important_draft_view(){
         $this->load->view('users/headers/header');
         $this->load->view('users/important_draft_view');
         $this->load->view('users/footers/footer');
@@ -382,8 +389,39 @@ class Users extends CI_Controller
     public function new_work_list()
     {
         $this->load->view('users/headers/header');
-        $this->load->view('users/new_work_list');
-        $this->load->view('users/footers/footer');
+        $curl_req1 = curl_init(); 
+        curl_setopt_array($curl_req1, array(
+            CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_SSL_VERIFYPEER => false, 
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ),
+        ));
+        $responseNew = curl_exec($curl_req1);
+        $responseNew = json_decode($responseNew, true); 
+        $newCount =count($responseNew['nwip_data']);
+        $arr=array();
+        $getAll= $this->Users_model->ItemProposalCount();
+        $arr['getAll']=$getAll;
+        $insertedCount = count($getAll); 
+        if ($newCount > $insertedCount ) 
+        {
+            foreach($responseNew['nwip_data'] as $data)
+                { 
+                    $this->Users_model->insertItemProposal($data);
+                }
+        }
+        $this->load->view('users/headers/header');
+        $this->load->view('users/new_work_list',$arr);
+        $this->load->view('users/footers/footer'); 
     }
     public function new_work_view()
     {
@@ -713,8 +751,14 @@ class Users extends CI_Controller
         } else {
         }
     }
-    public function byTheMentor()
-    {
+    public function byTheMentor(){
+      //  print_r($_SESSION); die;
+        // $formdata1['email']= encryptids("D", $_SESSION['admin_email']);
+        // $formdata1['name']= encryptids("D", $_SESSION['admin_name']);
+        // $formdata1['admin']= encryptids("D", $_SESSION['admin']);
+        // $formdata1['admin_id']= encryptids("D", $_SESSION['admin_id']);
+        // $formdata1['admin_type']= encryptids("D", $_SESSION['admin_type']);
+        //  print_r($formdata1); die;
         $this->load->model('Admin/by_the_mentor_model');
         $data['by_the_mentor'] = $this->by_the_mentor_model->getThreeBTM();
         $this->load->view('users/headers/header');
@@ -722,12 +766,13 @@ class Users extends CI_Controller
         $this->load->view('users/footers/footer');
     }
 
-    public function add_btm()
-    {
-
-        $path = 'uploads/by_the_mentors/img/';
-        // $image = $path . time() .'video'. $_FILES['image']['name']; 
-        // move_uploaded_file($_FILES['image']['tmp_name'], $videolocation);
+    public function add_btm(){
+    //    print_r($_SESSION); die;
+    //     $formdata1= encryptids("D", $_SESSION['admin']);
+    //     print_r($formdata1); die;
+        $path = 'uploads/by_the_mentors/img/'; 
+            // $image = $path . time() .'video'. $_FILES['image']['name']; 
+            // move_uploaded_file($_FILES['image']['tmp_name'], $videolocation);
 
         // // $thumbnailpath = 'uploads/by_the_mentors/img/'; 
         // $other_image1 = $path . time() .'video_thumbnail'. $_FILES['image2']['name']; 
@@ -756,8 +801,16 @@ class Users extends CI_Controller
         // die;
         if (isset($_SESSION['admin_id'])) {
             // $formdata['user_id']=$_SESSION['admin_id'];
-            $formdata['user_id'] = encryptids("D", $_SESSION['admin_id']);
-        } else {
+            $type= encryptids("D", $_SESSION['admin_type']);
+            if($type==3){
+                $formdata['user_id']= encryptids("D", $_SESSION['admin_id']);
+            }else{
+                $this->session->set_flashdata('MSG', ShowAlert("Sorry! Only mentors can posts here", "SS"));
+                redirect(base_url() . "users/byTheMentor", 'refresh');
+                exit;
+            }
+            
+        }else{
             // die;
             $this->session->set_flashdata('MSG', ShowAlert("Please Login", "SS"));
             // redirect(base_url() . "users/byTheMentor", 'refresh');
@@ -1161,33 +1214,36 @@ class Users extends CI_Controller
     public function item_proposal_list()
     {
         $this->load->view('users/headers/header');
-        $curl_req1 = curl_init();
-        curl_setopt_array($curl_req1, array(
-            CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/json',
-                'Accept: application/json'
-            ),
-        ));
-        $responseNew = curl_exec($curl_req1);
-        $responseNew = json_decode($responseNew, true);
-        $newCount = count($responseNew['nwip_data']);
-        $arr = array();
-        $getAll = $this->Users_model->ItemProposalCount();
-        $arr['getAll'] = $getAll;
-        $insertedCount = count($getAll);
-        if ($newCount > $insertedCount) {
-            foreach ($responseNew['nwip_data'] as $data) {
-                $this->Users_model->insertItemProposal($data);
-            }
+        // $curl_req1 = curl_init(); 
+        // curl_setopt_array($curl_req1, array(
+        //     CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_SSL_VERIFYPEER => false, 
+        //     CURLOPT_HTTPHEADER => array(
+        //         'Content-Type: application/json',
+        //         'Accept: application/json'
+        //     ),
+        // ));
+        // $responseNew = curl_exec($curl_req1);
+        // $responseNew = json_decode($responseNew, true); 
+        // $newCount =count($responseNew['nwip_data']);
+        $newCount =1;
+        $arr=array();
+        $getAll= $this->Users_model->ItemProposalCount();
+        $arr['getAll']=$getAll;
+        $insertedCount = count($getAll); 
+        if ($newCount > $insertedCount ) 
+        {
+            foreach($responseNew['nwip_data'] as $data)
+                { 
+                    $this->Users_model->insertItemProposal($data);
+                }
         }
         $this->load->view('users/item_proposal_list', $arr);
         $this->load->view('users/footers/footer');

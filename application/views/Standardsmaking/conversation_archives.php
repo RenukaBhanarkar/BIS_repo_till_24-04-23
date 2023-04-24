@@ -44,7 +44,7 @@
                               <td class="d-flex">
                                
                                       <a href="conversation_view/<?= $value['id'];?>" class="btn btn-primary btn-sm mr-2" title="View">View</a>
-                                      <a class="btn btn-primary btn-sm mr-2" href="restore/<?= $value['id'];?>">Restore</a> 
+                                      <button onclick="updateStatusConversation('<?= $value['id']?>',1);" data-id='<?php echo $value['id']; ?>' class="btn btn-info btn-sm mr-2 delete_img">Restore</button>
 
                               </td>
                           </tr>
@@ -61,5 +61,51 @@
     <!-- /.container-fluid -->
 
     </div>
+    <div class="modal fade" id="updatemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><span class="sms"></span> Record</h5>
+            <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to <span class="sms"> </span> ?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary updatestatus" data-bs-dismiss="modal"><span class="sms"> </span></button>
+        </div>
+    </div>
+</div>
+</div>
+
+    <script type="text/javascript">
+      function updateStatusConversation(id,status) 
+    {
+        console.log(status)
+        if (status==1)  { $(".sms").text('Restore'); }  
+        $('#updatemodel').modal('show');
+        $('.updatestatus').on('click', function() 
+        {
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url(); ?>Standardsmaking/updateStatusConversation',
+                data: {
+                    id: id,
+                    status: status,
+                },
+                success: function(result) 
+                {
+                    location.reload();
+                },
+                error: function(result) {
+                    alert("Error,Please try again.");
+                }
+            });
+        });
+    }
+    </script>>
     <!-- End of Main Content -->
  </body>

@@ -91,10 +91,23 @@ class Learningscience_model extends CI_Model {
         $this->db->where('status ',5);  
         return $this->db->get('tbl_learning_science_via_standards')->result_array();
     }
+    public function getArchiveRequest()
+    { 
+        $this->db->where('status ',9);  
+        return $this->db->get('tbl_learning_science_via_standards')->result_array();
+    }
     public function lsvStandardsViewAdmin($id)
     { 
         $this->db->where('id ',$id);  
         return $this->db->get("tbl_learning_science_via_standards")->row_array();
+    }
+    public function deleteLvsFile($id,$formdata){
+        $this->db->where('id', $id);
+         if ($this->db->update('tbl_learning_science_via_standards',$formdata)) {
+             return true;
+         } else {
+             return false;
+         }
     }
      
     

@@ -13,20 +13,20 @@
                         <div class="mb-2 col-md-8">
                             <label class="d-block text-font">Title of Video<sup class="text-danger">*</sup>
                             </label>
-                            <input type="text" class="form-control input-font" name="title" id="title" placeholder="Enter Title of Video">
+                            <input type="text" class="form-control input-font" name="title" id="title" placeholder="Enter Title of Video" maxlength="200" >
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-2 col-md-12">
                             <label class="d-block text-font" text-font>About Video (Description)<sup class="text-danger">*</sup></label>
-                            <textarea class="form-control input-font" placeholder="Enter About Video (Description)" name="description" id="description"></textarea>
+                            <textarea class="form-control input-font" placeholder="Enter About Video (Description)" name="description" id="description" maxlength="2000"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-2 col-md-4">
                             <label class="d-block">Upload Thumbnail<sup class="text-danger">*</sup></label>
                             <div class="d-flex"> 
-                                <input type="file" id="video_thumbnail" name="video_thumbnail" class="form-control-file" onchange="loadFileThumbnail(event)">
+                                <input type="file" id="video_thumbnail" name="video_thumbnail" class="form-control-file" onchange="loadFileThumbnail(event)" accept="image/png, image/jpeg,image/jpg">
                                 <span class="error_text"></span> 
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalImg">Preview </button>
                             </div>
@@ -51,7 +51,7 @@
                         <div class="mb-2 col-md-4">
                             <label class="d-block">Upload Video<sup class="text-danger">*</sup></label>
                             <div class="d-flex">
-                                <input type="file" id="video" name="video" class="form-control-file">
+                                <input type="file" id="video" name="video" class="form-control-file"accept="video/mp4,video/mkv"/>
                                 <span class="error_text"></span>
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"> Preview  </button>
                             </div>
@@ -79,8 +79,8 @@
                         </div> 
                     </div>
                     <div class="col-md-12 submit_btn p-3">
-                        <a class="btn btn-success btn-sm text-white" data-toggle="modal" data-target="#submitForm">Submit</a>
-                        <input type="reset" name="Reset" class="btn btn-warning btn-sm text-white">
+                        <a class="btn btn-success btn-sm text-white" data-toggle="modal" data-target="#" onclick="submitdata()" id="submitdata">Submit</a>
+                        <input type="reset" name="Reset" id="resetform"class="btn btn-warning btn-sm text-white">
                     </div> 
                    <!-- Modal -->
                    <div class="modal fade" id="submitForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -107,6 +107,9 @@
     </div>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+    CKEDITOR.replace('description');
+});
 var loadFileThumbnail = function(event) 
     {
         $("#outputThumbnail").show();
@@ -142,7 +145,7 @@ var loadFileThumbnail = function(event)
         </script>
 
         <script type="text/javascript">
-    $('#conversation_form').submit(function(e) { 
+    $('#submitdata').click(function(e) { 
                     e.preventDefault();
                     var focusSet = false;
                     var allfields = true;
@@ -151,14 +154,15 @@ var loadFileThumbnail = function(event)
                     if (title == "" || title== null) {
                         if ($("#title").next(".validation").length == 0) // only add if not added
                         {
-                            $("#title").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please Enter Quiz Title </div>");
+                            $("#title").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please Enter Title </div>");
                         }
                         if (!focusSet) { $("#title").focus(); }
                         allfields = false;
                     } else {
                         $("#title").next(".validation").remove(); // remove it
                     } 
-                    var description = $("#description").val();  
+                    // var description = $("#description").val(); 
+                     var description = CKEDITOR.instances['description'].getData(); 
 
                     if (description == "" || description== null) {
                         if ($("#description").next(".validation").length == 0) // only add if not added
@@ -194,9 +198,63 @@ var loadFileThumbnail = function(event)
                     } else {
                         $("#video").next(".validation").remove(); // remove it
                     }
+
+                    if ($("#video_thumbnail").val() != '') 
+                {
+                    var fileSize = $('#video_thumbnail')[0].files[0].size;
+                    $("#video_thumbnail").next(".validation").remove();
+                    if (fileSize > 41943040) 
+                    {
+                        if ($("#video_thumbnail").next(".validation").length == 0) // only add if not added
+                        {
+                            $("#video_thumbnail").after("<div class='validation' style='color:red;margin-bottom:15px;'>Please select  file of size less than 5 MB </div>");
+                        }
+                        allfields = false;
+                        if (!focusSet) {
+                            $("#video_thumbnail").focus();
+                        }
+                    } 
+                    else 
+                    {
+                        $("#video_thumbnail").next(".validation").remove(); // remove it
+                    }
+                    var validExtensions = ['Jpeg','jpg','png']; //array of valid extensions
+                    var fileName = $("#video_thumbnail").val();;
+                    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                    $("#video_thumbnail").next(".validation").remove();
+                    if ($.inArray(fileNameExt, validExtensions) == -1) 
+                    {
+                        if ($("#video_thumbnail").next(".validation").length == 0) // only add if not added
+                        {
+                            $("#video_thumbnail").after("<div class='validation' style='color:red;margin-bottom:15px;'>Only Jpeg, jpg,png  file allowed. </div>");
+                        }
+                        allfields = false;
+                        if (!focusSet) 
+                        {
+                            $("#video_thumbnail").focus();
+                        }
+                    } 
+                    else 
+                    {
+                        $("#video_thumbnail").next(".validation").remove(); // remove it
+                    }
+                }
+
                     if (allfields) { 
+                        $("#submitForm").show();
                         $('#conversation_form').submit();
                     } else {
                         return false;
                     }
-                });</script>
+                });
+            </script>
+<script type="text/javascript">
+$('#submitdata').click(function(e) {
+     CKEDITOR.instances.instances['description'].setData( '', function() { this.updateElement(); } )  
+
+// var description = CKEDITOR.instances['description'].getData();
+$("#description").val(''); 
+
+     });
+
+</script>

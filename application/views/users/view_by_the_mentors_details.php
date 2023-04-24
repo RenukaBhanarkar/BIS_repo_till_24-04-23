@@ -92,12 +92,12 @@
                                         Not Uploaded
                                         <?php } ?>
                             </div>
-                            <div class="mb-2 col-md-4">
+                            <!-- <div class="mb-2 col-md-4">
                                     <label class="d-block text-font">Status<sup class="text-danger">*</sup></label>
                                     <div>
-                                        <p><?php echo $data['status_name']; ?></p>
+                                        <p><?php// echo $data['status_name']; ?></p>
                                     </div> 
-                            </div>
+                            </div> -->
                             
 
                             <!-- <div >

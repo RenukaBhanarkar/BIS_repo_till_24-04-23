@@ -62,7 +62,43 @@
                                     <div>
                                         <p><?= $itemProposal['current_bis_dept']?></p>
                                     </div>    
-                            </div>  
+                            </div> 
+                            <div class="mb-2 col-md-8">
+                                    <label class="d-block text-font" style="font-weight: 600;">Proposed Title of Standard</label>
+                                    <div>
+                                        <p><?= $itemProposal['current_bis_dept']?></p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">Aspect</label>
+                                    <div>
+                                        <p><?= $itemProposal['current_bis_dept']?></p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">Subject of Standard</label>
+                                    <div>
+                                        <p><?= $itemProposal['current_bis_dept']?></p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">Scope of proposed Standard</label>
+                                    <div>
+                                        <p><?= $itemProposal['current_bis_dept']?></p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">Purpose and Justification</label>
+                                    <div>
+                                        <p><?= $itemProposal['current_bis_dept']?></p>
+                                    </div>    
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                    <label class="d-block text-font" style="font-weight: 600;">Likely users of standards and their inputs</label>
+                                    <div>
+                                        <p><?= $itemProposal['current_bis_dept']?></p>
+                                    </div>    
+                            </div>
                 
                     </div>    
              </div>

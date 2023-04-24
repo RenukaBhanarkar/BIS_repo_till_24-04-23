@@ -1516,7 +1516,8 @@ class Admin extends CI_Controller
         // print_r($data); die;
     //    print_r($data['bythementors']); die;
         $this->load->view('admin/headers/admin_header');
-        $this->load->view('users/by_the_montor_list',$data);
+       // $this->load->view('users/by_the_montor_list',$data);
+        $this->load->view('users/btm_list_new',$data);
         $this->load->view('admin/footers/admin_footer');
     }
     public function rejectbtTheMentor(){
@@ -1716,12 +1717,14 @@ class Admin extends CI_Controller
         $newRequest = $this->Standards_Making_model->getnewRequest();
         $ApprovedRequest = $this->Standards_Making_model->getApprovedRequest();
         $RejectedRequest = $this->Standards_Making_model->getRejectedRequest();
-        // $PublishedRequest = $this->Standards_Making_model->getPublishedRequest();
+        $PublishedRequest = $this->Standards_Making_model->getPublishedRequest();
+        $ArchiveRequest = $this->Standards_Making_model->getArchiveRequest();
         $data = array();
         $data['newRequest'] = $newRequest;
         $data['ApprovedRequest'] = $ApprovedRequest;
         $data['RejectedRequest'] = $RejectedRequest;
-        // $data['PublishedRequest'] = $PublishedRequest;
+        $data['PublishedRequest'] = $PublishedRequest;
+        $data['ArchiveRequest'] = $ArchiveRequest;
         $this->load->view('admin/headers/admin_header');
          $this->load->view('admin/Manage_session_list',$data);
          $this->load->view('admin/footers/admin_footer');
@@ -1732,15 +1735,18 @@ class Admin extends CI_Controller
         $newRequest = $this->Learningscience_model->getnewRequest();
         $ApprovedRequest = $this->Learningscience_model->getApprovedRequest();
         $RejectedRequest = $this->Learningscience_model->getRejectedRequest();
-        // $PublishedRequest = $this->Learningscience_model->getPublishedRequest();
+        $PublishedRequest = $this->Learningscience_model->getPublishedRequest();
+        $ArchiveRequest = $this->Learningscience_model->getArchiveRequest();
+
         $data = array();
         $data['newRequest'] = $newRequest;
         $data['ApprovedRequest'] = $ApprovedRequest;
         $data['RejectedRequest'] = $RejectedRequest;
-        // $data['PublishedRequest'] = $PublishedRequest;
+        $data['PublishedRequest'] = $PublishedRequest;
+        $data['ArchiveRequest'] = $ArchiveRequest;
         $this->load->view('admin/headers/admin_header');
-         $this->load->view('admin/manage_lsv_standards_list',$data);
-         $this->load->view('admin/footers/admin_footer');
+        $this->load->view('admin/manage_lsv_standards_list',$data);
+        $this->load->view('admin/footers/admin_footer');
     }
     public function live_session_view($id){
         $id = encryptids("D", $id);
