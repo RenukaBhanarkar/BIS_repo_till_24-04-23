@@ -262,7 +262,7 @@ span.last-date {
                         </div>
                         <?php 
                        
-                         $user_type = encryptids("D", $this->session->userdata('admin_type'));
+                         echo $user_type = encryptids("D", $this->session->userdata('admin_type'));
                        
                          if($user_type != "") { ?>
                             <a href="<?= base_url();?>users/quiz_start/<?= $quizdata['id'];?>" class="btn startQuiz"> <span>Start Quiz</span></a>

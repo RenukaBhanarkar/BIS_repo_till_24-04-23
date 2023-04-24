@@ -344,8 +344,7 @@ class Users extends CI_Controller {
                 { 
                     $this->Users_model->insertItemProposal($data);
                 }
-        }
-        $this->load->view('users/headers/header');
+        } 
         $this->load->view('users/new_work_list',$arr);
         $this->load->view('users/footers/footer'); 
     }
@@ -1119,45 +1118,122 @@ class Users extends CI_Controller {
     {
         $id = $this->input->post('id');
         $ip=$_SERVER['REMOTE_ADDR'];  
-        $return = $this->Users_model->updateLikes($id,$ip);
-        if ($return) 
-        {
-            $Conversation = $this->Users_model->getConversation($id); 
-            $data['likes'] = $Conversation['likes'];
-            $data['status'] = 1;
-            $data['message'] = 'Updated successfully.';
+        $getuserlike = $this->Users_model->getLikes($id,$ip);
+        $getuserlike['user_like'];
+        if ($getuserlike['user_like']==1) { 
+            $data['status'] = 0;
+            $data['message'] = 'Liked.';
         } 
+        else
+        {
+            $return = $this->Users_model->updateLikes($id,$ip);
+             if ($return) 
+                {
+                $Conversation = $this->Users_model->getConversation($id); 
+                $data['likes'] = $Conversation['likes'];
+                $data['status'] = 1;
+                $data['message'] = 'Updated successfully.';
+                } 
+        }
         echo json_encode([
             'status' => '1',
             'data' => $data,
         ]);
     }
+
+    public function Checklike()
+    {
+        $id = $this->input->post('id');
+        $ip=$_SERVER['REMOTE_ADDR'];  
+        $getuserlike = $this->Users_model->getLikes($id,$ip);
+        $getuserlike['user_like'];
+        if ($getuserlike['user_like']==1) { 
+            $data['status'] = 1;
+            $data['message'] = 'Liked.';
+        } 
+        else
+        { 
+                $data['status'] = 0;
+                $data['message'] = 'Updated successfully.'; 
+        }
+        echo json_encode([
+            'status' => '1',
+            'data' => $data,
+        ]);
+    }
+
+    public function CheckLiveSessionlike()
+    {
+        $id = $this->input->post('id');
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        $getuserlike = $this->Users_model->CheckLiveSessionlike($id,$admin_id);
+        $getuserlike['user_likes'];
+        if ($getuserlike['user_likes']==1) { 
+            $data['status'] = 1;
+            $data['message'] = 'Liked.';
+        } 
+        else
+        { 
+                $data['status'] = 0;
+                $data['message'] = 'Updated successfully.'; 
+        }
+        echo json_encode([
+            'status' => '1',
+            'data' => $data,
+        ]);
+    }
+    public function updateLiveSessionLikes()
+    {
+        $id = $this->input->post('id');
+         $admin_id = encryptids("D", $this->session->userdata('admin_id'));  
+        $getuserlike = $this->Users_model->CheckLiveSessionlike($id,$admin_id); 
+        if ($getuserlike['user_likes']==1) { 
+            $data['status'] = 0;
+            $data['message'] = 'Liked.';
+        } 
+        else
+        {
+            $return = $this->Users_model->updateLiveSessionLikes($id,$admin_id);
+             if ($return) 
+                {
+                $Conversation = $this->Users_model->getJoinTheClassroomContaint($id); 
+                $data['likes'] = $Conversation['likes'];
+                $data['status'] = 1;
+                $data['message'] = 'Updated successfully.';
+                } 
+        }
+        echo json_encode([
+            'status' => '1',
+            'data' => $data,
+        ]);
+    }
+
     // In Conversation With Experts function End for frontend
 
 
     // item proposal function Start for frontend
     public function item_proposal_list(){
         $this->load->view('users/headers/header');
-        // $curl_req1 = curl_init(); 
-        // curl_setopt_array($curl_req1, array(
-        //     CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => '',
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_SSL_VERIFYPEER => false, 
-        //     CURLOPT_HTTPHEADER => array(
-        //         'Content-Type: application/json',
-        //         'Accept: application/json'
-        //     ),
-        // ));
-        // $responseNew = curl_exec($curl_req1);
-        // $responseNew = json_decode($responseNew, true); 
-        // $newCount =count($responseNew['nwip_data']);
-        $newCount =1;
+        $curl_req1 = curl_init(); 
+        curl_setopt_array($curl_req1, array(
+            CURLOPT_URL => 'http://203.153.41.213:8071/php/BIS_2.0/dgdashboard/Standards_master/get_nwip_report_data',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_SSL_VERIFYPEER => false, 
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ),
+        ));
+        $responseNew = curl_exec($curl_req1);
+        $responseNew = json_decode($responseNew, true); 
+        $newCount =count($responseNew['nwip_data']);
+        // $newCount =1;
         $arr=array();
         $getAll= $this->Users_model->ItemProposalCount();
         $arr['getAll']=$getAll;
@@ -1186,65 +1262,115 @@ class Users extends CI_Controller {
 
     // Join The classroom function Start for frontend
      public function join_the_classroom(){
+        
         $data=array();
         $data['UpcomingsSessions']=$this->Users_model->getUpcomingsSessions();
         $data['LiveSessions']=$this->Users_model->getLiveSessions();
         $data['LatestPosts']=$this->Users_model->getLatestPosts();
         $data['InformativeVideo']=$this->Users_model->getInformativeVideo();
         $this->load->view('users/headers/header');
-        $this->load->view('users/join_the_classroom',$data);
+        $this->load->view('users/join_the_classroom',$data); 
         $this->load->view('users/footers/footer'); 
     }
     public function join_the_classroom_view()
     {
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         $data=array(); 
         $data['LiveSessions']=$this->Users_model->getLiveSessions(); 
         $this->load->view('users/headers/header');
-        $this->load->view('users/join_the_classroom_view',$data);
+        if ($admin_id) 
+        {
+            $this->load->view('users/join_the_classroom_view',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
         $this->load->view('users/footers/footer'); 
     }  
     public function join_the_classroom_watch_now($id)
     {
-        $id = encryptids("D", $id);
-        $WatchNow = $this->Users_model->getJoinTheClassroomContaint($id);
-        $data = array();
-        $data['WatchNow'] = $WatchNow;
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        $id = encryptids("D", $id); 
         $this->load->view('users/headers/header');
-        $this->load->view('users/join_the_classroom_watch_now',$data);
+        if ($admin_id) 
+        {
+            $this->Users_model->checkClassroomView($id,$admin_id);
+            $data = array();
+            $data['WatchNow'] = $this->Users_model->getJoinTheClassroomContaint($id);
+            $this->load->view('users/join_the_classroom_watch_now',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
         $this->load->view('users/footers/footer'); 
     }
-    public function letest_post_view(){    
+    public function letest_post_view(){ 
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));   
         $data=array(); 
         $data['letestPostView']=$this->Users_model->getLatestPosts();     
-        $this->load->view('users/headers/header');
-        $this->load->view('users/letest_post_view',$data);
-        $this->load->view('users/footers/footer');
-    }
-    public function letest_post_readMore($id){
+        $this->load->view('users/headers/header'); 
+        if ($admin_id) 
+        {
+            $this->load->view('users/letest_post_view',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
 
-        $id = encryptids("D", $id);
-        $ReadMore = $this->Users_model->getJoinTheClassroomContaint($id);
-        $data = array();
-        $data['ReadMore'] = $ReadMore;        
-        $this->load->view('users/headers/header');
-        $this->load->view('users/letest_post_readMore',$data);
         $this->load->view('users/footers/footer');
     }
-     public function informative_video_view(){    
-        $data=array(); 
-        $data['informativeVideos']=$this->Users_model->getInformativeVideo();     
+    public function letest_post_readMore($id)
+    {
+        $admin_id = encryptids("D", $this->session->userdata('admin_id')); 
+        $id = encryptids("D", $id);
         $this->load->view('users/headers/header');
-        $this->load->view('users/informative_video_view',$data);
+        if ($admin_id) 
+        {   
+            $this->Users_model->checkClassroomView($id,$admin_id);
+            $ReadMore = $this->Users_model->getJoinTheClassroomContaint($id);
+            $data = array();
+            $data['ReadMore'] = $ReadMore;
+            $this->load->view('users/letest_post_readMore',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
+        $this->load->view('users/footers/footer');
+    }
+     public function informative_video_view(){ 
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        $this->load->view('users/headers/header');
+        if ($admin_id) 
+        { 
+            $data=array(); 
+            $data['informativeVideos']=$this->Users_model->getInformativeVideo(); 
+            $this->load->view('users/informative_video_view',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
         $this->load->view('users/footers/footer');
     }
     public function informative_video_watch($id){
-
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         $id = encryptids("D", $id);
-        $WatchNow = $this->Users_model->getJoinTheClassroomContaint($id);
-        $data = array();
-        $data['WatchNow'] = $WatchNow;
-        $this->load->view('users/headers/header');
-        $this->load->view('users/informative_video_watch',$data);
+        $this->load->view('users/headers/header'); 
+        if ($admin_id) 
+        {
+            $this->Users_model->checkClassroomView($id,$admin_id);
+            $data = array(); 
+            $data['WatchNow'] = $this->Users_model->getJoinTheClassroomContaint($id);
+            $this->load->view('users/informative_video_watch',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        }
         $this->load->view('users/footers/footer'); 
     }
     // Join The classroom function End for frontend
@@ -1252,6 +1378,7 @@ class Users extends CI_Controller {
 
     //  learning standerd Function Start for Frontend 
     public function learning_standerd(){
+
         $data=array(); 
         $data['LiveSessions']=$this->Users_model->getlearningStanderdSessions();
         $data['LatestPosts']=$this->Users_model->getlearningStanderdPosts();
@@ -1262,56 +1389,106 @@ class Users extends CI_Controller {
     }
     public function learning_standerd_sessions_view_all()
     {
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         $data=array(); 
         $data['LiveSessions']=$this->Users_model->getlearningStanderdSessions(); 
         $this->load->view('users/headers/header');
-        $this->load->view('users/learning_standerd_sessions_view_all',$data);
+        if ($admin_id) 
+        {
+            $this->load->view('users/learning_standerd_sessions_view_all',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        }  
         $this->load->view('users/footers/footer');
     }
 
     public function learning_standerd_sessions_watch_now($id){
         $id = encryptids("D", $id);
-        $WatchNow = $this->Users_model->getContaintlearningStanderd($id);
-        $data = array();
-        $data['WatchNow'] = $WatchNow;
+        $admin_id = encryptids("D", $this->session->userdata('admin_id')); 
         $this->load->view('users/headers/header');
-        $this->load->view('users/learning_standerd_sessions_watch_now',$data);
+        if ($admin_id) 
+        {
+            $this->Users_model->checkleasrningView($id,$admin_id);
+            $data = array();
+            $data['WatchNow'] = $this->Users_model->getContaintlearningStanderd($id);
+            $this->load->view('users/learning_standerd_sessions_watch_now',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        }
         $this->load->view('users/footers/footer'); 
     }
     public function learning_standerd_posts_all()
     {
-       $data=array(); 
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        $data=array(); 
         $data['letestPostView']=$this->Users_model->getlearningStanderdPosts();     
-        $this->load->view('users/headers/header');
-        $this->load->view('users/learning_standerd_posts_all',$data);
+        $this->load->view('users/headers/header'); 
+        if ($admin_id) 
+        {
+            $this->load->view('users/learning_standerd_posts_all',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
         $this->load->view('users/footers/footer');
     }
     public function learning_standerd_post_readMore($id)
     {
-        $id = encryptids("D", $id);
-        $ReadMore = $this->Users_model->getContaintlearningStanderd($id);
-        $data = array();
-        $data['ReadMore'] = $ReadMore;        
-        $this->load->view('users/headers/header');
-        $this->load->view('users/learning_standerd_post_readMore',$data);
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        $id = encryptids("D", $id); 
+             
+        $this->load->view('users/headers/header'); 
+         if ($admin_id) 
+        {
+            $this->Users_model->checkleasrningView($id,$admin_id);
+            $data = array();
+            $data['ReadMore'] = $this->Users_model->getContaintlearningStanderd($id);
+            $this->load->view('users/learning_standerd_post_readMore',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
         $this->load->view('users/footers/footer');
     }
     public function learning_standerd_informative_video_all()
     {
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
         $data=array(); 
         $data['informativeVideos']=$this->Users_model->getlearningStanderdInformativeVideo();     
-        $this->load->view('users/headers/header');
-        $this->load->view('users/learning_standerd_informative_video_all',$data);
+        $this->load->view('users/headers/header'); 
+        if ($admin_id) 
+        {
+            $this->load->view('users/learning_standerd_informative_video_all',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
         $this->load->view('users/footers/footer');
     }
-    public function learning_standerd_informative_video_watch($id='')
+    public function learning_standerd_informative_video_watch($id)
     {
-        $id = encryptids("D", $id);
-        $WatchNow = $this->Users_model->getContaintlearningStanderd($id);
-        $data = array();
-        $data['WatchNow'] = $WatchNow;
+        $admin_id = encryptids("D", $this->session->userdata('admin_id'));
+        $id = encryptids("D", $id); 
+        
         $this->load->view('users/headers/header');
-        $this->load->view('users/learning_standerd_informative_video_watch',$data);
+        if ($admin_id) 
+        {
+            $this->Users_model->checkleasrningView($id,$admin_id);
+            $data = array();
+            $data['WatchNow'] = $this->Users_model->getContaintlearningStanderd($id);
+            $this->load->view('users/learning_standerd_informative_video_watch',$data);
+        }
+        else
+        {
+           redirect(base_url() . "users/login", 'refresh');
+        } 
         $this->load->view('users/footers/footer'); 
     }
 
@@ -1328,6 +1505,57 @@ class Users extends CI_Controller {
         $this->load->view('users/footers/footer'); 
     }
  
+
+
+
+ public function updateUpdateleasrningLikes()
+    {
+        $id = $this->input->post('id');
+        $admin_id = encryptids("D", $this->session->userdata('admin_id')); 
+        $getuserlike = $this->Users_model->Checkleasrninglike($id,$admin_id);
+        $getuserlike['user_like'];
+        if ($getuserlike['user_like']==1) { 
+            $data['status'] = 0;
+            $data['message'] = 'Liked.';
+        } 
+        else
+        {
+            $return = $this->Users_model->updateUpdateleasrningLikes($id,$admin_id);
+             if ($return) 
+                {
+                $Conversation = $this->Users_model->getContaintlearningStanderd($id); 
+                $data['likes'] = $Conversation['likes'];
+                $data['status'] = 1;
+                $data['message'] = 'Updated successfully.';
+                } 
+        }
+        echo json_encode([
+            'status' => '1',
+            'data' => $data,
+        ]);
+    }
+
+    public function Checkleasrninglike()
+    {
+        $id = $this->input->post('id');
+        $admin_id = encryptids("D", $this->session->userdata('admin_id')); 
+        $getuserlike = $this->Users_model->Checkleasrninglike($id,$admin_id);
+        $getuserlike['user_like'];
+        if ($getuserlike['user_like']==1) { 
+            $data['status'] = 1;
+            $data['message'] = 'Liked.';
+        } 
+        else
+        { 
+                $data['status'] = 0;
+                $data['message'] = 'Updated successfully.'; 
+        }
+        echo json_encode([
+            'status' => '1',
+            'data' => $data,
+        ]);
+    }
+
 
 
 }

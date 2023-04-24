@@ -262,7 +262,7 @@ h1 {
                 <a href="<?php echo base_url().'users/conversation_video/'?><?php echo encryptids("E", $value['id'] )?>"> <?= $value['title']?></a>
                 </h3>
                 
-                <span>10M Views • <?= time_elapsed_string($value['created_on'])?></span>
+                <span><?= $value['views']?> Views • <?= time_elapsed_string($value['created_on'])?></span>
               </div>
             </div>
           </div>

@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <style>
 .your_wall_main_card_view {
     box-shadow: 0px 1px 20px rgb(225 225 225);
@@ -11,6 +12,16 @@
     height: 200px;
     margin-bottom: 17px;
     position: relative;
+}
+.like_button {
+background: #ffd600;
+margin-left: 273px;
+padding: 3px;
+width: 76px;
+text-align: center;
+border-radius: 10px;
+font-weight: 700;
+font-size: 14px;
 }
 
 .Text-container_view {
@@ -160,6 +171,18 @@
                     </div>
                     <div class="Text-container_view ">
                         <h6 class="yourWall_title_view "><?= $ReadMore['title']?> </h6>
+
+
+                        <span><?= $ReadMore['views']?> Views • <?= time_elapsed_string($ReadMore['created_on'])?></span>
+                            <input type="hidden" value="<?= $ReadMore['likes']?>" id="oldlikes">
+
+                            <span id="newlikes"> </span><span> likes </span>
+                            <span class="like_button" type="button" onclick="submitLike('<?= $ReadMore["id"]?>')"><i  id="heart" style="width:18px; font-size: 21px; margin-right: 9px; color:red;"></i>Like</span>
+                            
+
+
+
+
                         <p class="Your_Wall_Description_view"><?= $ReadMore['description']?> </p>
                     </div>
                 </div>
@@ -211,3 +234,102 @@
 
     </div>
 </div>
+<?php
+        function time_elapsed_string($datetime, $full = false) {
+        // echo $datetime;
+        $now = new DateTime;
+        $ago = new DateTime($datetime);
+        $diff = $now->diff($ago);
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+        $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+        $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+        unset($string[$k]);
+        }
+        }
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
+        }
+        ?>
+
+
+
+        <script>
+    $(document).ready(function () 
+    { 
+        var likes="<?= $ReadMore['likes']?>"; 
+        $("#newlikes").text(likes);
+        var id="<?= $ReadMore['id']?>";
+        CheckLiveSessionlike(id);
+
+
+    });
+ </script>
+         
+<script type="text/javascript">
+ 
+        function submitLike(id)
+        { 
+        $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url(); ?>Users/updateLiveSessionLikes',
+        data: {
+        id: id, 
+        },
+        success: function(result)
+        {
+            var msg = JSON.parse(result)
+            if (msg.data.status==1) 
+            {
+                var oldlikes=$("#oldlikes").val();
+                var likes=msg.data.likes;
+                var newlikes=parseInt(oldlikes)+parseInt(likes);
+                $("#newlikes").text(newlikes);
+                CheckLiveSessionlike(id)
+            }
+        },
+        error: function(result) {
+        alert("Error,Please try again.");
+        }
+        });
+        }
+
+
+        function CheckLiveSessionlike(id)
+        {  
+        $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url(); ?>Users/CheckLiveSessionlike',
+        data: {
+        id: id, 
+        },
+        success: function(result)
+        {
+            var msg = JSON.parse(result)
+            if (msg.data.status==1) 
+            {   $('#heart').removeClass('fa fa-heart-o');
+                $("#heart").addClass('fa fa-heart');
+            }
+            else
+            { 
+                $("#heart").addClass('fa fa-heart-o');
+            }
+        },
+        error: function(result) {
+        alert("Error,Please try again.");
+        }
+        });
+        };
+        
+        </script>

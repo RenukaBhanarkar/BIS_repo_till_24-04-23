@@ -391,7 +391,7 @@ public function updateStatusConversation()
             {
                 $videolocation=$lastvideo; 
             } 
-            $lastthumbnail=this->input->post('lastthumbnail'); 
+            $lastthumbnail=$this->input->post('lastthumbnail'); 
             if (empty($lastthumbnail) ) 
             {
                 $thumbnailpath = 'uploads/join_the_classroom/thumbnail/'; 
