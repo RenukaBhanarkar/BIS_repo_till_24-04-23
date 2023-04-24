@@ -35,8 +35,8 @@
                                         <div class="row">
                                             <div class="mb-2 col-md-4">
                                                 <label class="d-block text-font">Upload Image<sup class="text-danger">*</sup></label>
-                                                <input type="file" class="form-control input-font" accept="image/jpeg,image/png,image/jpg" name="bannerimg" id="bannerimg" required="">
-                                                <span class="error_text">
+                                                <input type="file" class="form-control input-font" accept="image/jpeg,image/png,image/jpg" name="bannerimg" id="bannerimg" value="" required>
+                                                <span class="text-danger" id="err_image">
                                                     only jpg jpeg and png formats allowed
                                                     <?php //echo form_error('title'); 
                                                     ?>
@@ -44,8 +44,8 @@
                                             </div>
                                             <div class="mb-2 col-md-4">
                                                 <label class="d-block text-font">Caption</label>
-                                                <input type="text" class="form-control input-font" name="banner_caption" id="banner_caption" required="">
-                                                <span class="error_text">
+                                                <input type="text" class="form-control input-font" name="banner_caption" id="banner_caption" value="" required>
+                                                <span class="text-danger" id="err_caption">
                                                     <?php //echo form_error('title'); 
                                                     ?>
                                                 </span>
@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                            <button class="btn btn-primary">Submit</button>
+                                            <button onclick="return addbanner(event);"   class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -279,6 +279,63 @@
                                     </div>
                                     </div>
                                     </div> 
+                                    <div class="modal fade" id="greaterSize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>File size should be less than 200KB </p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="lessSize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>File size should be 20KB or more</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button> -->
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="modal fade" id="invalidfiletype" tabindex="-1" aria-labelledby="exampleModalLabelreter" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:red;">Warning!</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Only jpg,jpeg and png files allowed</p>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-primary ok" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
                                     <script type="text/javascript">
                                         $(document).ready(function(){
                                             $('#banner').DataTable();
@@ -357,5 +414,115 @@ var loadFileThumbnail = function(event)
                             }
                         });          
         }
+</script>
+<script type="text/javascript">
+function addbanner(e){
+    e.preventDefault();
+    allFields=true;
+    
+    // $('#add_admin').addClass('was-validated');
+    // $('#add_admin').addClass('was-validated');
+    var caption = $('#banner_caption').val();
+    if ($("#bannerimg").val() != '') {
+        // is_valid = false;
+        // $("#err_image").text("This field is required");
+    }else{
+        allFields = false;
+        $("#err_image").text("This field is required"); 
+    }
+
+    if(caption.length==0 || caption.length==null){
+        // $('#err_caption').text('This field is required');
+        allFields = false;
+    }else{
+        $('#err_caption').text('');
+    }
+
+
+       
+
+            if(allFields){
+                // $('#add_admin').attr('action','<?php //echo base_url(); ?>admin/addbannerimg');
+                // $('#add_admin').submit();
+                   // return true;
+                    Swal.fire({
+                            title: 'Do you want to Submit?',
+                            showDenyButton: true,
+                            showCancelButton: false,
+                            confirmButtonText: 'Submit',
+                            denyButtonText: `Cancel`,
+                            }).then((result) => {
+                            /* Read more about isConfirmed, isDenied below */
+                            if (result.isConfirmed) {
+                                Swal.fire('Saved!', '', 'success')
+
+                                $('#add_admin').submit(); 
+                                 
+                                return true;
+                                return true
+                            } else if (result.isDenied) {
+                                Swal.fire('Changes are not saved', '', 'info')
+                            }
+                            })
+                    // alert("jjgkg");
+                }else{
+                    return false;
+                }
+
+        }
+
+        $(document).ready(function(){
+
+    // $('#add_admin').removeClass('was-validated');
+
+        $('#bannerimg').on('change', function(){ 
+            $('#bannerimg').attr('required',true);
+                    var focusSet = false;
+                    var is_valid = true;
+                    if ($("#bannerimg").val() != '') {
+                    var fileSize = $('#bannerimg')[0].files[0].size;
+                    if (fileSize > 204800) {
+                         is_valid = false;
+                        allfields = false;
+                        $("#bannerimg").val('');
+                        $('#greaterSize').modal('show');
+                       
+                        if (!focusSet) {
+                            $("#image").focus();
+                        }
+                        return false;
+                    } else if(fileSize < 20480){
+                        $("#bannerimg").val('');
+                        $('#lessSize').modal('show');
+                        is_valid = false;
+                        allfields = false;   
+                    }else{                        
+                        $("#err_image").text(""); // remove it
+                        // $("#err_image").after("");
+                    }
+                    var validExtensions = ['jpg', 'jpeg', 'png']; //array of valid extensions
+                    var fileName = $("#bannerimg").val();;
+                    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+                    if ($.inArray(fileNameExt, validExtensions) == -1) {
+                        $('#bannerimg').val('');                     
+                        // $('#invalidfiletype').modal('show');                   
+                        allFields = false;
+                        $("#err_image").text("Only Jpg,Jpeg,png files allowed");
+                      
+                    } else {                    
+                        $("#err_image").text("");                        
+                    }                    
+                }else{
+                    $("#err_image").text('This value is required');
+                    $("#bannerimg").focus();
+                    return false;
+                }
+                
+              
+            });
+
+        })
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
