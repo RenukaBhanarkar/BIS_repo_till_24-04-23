@@ -1,4 +1,7 @@
     <!-- Begin Page Content -->
+    <style>
+        #opt_blk_eng .form-control,#opt_blk_hin .form-control  {margin-top: 13px;}
+    </style>
     <div class="container-fluid">
 
         <!-- Page Heading -->
@@ -153,226 +156,191 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row" style="" id="options_blk" style="display:none;">
-                                <div class="col-md-5 col-sm-5 col-lg-5 col-xl-5" id="opt_blk_eng">
+                            <div class="row" id="options_blk" style="display:none;">
+                                <div class="col-md-2 col-sm-2 col-lg-2 " id="opt1_type_blk">
+                                    
+                                    <div class="row"  id="opt1_div">
+                                        <div class="col-md-12">
+                                            <label class="d-block text-font mr-3">Option 1</label>
+                                                <select class="form-control input-font" id="opt_type_1" name="opt_type_1" aria-label="Default select example">
+                                                        <option value="1">Text</option>
+                                                        <option value="2">Image</option>
+                                                </select>                                               
+                                        </div>
+                                    </div>  
+                                    <div class="row" id="opt2_div">
+                                        <div class="col-md-12">
+                                            <label class="d-block text-font mr-3">Option 2</label>
+                                                <select class="form-control input-font" id="opt_type_2" name="opt_type_2" aria-label="Default select example">
+                                                        <option value="1">Text</option>
+                                                        <option value="2">Image</option>
+                                                </select>                                               
+                                        </div>
+                                    </div> 
+
+                                    <div class="row" id="opt3_div">
+                                        <div class="col-md-12">
+                                            <label class="d-block text-font mr-3">Option 3</label>
+                                                <select class="form-control input-font" id="opt_type_3" name="opt_type_3" aria-label="Default select example">
+                                                        <option value="1">Text</option>
+                                                        <option value="2">Image</option>
+                                                </select>                                               
+                                        </div>
+                                    </div> 
+                                    <div class="row" id="opt4_div">
+                                        <div class="col-md-12">
+                                            <label class="d-block text-font mr-3">Option 4</label>
+                                                <select class="form-control input-font" id="opt_type_4" name="opt_type_4" aria-label="Default select example">
+                                                        <option value="1">Text</option>
+                                                        <option value="2">Image</option>
+                                                </select>                                               
+                                        </div>
+                                    </div> 
+                                    <div class="row" id="opt5_div">
+                                        <div class="col-md-12">
+                                            <label class="d-block text-font mr-3">Option 5</label>
+                                                <select class="form-control input-font" id="opt_type_5" name="opt_type_5" aria-label="Default select example">
+                                                        <option value="1">Text</option>
+                                                        <option value="2">Image</option>
+                                                </select>                                               
+                                        </div>
+                                    </div> 
+                                </div>
+
+
+                                <div class="col-md-3 col-sm-3 col-lg-3 " id="opt_blk_eng">
+                                <label class="d-block text-font mr-3">English Option</label>
 
                                     <div class="row mt-3" id="opt1_blk">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 1</label>
-                                            </div>
-                                            <div class="col-3">
-                                                <select class="form-control input-font" id="opt_type_1" name="opt_type_1" aria-label="Default select example">
-                                                    <option value="1">Text</option>
-                                                    <option value="2">Image</option>
-                                                </select></div>
-                                                <div class="col-6">
+                                           
+                                            <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option1_text_blk">
                                                     <input class="form-control input-font" type="text" name="option1" id="option1">
                                                 </div>
-                                            
-                                            
-                                            <div class="form-check" style="padding-left:0px;" id="option1_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option1_image" id="option1_image">
-                                            </div>
+
+                                                <div class="form-check" style="padding-left:0px;" id="option1_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option1_image" id="option1_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 2</label>
-                                            </div>
-                                            <div class="col-3">
-                                            <select class="form-control input-font" id="opt_type_2" name="opt_type_2" aria-label="Default select example">
-
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-
-                                            </select>
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option2_text_blk">
-                                                <input class="form-control input-font" type="text" name="option2" id="option2">
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option2_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option2_image" id="option2_image">
-                                            </div>
+                                           
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option2_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option2" id="option2">
+                                                </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option2_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option2_image" id="option2_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 3</label>
-                                            </div>
-                                            <div class="col-3">
-                                            <select class="form-control input-font" id="opt_type_3" name="opt_type_3" aria-label="Default select example">
-
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-
-                                            </select>
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option3_text_blk">
-                                                <input class="form-control input-font" type="text" name="option3" id="option3">
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option3_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option3_image" id="option3_image">
-                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option3_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option3" id="option3">
+                                                </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option3_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option3_image" id="option3_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 4</label>
-                                            </div>
-                                            <div class="col-3">
-                                            <select class="form-control input-font" id="opt_type_4" name="opt_type_4" aria-label="Default select example">
-
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-
-                                            </select>
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option4_text_blk">
-                                                <input class="form-control input-font" type="text" name="option4" id="option4">
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option4_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option4_image" id="option4_image">
-                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option4_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option4" id="option4">
+                                                </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option4_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option4_image" id="option4_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt5_blk">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 5</label>
-                                            </div>
-                                            <div class="col-3">
-                                            <select class="form-control input-font" id="opt_type_5" name="opt_type_5" aria-label="Default select example">
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-                                            </select>
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option5_text_blk">
-                                                <input class="form-control input-font" type="text" name="option5" id="option5">
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option5_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option5_image" id="option5_image">
-                                            </div>
+                                           
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option5_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option5" id="option5">
+                                                </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option5_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option5_image" id="option5_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5 col-sm-5 col-lg-5 col-xl-5" id="opt_blk_hin">
+                                <div class="col-md-3 col-sm-3 col-lg-3 " id="opt_blk_hin">
+                                <label class="d-block text-font mr-3">Hindi Option</label>
                                     <div class="row mt-3" id="opt1_blk_h">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 1 in Hindi</label>
-                                            </div>
-                                            <div class="col-3">
-                                                <select class="form-control input-font" id="opt_type_h_1" name="opt_type_h_1" aria-label="Default select example">
-                                                    <option value="1">Text</option>
-                                                    <option value="2">Image</option>
-                                                </select>
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option1_h_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option1_h" id="option1_h" required>
                                                 </div>
-                                                <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option1_h_text_blk">
-                                                <input class="form-control input-font" type="text" name="option1_h" id="option1_h" required>
-
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option1_h_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option1_h_image" id="option1_h_image">
-                                            </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option1_h_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option1_h_image" id="option1_h_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt2_blk_h">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 2 in Hindi</label>
-                                            </div>
-                                            <div class="col-3">
-                                            <select class="form-control input-font" id="opt_type_h_2" name="opt_type_h_2" aria-label="Default select example">
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-                                            </select>
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option2_h_text_blk">
-                                                <input class="form-control input-font" type="text" name="option2_h" id="option2_h" required>
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option2_h_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option2_h_image" id="option2_h_image">
-                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option2_h_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option2_h" id="option2_h" required>
+                                                </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option2_h_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option2_h_image" id="option2_h_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt3_blk_h">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 3 in Hindi</label>
-                                            </div>
-                                            <div class="col-3">
-                                            <select class="form-control input-font" id="opt_type_h_3" name="opt_type_h_3" aria-label="Default select example">
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-                                            </select>
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option3_h_text_blk">
-                                                <input class="form-control input-font" type="text" name="option3_h" id="option3_h" required>
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option3_h_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option3_h_image" id="option3_h_image">
-                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option3_h_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option3_h" id="option3_h" required>
+                                                </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option3_h_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option3_h_image" id="option3_h_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt4_blk_h">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 4 in Hindi</label>
-                                            </div>
-                                            <div class="col-3">
-                                            <select class="form-control input-font" id="opt_type_h_4" name="opt_type_h_4" aria-label="Default select example">
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-                                            </select>
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option4_h_text_blk">
-                                                <input class="form-control input-font" type="text" name="option4_h" id="option4_h">
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option4_h_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option4_h_image" id="option4_h_image">
-                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option4_h_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option4_h" id="option4_h">
+                                                </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option4_h_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option4_h_image" id="option4_h_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3" id="opt5_blk_h">
                                         <div class="mb-2  d-flex">
-                                            <div class="col-3">
-                                            <label class="d-block text-font">Option 5 in Hindi</label>
-                                            </div>
-                                            <div class="col-3">
-                                            <select class="form-control input-font" id="opt_type_h_5" name="opt_type_h_5" aria-label="Default select example">
-                                                <option value="1">Text</option>
-                                                <option value="2">Image</option>
-                                            </select>
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-check" style="padding-left:0px;" id="option5_h_text_blk">
-                                                <input class="form-control input-font" type="text" name="option5_h" id="option5_h" required>
-                                            </div>
-                                            <div class="form-check" style="padding-left:0px;" id="option5_h_image_blk">
-                                                <input class="form-control-file input-font" type="file" name="option5_h_image" id="option5_h_image">
-                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="form-check" style="padding-left:0px;" id="option5_h_text_blk">
+                                                    <input class="form-control input-font" type="text" name="option5_h" id="option5_h" required>
+                                                </div>
+                                                <div class="form-check" style="padding-left:0px;" id="option5_h_image_blk">
+                                                    <input class="form-control-file input-font" type="file" name="option5_h_image" id="option5_h_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -451,10 +419,10 @@
                                                     <th>Sr. No.</th>
                                                     <th>Question Id</th>
                                                     <th>Question Type</th>
-                                                    <th>Question Title</th>
-                                                    <th>Hindi Question Title </th>
+                                                    <th>English <br>Question <br>Title</th>
+                                                    <th>Hindi <br> Question <br>Title </th>
                                                     <!-- <th>Image</th> -->
-                                                    <th>Number of Options</th>
+                                                    <th>Number of <br>Options</th>
                                                     <th>English Options </th>
                                                     <th>Hindi Options</th>
                                                     <th>Correct Option No</th>
@@ -617,9 +585,13 @@
                     if (opt_type == 1) {
                         $("#option1_text_blk").show();
                         $("#option1_image_blk").hide();
+                        $("#option1_h_text_blk").show();
+                        $("#option1_h_image_blk").hide();
                     } else {
                         $("#option1_text_blk").hide();
                         $("#option1_image_blk").show();
+                        $("#option1_h_text_blk").hide();
+                        $("#option1_h_image_blk").show();
                     }
                 });
                 $(document).on("change", "#opt_type_2", function() {
@@ -627,9 +599,13 @@
                     if (opt_type == 1) {
                         $("#option2_text_blk").show();
                         $("#option2_image_blk").hide();
+                        $("#option2_h_text_blk").show();
+                        $("#option2_h_image_blk").hide();
                     } else {
                         $("#option2_text_blk").hide();
                         $("#option2_image_blk").show();
+                        $("#option2_h_text_blk").hide();
+                        $("#option2_h_image_blk").show();
                     }
                 });
                 $(document).on("change", "#opt_type_3", function() {
@@ -637,9 +613,13 @@
                     if (opt_type == 1) {
                         $("#option3_text_blk").show();
                         $("#option3_image_blk").hide();
+                        $("#option3_h_text_blk").show();
+                        $("#option3_h_image_blk").hide();
                     } else {
                         $("#option3_text_blk").hide();
                         $("#option3_image_blk").show();
+                        $("#option3_h_text_blk").hide();
+                        $("#option3_h_image_blk").show();
                     }
                 });
                 $(document).on("change", "#opt_type_4", function() {
@@ -647,9 +627,13 @@
                     if (opt_type == 1) {
                         $("#option4_text_blk").show();
                         $("#option4_image_blk").hide();
+                        $("#option4_h_text_blk").show();
+                        $("#option4_h_image_blk").hide();
                     } else {
                         $("#option4_text_blk").hide();
                         $("#option4_image_blk").show();
+                        $("#option4_h_text_blk").hide();
+                        $("#option4_h_image_blk").show();
                     }
                 });
                 $(document).on("change", "#opt_type_5", function() {
@@ -657,61 +641,16 @@
                     if (opt_type == 1) {
                         $("#option5_text_blk").show();
                         $("#option5_image_blk").hide();
-                    } else {
-                        $("#option5_text_blk").hide();
-                        $("#option5_image_blk").show();
-                    }
-                });
-                $(document).on("change", "#opt_type_h_1", function() {
-                    var opt_type = $("#opt_type_h_1 :selected").val();
-                    if (opt_type == 1) {
-                        $("#option1_h_text_blk").show();
-                        $("#option1_h_image_blk").hide();
-                    } else {
-                        $("#option1_h_text_blk").hide();
-                        $("#option1_h_image_blk").show();
-                    }
-                });
-                $(document).on("change", "#opt_type_h_2", function() {
-                    var opt_type = $("#opt_type_h_2 :selected").val();
-                    if (opt_type == 1) {
-                        $("#option2_h_text_blk").show();
-                        $("#option2_h_image_blk").hide();
-                    } else {
-                        $("#option2_h_text_blk").hide();
-                        $("#option2_h_image_blk").show();
-                    }
-                });
-                $(document).on("change", "#opt_type_h_3", function() {
-                    var opt_type = $("#opt_type_h_3 :selected").val();
-                    if (opt_type == 1) {
-                        $("#option3_h_text_blk").show();
-                        $("#option3_h_image_blk").hide();
-                    } else {
-                        $("#option3_h_text_blk").hide();
-                        $("#option3_h_image_blk").show();
-                    }
-                });
-                $(document).on("change", "#opt_type_h_4", function() {
-                    var opt_type = $("#opt_type_h_4 :selected").val();
-                    if (opt_type == 1) {
-                        $("#option4_h_text_blk").show();
-                        $("#option4_h_image_blk").hide();
-                    } else {
-                        $("#option4_h_text_blk").hide();
-                        $("#option4_h_image_blk").show();
-                    }
-                });
-                $(document).on("change", "#opt_type_h_5", function() {
-                    var opt_type = $("#opt_type_h_5 :selected").val();
-                    if (opt_type == 1) {
                         $("#option5_h_text_blk").show();
                         $("#option5_h_image_blk").hide();
                     } else {
+                        $("#option5_text_blk").hide();
+                        $("#option5_image_blk").show();
                         $("#option5_h_text_blk").hide();
                         $("#option5_h_image_blk").show();
                     }
                 });
+              
 
                 // $("#saveQueBank").click(function() {
                 // window.location.replace("<?php echo base_url(); ?>subadmin/question_bank_list");
@@ -878,11 +817,10 @@
                         return false;
                     }
                 });
-                //ajax request to fetch districts 
+                 
                 $(document).on("change", "#no_of_options", function() {
                     $('#options_blk').show();
                     var lang = $('input[name="language"]:checked').val();
-
                     $('#opt1_blk').hide();
                     $('#opt2_blk').hide();
                     $('#opt3_blk').hide();
@@ -895,82 +833,143 @@
                     $('#opt4_blk_h').hide();
                     $('#opt5_blk_h').hide();
 
+
                     $('#r1').hide();
                     $('#r2').hide();
                     $('#r3').hide();
                     $('#r4').hide();
                     $('#r5').hide();
+                    $('#opt1_div').hide();
+                    $('#opt2_div').hide();
+                    $('#opt3_div').hide();
+                    $('#opt4_div').hide();
+                    $('#opt5_div').hide();
                     var no_of_options = $("#no_of_options :selected").val();
                     if (no_of_options == 2) {
                         $('#r1').show();
                         $('#r2').show();
+                        $('#opt1_div').show();
+                         $('#opt2_div').show();
                     } else if (no_of_options == 3) {
                         $('#r1').show();
                         $('#r2').show();
                         $('#r3').show();
+                        $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
                     } else if (no_of_options == 4) {
                         $('#r1').show();
                         $('#r2').show();
                         $('#r3').show();
                         $('#r4').show();
+                        $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
+                         $('#opt4_div').show();
                     } else if (no_of_options == 5) {
                         $('#r1').show();
                         $('#r2').show();
                         $('#r3').show();
                         $('#r4').show();
                         $('#r5').show();
+                        $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
+                         $('#opt4_div').show();
+                         $('#opt5_div').show();
+
                     }
 
                     if (lang == 1) {
+                     
                         if (no_of_options == 2) {
 
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
+                            $('#opt1_div').show();
+                            $('#opt2_div').show();
 
                         } else if (no_of_options == 3) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
                             $('#opt3_blk').show();
+
+                            $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
                         } else if (no_of_options == 4) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
                             $('#opt3_blk').show();
                             $('#opt4_blk').show();
+                            $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
+                         $('#opt4_div').show();
                         } else if (no_of_options == 5) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
                             $('#opt3_blk').show();
                             $('#opt4_blk').show();
                             $('#opt5_blk').show();
+                            $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
+                         $('#opt4_div').show();
+                         $('#opt5_div').show();
+
                         }
 
                     } else if (lang == 2) {
+                      
                         if (no_of_options == 2) {
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
+                            $('#opt1_div').show();
+                         $('#opt2_div').show();
+                        
+
                         } else if (no_of_options == 3) {
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
                             $('#opt3_blk_h').show();
+                            $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
+                        
                         } else if (no_of_options == 4) {
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
                             $('#opt3_blk_h').show();
                             $('#opt4_blk_h').show();
+                            $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
+                         $('#opt4_div').show();
                         } else if (no_of_options == 5) {
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
                             $('#opt3_blk_h').show();
                             $('#opt4_blk_h').show();
                             $('#opt5_blk_h').show();
+                            $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
+                         $('#opt4_div').show();
+                         $('#opt5_div').show();
+
                         }
 
                     } else {
+                    
                         if (no_of_options == 2) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
+                            $('#opt1_type_blk').show();
+                            $('#opt2_type_blk').show();
+
                         } else if (no_of_options == 3) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
@@ -978,6 +977,9 @@
                             $('#opt1_blk_h').show();
                             $('#opt2_blk_h').show();
                             $('#opt3_blk_h').show();
+                            $('#opt1_type_blk').show();
+                            $('#opt2_type_blk').show();
+                            $('#opt3_type_blk').show();
                         } else if (no_of_options == 4) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
@@ -987,6 +989,10 @@
                             $('#opt2_blk_h').show();
                             $('#opt3_blk_h').show();
                             $('#opt4_blk_h').show();
+                            $('#opt1_type_blk').show();
+                            $('#opt2_type_blk').show();
+                            $('#opt3_type_blk').show();
+                            $('#opt4_type_blk').show();
                         } else if (no_of_options == 5) {
                             $('#opt1_blk').show();
                             $('#opt2_blk').show();
@@ -998,6 +1004,12 @@
                             $('#opt3_blk_h').show();
                             $('#opt4_blk_h').show();
                             $('#opt5_blk_h').show();
+                            $('#opt1_div').show();
+                         $('#opt2_div').show();
+                         $('#opt3_div').show();
+                         $('#opt4_div').show();
+                         $('#opt5_div').show();
+
                         }
                     }
                 });
@@ -1230,8 +1242,8 @@
                         }
                         if (no_of_options == 2 || no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
                             ///////////////////
-                            var opt_type_h_1 = $("#opt_type_h_1 :selected").val();
-                            if (opt_type_h_1 == 1) {
+                            var opt_type_1 = $("#opt_type_1 :selected").val();
+                            if (opt_type_1 == 1) {
                                 var option1_h = $("#option1_h").val();
                                 if (option1_h == "") {
                                     if ($("#option1_h").next(".validation").length == 0) {
@@ -1253,8 +1265,8 @@
                             }
                             ////////////////////
 
-                            var opt_type_h_2 = $("#opt_type_h_2 :selected").val();
-                            if (opt_type_h_2 == 1) {
+                            var opt_type_2 = $("#opt_type_2 :selected").val();
+                            if (opt_type_2 == 1) {
                                 var option2_h = $("#option2_h").val();
                                 if (option2_h == "") {
                                     if ($("#option2_h").next(".validation").length == 0) {
@@ -1277,8 +1289,8 @@
                         }
                         if (no_of_options == 3 || no_of_options == 4 || no_of_options == 5) {
 
-                            var opt_type_h_3 = $("#opt_type_h_3 :selected").val();
-                            if (opt_type_h_3 == 1) {
+                            var opt_type_3 = $("#opt_type_3 :selected").val();
+                            if (opt_type_3 == 1) {
                                 var option3_h = $("#option3_h").val();
                                 if (option3_h == "") {
                                     if ($("#option3_h").next(".validation").length == 0) {
@@ -1301,8 +1313,8 @@
 
                         }
                         if (no_of_options == 4 || no_of_options == 5) {
-                            var opt_type_h_4 = $("#opt_type_h_4 :selected").val();
-                            if (opt_type_h_4 == 1) {
+                            var opt_type_4 = $("#opt_type_4 :selected").val();
+                            if (opt_type_4 == 1) {
                                 var option4_h = $("#option4_h").val();
                                 if (option4_h == "") {
                                     if ($("#option4_h").next(".validation").length == 0) {
@@ -1325,12 +1337,12 @@
 
                         }
                         if (no_of_options == 5) {
-                            var opt_type_h_5 = $("#opt_type_h_5 :selected").val();
-                            if (opt_type_h_5 == 1) {
+                            var opt_type_5 = $("#opt_type_5 :selected").val();
+                            if (opt_type_5 == 1) {
                                 var option5_h = $("#option5_h").val();
                                 if (option5_h == "") {
                                     if ($("#option5_h").next(".validation").length == 0) {
-                                        $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter option 5</div>");
+                                        $("#option5_h").after("<div class='validation' style='color:red;margin-bottom:15px; margin-left:16px;'>Please enter Hindi option 5</div>");
                                     }
                                     if (!focusSet) {
                                         $("#option5_h").focus();
@@ -1641,7 +1653,7 @@
                                         var op4 = data[i].opt4_e;
                                     }
                                 }
-                                if (data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                if ( data[i].no_of_options == 5) {
                                     if (data[i].opt5_e == 0 || data[i].opt5_e == '') {
                                         var op5_img = data[i].option5_image;
                                         var op5 = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op5_img + '">';
@@ -1684,7 +1696,7 @@
                                         var op4_h = data[i].opt4_h;
                                     }
                                 }
-                                if (data[i].no_of_options == 4 || data[i].no_of_options == 5) {
+                                if (data[i].no_of_options == 5) {
                                     if (data[i].opt5_h == '' || data[i].opt5_h == 0) {
                                         var op5_h_img = data[i].option5_h_image;
                                         var op5_h = '<img width="100" src="<?php echo base_url(); ?>uploads/que_img/bankid' + data[i].que_bank_id + '/' + op5_h_img + '">';

@@ -101,7 +101,7 @@ h5{
     background: white;
     position: relative;
     /* background: rgba(var(--color-white-rgb), 0.9); */
-    text-align: justify;
+    /* text-align: center; */
     border-radius: 8px;
     box-shadow: 0px 0 25px rgba(var(--color-black-rgb), 0.1);
 }
@@ -127,9 +127,11 @@ h5{
     background: white;
     border: 2px solid #0ea2bd;
 }
-.title_mentor{
+.title_mentor {
     overflow: hidden;
-    height: 30px;
+    height: 62px;
+    font-weight: 600;
+    text-align: center;
 }
 .des_mentor{
     overflow: hidden;

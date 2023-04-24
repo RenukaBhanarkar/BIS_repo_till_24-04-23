@@ -54,6 +54,7 @@
                             <?php if (!empty($allRecords)) {
                                 $i = 1;
                                 foreach ($allRecords as $row) { ?>
+                                   
                                     <tr id="row<?php echo $row['que_bank_id']; ?>">
                                         <td><?php echo $i; ?></td>
                                         <td><?php echo $row['que_bank_id']; ?></td>

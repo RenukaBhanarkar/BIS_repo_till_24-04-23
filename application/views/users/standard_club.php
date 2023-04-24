@@ -101,7 +101,12 @@
             <div class="row text-center">
                 <h3>Quiz Competition</h3>
                 <p>Quizes For You</p>
-            </div>    
+            </div> 
+            <?php if  (empty($allquize)) { ?>
+              <div class="alert alert-danger">
+                <strong>Sorry!</strong> Quizes are not available.
+              </div>
+           <?php  } else{  ?>
             <div class="row">
                 <?php foreach ($allquize as $key => $quize) {  ?>
                     <div class="col-md-3">
@@ -120,6 +125,9 @@
             <div class="view-button">
                 <a href="<?=base_url();?>users/quiz">View All</a>
             </div>    
+
+            <?php } ?>
+            
         </div>
     </section>
     <section id="cta" class="cta">
@@ -166,7 +174,7 @@
  
                         <img src="<?=base_url();?>assets/images/wall_2.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
-                          <p class="card-text">learning Science via Standards</p>
+                          <p class="card-text">Your Classroom</p>
                         </div>
                       </div>
                       </a>

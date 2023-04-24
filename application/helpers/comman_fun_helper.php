@@ -102,7 +102,7 @@ if ( ! function_exists('clearText')){
 	{
 		if($str==null)
 		{
-			$str=0;
+			$str="";
 		}
 		$input_text = preg_replace("/[^a-zA-Z0-9@]+-_/", "", $str);
 		$input_text = xss_clean($input_text);
