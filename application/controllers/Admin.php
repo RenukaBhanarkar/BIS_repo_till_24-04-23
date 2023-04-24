@@ -1057,11 +1057,15 @@ class Admin extends CI_Controller
 
         public function videos()
         {
+            if($this->Admin_model->checkAdminLogin()){
             $this->load->model('Admin/Admin_model');
             $data['video'] = $this->Admin_model->allVideos();
             $this->load->view('admin/headers/admin_header');
             $this->load->view('admin/videos',$data);
             $this->load->view('admin/footers/admin_footer');
+            }else{
+                redirect(base_url()."Admin/login",'refresh');
+            }
         }
         public function add_video(){
             $banner_img = "video" . time() . '.mp4';
