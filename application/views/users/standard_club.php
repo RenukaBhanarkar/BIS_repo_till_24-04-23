@@ -100,11 +100,11 @@
         <div class="container pt-4 pb-5" id="start-quiz">
             <div class="row text-center">
                 <h3>Quiz Competition</h3>
-                <p>Quizzes For You</p>
+                <p>Quizes For You</p>
             </div> 
             <?php if  (empty($allquize)) { ?>
               <div class="alert alert-danger">
-                <strong>Sorry!</strong> Quizzes are not available.
+                <strong>Sorry!</strong> Quizes are not available.
               </div>
            <?php  } else{  ?>
             <div class="row">
