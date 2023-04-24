@@ -274,6 +274,24 @@
                             <span class="start-end-time-title">Branch<span class="quiz-text-date m-2">12</span>
                             </span>
                         </p>
+<<<<<<< HEAD
+                        </div>
+                        <?php 
+                       
+                         echo $user_type = encryptids("D", $this->session->userdata('admin_type'));
+                       
+                         if($user_type != "") { ?>
+                            <a href="<?= base_url();?>users/quiz_start/<?= $quizdata['id'];?>" class="btn startQuiz"> <span>Start Quiz</span></a>
+                        <?php  }  else { ?> 
+                            <a href="<?= base_url();?>users/login" class="btn startQuiz"> <span>Login to Start Quiz</span></a>
+                        <?php } ?>
+                          <?php 
+                            if ($this->session->flashdata('MSG')) {   
+                                echo $this->session->flashdata('MSG');  
+                            } 
+                        ?>
+=======
+>>>>>>> 016379dfbc44e5943c604fb4af912cc71429af14
                     </div>
                     <?php
 

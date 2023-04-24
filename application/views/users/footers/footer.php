@@ -219,12 +219,10 @@ $(document).ready(function(){
     method:"get",    
     success:function(result){      
          var res = JSON.parse(result);        
-        data = res;
-        console.log(data);
+        data = res; 
                 var row = '';
                 
-                for (i in data) {
-                    console.log(data);
+                for (i in data) { 
                     row += '<li><a href="https://'+data[i].link+'" class="jquery-once" id="'+data[i].id+'"><img src="<?php echo base_url(); ?>uploads/'+data[i].image +'"></a></li>';       
                                     
                 }
@@ -245,8 +243,7 @@ $(document).ready(function(){
     method:"get",    
     success:function(result){      
          var res = JSON.parse(result);        
-        data = res;
-        console.log(data);
+        data = res; 
                 var row = '';
                 
                 for (i in data) {

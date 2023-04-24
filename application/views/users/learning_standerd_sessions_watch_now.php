@@ -14,6 +14,16 @@ h1 {
     margin-top: 10px; 
     
 }
+.like_button {
+background: #ffd600;
+margin-left: 273px;
+padding: 3px;
+width: 76px;
+text-align: center;
+border-radius: 10px;
+font-weight: 700;
+font-size: 14px;
+}
 .author img {
     object-fit: cover;
     border-radius: 50%;
@@ -120,6 +130,18 @@ img.news_img {
                     <div class="title-text">
                         <h3><?= $WatchNow['title']?></h3>
                         <span>Date : <?= date("d M Y", strtotime($WatchNow['created_on']));?></span>
+
+                        <span><?= $WatchNow['views']?> Views • <?= time_elapsed_string($WatchNow['created_on'])?></span>
+                            <input type="hidden" value="<?= $WatchNow['likes']?>" id="oldlikes">
+
+                            <span id="newlikes"> </span><span> likes </span>
+                            <span class="like_button" type="button" onclick="submitLike('<?= $WatchNow["id"]?>')"><i  id="heart" style="width:18px; font-size: 21px; margin-right: 9px; color:red;"></i>Like</span>
+                        
+                    </div> 
+                </div>
+                <div class="video__details">
+                    <div class="title-text">
+                        <p><?= $WatchNow['description']?></p> 
                     </div> 
                 </div>
                 
@@ -129,5 +151,109 @@ img.news_img {
               
     </div>      
 </section>   
+
+
+
+
+
+<?php
+        function time_elapsed_string($datetime, $full = false) {
+        // echo $datetime;
+        $now = new DateTime;
+        $ago = new DateTime($datetime);
+        $diff = $now->diff($ago);
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+        $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+        $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+        unset($string[$k]);
+        }
+        }
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
+        }
+        ?>
+
+
+
+        <script>
+    $(document).ready(function () 
+    { 
+        var likes="<?= $WatchNow['likes']?>"; 
+        $("#newlikes").text(likes);
+        var id="<?= $WatchNow['id']?>";
+        Checkleasrninglike(id);
+
+
+    });
+ </script>
+         
+<script type="text/javascript">
+ 
+        function submitLike(id)
+        { 
+        $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url(); ?>Users/updateUpdateleasrningLikes',
+        data: {
+        id: id, 
+        },
+        success: function(result)
+        {
+            var msg = JSON.parse(result)
+            if (msg.data.status==1) 
+            {
+                var oldlikes=$("#oldlikes").val();
+                var likes=msg.data.likes;
+                var newlikes=parseInt(oldlikes)+parseInt(likes);
+                $("#newlikes").text(newlikes);
+                Checkleasrninglike(id)
+            }
+        },
+        error: function(result) {
+        alert("Error,Please try again.");
+        }
+        });
+        }
+
+
+        function Checkleasrninglike(id)
+        {  
+        $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url(); ?>Users/Checkleasrninglike',
+        data: {
+        id: id, 
+        },
+        success: function(result)
+        {
+            var msg = JSON.parse(result)
+            if (msg.data.status==1) 
+            {   $('#heart').removeClass('fa fa-heart-o');
+                $("#heart").addClass('fa fa-heart');
+            }
+            else
+            { 
+                $("#heart").addClass('fa fa-heart-o');
+            }
+        },
+        error: function(result) {
+        alert("Error,Please try again.");
+        }
+        });
+        };
+        
+        </script>
 
 

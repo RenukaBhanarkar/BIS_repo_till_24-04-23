@@ -138,4 +138,22 @@ $config = array(
 			'rules' => 'required'
 		),
 	),
+
+		'winner_wall_form' => array(
+		array(
+			'field' => 'name',
+			'label' => 'Name',
+			'rules' => 'required'
+		),
+		array( 
+			'field' => 'email',
+			'label' => 'Email ',
+			'rules' => 'required'
+		),
+		array( 
+			'field' => 'contact_no',
+			'label' => 'Contact',
+			'rules' => 'required'
+		),
+	),
 );

@@ -4,7 +4,7 @@
         {
             color: red;
         }
-    </style>
+    </style> 
         <!-- Begin Page Content -->
     <div class="container-fluid">
 
