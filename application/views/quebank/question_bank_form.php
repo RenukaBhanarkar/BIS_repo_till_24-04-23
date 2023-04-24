@@ -7,6 +7,17 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Question Bank Form</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'Admin/dashboard';?>" >Sub Admin Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'admin/exchange_forum';?>" >Exchange Forum</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'quiz/organizing_quiz';?>" >Competitions</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'quiz/quiz_dashboard';?>" >Quiz Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'subadmin/questionBankList';?>" >Question Bank List</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Question Bank Form</li>
+                
+                </ol>
+            </nav>
         </div>
         <?php
         if ($this->session->flashdata('MSG')) {
@@ -216,11 +227,11 @@
                                            
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option1_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option1" id="option1">
+                                                    <input class="form-control input-font" type="text" name="option1" id="option1" style="margin-top:0px;">
                                                 </div>
 
                                                 <div class="form-check" style="padding-left:0px;" id="option1_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option1_image" id="option1_image">
+                                                    <input class="form-control-file input-font" type="file" name="option1_image" id="option1_image" style="margin-top:0px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -230,10 +241,10 @@
                                            
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option2_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option2" id="option2">
+                                                    <input class="form-control input-font" type="text" name="option2" id="option2" style="margin-top:0px;">
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option2_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option2_image" id="option2_image">
+                                                    <input class="form-control-file input-font" type="file" name="option2_image" id="option2_image" style="margin-top:10px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -243,10 +254,10 @@
                                             
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option3_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option3" id="option3">
+                                                    <input class="form-control input-font" type="text" name="option3" id="option3" style="margin-top:0px;">
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option3_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option3_image" id="option3_image">
+                                                    <input class="form-control-file input-font" type="file" name="option3_image" id="option3_image" style="margin-top:13px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -256,10 +267,10 @@
                                             
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option4_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option4" id="option4">
+                                                    <input class="form-control input-font" type="text" name="option4" id="option4" style="margin-top:0px;">
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option4_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option4_image" id="option4_image">
+                                                    <input class="form-control-file input-font" type="file" name="option4_image" id="option4_image" style="margin-top:15px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -269,10 +280,10 @@
                                            
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option5_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option5" id="option5">
+                                                    <input class="form-control input-font" type="text" name="option5" id="option5" style="margin-top:0px;">
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option5_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option5_image" id="option5_image">
+                                                    <input class="form-control-file input-font" type="file" name="option5_image" id="option5_image" style="margin-top:13px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -284,10 +295,10 @@
                                         <div class="mb-2  d-flex">
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option1_h_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option1_h" id="option1_h" required>
+                                                    <input class="form-control input-font" type="text" name="option1_h" id="option1_h" style="margin-top:0px;" required>
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option1_h_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option1_h_image" id="option1_h_image">
+                                                    <input class="form-control-file input-font" type="file" name="option1_h_image" id="option1_h_image" style="margin-top:0px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -297,10 +308,10 @@
                                             
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option2_h_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option2_h" id="option2_h" required>
+                                                    <input class="form-control input-font" type="text" name="option2_h" id="option2_h" style="margin-top:0px;" required>
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option2_h_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option2_h_image" id="option2_h_image">
+                                                    <input class="form-control-file input-font" type="file" name="option2_h_image" id="option2_h_image" style="margin-top:10px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -310,10 +321,10 @@
                                             
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option3_h_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option3_h" id="option3_h" required>
+                                                    <input class="form-control input-font" type="text" name="option3_h" id="option3_h" style="margin-top:0px;" required>
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option3_h_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option3_h_image" id="option3_h_image">
+                                                    <input class="form-control-file input-font" type="file" name="option3_h_image" id="option3_h_image" style="margin-top:13px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -323,10 +334,10 @@
                                             
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option4_h_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option4_h" id="option4_h">
+                                                    <input class="form-control input-font" type="text" name="option4_h" id="option4_h" style="margin-top:0px;">
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option4_h_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option4_h_image" id="option4_h_image">
+                                                    <input class="form-control-file input-font" type="file" name="option4_h_image" id="option4_h_image" style="margin-top:15px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -336,10 +347,10 @@
                                             
                                             <div class="col-12">
                                                 <div class="form-check" style="padding-left:0px;" id="option5_h_text_blk">
-                                                    <input class="form-control input-font" type="text" name="option5_h" id="option5_h" required>
+                                                    <input class="form-control input-font" type="text" name="option5_h" id="option5_h" style="margin-top:0px;" required>
                                                 </div>
                                                 <div class="form-check" style="padding-left:0px;" id="option5_h_image_blk">
-                                                    <input class="form-control-file input-font" type="file" name="option5_h_image" id="option5_h_image">
+                                                    <input class="form-control-file input-font" type="file" name="option5_h_image" id="option5_h_image" style="margin-top:13px;">
                                                 </div>
                                             </div>
                                         </div>

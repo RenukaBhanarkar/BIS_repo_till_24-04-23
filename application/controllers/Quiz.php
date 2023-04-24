@@ -635,12 +635,28 @@ class Quiz extends CI_Controller
         $this->load->view('admin/footers/admin_footer');
     }
 
-    public function result_declaration_list($quiz_id){
-        $users = $this->Quiz_model->resultDeclarationList($quiz_id); 
-        $data['UsersDetails']=$users; 
+    public function result_declaration_list(){
+        // $users = $this->Quiz_model->resultDeclarationList($quiz_id); 
+        // $data['UsersDetails']=$users; 
       
         $this->load->view('admin/headers/admin_header');;
-        $this->load->view('Quiz/result_declaration_list',$data);
+        $this->load->view('Quiz/result_declaration_list');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function close_declaration_list(){
+        // $users = $this->Quiz_model->resultDeclarationList($quiz_id); 
+        // $data['UsersDetails']=$users; 
+      
+        $this->load->view('admin/headers/admin_header');;
+        $this->load->view('Quiz/close_declaration_list');
+        $this->load->view('admin/footers/admin_footer');
+    }
+    public function answer_key_list(){
+        // $users = $this->Quiz_model->resultDeclarationList($quiz_id); 
+        // $data['UsersDetails']=$users; 
+      
+        $this->load->view('admin/headers/admin_header');;
+        $this->load->view('Quiz/answer_key_list');
         $this->load->view('admin/footers/admin_footer');
     }
 

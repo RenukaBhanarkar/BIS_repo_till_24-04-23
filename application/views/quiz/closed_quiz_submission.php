@@ -32,7 +32,27 @@
                             
                         </tr>
                     </thead>
-                    <tbody>
+                  <tbody>
+                      
+
+                            <tr>
+                                 <td>1</td>
+                                 <td>Name</td>
+                                 <td>abc@gmail.com</td>
+                                 <td>7057085889</td> 
+                                 <td>12/03/2023</td> 
+                                 <td>12:00:00 PM</td> 
+                                 <td>12</td>
+                                 <td><a href="<?php echo base_url();?>Quiz/answer_key_list" class="btn btn-primary btn-sm mr-2">Answer Key</a></td>
+                            
+                            </tr>
+
+                             
+                        
+                        
+                           
+                    </tbody>
+                    <!-- <tbody>
                       
 
                          <?php if(!empty($UsersDetails)){
@@ -40,7 +60,6 @@
                             foreach($UsersDetails as $users)
                             {?>
                                 <tr>
-                                <!-- <td><input class="form-control-input" type="checkbox" value="" id="flexCheckDefault"></td> -->
                                  <td><?= $i++?></td>
                                  <td><?= $users['user_name']?></td>
                                  <td><?= $users['email']?></td>
@@ -48,25 +67,20 @@
                                  <td><?= date("d-m-Y", strtotime($users['created_on']));?></td> 
                                  <td><?= $users['start_time']?></td> 
                                  <td><?= $users['score']?></td>
-                                <td>Answer Key</td>
-                                  
+                                 <td><a href="#">Answer Key</a></td>
+                            
                                  </tr>
 
                              <?php } } ?>
                         
                         
                            
-                    </tbody>
+                    </tbody> -->
                 </table>
             </div>    
           </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 mt-3" style="text-align: end;">
-            <button onClick="location.href='#'" class="btn btn-success btn-sm mr-2">Declared Result</button>
-            </div>
-        </div>
-       </div>
+    </div>
     <!-- /.container-fluid -->
 
 </div>

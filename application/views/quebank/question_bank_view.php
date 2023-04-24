@@ -2,6 +2,17 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Question Bank View</h1>
+        <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'Admin/dashboard';?>" >Sub Admin Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'admin/exchange_forum';?>" >Exchange Forum</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'quiz/organizing_quiz';?>" >Competitions</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'quiz/quiz_dashboard';?>" >Quiz Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'subadmin/questionBankList';?>" >Question Bank List</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Question Bank View</li>
+                
+                </ol>
+            </nav>
     </div>
     <!-- Content Row -->
     <div class="row">
@@ -39,7 +50,7 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="mb-2 col-md-12">
-                                    <table id="example" class="hover table-bordered" style="width:100%">
+                                    <table id="example" class="table-bordered" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Sr.No.</th>

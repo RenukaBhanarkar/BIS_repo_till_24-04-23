@@ -2,7 +2,17 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Quiz View</h1>
-
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'Admin/dashboard';?>" >Sub Admin Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'admin/exchange_forum';?>" >Exchange Forum</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'quiz/organizing_quiz';?>" >Competitions</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'quiz/quiz_dashboard';?>" >Quiz Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url().'Quiz/quiz_list';?>" >Quiz Creation</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Quiz View</li>
+                
+                </ol>
+            </nav>
     </div>
     <!-- Content Row -->
     <div class="row">
@@ -75,31 +85,43 @@
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Total Question in QB<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Total Question in QB</label>
                             <div>
                                 <p><?= $quizdata['no_of_ques']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Total Marks<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Total Marks</label>
                             <div>
                                 <p><?= $quizdata['total_mark']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Level of Quiz<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Level of Quiz</label>
                             <div>
                                 <p><?= $quizdata['level']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Language of Quiz<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Branch</label>
+                            <div>
+                                <p><?= $quizdata['level']; ?></p>
+                            </div>
+                        </div>
+                        <div class="mb-2 col-md-4">
+                            <label class="d-block text-font">Region</label>
+                            <div>
+                                <p><?= $quizdata['level']; ?></p>
+                            </div>
+                        </div>
+                        <div class="mb-2 col-md-4">
+                            <label class="d-block text-font">Language of Quiz</label>
                             <div>
                                 <p><?= $quizdata['language']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Switching Type<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Switching Type</label>
                             <div>
                                 <?php if ($quizdata['switching_type'] == 1){
                                     echo "Random"; }else {echo "Serially";}?>
@@ -107,7 +129,7 @@
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Upload Quiz Banner<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Upload Quiz Banner</label>
                             <div>
                                 <p><img src="../../<?= $quizdata['banner_img']; ?>" style="width:200px;"></p>
                             </div>
@@ -121,19 +143,19 @@
                     </div>
                     <div class="row mt-3">
                         <div class="mb-2 col-md-4 ">
-                            <label class="d-block text-font">Number of Prizes<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Number of Prizes</label>
                             <div>
                                 <p><?= $firstprize['no_of_prize']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Prize Details<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Prize Details</label>
                             <div>
                                 <p><?= $firstprize['prize_details']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Image</label>
                             <div>
                             <?php if($firstprize['prize_img']== '') { 
                                 echo "NA";
@@ -153,19 +175,19 @@
                     </div>
                     <div class="row mt-3">
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Number of Prizes<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Number of Prizes</label>
                             <div>
                                 <p><?= $secondprize['no_of_prize']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Prize Details<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Prize Details</label>
                             <div>
                                 <p><?= $secondprize['prize_details']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Image</label>
                             <div>
                             <?php if($secondprize['prize_img']== '') { 
                                 echo "NA";
@@ -185,19 +207,19 @@
                     </div>
                     <div class="row mt-3">
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Number of Prizes<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Number of Prizes</label>
                             <div>
                                 <p><?= $thirdprize['no_of_prize']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Prize Details<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Prize Details</label>
                             <div>
                                 <p><?= $thirdprize['prize_details']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Image</label>
                             <div>
                             <?php if($thirdprize['prize_img']== '') { 
                                 echo "NA";
@@ -217,19 +239,19 @@
                     </div>
                     <div class="row mt-3">
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Number of Prizes<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Number of Prizes</label>
                             <div>
                                 <p><?= $fourthprize['no_of_prize']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Prize Details<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Prize Details</label>
                             <div>
                                 <p><?= $fourthprize['prize_details']; ?></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Image<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Image</label>
                             <div>
                             <?php if($fourthprize['prize_img']== '') { 
                                 echo "NA";
@@ -260,19 +282,25 @@
                     </div>
                     <div class="row mt-3">
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Question Bank Id<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Question Bank Id</label>
                             <div>
                                 <p id="qbid"></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Title<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Title</label>
                             <div>
                                 <p id="qbtitle"></p>
                             </div>
                         </div>
                         <div class="mb-2 col-md-4">
-                            <label class="d-block text-font">Number of Question<sup class="text-danger">*</sup></label>
+                            <label class="d-block text-font">Number of Question</label>
+                            <div>
+                                <p id="qbquestion"></p>
+                            </div>
+                        </div>
+                        <div class="mb-2 col-md-4">
+                            <label class="d-block text-font">Language</label>
                             <div>
                                 <p id="qbquestion"></p>
                             </div>
