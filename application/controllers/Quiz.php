@@ -76,8 +76,7 @@ class Quiz extends CI_Controller
         $quizlavel = $this->Quiz_model->getQuizLevel();
         $getAvailability = $this->Quiz_model->getAvailability();
         $getQuizLanguage = $this->Quiz_model->getQuizLanguage(); 
-        //$getAllQb = $this->Quiz_model->getAllQb(); 
-      
+        //$getAllQb = $this->Quiz_model->getAllQb();       
             
         //quize Data 
         $getAllRegions = array();
@@ -87,7 +86,7 @@ class Quiz extends CI_Controller
             $region_id = $quiz['region_id'];
             $getAllRegions = $this->Quiz_model->getAllRegions($region_id); 
         }
-       
+       // echo json_encode($quiz);exit();
         $data['quizdata']=$quiz; 
         //End Quize Data
 
