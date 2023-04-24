@@ -35,7 +35,7 @@
             <div class="row">
               <div class="mb-2 col-md-12">
                 <label class="d-block text-font">Hindi Title of Quiz<sup class="text-danger">*</sup></label>
-                <textarea type="text" class="form-control input-font" name="title_hindi" id="title_hindi" value="<?php echo set_value('title_hindi', $quizdata['title_hindi']) ?>" placeholder="Enter Hindi Title Of Quiz"></textarea>
+                <input type="text" class="form-control input-font" name="title_hindi" id="title_hindi" value="<?php echo set_value('title_hindi', $quizdata['title_hindi']) ?>" placeholder="Enter Hindi Title Of Quiz">
                 <span class="error_text"><?php echo form_error('title_hindi'); ?></span>
               </div>
             </div>

@@ -295,6 +295,7 @@ class Users extends CI_Controller
                     }
 
                     $data['allquize'] = $allquize;
+                
                     $this->load->view('users/headers/header');
                     $this->load->view('users/standard_club', $data);
                     $this->load->view('users/footers/footer');
