@@ -174,7 +174,7 @@
  
                         <img src="<?=base_url();?>assets/images/wall_2.jpg" class="card-img-top" alt="...">
                         <div class="card-body-new">
-                          <p class="card-text">learning Science via Standards</p>
+                          <p class="card-text">Your Classroom</p>
                         </div>
                       </div>
                       </a>
